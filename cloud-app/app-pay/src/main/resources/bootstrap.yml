@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: app-pay-service
+  profiles:
+      active: @profileActive@

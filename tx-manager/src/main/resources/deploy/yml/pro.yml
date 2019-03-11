@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: tx-manager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: tx-manager
+    spec:
+      containers:
+      - name: tx-manager
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/tx-manager:v1.1.3
+        ports: 
+        - containerPort: 8089
+      imagePullSecrets:
+      - name: k8slogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tx-manager-svc
+spec:
+  selector:
+    run: tx-manager
+  type: NodePort
+  ports:
+    - nodePort: 30012
+      port: 8089
+      targetPort: 8089

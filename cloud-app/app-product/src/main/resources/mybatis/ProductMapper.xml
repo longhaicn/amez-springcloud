@@ -1,0 +1,1772 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.Product">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="server_name" property="serverName" jdbcType="VARCHAR"/>
+        <result column="product_type" property="productType" jdbcType="TINYINT"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="brand_id" property="brandId" jdbcType="INTEGER"/>
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+        <result column="is_brand" property="isBrand" jdbcType="BIT"/>
+        <result column="label" property="label" jdbcType="TINYINT"/>
+        <result column="appointment" property="appointment" jdbcType="INTEGER"/>
+        <result column="sale_volume" property="saleVolume" jdbcType="INTEGER"/>
+        <result column="original_price" property="originalPrice" jdbcType="INTEGER"/>
+        <result column="home_fee" property="homeFee" jdbcType="INTEGER"/>
+        <result column="wholesale_price" property="wholesalePrice" jdbcType="INTEGER"/>
+        <result column="retail_price" property="retailPrice" jdbcType="INTEGER"/>
+        <result column="sale_price" property="salePrice" jdbcType="INTEGER"/>
+        <result column="fulltime_commission" property="fulltimeCommission" jdbcType="INTEGER"/>
+        <result column="fulltime_commission_ratio" property="fulltimeCommissionRatio" jdbcType="INTEGER"/>
+        <result column="parttime_commission" property="parttimeCommission" jdbcType="INTEGER"/>
+        <result column="parttime_commission_ratio" property="parttimeCommissionRatio" jdbcType="INTEGER"/>
+        <result column="server_introduce" property="serverIntroduce" jdbcType="LONGVARCHAR"/>
+        <result column="server_need_time" property="serverNeedTime" jdbcType="INTEGER"/>
+        <result column="server_content" property="serverContent" jdbcType="LONGVARCHAR"/>
+        <result column="server_fit_people" property="serverFitPeople" jdbcType="VARCHAR"/>
+        <result column="server_fit_part" property="serverFitPart" jdbcType="VARCHAR"/>
+        <result column="server_effect" property="serverEffect" jdbcType="VARCHAR"/>
+        <result column="server_attention" property="serverAttention" jdbcType="VARCHAR"/>
+        <result column="cover_img" property="coverImg" jdbcType="VARCHAR"/>
+        <result column="sequence" property="sequence" jdbcType="INTEGER"/>
+        <result column="sale_status" property="saleStatus" jdbcType="TINYINT"/>
+        <result column="audit_status" property="auditStatus" jdbcType="TINYINT"/>
+        <result column="audit_reason" property="auditReason" jdbcType="VARCHAR"/>
+        <result column="limit_status" property="limitStatus" jdbcType="TINYINT"/>
+        <result column="limit_quota" property="limitQuota" jdbcType="INTEGER"/>
+        <result column="limit_buy_quota" property="limitBuyQuota" jdbcType="INTEGER"/>
+        <result column="collection_total" property="collectionTotal" jdbcType="INTEGER"/>
+        <result column="is_support_store" property="isSupportStore" jdbcType="BIT"/>
+        <result column="is_support_home" property="isSupportHome" jdbcType="BIT"/>
+        <result column="is_support_wholesale" property="isSupportWholesale" jdbcType="BIT"/>
+        <result column="is_support_retail" property="isSupportRetail" jdbcType="BIT"/>
+        <result column="is_platform" property="isPlatform" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_allow_recruit" property="isAllowRecruit" jdbcType="BIT"/>
+        <result column="apply_recruit_total" property="applyRecruitTotal" jdbcType="INTEGER"/>
+        <result column="recruit_total" property="recruitTotal" jdbcType="INTEGER"/>
+        <result column="formal_beautician_commission" property="formalBeauticianCommission" jdbcType="INTEGER"/>
+        <result column="parttime_beautician_commission" property="parttimeBeauticianCommission" jdbcType="INTEGER"/>
+        <result column="is_course" property="isCourse" jdbcType="BIT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, server_name, product_type, store_id, store_name, brand_id, brand_name, is_brand,
+    label, appointment, sale_volume, original_price, home_fee, wholesale_price, retail_price,
+    sale_price, fulltime_commission, fulltime_commission_ratio, parttime_commission,
+    parttime_commission_ratio, server_introduce, server_need_time, server_content, server_fit_people,
+    server_fit_part, server_effect, server_attention, cover_img, sequence, sale_status,
+    audit_status, audit_reason, limit_status, limit_quota, limit_buy_quota, collection_total,
+    is_support_store, is_support_home, is_support_wholesale, is_support_retail, is_platform,
+    is_enabled, create_time, update_time, is_allow_recruit, apply_recruit_total, recruit_total,
+    formal_beautician_commission, parttime_beautician_commission, is_course
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, server_name AS serverName, product_type AS productType, store_id AS storeId,
+    store_name AS storeName, brand_id AS brandId, brand_name AS brandName, is_brand AS isBrand,
+    label, appointment, sale_volume AS saleVolume, original_price AS originalPrice, home_fee AS homeFee,
+    wholesale_price AS wholesalePrice, retail_price AS retailPrice, sale_price AS salePrice,
+    fulltime_commission AS fulltimeCommission, fulltime_commission_ratio AS fulltimeCommissionRatio,
+    parttime_commission AS parttimeCommission, parttime_commission_ratio AS parttimeCommissionRatio,
+    server_introduce AS serverIntroduce, server_need_time AS serverNeedTime, server_content AS serverContent,
+    server_fit_people AS serverFitPeople, server_fit_part AS serverFitPart, server_effect AS serverEffect,
+    server_attention AS serverAttention, cover_img AS coverImg, sequence, sale_status AS saleStatus,
+    audit_status AS auditStatus, audit_reason AS auditReason, limit_status AS limitStatus,
+    limit_quota AS limitQuota, limit_buy_quota AS limitBuyQuota, collection_total AS collectionTotal,
+    is_support_store AS isSupportStore, is_support_home AS isSupportHome, is_support_wholesale AS isSupportWholesale,
+    is_support_retail AS isSupportRetail, is_platform AS isPlatform, is_enabled AS isEnabled,
+    create_time AS createTime, update_time AS updateTime, is_allow_recruit AS isAllowRecruit,
+    apply_recruit_total AS applyRecruitTotal, recruit_total AS recruitTotal, formal_beautician_commission AS formalBeauticianCommission,
+    parttime_beautician_commission AS parttimeBeauticianCommission, is_course AS isCourse
+    </sql>
+
+    <sql id="Product_Column_List">
+        p.id, p.server_name, p.product_type, p.store_id, p.store_name, p.brand_id, p.brand_name, p.is_brand, p.label, p.appointment, p.sale_volume,
+        p.original_price, p.home_fee, p.wholesale_price, p.retail_price, p.sale_price, p.formal_beautician_commission,
+        p.parttime_beautician_commission, p.server_introduce, p.server_need_time, p.server_content,
+        p.server_fit_people, p.server_fit_part, p.server_effect, p.server_attention, p.cover_img, p.sequence,
+        p.sale_status, p.audit_status, p.audit_reason, p.limit_status, p.limit_quota, p.limit_buy_quota,
+        p.collection_total, p.is_support_store, p.is_support_home, p.is_support_wholesale, p.is_support_retail,
+        p.is_platform, p.is_enabled, p.create_time, p.update_time, p.is_allow_recruit, p.apply_recruit_total, p.recruit_total, p.is_course
+    </sql>
+
+    <sql id="Product_Store_Column_List">
+        p.id, p.server_name, p.product_type, psr.store_id, psr.store_name, p.brand_id, p.brand_name, p.is_brand, p.label, p.appointment, p.sale_volume,
+        p.original_price, p.home_fee, p.wholesale_price, p.retail_price, p.sale_price, p.formal_beautician_commission,
+        p.parttime_beautician_commission, p.server_introduce, p.server_need_time, p.server_content,
+        p.server_fit_people, p.server_fit_part, p.server_effect, p.server_attention, p.cover_img, p.sequence,
+        psr.sale_status, p.audit_status, p.audit_reason, p.limit_status, p.limit_quota, p.limit_buy_quota,
+        p.collection_total, p.is_support_store, p.is_support_home, p.is_support_wholesale, p.is_support_retail,
+        p.is_platform, p.is_enabled, p.create_time, p.update_time, p.is_allow_recruit, p.apply_recruit_total, p.recruit_total, p.is_course
+    </sql>
+
+    <sql id="ProductCategoryColumnList">
+        p.id,
+        p.server_name AS serverName,
+        p.product_type AS productType,
+        p.store_id AS storeId,
+        p.store_name AS storeName,
+        p.brand_id AS brandId,
+        p.brand_name AS brandName,
+        p.is_brand AS isBrand,
+        p.label,
+        p.appointment,
+        p.sale_volume AS saleVolume,
+        p.original_price AS originalPrice,
+        p.home_fee AS homeFee,
+        p.wholesale_price AS wholesalePrice,
+        p.retail_price AS retailPrice,
+        p.sale_price AS salePrice,
+        p.formal_beautician_commission AS formalBeauticianCommission,
+        p.parttime_beautician_commission AS parttimeBeauticianCommission,
+        p.server_introduce AS serverIntroduce,
+        p.server_need_time AS serverNeedTime,
+        p.server_content AS serverContent,
+        p.server_fit_people AS serverFitPeople,
+        p.server_fit_part AS serverFitPart,
+        p.server_effect AS serverEffect,
+        p.server_attention AS serverAttention,
+        p.cover_img AS coverImg,
+        p.sequence,
+        p.sale_status AS saleStatus,
+        p.audit_status AS auditStatus,
+        p.audit_reason AS auditReason,
+        p.limit_status AS limitStatus,
+        p.limit_quota AS limitQuota,
+        p.limit_buy_quota AS limitBuyQuota,
+        p.collection_total AS collectionTotal,
+        p.is_support_store AS isSupportStore,
+        p.is_support_home AS isSupportHome,
+        p.is_support_wholesale AS isSupportWholesale,
+        p.is_support_retail AS isSupportRetail,
+        p.is_platform AS isPlatform,
+        p.is_enabled AS isEnabled,
+        p.create_time AS createTime,
+        p.update_time AS updateTime,
+        p.is_allow_recruit AS isAllowRecruit,
+        p.apply_recruit_total AS applyRecruitTotal,
+        p.recruit_total AS recruitTotal,
+        p.is_course AS isCourse ,
+        c.category_name AS categoryName ,
+        c.id AS categoryId
+    </sql>
+
+    <sql id="productDivideInto">
+        <if test="null != beauticianType">
+            case p.product_type
+            when 3 then
+            if( #{beauticianType} = 2 , p.fulltime_commission , round(p.sale_price * ( 1 - ( #{commissionRate} / 100 ) ) ) )
+            else
+            if( #{beauticianType} = 2 , p.fulltime_commission , p.parttime_commission )
+            end as commission ,
+        </if>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.Product" useGeneratedKeys="true" keyProperty="id">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverName != null">
+                server_name,
+            </if>
+            <if test="productType != null">
+                product_type,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="brandName != null">
+                brand_name,
+            </if>
+            <if test="isBrand != null">
+                is_brand,
+            </if>
+            <if test="label != null">
+                label,
+            </if>
+            <if test="appointment != null">
+                appointment,
+            </if>
+            <if test="saleVolume != null">
+                sale_volume,
+            </if>
+            <if test="originalPrice != null">
+                original_price,
+            </if>
+            <if test="homeFee != null">
+                home_fee,
+            </if>
+            <if test="wholesalePrice != null">
+                wholesale_price,
+            </if>
+            <if test="retailPrice != null">
+                retail_price,
+            </if>
+            <if test="salePrice != null">
+                sale_price,
+            </if>
+            <if test="fulltimeCommission != null">
+                fulltime_commission,
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                fulltime_commission_ratio,
+            </if>
+            <if test="parttimeCommission != null">
+                parttime_commission,
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                parttime_commission_ratio,
+            </if>
+            <if test="serverIntroduce != null">
+                server_introduce,
+            </if>
+            <if test="serverNeedTime != null">
+                server_need_time,
+            </if>
+            <if test="serverContent != null">
+                server_content,
+            </if>
+            <if test="serverFitPeople != null">
+                server_fit_people,
+            </if>
+            <if test="serverFitPart != null">
+                server_fit_part,
+            </if>
+            <if test="serverEffect != null">
+                server_effect,
+            </if>
+            <if test="serverAttention != null">
+                server_attention,
+            </if>
+            <if test="coverImg != null">
+                cover_img,
+            </if>
+            <if test="sequence != null">
+                sequence,
+            </if>
+            <if test="saleStatus != null">
+                sale_status,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="auditReason != null">
+                audit_reason,
+            </if>
+            <if test="limitStatus != null">
+                limit_status,
+            </if>
+            <if test="limitQuota != null">
+                limit_quota,
+            </if>
+            <if test="limitBuyQuota != null">
+                limit_buy_quota,
+            </if>
+            <if test="collectionTotal != null">
+                collection_total,
+            </if>
+            <if test="isSupportStore != null">
+                is_support_store,
+            </if>
+            <if test="isSupportHome != null">
+                is_support_home,
+            </if>
+            <if test="isSupportWholesale != null">
+                is_support_wholesale,
+            </if>
+            <if test="isSupportRetail != null">
+                is_support_retail,
+            </if>
+            <if test="isPlatform != null">
+                is_platform,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isAllowRecruit != null">
+                is_allow_recruit,
+            </if>
+            <if test="applyRecruitTotal != null">
+                apply_recruit_total,
+            </if>
+            <if test="recruitTotal != null">
+                recruit_total,
+            </if>
+            <if test="formalBeauticianCommission != null">
+                formal_beautician_commission,
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                parttime_beautician_commission,
+            </if>
+            <if test="isCourse != null">
+                is_course,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverName != null">
+                #{serverName,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null">
+                #{productType,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="isBrand != null">
+                #{isBrand,jdbcType=BIT},
+            </if>
+            <if test="label != null">
+                #{label,jdbcType=TINYINT},
+            </if>
+            <if test="appointment != null">
+                #{appointment,jdbcType=INTEGER},
+            </if>
+            <if test="saleVolume != null">
+                #{saleVolume,jdbcType=INTEGER},
+            </if>
+            <if test="originalPrice != null">
+                #{originalPrice,jdbcType=INTEGER},
+            </if>
+            <if test="homeFee != null">
+                #{homeFee,jdbcType=INTEGER},
+            </if>
+            <if test="wholesalePrice != null">
+                #{wholesalePrice,jdbcType=INTEGER},
+            </if>
+            <if test="retailPrice != null">
+                #{retailPrice,jdbcType=INTEGER},
+            </if>
+            <if test="salePrice != null">
+                #{salePrice,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommission != null">
+                #{fulltimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                #{fulltimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommission != null">
+                #{parttimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                #{parttimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="serverIntroduce != null">
+                #{serverIntroduce,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverNeedTime != null">
+                #{serverNeedTime,jdbcType=INTEGER},
+            </if>
+            <if test="serverContent != null">
+                #{serverContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverFitPeople != null">
+                #{serverFitPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="serverFitPart != null">
+                #{serverFitPart,jdbcType=VARCHAR},
+            </if>
+            <if test="serverEffect != null">
+                #{serverEffect,jdbcType=VARCHAR},
+            </if>
+            <if test="serverAttention != null">
+                #{serverAttention,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="sequence != null">
+                #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="saleStatus != null">
+                #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="limitStatus != null">
+                #{limitStatus,jdbcType=TINYINT},
+            </if>
+            <if test="limitQuota != null">
+                #{limitQuota,jdbcType=INTEGER},
+            </if>
+            <if test="limitBuyQuota != null">
+                #{limitBuyQuota,jdbcType=INTEGER},
+            </if>
+            <if test="collectionTotal != null">
+                #{collectionTotal,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportStore != null">
+                #{isSupportStore,jdbcType=BIT},
+            </if>
+            <if test="isSupportHome != null">
+                #{isSupportHome,jdbcType=BIT},
+            </if>
+            <if test="isSupportWholesale != null">
+                #{isSupportWholesale,jdbcType=BIT},
+            </if>
+            <if test="isSupportRetail != null">
+                #{isSupportRetail,jdbcType=BIT},
+            </if>
+            <if test="isPlatform != null">
+                #{isPlatform,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isAllowRecruit != null">
+                #{isAllowRecruit,jdbcType=BIT},
+            </if>
+            <if test="applyRecruitTotal != null">
+                #{applyRecruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="recruitTotal != null">
+                #{recruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="formalBeauticianCommission != null">
+                #{formalBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                #{parttimeBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="isCourse != null">
+                #{isCourse,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.Product">
+        update product
+        <set>
+            <if test="serverName != null">
+                server_name = #{serverName,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null">
+                product_type = #{productType,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="isBrand != null">
+                is_brand = #{isBrand,jdbcType=BIT},
+            </if>
+            <if test="label != null">
+                label = #{label,jdbcType=TINYINT},
+            </if>
+            <if test="appointment != null">
+                appointment = #{appointment,jdbcType=INTEGER},
+            </if>
+            <if test="saleVolume != null">
+                sale_volume = #{saleVolume,jdbcType=INTEGER},
+            </if>
+            <if test="originalPrice != null">
+                original_price = #{originalPrice,jdbcType=INTEGER},
+            </if>
+            <if test="homeFee != null">
+                home_fee = #{homeFee,jdbcType=INTEGER},
+            </if>
+            <if test="wholesalePrice != null">
+                wholesale_price = #{wholesalePrice,jdbcType=INTEGER},
+            </if>
+            <if test="retailPrice != null">
+                retail_price = #{retailPrice,jdbcType=INTEGER},
+            </if>
+            <if test="salePrice != null">
+                sale_price = #{salePrice,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommission != null">
+                fulltime_commission = #{fulltimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                fulltime_commission_ratio = #{fulltimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommission != null">
+                parttime_commission = #{parttimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                parttime_commission_ratio = #{parttimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="serverIntroduce != null">
+                server_introduce = #{serverIntroduce,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverNeedTime != null">
+                server_need_time = #{serverNeedTime,jdbcType=INTEGER},
+            </if>
+            <if test="serverContent != null">
+                server_content = #{serverContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverFitPeople != null">
+                server_fit_people = #{serverFitPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="serverFitPart != null">
+                server_fit_part = #{serverFitPart,jdbcType=VARCHAR},
+            </if>
+            <if test="serverEffect != null">
+                server_effect = #{serverEffect,jdbcType=VARCHAR},
+            </if>
+            <if test="serverAttention != null">
+                server_attention = #{serverAttention,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                cover_img = #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="sequence != null">
+                sequence = #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="saleStatus != null">
+                sale_status = #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                audit_reason = #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="limitStatus != null">
+                limit_status = #{limitStatus,jdbcType=TINYINT},
+            </if>
+            <if test="limitQuota != null">
+                limit_quota = #{limitQuota,jdbcType=INTEGER},
+            </if>
+            <if test="limitBuyQuota != null">
+                limit_buy_quota = #{limitBuyQuota,jdbcType=INTEGER},
+            </if>
+            <if test="collectionTotal != null">
+                collection_total = #{collectionTotal,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportStore != null">
+                is_support_store = #{isSupportStore,jdbcType=BIT},
+            </if>
+            <if test="isSupportHome != null">
+                is_support_home = #{isSupportHome,jdbcType=BIT},
+            </if>
+            <if test="isSupportWholesale != null">
+                is_support_wholesale = #{isSupportWholesale,jdbcType=BIT},
+            </if>
+            <if test="isSupportRetail != null">
+                is_support_retail = #{isSupportRetail,jdbcType=BIT},
+            </if>
+            <if test="isPlatform != null">
+                is_platform = #{isPlatform,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isAllowRecruit != null">
+                is_allow_recruit = #{isAllowRecruit,jdbcType=BIT},
+            </if>
+            <if test="applyRecruitTotal != null">
+                apply_recruit_total = #{applyRecruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="recruitTotal != null">
+                recruit_total = #{recruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="formalBeauticianCommission != null">
+                formal_beautician_commission = #{formalBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                parttime_beautician_commission = #{parttimeBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="isCourse != null">
+                is_course = #{isCourse,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.Product" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        <where>
+            <if test="serverName != null">
+                AND server_name = #{serverName,jdbcType=VARCHAR}
+            </if>
+            <if test="productType != null">
+                AND product_type = #{productType,jdbcType=TINYINT}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="brandId != null">
+                AND brand_id = #{brandId,jdbcType=INTEGER}
+            </if>
+            <if test="brandName != null">
+                AND brand_name = #{brandName,jdbcType=VARCHAR}
+            </if>
+            <if test="isBrand != null">
+                AND is_brand = #{isBrand,jdbcType=BIT}
+            </if>
+            <if test="label != null">
+                AND label = #{label,jdbcType=TINYINT}
+            </if>
+            <if test="appointment != null">
+                AND appointment = #{appointment,jdbcType=INTEGER}
+            </if>
+            <if test="saleVolume != null">
+                AND sale_volume = #{saleVolume,jdbcType=INTEGER}
+            </if>
+            <if test="originalPrice != null">
+                AND original_price = #{originalPrice,jdbcType=INTEGER}
+            </if>
+            <if test="homeFee != null">
+                AND home_fee = #{homeFee,jdbcType=INTEGER}
+            </if>
+            <if test="wholesalePrice != null">
+                AND wholesale_price = #{wholesalePrice,jdbcType=INTEGER}
+            </if>
+            <if test="retailPrice != null">
+                AND retail_price = #{retailPrice,jdbcType=INTEGER}
+            </if>
+            <if test="salePrice != null">
+                AND sale_price = #{salePrice,jdbcType=INTEGER}
+            </if>
+            <if test="fulltimeCommission != null">
+                AND fulltime_commission = #{fulltimeCommission,jdbcType=INTEGER}
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                AND fulltime_commission_ratio = #{fulltimeCommissionRatio,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeCommission != null">
+                AND parttime_commission = #{parttimeCommission,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                AND parttime_commission_ratio = #{parttimeCommissionRatio,jdbcType=INTEGER}
+            </if>
+            <if test="serverIntroduce != null">
+                AND server_introduce = #{serverIntroduce,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serverNeedTime != null">
+                AND server_need_time = #{serverNeedTime,jdbcType=INTEGER}
+            </if>
+            <if test="serverContent != null">
+                AND server_content = #{serverContent,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serverFitPeople != null">
+                AND server_fit_people = #{serverFitPeople,jdbcType=VARCHAR}
+            </if>
+            <if test="serverFitPart != null">
+                AND server_fit_part = #{serverFitPart,jdbcType=VARCHAR}
+            </if>
+            <if test="serverEffect != null">
+                AND server_effect = #{serverEffect,jdbcType=VARCHAR}
+            </if>
+            <if test="serverAttention != null">
+                AND server_attention = #{serverAttention,jdbcType=VARCHAR}
+            </if>
+            <if test="coverImg != null">
+                AND cover_img = #{coverImg,jdbcType=VARCHAR}
+            </if>
+            <if test="sequence != null">
+                AND sequence = #{sequence,jdbcType=INTEGER}
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditStatus != null">
+                AND audit_status = #{auditStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditReason != null">
+                AND audit_reason = #{auditReason,jdbcType=VARCHAR}
+            </if>
+            <if test="limitStatus != null">
+                AND limit_status = #{limitStatus,jdbcType=TINYINT}
+            </if>
+            <if test="limitQuota != null">
+                AND limit_quota = #{limitQuota,jdbcType=INTEGER}
+            </if>
+            <if test="limitBuyQuota != null">
+                AND limit_buy_quota = #{limitBuyQuota,jdbcType=INTEGER}
+            </if>
+            <if test="collectionTotal != null">
+                AND collection_total = #{collectionTotal,jdbcType=INTEGER}
+            </if>
+            <if test="isSupportStore != null">
+                AND is_support_store = #{isSupportStore,jdbcType=BIT}
+            </if>
+            <if test="isSupportHome != null">
+                AND is_support_home = #{isSupportHome,jdbcType=BIT}
+            </if>
+            <if test="isSupportWholesale != null">
+                AND is_support_wholesale = #{isSupportWholesale,jdbcType=BIT}
+            </if>
+            <if test="isSupportRetail != null">
+                AND is_support_retail = #{isSupportRetail,jdbcType=BIT}
+            </if>
+            <if test="isPlatform != null">
+                AND is_platform = #{isPlatform,jdbcType=BIT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="isAllowRecruit != null">
+                AND is_allow_recruit = #{isAllowRecruit,jdbcType=BIT}
+            </if>
+            <if test="applyRecruitTotal != null">
+                AND apply_recruit_total = #{applyRecruitTotal,jdbcType=INTEGER}
+            </if>
+            <if test="recruitTotal != null">
+                AND recruit_total = #{recruitTotal,jdbcType=INTEGER}
+            </if>
+            <if test="formalBeauticianCommission != null">
+                AND formal_beautician_commission = #{formalBeauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                AND parttime_beautician_commission = #{parttimeBeauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="isCourse != null">
+                AND is_course = #{isCourse,jdbcType=BIT}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!-- 自定义计算距离SQL语句 -->
+    <sql id="caculateDistance">
+        IFNULL(ROUND(
+        6378.138 * 2 * ASIN(
+        SQRT(POW(SIN((${point.y} * PI() / 180 - store_latitude * PI() / 180) / 2),2) +
+        COS(${point.y} * PI() / 180) * COS(store_latitude * PI() / 180) * POW(
+        SIN((${point.x} * PI() / 180 - store_longitude * PI() / 180) / 2),2))) * 1000
+        ), 0) AS distance
+    </sql>
+
+    <!-- 上架商品条件 -->
+    <sql id="onSaleProduct">
+        where p.id = psr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        <if test="productAuditStatus != null">
+            and p.audit_status = #{productAuditStatus}
+        </if>
+        <if test="productSaleStatus != null">
+            and p.sale_status = #{productSaleStatus}
+        </if>
+        <if test="storeSaleStatus != null">
+            and psr.sale_status = #{storeSaleStatus}
+        </if>
+        <if test="storeProductStatus != null">
+            and psr.product_status = #{storeProductStatus}
+        </if>
+    </sql>
+
+    <sql id="listDisplayField">
+        p.id AS productId, p.product_type AS productType, p.cover_img AS coverImg, p.server_name AS serverName,
+        p.original_price AS originalPrice, p.sale_price AS salePrice, p.home_fee AS homeFee, p.is_support_store AS isSupportStore, p.is_support_home AS isSupportHome
+    </sql>
+
+    <select id="selectListByName" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByNameResultVo">
+        select
+        p.id, p.server_name AS serverName, p.original_price AS originalPrice, p.home_fee AS homeFee, p.sale_price AS salePrice, p.cover_img AS coverImg
+        from product p, product_city pc
+        where p.id = pc.product_id
+        and p.is_enabled = true
+        and pc.is_enabled = true
+        and p.is_support_store = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and pc.city_id = #{cityId}
+        <if test="null != productTypeList and productTypeList.size > 0">
+            and p.product_type in
+            <foreach collection="productTypeList" item="item" index="index" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        and
+        (
+        select
+        ifnull(max(psr.sale_status), true)
+        from product_store_ref psr
+        where psr.product_id = p.id
+        and psr.is_enabled = true
+        )
+        <if test="null != name and '' != name">
+            and p.server_name like concat('%', #{name}, '%')
+        </if>
+        order by p.sale_volume desc
+    </select>
+
+    <select id="selectListByStoreCouponsForBrand" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByStoreCouponsForBrandResultVo">
+        select
+        p.id, p.server_name AS serverName, p.brand_name AS brandName, p.sale_price AS salePrice
+        from product p, product_store_ref psr
+        <include refid="onSaleProduct"/>
+        and p.is_brand = true
+        <if test="brandId != null">
+            and p.brand_id = #{brandId}
+        </if>
+        <if test="storeId != null">
+            and psr.store_id = #{storeId}
+        </if>
+        <if test="serverName != null">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+    </select>
+
+    <select id="selectListByStoreCouponsForSelf" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByStoreCouponsForSelfResultVo">
+        select
+        p.id, p.server_name AS serverName, pcr.category_name AS categoryName, p.sale_price AS salePrice
+        from product p, product_store_ref psr, product_category_ref pcr
+        <include refid="onSaleProduct"/>
+        and p.id = pcr.product_id
+        and pcr.is_enabled = true
+        and p.is_brand = false
+        <if test="storeId != null">
+            and psr.store_id = #{storeId}
+        </if>
+        <if test="serverName != null">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+    </select>
+
+    <select id="selectListByStoreIdForSort" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Store_Column_List"/>
+        from product p, product_store_ref psr
+        <include refid="onSaleProduct"/>
+        <if test="storeId != null">
+            and psr.store_id = #{storeId}
+        </if>
+        <if test="brandId != null">
+            and p.brand_id = #{brandId}
+        </if>
+        <if test="sortType != null">
+            <choose>
+                <when test="sortType == 1">
+                    order by p.sale_volume desc
+                </when>
+                <when test="sortType == 2">
+                    and p.is_support_home = 1
+                    order by p.sale_volume desc
+                </when>
+                <when test="sortType == 3">
+                    order by p.create_time desc
+                </when>
+                <when test="sortType == 4">
+                    <choose>
+                        <when test="sort == 1">
+                            order by p.sale_price asc
+                        </when>
+                        <otherwise>
+                            order by p.sale_price desc
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    order by p.sale_volume desc
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id="selectBySaleStatusForStore" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Store_Column_List"/>
+        from product p, product_store_ref psr
+        <include refid="onSaleProduct"/>
+        AND psr.store_id = #{storeId,jdbcType=INTEGER}
+        AND psr.product_id = #{productId,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateByCollectionTotal" parameterType="com.union.aimei.common.model.product.Product">
+        update product
+        set collection_total = collection_total + #{collectionTotal}
+        where id = #{id}
+    </update>
+
+    <update id="accumulateBySaleVolume" parameterType="com.union.aimei.common.vo.product.app.ProductBySaleVolumeVo">
+        update product
+        set sale_volume = sale_volume + #{saleVolume}
+        where id = #{productId}
+    </update>
+
+    <select id="selectListBySelect" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Column_List"/>
+        from product p, product_city pc
+        where p.id = pc.product_id
+        and p.is_enabled = true
+        and pc.is_enabled = true
+        and p.audit_status = #{auditStatus}
+        and p.sale_status = #{saleStatus}
+        and ifnull((select count(*) from product_store_ref psr where psr.product_id = p.id and psr.is_enabled = true and sale_status = #{saleStatus} and product_status = #{productStatus}), 0) > 0
+        and pc.product_label = #{productLabel}
+        and pc.city_id = #{cityId}
+        order by pc.label_sort
+    </select>
+
+    <select id="selectListByActivity" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Column_List"/>
+        from product p, activity_product_ref apr
+        where p.id = apr.product_id
+        and p.is_enabled = true
+        and apr.is_enabled = true
+        and p.audit_status = #{auditStatus}
+        and p.sale_status = #{saleStatus}
+        and ifnull((select count(*) from product_store_ref psr where psr.product_id = p.id and psr.is_enabled = true and sale_status = #{saleStatus} and product_status = #{productStatus}), 0) > 0
+        and apr.activity_id = #{activityId}
+        order by apr.sort
+    </select>
+
+    <select id="selectListByRecruitForFullTime" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByRecruitResVo">
+        select
+        psr.id AS productStoreRefId, pbr.id AS productBeauticianRefId, p.id AS productId, p.server_name AS serverName, pcr.category_id AS categoryId, pcr.category_name AS categoryName,
+        psr.store_id AS storeId, psr.store_name AS storeName, p.sale_price AS salePrice, p.fulltime_commission AS commission, p.is_support_store AS isSupportStore,
+        p.is_support_home AS isSupportHome, pbr.audit_status AS auditStatus, pbr.audit_reason AS auditReason, pbr.create_time AS createTime
+        from product p, product_store_ref psr, product_beautician_ref pbr, product_category_ref pcr, beautybond_store.store bss, beautybond_store.store_beautician bssb
+        <include refid="onSaleProduct"/>
+        and p.id = pbr.product_id
+        and p.id = pcr.product_id
+        and psr.store_id = bss.id
+        and pbr.beautician_id = bssb.id
+        and pbr.is_enabled = true
+        and pcr.is_enabled = true
+        and pbr.is_select = true
+        and p.product_type = #{productType}
+        and pbr.beautician_id = #{beauticianId}
+        <if test="productApplyListType == listType">
+            and pbr.product_id not in (
+            select product_id
+            from product_beautician_ref
+            where is_enabled = true
+            and is_select = true
+            and beautician_id = #{beauticianId}
+            and audit_status = #{productApplyAuditStatus})
+        </if>
+        <if test="cityId != null">
+            and psr.city_id = #{cityId}
+        </if>
+        <if test="null != sponsorList and sponsorList.size > 0">
+            and pbr.sponsor in
+            <foreach collection="sponsorList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="null != auditStatusList and auditStatusList.size > 0">
+            and pbr.audit_status in
+            <foreach collection="auditStatusList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="null != inputCond and '' != inputCond">
+            and (p.server_name like concat('%', #{inputCond}, '%') or psr.store_name like concat('%', #{inputCond}, '%'))
+        </if>
+        <if test="categoryId != null">
+            and pcr.id = #{categoryId}
+        </if>
+        <if test="areaId != null">
+            and bss.area_id = #{areaId}
+        </if>
+        <if test="minCommissionRatio != null">
+            and p.fulltime_commission >= #{minCommissionRatio}
+        </if>
+        <if test="maxCommissionRatio != null">
+            <![CDATA[and p.fulltime_commission < #{maxCommissionRatio}]]>
+        </if>
+        <if test="minSalePirce != null">
+            and p.sale_price >= #{minSalePirce}
+        </if>
+        <if test="maxSalePrice != null">
+            <![CDATA[and p.sale_price < #{maxSalePrice}]]>
+        </if>
+    </select>
+
+    <select id="selectListByCanApplyForRecruit" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByRecruitResVo">
+        select
+        <include refid="productDivideInto"/>
+        psr.id AS productStoreRefId,
+        p.id AS productId,
+        p.product_type AS productType,
+        p.server_name AS serverName,
+        pcr.category_id AS categoryId,
+        pcr.category_name AS categoryName,
+        psr.store_id AS storeId,
+        psr.store_name AS storeName,
+        p.sale_price AS salePrice,
+        p.is_support_store AS isSupportStore,
+        p.is_support_home AS isSupportHome,
+        psr.sale_status AS saleStatus,
+        p.create_time AS createTime
+        from
+        product p,
+        product_store_ref psr,
+        product_city pc,
+        product_category_ref pcr,
+        beautybond_store.store s
+        <include refid="onSaleProduct"/>
+        and p.id = pcr.product_id
+        and p.id = pc.product_id
+        and psr.store_id = s.id
+        and pc.is_enabled = true
+        and pcr.is_enabled = true
+        and pc.city_id = #{cityId}
+        <if test="null != productTypeList and productTypeList.size > 0">
+            and p.product_type in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        and p.id not in (
+        select product_id
+        from product_beautician_ref
+        where
+        is_enabled = true
+        and beautician_id = #{beauticianId}
+        and audit_status in
+        <foreach collection="beauticianAuditStatusList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and sponsor = #{beauticianSponsor}
+        )
+        and p.id not in (
+        select product_id
+        from product_beautician_ref
+        where
+        is_enabled = true
+        and beautician_id = #{beauticianId}
+        and audit_status in
+        <foreach collection="storeAuditStatusList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and sponsor = #{storeSponsor}
+        )
+        <if test="null != inputCond and '' != inputCond">
+            and (p.server_name like concat('%', #{inputCond}, '%') or psr.store_name like concat('%', #{inputCond}, '%'))
+        </if>
+        <if test="categoryId != null">
+            and pcr.id = #{categoryId}
+        </if>
+        <if test="areaId != null">
+            and s.area_id = #{areaId}
+        </if>
+        <if test="minCommissionRatio != null">
+            and p.parttime_commission >= #{minCommissionRatio}
+        </if>
+        <if test="maxCommissionRatio != null">
+            <![CDATA[and p.parttime_commission < #{maxCommissionRatio}]]>
+        </if>
+        <if test="minSalePirce != null">
+            and p.sale_price >= #{minSalePirce}
+        </if>
+        <if test="maxSalePrice != null">
+            <![CDATA[and p.sale_price < #{maxSalePrice}]]>
+        </if>
+        order by p.create_time desc
+    </select>
+
+    <select id="listRecruitManage" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByRecruitResVo">
+        select
+        <include refid="productDivideInto"/>
+        pbr.id AS productBeauticianRefId,
+        p.id AS productId,
+        p.product_type AS productType,
+        p.server_name AS serverName,
+        pcr.category_id AS categoryId,
+        pcr.category_name AS categoryName,
+        p.sale_price AS salePrice,
+        p.is_support_store AS isSupportStore,
+        p.is_support_home AS isSupportHome,
+        pbr.sponsor,
+        pbr.audit_status AS auditStatus,
+        pbr.audit_reason AS auditReason,
+        date_format( pbr.create_time, '%Y-%m-%d' ) AS createTime,
+        IF ( pbr.is_order, 1, 0 ) AS saleStatus,
+        pbr.store_id AS storeId,
+        if(#{platformSelfProductType} = p.product_type, #{platformSelfProductTypeValue}, pbr.store_name) AS storeName
+        from
+        product p, product_beautician_ref pbr, product_category_ref pcr, beautybond_store.store_beautician sb
+        where p.id = pbr.product_id
+        and p.id = pcr.product_id
+        and pbr.beautician_id = sb.id
+        and p.is_enabled = true
+        and pbr.is_enabled = true
+        and pcr.is_enabled = true
+        and sb.is_enabled = true
+        and pbr.is_select = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and (
+        select
+        if(min(psr.sale_status) is null, true, if(#{storeSaleStatus} = min(psr.sale_status), true, false))
+        from product_store_ref psr
+        where psr.is_enabled = true
+        and psr.product_id = pbr.product_id
+        and psr.store_id = pbr.store_id
+        )
+        <if test="null != isShow">
+            and pbr.is_show = #{isShow}
+        </if>
+        <if test="null != isOrder">
+            and pbr.is_order = #{isOrder}
+        </if>
+        <if test="null != productTypeList and productTypeList.size > 0">
+            and p.product_type in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        and pbr.beautician_id = #{beauticianId}
+        <if test="null != sponsorList and sponsorList.size > 0">
+            and pbr.sponsor in
+            <foreach collection="sponsorList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="null != auditStatusList and auditStatusList.size > 0">
+            and pbr.audit_status in
+            <foreach collection="auditStatusList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="null != inputCond and '' != inputCond">
+            and (p.server_name like concat('%', #{inputCond}, '%') or psr.store_name like concat('%', #{inputCond}, '%'))
+        </if>
+        <if test="categoryId != null">
+            and pcr.id = #{categoryId}
+        </if>
+        <if test="minCommissionRatio != null">
+            and p.parttime_commission >= #{minCommissionRatio}
+        </if>
+        <if test="maxCommissionRatio != null">
+            <![CDATA[and p.parttime_commission < #{maxCommissionRatio}]]>
+        </if>
+        <if test="minSalePirce != null">
+            and p.sale_price >= #{minSalePirce}
+        </if>
+        <if test="maxSalePrice != null">
+            <![CDATA[and p.sale_price < #{maxSalePrice}]]>
+        </if>
+        order by pbr.create_time desc
+    </select>
+
+    <select id="selectListByRecruit" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByRecruitResVo">
+        select
+        <include refid="productDivideInto"/>
+        psr.id AS productStoreRefId, pbr.id AS productBeauticianRefId, p.id AS productId, p.product_type AS productType, p.server_name AS serverName,
+        pcr.category_id AS categoryId, pcr.category_name AS categoryName, psr.store_id AS storeId, psr.store_name AS storeName, p.sale_price AS salePrice,
+        p.is_support_store AS isSupportStore, p.is_support_home AS isSupportHome, pbr.sponsor, pbr.audit_status AS auditStatus,
+        pbr.audit_reason AS auditReason, date_format(pbr.create_time,'%Y-%m-%d') AS createTime, psr.sale_status AS saleStatus
+        from product p, product_store_ref psr, product_beautician_ref pbr, product_category_ref pcr, beautybond_store.store_beautician bssb
+        <include refid="onSaleProduct"/>
+        and p.id = pcr.product_id
+        and psr.store_id = pbr.store_id
+        and psr.product_id = pbr.product_id
+        and pbr.beautician_id = bssb.id
+        and pbr.is_enabled = true
+        and pcr.is_enabled = true
+        <if test="null != isShow">
+            and pbr.is_show = #{isShow}
+        </if>
+        <if test="null != beauticianType">
+            and bssb.beautician_type = #{beauticianType}
+        </if>
+        <if test="null != isOrder">
+            and pbr.is_order = #{isOrder}
+        </if>
+        <if test="null != productTypeList and productTypeList.size > 0">
+            and p.product_type in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        and pbr.beautician_id = #{beauticianId}
+        <if test="productApplyListType == listType">
+            and pbr.product_id not in (
+            select product_id
+            from product_beautician_ref
+            where is_enabled = true
+            and is_select = true
+            and beautician_id = #{beauticianId}
+            and audit_status = #{productApplyAuditStatus})
+        </if>
+        <if test="null != sponsorList and sponsorList.size > 0">
+            and pbr.sponsor in
+            <foreach collection="sponsorList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="null != auditStatusList and auditStatusList.size > 0">
+            and pbr.audit_status in
+            <foreach collection="auditStatusList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="null != inputCond and '' != inputCond">
+            and (p.server_name like concat('%', #{inputCond}, '%') or psr.store_name like concat('%', #{inputCond}, '%'))
+        </if>
+        <if test="categoryId != null">
+            and pcr.id = #{categoryId}
+        </if>
+        <if test="minCommissionRatio != null">
+            and p.parttime_commission >= #{minCommissionRatio}
+        </if>
+        <if test="maxCommissionRatio != null">
+            <![CDATA[and p.parttime_commission < #{maxCommissionRatio}]]>
+        </if>
+        <if test="minSalePirce != null">
+            and p.sale_price >= #{minSalePirce}
+        </if>
+        <if test="maxSalePrice != null">
+            <![CDATA[and p.sale_price < #{maxSalePrice}]]>
+        </if>
+        order by pbr.create_time desc
+    </select>
+
+    <select id="countByRecruitForInvination" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*)
+        from product_beautician_ref pbr, product p, product_store_ref psr
+        where pbr.is_enabled = true
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        and pbr.product_id = p.id
+        and p.id = psr.product_id
+        and pbr.store_id = psr.store_id
+        and pbr.sponsor = #{sponsor}
+        and pbr.audit_status = #{auditStatus}
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and psr.sale_status = #{storeSaleStatus}
+        and pbr.beautician_id = #{beauticianId}
+    </select>
+
+    <select id="selectListByStoreIdForRecruit" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductByStoreIdForRecruitResVo">
+        select
+        psr.id AS productStoreRefId, p.id AS productId, p.server_name AS serverName, p.sale_price AS salePrice, p.parttime_commission As parttimeCommission,
+        p.is_support_store AS isSupportStore, p.is_support_home AS isSupportHome, psr.store_name AS storeName, pcr.category_name AS categoryName,
+        (
+        select
+        count(*)
+        from product_beautician_ref pbr
+        where p.id = pbr.product_id
+        and psr.store_id = pbr.store_id
+        and pbr.is_enabled = true
+        and pbr.sponsor = #{sponsor}
+        and pbr.audit_status = #{pbrAuditStatus}
+        ) AS pendingApplyCount
+        from product p, product_store_ref psr, product_category_ref pcr
+        <include refid="onSaleProduct"/>
+        and p.id = pcr.product_id
+        and pcr.is_enabled = true
+        and psr.store_id = #{storeId}
+    </select>
+
+    <select id="countByRecruitForApply" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*)
+        from product_beautician_ref
+        where is_enabled = true
+        and sponsor = #{sponsor}
+        and audit_status = #{auditStatus}
+        and store_id = #{storeId}
+        and product_id = #{productId}
+    </select>
+
+    <select id="findProductCategoryRefListByIdBatch" parameterType="com.union.aimei.common.vo.common.IdBatchVo" resultType="com.union.aimei.common.vo.product.app.ProductByCategoryRefVo">
+        select
+        <include refid="ProductCategoryColumnList"/>
+        from
+        product p,
+        product_category_ref ref,
+        product_category c
+        where
+        p.is_enabled = true
+        and
+        ref.is_enabled = true
+        and
+        c.is_enabled = true
+        and
+        ref.product_id = p.id
+        and
+        ref.category_id = c.id
+        and p.id in
+        <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findProductCategoryRefListByIdBatchForStoreBeautician" parameterType="com.union.aimei.common.vo.common.IdBatchVo"
+            resultType="com.union.aimei.common.vo.product.app.ProductByCategoryRefVo">
+        select
+        <include refid="ProductCategoryColumnList"/>
+        from
+        product p,
+        product_category_ref ref,
+        product_category c
+        where
+        p.is_enabled = true
+        and
+        ref.is_enabled = true
+        and
+        c.is_enabled = true
+        and
+        ref.product_id = p.id
+        and
+        ref.category_id = c.id
+        and (
+        select
+        ifnull( max( psr.sale_status ), true )
+        from
+        product_store_ref psr
+        where
+        psr.product_id = p.id
+        and psr.is_enabled = true
+        )
+        and p.sale_status = 1
+        and p.id in
+        <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="listStoreByBeauticianId" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductListByBeauticianIdResVo">
+        select
+        <include refid="listDisplayField"/>,
+        pbr.store_id as storeId
+        from product p, product_store_ref psr, product_beautician_ref pbr, beautybond_store.store_beautician sb
+        where p.id = psr.product_id
+        and psr.product_id = pbr.product_id
+        and psr.store_id = pbr.store_id
+        and pbr.beautician_id = sb.id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        and pbr.is_enabled = true
+        and sb.is_enabled = true
+        and p.is_support_store = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and psr.sale_status = #{storeSaleStatus}
+        and pbr.is_select = true
+        and pbr.is_order = true
+        and pbr.server_type = #{storeServerType}
+        and pbr.audit_status = #{pbrAuditStatus}
+        and sb.is_order = true
+        and sb.real_name_status = #{realNameStatus}
+        and pbr.beautician_id = #{beauticianId}
+        <if test="null != storeId">
+            and psr.store_id = #{storeId}
+        </if>
+    </select>
+
+    <select id="listHomeByBeauticianId" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductListByBeauticianIdResVo">
+        select
+        <include refid="listDisplayField"/>
+        from product p
+        where p.is_enabled = true
+        and p.is_support_home = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and (
+        select
+        if(
+        count(*) = 0,
+        (
+        select
+        count(*) > 0
+        from product_beautician_ref pbr, beautybond_store.store_beautician sb
+        where pbr.product_id = p.id
+        and pbr.beautician_id = sb.id
+        and pbr.is_enabled = true
+        and sb.is_enabled = true
+        and pbr.is_select = true
+        and pbr.is_order = true
+        and sb.is_order = true
+        and pbr.server_type = #{homeServerType}
+        and pbr.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        and pbr.beautician_id = #{beauticianId}
+        ),
+        (
+        select
+        sum(ppbr.inventory_consumable) > 0
+        from
+        (
+        select
+        pbrsb.product_id,
+        if (
+        #{fulltimeBeauticianType} = sb.beautician_type,
+        (
+        select
+        msb.id
+        from beautybond_store.store_beautician msb
+        where msb.store_id = (
+        select
+        ssb.store_id
+        from beautybond_store.store_beautician ssb
+        where ssb.id = pbrsb.beautician_id
+        )
+        and msb.beautician_type = #{managerBeauticianType}
+        limit 1
+        ),
+        sb.id
+        ) as ppbr_beautician_id,
+        pbrsb.beautician_id as pbr_beautician_id
+        from product_beautician_ref pbrsb, beautybond_store.store_beautician sb
+        where pbrsb.beautician_id = sb.id
+        and pbrsb.is_enabled = true
+        and sb.is_enabled = true
+        and pbrsb.is_select = true
+        and pbrsb.is_order = true
+        and pbrsb.server_type = #{homeServerType}
+        and pbrsb.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        and sb.is_order = true
+        and pbrsb.beautician_id = #{beauticianId}
+        ) pbr, product_product_physical_ref pppr, product_physical_beautician_ref ppbr, beautybond_store.store_beautician sb
+        where pbr.product_id = p.id
+        and pbr.product_id = pppr.product_id
+        and pppr.product_physical_id = ppbr.product_physical_id
+        and pbr.ppbr_beautician_id = ppbr.beautician_id
+        and pbr.pbr_beautician_id = sb.id
+        and pppr.is_enabled = true
+        and ppbr.is_enabled = true
+        and sb.is_enabled = true
+        and sb.is_order = true
+        and sb.real_name_status = #{realNameStatus}
+        )
+        )
+        from product_product_physical_ref pppr
+        where pppr.product_id = p.id
+        and pppr.is_enabled = true
+        )
+    </select>
+
+    <select id="listStoreByCategoryId" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductListDisplayResVo">
+        select
+        <include refid="listDisplayField"/>
+        from product p, product_category_ref pcr, product_city pc
+        where p.id = pcr.product_id
+        and p.id = pc.product_id
+        and p.is_enabled = true
+        and pcr.is_enabled = true
+        and pc.is_enabled = true
+        and p.is_support_store = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and pc.city_id = #{cityId}
+        and p.product_type in
+        <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and (
+        select
+        count(*) > 0
+        from product_store_ref psr, product_beautician_ref pbr, beautybond_store.store_beautician sb
+        where psr.product_id = p.id
+        and psr.product_id = pbr.product_id
+        and psr.store_id = pbr.store_id
+        and pbr.beautician_id = sb.id
+        and psr.is_enabled = true
+        and pbr.is_enabled = true
+        and sb.is_enabled = true
+        and psr.sale_status = #{storeSaleStatus}
+        and pbr.audit_status = #{pbrAuditStatus}
+        and pbr.is_select = true
+        and pbr.is_order = true
+        and sb.real_name_status = #{realNameStatus}
+        and sb.is_order = true
+        )
+        <if test="null != categoryId">
+            and pcr.category_id = #{categoryId}
+        </if>
+        <if test="null != brandId">
+            and p.brand_id = #{brandId}
+        </if>
+        <if test="null != minSalePrice">
+            <![CDATA[and p.sale_price >= #{minSalePrice}]]>
+        </if>
+        <if test="null != maxSalePrice">
+            <![CDATA[and p.sale_price < #{maxSalePrice}]]>
+        </if>
+        <if test="null != minServerNeedTime">
+            <![CDATA[and p.server_need_time >= #{minServerNeedTime}]]>
+        </if>
+        <if test="null != maxServerNeedTime">
+            <![CDATA[and p.server_need_time < #{maxServerNeedTime}]]>
+        </if>
+        <if test="null != serverEffect and '' != serverEffect">
+            and p.server_effect like CONCAT('%', #{serverEffect,jdbcType=VARCHAR}, '%')
+        </if>
+        order by ${sortType}
+        <if test="null != sort and false == sort">
+            desc
+        </if>
+    </select>
+
+    <select id="listHomeByCategoryId" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductListDisplayResVo">
+        select
+        <include refid="listDisplayField"/>
+        from product p, product_category_ref pcr, product_city pc
+        where p.id = pcr.product_id
+        and p.id = pc.product_id
+        and p.is_enabled = true
+        and pcr.is_enabled = true
+        and pc.is_enabled = true
+        and p.is_support_home = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and pc.city_id = #{cityId}
+        and p.product_type in
+        <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and (
+        select
+        if(
+        count(*) = 0,
+        (
+        select
+        count(*) > 0
+        from product_beautician_ref pbr, beautybond_store.store_beautician sb
+        where pbr.product_id = p.id
+        and pbr.beautician_id = sb.id
+        and pbr.is_enabled = true
+        and sb.is_enabled = true
+        and pbr.is_select = true
+        and pbr.is_order = true
+        and sb.is_order = true
+        and pbr.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        ),
+        (
+        select
+        sum(ppbr.inventory_consumable) > 0
+        from
+        (
+        select
+        pbrsb.product_id,
+        if (
+        #{fulltimeBeauticianType} = sb.beautician_type,
+        (
+        select
+        msb.id
+        from beautybond_store.store_beautician msb
+        where msb.store_id = (
+        select
+        ssb.store_id
+        from beautybond_store.store_beautician ssb
+        where ssb.id = pbrsb.beautician_id
+        )
+        and msb.beautician_type = #{managerBeauticianType}
+        limit 1
+        ),
+        sb.id
+        ) as ppbr_beautician_id,
+        pbrsb.beautician_id as pbr_beautician_id
+        from product_beautician_ref pbrsb, beautybond_store.store_beautician sb
+        where pbrsb.beautician_id = sb.id
+        and pbrsb.is_enabled = true
+        and sb.is_enabled = true
+        and pbrsb.is_select = true
+        and pbrsb.is_order = true
+        and pbrsb.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        and sb.is_order = true
+        ) pbr, product_product_physical_ref pppr, product_physical_beautician_ref ppbr, beautybond_store.store_beautician sb
+        where pbr.product_id = p.id
+        and pbr.product_id = pppr.product_id
+        and pppr.product_physical_id = ppbr.product_physical_id
+        and pbr.ppbr_beautician_id = ppbr.beautician_id
+        and pbr.pbr_beautician_id = sb.id
+        and pppr.is_enabled = true
+        and ppbr.is_enabled = true
+        and sb.is_enabled = true
+        )
+        )
+        from product_product_physical_ref pppr
+        where pppr.product_id = p.id
+        and pppr.is_enabled = true
+        )
+        <if test="null != brandId">
+            and p.brand_id = #{brandId}
+        </if>
+        <if test="null != minSalePrice">
+            <![CDATA[and p.sale_price >= #{minSalePrice}]]>
+        </if>
+        <if test="null != maxSalePrice">
+            <![CDATA[and p.sale_price < #{maxSalePrice}]]>
+        </if>
+        <if test="null != minServerNeedTime">
+            <![CDATA[and p.server_need_time >= #{minServerNeedTime}]]>
+        </if>
+        <if test="null != maxServerNeedTime">
+            <![CDATA[and p.server_need_time < #{maxServerNeedTime}]]>
+        </if>
+        <if test="null != serverEffect and '' != serverEffect">
+            and p.server_effect like CONCAT('%', #{serverEffect,jdbcType=VARCHAR}, '%')
+        </if>
+        order by ${sortType}
+        <if test="null != sort and false == sort">
+            desc
+        </if>
+    </select>
+
+    <select id="selectBeauticianTypeByBeauticianId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select
+        sb.beautician_type
+        from beautybond_store.store_beautician sb
+        where sb.id = #{beauticianId}
+    </select>
+
+    <select id="getByProductBeauticianRefId" parameterType="java.lang.Integer" resultType="com.union.aimei.common.vo.product.app.ProductByDetailByManageForBeauticianResVo">
+        select
+        <include refid="productDivideInto"/>
+        pbr.id AS productBeauticianRefId, p.id AS productId, p.cover_img AS coverImg, p.server_name AS serverName, p.sale_price AS salePrice,
+        p.is_support_store AS isSupportStore, p.is_support_home AS isSupportHome, p.product_type AS productType, s.id AS storeId, s.store_name AS storeName,
+        concat(s.province_name, s.city_name, s.area_name, ifnull(s.store_address,''), ifnull(s.house_number, '')) AS storeAddress, p.server_introduce AS serverIntroduce,
+        pbr.sponsor, pbr.audit_status AS auditStatus
+        from product p, product_beautician_ref pbr left join beautybond_store.store s on pbr.store_id = s.id and s.is_enabled = true, beautybond_store.store_beautician sb
+        where p.id = pbr.product_id
+        and pbr.beautician_id = sb.id
+        and p.is_enabled = true
+        and pbr.is_enabled = true
+        and pbr.id = #{productBeauticianRefId}
+    </select>
+
+    <select id="getByProductStoreRefId" parameterType="java.lang.Integer" resultType="com.union.aimei.common.vo.product.app.ProductRecruitDetailResVo">
+        select
+        psr.id AS productStoreRefId, p.id AS productId, p.cover_img AS coverImg, p.server_name AS serverName, p.sale_price AS salePrice, p.parttime_commission AS commission,
+        p.is_support_store AS isSupportStore, p.is_support_home AS isSupportHome, p.product_type AS productType, s.id AS storeId, s.store_name AS storeName,
+        concat(s.province_name, s.city_name, s.area_name, ifnull(s.store_address,''), ifnull(s.house_number, '')) AS storeAddress, p.server_introduce AS serverIntroduce,
+        pcr.category_name AS categoryName
+        from product p, product_store_ref psr, beautybond_store.store s, product_category_ref pcr
+        where p.id = psr.product_id
+        and psr.store_id = s.id
+        and p.id = pcr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        and s.is_enabled = true
+        and pcr.is_enabled = true
+        and psr.id = #{productStoreRefId}
+    </select>
+
+    <select id="listStoreByStoreId" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductListDisplayResVo">
+        SELECT
+        <include refid="listDisplayField"/>
+        FROM product p, product_store_ref psr
+        WHERE p.id = psr.product_id
+        AND p.is_enabled = TRUE
+        AND psr.is_enabled = TRUE
+        AND p.is_support_store = TRUE
+        AND p.audit_status = #{productAuditStatus}
+        AND p.sale_status = #{productSaleStatus}
+        AND psr.sale_status = #{storeSaleStatus}
+        AND psr.store_id = #{storeId}
+        AND (
+        SELECT
+        COUNT(*) > 0
+        FROM product_beautician_ref pbr, beautybond_store.store_beautician sb
+        WHERE pbr.product_id = psr.product_id
+        AND pbr.store_id = psr.store_id
+        AND pbr.beautician_id = sb.id
+        AND pbr.is_enabled = TRUE
+        AND sb.is_enabled = TRUE
+        AND pbr.server_type = #{storeServerType}
+        AND pbr.is_select = TRUE
+        AND pbr.is_order = TRUE
+        AND pbr.audit_status = #{pbrAuditStatus}
+        AND sb.is_order = TRUE
+        AND sb.real_name_status = #{realNameStatus}
+        )
+        ORDER BY ${sortType}
+        <if test="null != sort and false == sort">
+            DESC
+        </if>
+    </select>
+
+    <select id="listManage" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.app.ProductListManageResVo">
+        select
+        <include refid="listDisplayField"/>,
+        psr.sale_status as saleStatus, p.audit_status as auditStatus, p.audit_reason as auditReason
+        from product p, product_store_ref psr
+        where p.id = psr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        and p.sale_status = #{productSaleStatus}
+        <if test="storeId != null">
+            AND psr.store_id = #{storeId}
+        </if>
+        <if test="storeSaleStatus != null">
+            AND psr.sale_status = #{storeSaleStatus}
+        </if>
+        <if test="auditStatus != null">
+            AND p.audit_status = #{auditStatus}
+        </if>
+    </select>
+
+    <update id="appointment" parameterType="java.util.Map">
+        update product
+        set appointment = appointment + #{appointmentNumber}
+        where id = #{productId}
+    </update>
+
+</mapper>

@@ -1,0 +1,216 @@
+server:
+    port: 8080
+    connection-timeout: 50000
+    tomcat:
+          max-connections: 10000
+          min-spare-threads: 100
+eureka:
+    instance:
+      prefer-ip-address: true
+    client:
+       serviceUrl:
+          defaultZone: http://39.108.59.54:30010/eureka/
+spring:
+   data:
+     mongodb:
+  #      uri: mongodb://name:pass@localhost:27017/test
+  #      uri: mongodb://localhost:27017/aimeilogs
+       uri: mongodb://47.106.90.37:27017/aimeilogs
+   application:
+     name: app-api
+   http:
+     multipart:
+       max-file-size: 500Mb
+       max-request-size: 500Mb
+   rabbitmq:
+         host: 47.106.90.37
+         port: 5672
+         username: guest
+         password: aimeirabbit123456!
+         publisher-confirms: true
+         virtual-host: /
+   redis:
+           # Redis数据库索引（默认为0）
+           database: 1
+           # Redis服务器地址
+           host: 47.106.90.37
+           # Redis服务器连接端口
+           port: 6379
+           # Redis服务器连接密码（默认为空）
+           password:
+           # 连接超时时间（毫秒）
+           timeout: 0
+           #连接池
+           pool:
+             #最大连接数（使用负值表示没有限制）
+             max-active: 8
+             # 最大阻塞等待时间（使用负值表示没有限制）
+             max-wait: -1
+             # 中的最小空闲连接
+             min-idle: 0
+             # 最大空闲连接
+             max-idle: 8
+   sleuth:
+       sampler:
+         percentage: 1.0
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
+                    thread:
+                        timeoutInMilliseconds: 60000
+    threadpool:
+          default:
+            coreSize: 10000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+swagger:
+  docket:
+       订单:
+          title: 订单服务
+          description: 美容邦订单接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.order
+          contact:
+              name: 高伟
+              email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       支付:
+          title: 支付服务
+          description: 美容邦支付接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.pay
+          contact:
+                  name: 高伟
+                  email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       会员:
+          title: 会员服务
+          description: 美容邦会员接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.member
+          contact:
+                  name: 高伟
+                  email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       商品:
+         title: 商品服务
+         description: 美容邦商品接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.product
+         contact:
+                 name: 刘任开
+                 email: 1002219331@qq.com
+         base-path: /**
+         excludePath: /error
+       门店:
+         title: 门店服务
+         description: 美容邦门店接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.store
+         contact:
+                 name: 刘任开
+                 email: 1002219331@qq.com
+         base-path: /**
+         excludePath: /error
+       系统管理:
+          title: 系统管理
+          description: 美容邦门店接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.system
+          contact:
+                  name: 刘飞华
+                  email: 1002219331@qq.com
+          base-path: /**
+          excludePath: /error
+       IM:
+          title: IM服务
+          description: 美容邦IM接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.im
+          contact:
+                  name: 刘任开
+                  email: false.lrk@qq.com
+          base-path: /**
+          excludePath: /error
+       资产:
+         title: 资产服务
+         description: 美容邦财务接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.financial
+         contact:
+                 name: 刘飞华
+                 email: 1002219331@qq.com
+         base-path: /**
+         excludePath: /error
+       友盟推送:
+         title: 友盟推送
+         description: 美容邦友盟推送接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.umeng
+         contact:
+                 name: 后继
+                 email: houj@szlhxx.com
+         base-path: /**
+         excludePath: /error
+       学习:
+          title: 学习
+          description: 美容邦学习接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.learn
+          contact:
+                  name: 蔡钊铭
+                  email: caizm@szlhxx.com
+          base-path: /**
+          excludePath: /error
+       规则:
+          title: 规则服务
+          description: 美容邦规则接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.settle
+          contact:
+                  name: 刘任开
+                  email: 1002219331@qq.com
+          base-path: /**
+          excludePath: /error
+  #设置是否开启swagger在线文档，正式环境需关闭
+  enabled: true
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+#分布式事务管理器
+tx-manager: tx-manager
+
+

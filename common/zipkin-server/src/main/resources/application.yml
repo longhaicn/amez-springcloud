@@ -1,0 +1,24 @@
+server:
+  port: 8008
+spring:
+  rabbitmq:
+    host: 47.106.90.37
+    port: 5672
+    username: guest
+    password: aimeirabbit123456!
+#  sleuth:
+#    enabled: false
+zipkin:
+  storage:
+    type: elasticsearch
+    elasticsearch:
+      cluster: elasticsearch-zipkin-cluster
+      hosts: http://47.106.90.37:9200
+      index: zipkin
+      index-shards: 5
+      index-replicas: 1
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: ERROR

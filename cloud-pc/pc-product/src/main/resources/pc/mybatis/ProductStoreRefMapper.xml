@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.product.mapper.ProductStoreRefMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductStoreRef">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="sale_status" property="saleStatus" jdbcType="TINYINT"/>
+        <result column="city_id" property="cityId" jdbcType="INTEGER"/>
+        <result column="store_longitude" property="storeLongitude" jdbcType="DECIMAL"/>
+        <result column="store_latitude" property="storeLatitude" jdbcType="DECIMAL"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="product_status" property="productStatus" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, product_id, store_id, store_name, sale_status, city_id, store_longitude, store_latitude,
+        is_enabled, create_time , product_status, update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, product_id AS productId, store_id AS storeId, store_name AS storeName, sale_status AS saleStatus, city_id AS cityId,
+        store_longitude AS storeLongitude, store_latitude AS storeLatitude, is_enabled AS isEnabled, product_status AS productStatus ,
+        create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_store_ref
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_store_ref
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductStoreRef" useGeneratedKeys="true" keyProperty="id">
+        insert into product_store_ref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="saleStatus != null">
+                sale_status,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="storeLongitude != null">
+                store_longitude,
+            </if>
+            <if test="storeLatitude != null">
+                store_latitude,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="productStatus != null">
+                product_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="saleStatus != null">
+                #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="storeLongitude != null">
+                #{storeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeLatitude != null">
+                #{storeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="productStatus != null">
+                #{productStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductStoreRef">
+        update product_store_ref
+        <set>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="saleStatus != null">
+                sale_status = #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="storeLongitude != null">
+                store_longitude = #{storeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeLatitude != null">
+                store_latitude = #{storeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="productStatus != null">
+                product_status = #{productStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductStoreRef" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_store_ref
+        <where>
+            <if test="productId != null">
+                AND product_id = #{productId,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus,jdbcType=TINYINT}
+            </if>
+            <if test="cityId != null">
+                AND city_id = #{cityId,jdbcType=INTEGER}
+            </if>
+            <if test="storeLongitude != null">
+                AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+            </if>
+            <if test="storeLatitude != null">
+                AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="productStatus != null">
+                AND product_status = #{productStatus,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateSaleStatusByProductId" parameterType="java.util.Map">
+        update product_store_ref
+        set sale_status = #{saleStatus}
+        where is_enabled = true
+        and product_id = #{productId}
+        <if test="storeId != null">
+            and store_id = #{storeId}
+        </if>
+    </update>
+
+    <update id="updateSaleStatusByStoreId" parameterType="java.util.Map">
+        update product_store_ref
+        set sale_status = #{saleStatus}
+        where is_enabled = true
+        and store_id = #{storeId}
+    </update>
+
+    <update id="freezeByStoreId" parameterType="java.util.Map">
+        update product_store_ref
+        set sale_status = #{freezeSaleStatus}
+        where is_enabled = true
+        and sale_status = #{saleStatus}
+        and store_id = #{storeId}
+    </update>
+
+    <delete id="deleteByProductId" parameterType="java.lang.Integer">
+        delete from product_store_ref
+        where product_id = #{productId}
+    </delete>
+
+    <delete id="deleteByStoreId" parameterType="java.lang.Integer">
+        delete from product_store_ref
+        where store_id = #{storeId}
+    </delete>
+
+    <insert id="addBatch" parameterType="com.union.aimei.common.vo.product.pc.ProductStoreRefByBatchVo" useGeneratedKeys="true">
+        insert into product_store_ref (product_id, store_id, store_name, sale_status, city_id, store_longitude, store_latitude, product_status)
+        values
+        <foreach collection="productStoreRefList" item="item" index="index" separator=",">
+            (#{item.productId}, #{item.storeId}, #{item.storeName}, #{item.saleStatus}, #{item.cityId}, #{item.storeLongitude}, #{item.storeLatitude} , #{item.productStatus})
+        </foreach>
+    </insert>
+
+    <select id="findByStoreIdList" resultType="java.lang.Integer">
+        select product_id from product_store_ref WHERE
+        store_id IN
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        and is_enabled =1 and product_id IS NOT NULL
+    </select>
+
+</mapper>

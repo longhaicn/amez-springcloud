@@ -1,0 +1,48 @@
+spring:
+  cloud:
+    config:
+          #强制拉取更新
+          force-pull: true
+          #对应前配置文件中的{profile}部分
+          profile: ${config.profile:image}
+          #对应前配置文件的 git 分支
+          label: master
+           # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+          name: financial-service
+          #安全认证,输入git账号密码
+          password: gaowei123
+          username: gaowei
+          failFast: true
+          #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+          discovery:
+             enabled: true
+             service-id: microservice-config-server-eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://120.78.188.67:30010/eureka/
+management:
+  security:
+    enabled: false
+logging:
+  level:
+    root: INFO
+    com.union: DEBUG
+    org.springframework.cloud.sleuth: ERROR
+server:
+  port: 8023
+mybatis:
+   mapper-locations: classpath:pc/mybatis/*.xml
+   type-aliases-package: com.union.aimei.common.model.financial
+swagger:
+    enabled: true
+    title: 美容邦结算模块-PC微服务
+    description: 更多结算模块微服务在线API文档稍后发布
+    version: 1.0
+    license: Apache License, Version 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+    base-package: com.union.aimei.pc.financial
+    base-path: /**
+    exclude-path: /error

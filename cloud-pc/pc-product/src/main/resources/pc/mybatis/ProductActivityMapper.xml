@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.product.mapper.ProductActivityMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductActivity">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="activity_code" property="activityCode" jdbcType="VARCHAR"/>
+        <result column="activity_name" property="activityName" jdbcType="VARCHAR"/>
+        <result column="cover_img" property="coverImg" jdbcType="VARCHAR"/>
+        <result column="activity_desc" property="activityDesc" jdbcType="LONGVARCHAR"/>
+        <result column="city_id" property="cityId" jdbcType="INTEGER"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+        <result column="is_select" property="isSelect" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, activity_code, activity_name, cover_img, activity_desc, city_id, city_name, sort, is_select,
+    is_enabled, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, activity_code AS activityCode, activity_name AS activityName, cover_img AS coverImg, 
+    activity_desc AS activityDesc, city_id AS cityId, city_name AS cityName, sort, is_select AS isSelect,
+    is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_activity
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductActivity" useGeneratedKeys="true" keyProperty="id">
+        insert into product_activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="activityCode != null">
+                activity_code,
+            </if>
+            <if test="activityName != null">
+                activity_name,
+            </if>
+            <if test="coverImg != null">
+                cover_img,
+            </if>
+            <if test="activityDesc != null">
+                activity_desc,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="cityName != null">
+                city_name,
+            </if>
+            <if test="sort != null">
+                sort,
+            </if>
+            <if test="isSelect != null">
+                is_select,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="activityCode != null">
+                #{activityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="activityName != null">
+                #{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="activityDesc != null">
+                #{activityDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="cityName != null">
+                #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="isSelect != null">
+                #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductActivity">
+        update product_activity
+        <set>
+            <if test="activityCode != null">
+                activity_code = #{activityCode,jdbcType=VARCHAR},
+            </if>
+            <if test="activityName != null">
+                activity_name = #{activityName,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                cover_img = #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="activityDesc != null">
+                activity_desc = #{activityDesc,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="cityName != null">
+                city_name = #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="isSelect != null">
+                is_select = #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductActivity" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_activity
+        <where>
+            <if test="activityCode != null">
+                AND activity_code = #{activityCode,jdbcType=VARCHAR}
+            </if>
+            <if test="activityName != null">
+                AND activity_name = #{activityName,jdbcType=VARCHAR}
+            </if>
+            <if test="coverImg != null">
+                AND cover_img = #{coverImg,jdbcType=VARCHAR}
+            </if>
+            <if test="activityDesc != null">
+                AND activity_desc = #{activityDesc,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="cityId != null">
+                AND city_id = #{cityId,jdbcType=INTEGER}
+            </if>
+            <if test="cityName != null">
+                AND city_name = #{cityName,jdbcType=VARCHAR}
+            </if>
+            <if test="sort != null">
+                AND sort = #{sort,jdbcType=INTEGER}
+            </if>
+            <if test="isSelect != null">
+                AND is_select = #{isSelect,jdbcType=BIT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <update id="cancelSelectByCityId" parameterType="java.lang.Integer">
+        update product_activity
+        set is_select = false
+        where is_enabled = true
+        and is_select = true
+        and city_id = #{cityId}
+    </update>
+
+    <update id="selectBatch" parameterType="java.util.List">
+        update product_activity
+        set is_select = true
+        where is_enabled = true
+        and is_select = false
+        and id in
+        <foreach collection="idList" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+</mapper>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.store.mapper.StoreCouponsProductMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreCouponsProduct">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_coupons_id" property="storeCouponsId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="product_name" property="productName" jdbcType="VARCHAR"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, store_coupons_id, store_id, store_name, product_id, product_name, is_enabled,
+        create_time, update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, store_coupons_id AS storeCouponsId, store_id AS storeId, store_name AS storeName,
+        product_id AS productId, product_name AS productName, is_enabled AS isEnabled, create_time AS createTime,
+        update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons_product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from store_coupons_product
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreCouponsProduct" useGeneratedKeys="true" keyProperty="id">
+        insert into store_coupons_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeCouponsId != null">
+                store_coupons_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="productName != null">
+                product_name,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeCouponsId != null">
+                #{storeCouponsId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreCouponsProduct">
+        update store_coupons_product
+        <set>
+            <if test="storeCouponsId != null">
+                store_coupons_id = #{storeCouponsId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="productName != null">
+                product_name = #{productName,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreCouponsProduct" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons_product
+        <where>
+            <if test="storeCouponsId != null">
+                AND store_coupons_id = #{storeCouponsId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="productId != null">
+                AND product_id = #{productId,jdbcType=INTEGER}
+            </if>
+            <if test="productName != null">
+                AND product_name = #{productName,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateByIsEnabledByStoreCouponsId" parameterType="com.union.aimei.common.model.store.StoreCouponsProduct">
+        update store_coupons_product
+        <set>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+        </set>
+        where store_coupons_id = #{storeCouponsId,jdbcType=INTEGER}
+    </update>
+
+    <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into store_coupons_product (store_coupons_id, store_id, store_name, product_id, product_name)
+        values
+        <foreach collection="storeCouponsProductList" item="item" index="index" separator=",">
+            (#{item.storeCouponsId}, #{item.storeId}, #{item.storeName}, #{item.productId}, #{item.productName})
+        </foreach>
+    </insert>
+
+</mapper>

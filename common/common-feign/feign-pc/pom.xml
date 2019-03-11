@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common-feign</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+        <relativePath>../../common-feign/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>feign-pc</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>feign-pc-im</module>
+        <module>feign-pc-order</module>
+        <module>feign-pc-financial</module>
+        <module>feign-pc-learn</module>
+        <module>feign-pc-member</module>
+        <module>feign-pc-product</module>
+        <module>feign-pc-store</module>
+        <module>feign-pc-system</module>
+        <module>feign-pc-umeng</module>
+    </modules>
+
+</project>

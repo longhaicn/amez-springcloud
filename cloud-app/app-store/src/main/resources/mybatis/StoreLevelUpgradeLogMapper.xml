@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.store.mapper.StoreLevelUpgradeLogMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreLevelUpgradeLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_level_upgrade_id" property="storeLevelUpgradeId" jdbcType="INTEGER" />
+    <result column="level_upgrade_name" property="levelUpgradeName" jdbcType="VARCHAR" />
+    <result column="condition" property="condition" jdbcType="INTEGER" />
+    <result column="value" property="value" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, store_id, store_level_upgrade_id, level_upgrade_name, condition, value, is_enabled, 
+    create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, store_id AS storeId, store_level_upgrade_id AS storeLevelUpgradeId, level_upgrade_name AS levelUpgradeName, 
+    condition, value, is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_level_upgrade_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store_level_upgrade_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreLevelUpgradeLog" useGeneratedKeys="true" keyProperty="id" >
+    insert into store_level_upgrade_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeLevelUpgradeId != null" >
+        store_level_upgrade_id,
+      </if>
+      <if test="levelUpgradeName != null" >
+        level_upgrade_name,
+      </if>
+      <if test="condition != null" >
+        condition,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeLevelUpgradeId != null" >
+        #{storeLevelUpgradeId,jdbcType=INTEGER},
+      </if>
+      <if test="levelUpgradeName != null" >
+        #{levelUpgradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null" >
+        #{condition,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreLevelUpgradeLog" >
+    update store_level_upgrade_log
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeLevelUpgradeId != null" >
+        store_level_upgrade_id = #{storeLevelUpgradeId,jdbcType=INTEGER},
+      </if>
+      <if test="levelUpgradeName != null" >
+        level_upgrade_name = #{levelUpgradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null" >
+        condition = #{condition,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreLevelUpgradeLog" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from store_level_upgrade_log
+    <where >
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="storeLevelUpgradeId != null" >
+        AND store_level_upgrade_id = #{storeLevelUpgradeId,jdbcType=INTEGER}
+      </if>
+      <if test="levelUpgradeName != null" >
+        AND level_upgrade_name = #{levelUpgradeName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition != null" >
+        AND condition = #{condition,jdbcType=INTEGER}
+      </if>
+      <if test="value != null" >
+        AND value = #{value,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+</mapper>

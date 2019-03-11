@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-system1
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        run: app-system1
+    spec:
+      containers:
+      - name: app-system1
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-system:v1.1.56-test
+#        imagePullPolicy: Always
+        ports: 
+        - containerPort: 8010
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-system-svc
+spec:
+  selector:
+    run: app-system1
+  type: NodePort
+  ports:
+    - nodePort: 30026
+      port: 8010
+      targetPort: 8010

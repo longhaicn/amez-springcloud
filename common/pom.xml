@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>aimei-cloud</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>common</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>common-api</module>
+        <module>common-parent</module>
+        <module>common-service</module>
+        <module>config-server</module>
+        <module>dashboard-server</module>
+        <module>eureka-server-ha-1</module>
+        <module>gateway-server</module>
+        <module>turbine-server</module>
+        <module>zipkin-server</module>
+        <module>admin-server</module>
+        <module>eureka-server-ha-2</module>
+        <module>common-service-pc</module>
+        <module>common-invoke-amez</module>
+        <module>common-module</module>
+        <module>common-auth</module>
+        <module>common-feign</module>
+    </modules>
+
+</project>

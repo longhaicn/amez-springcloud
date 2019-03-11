@@ -1,0 +1,139 @@
+server:
+  port: 8022
+spring:
+  cloud:
+    config:
+          #对应前配置文件中的{profile}部分
+          profile: ${config.profile:dev}
+          #对应前配置文件的 git 分支
+          label: master
+           # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+          name: pay-service
+          #安全认证,输入git账号密码
+          password: gaowei123
+          username: gaowei
+          failFast: true
+          #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+          discovery:
+             enabled: true
+             service-id: microservice-config-server-eureka
+#添加支付配置
+com:
+  unioninfo:
+      #微信相关配置
+      weixin:
+        #微信支付相关参数配置
+         pay:
+            user:
+               #APPID
+               app-id: wx85fa34f75f0706d3
+               #商户号ID
+               mch-id: 1497716672
+               #微信支付商户秘钥
+               mch-key: meirongbang1688Ameirongbang1688m
+               #appcert的绝对路径地址
+               key-path: http://www.mrb.amez999.com/cert/user/apiclient_cert.p12
+               #支付通知地址
+               notify-url: http://mrb.amez999.com/app/wxPay/notify
+               #交易类型
+               trade-type: APP
+            beautician:
+                #APPID
+               app-id: wxa58702a7ec8572fb
+               #商户号ID
+               mch-id: 1499085572
+               #微信支付商户秘钥
+               mch-key: meirongshi168168meirongshi168168
+               #appcert的绝对路径地址
+               key-path: http://www.mrb.amez999.com/cert/beautician/apiclient_cert.p12
+               #支付通知地址
+               notify-url: http://mrb.amez999.com/app/wxPay/notify
+               #交易类型
+               trade-type: APP
+            storeOwner:
+               #APPID
+                app-id: wx9fc83fcf1b7f58ef
+                #商户号ID
+                mch-id: 1499399882
+                #微信支付商户秘钥
+                mch-key: dianzhang168168dianzhang16816816
+                #appcert的绝对路径地址
+                key-path: http://www.mrb.amez999.com/cert/storeOwner/apiclient_cert.p12
+                #支付通知地址
+                notify-url: http://mrb.amez999.com/app/wxPay/notify
+                #交易类型
+                trade-type: APP
+      #支付宝正式支付配置参数
+      alipay:
+        #支付宝商户的应用appid
+        appid: 2018010601639573
+        #支付宝商户账号的pid
+        pid: 2088921017938268
+        #支付宝公钥
+        alipay-public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr6JleeoQrJNrlV42D8wFrLoLJxt5dl+ShhDOzTyc68CBM3pSQWbfpzLdfujmDZh4bEo8UUNeK8Q4tQ+UCNkKulQlCBceQ0FTBOQNHsR5LhTzIM0mnngbbAy/kQEn5WG/T7Z7Fczo3Ke8IEQbqOoXRT8B0r3xpmtTwVZzT220Fzo9Nczx1jlOtjXshFD/IwMAH0Xh82J8G1R+oCPpKsZXc//VtDDekutC2ooYlkf98Z2x4Enymz6vt5s75UTPLOXnyqt2FjQJPrBgWuKufm50EQkF6k+f/6OJEQWnKk1coNE0PviMsEOTnNYUvufEwbx45eATbf5CjUZID+FDJTTT6QIDAQAB
+        #支付宝商户私钥
+        private-key: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDXv8lCSW58WOapCMUwfQg6uh2KIK60KQblr0JHJwMb9c/RyoLFOP8H+eyWWOr8gGH+dakdOGXEyxlEZefIwZ2YDpiFgYl/FC2Vrcx2UV4mhFu8Tg/QVZt5Qal3qtiE1CnFKwoeaDrc/O3EESZoHXJqsumH5a5kIfU4uvsSSdmcX86J3NH6xC8nxpUZG+ys4OWbxqEKNrmYB0zontucs3P+ziL1Hfd/VUqdiSEwQxHzG/ZvZzvCnNbVbVpIL3z69D4myg9GHaKGwfc/K2Jad/2reQ56Zu3T3+bhyQRyGhMeVh/hXHQuTb9CWNSby+Kg+sOX7kY4qrbPYFdKDhFqpDMXAgMBAAECggEBAJyBhoisZhaUEvcp4omTGcYoPsd1f+Y3IMa7RRQCa9H7lf70rbpN50ss9H/4DraOlweU6NHGmKSSREkGt4Y9VYn5hJDMcCacR5kd04U871R3jWhjJDuX7kme5UVmzNxGX+qklxmJuLGYVQ529mpuehKGqLupVMFUlOPLV9hjdBVnYHgcanJqdz7j6VI74z51N7+XPbgeUATk/CWenHO8lUq/GqGyxzFUpDOEKDr6MHxjbSZxE66PqPZoBBK+2d7fxEqakVisfKj5qaYeJweZ9wXCkGj8vEHJzoPUg298jBEafUUOnC1/XMw6uhZCwkUVvRLKtLWYoPs7nRaFmjnkFKkCgYEA/yoahhcV2GHKKgUjaL6rnrjvQRxr112trKb3oYwLlKJROp42AnvNEw0faGTylqCIib94xF/bfFlaSjY8Qk+I3p+oDl2Eq2rSTHBZwIxxuSmkgCxiSCcZ9Gzhj5lpTaAqE2CnE90YACapc/VCzKs96tX6Tlua+AmOrBppn3MjbLsCgYEA2HSkVnBst0XekEwRmcZeYjAtoI+d+/ogET+WNduOSJ3frIwkxh3kR075gkLnWe2bAOT+C0KqTxhsSWi1+TUvz4p/xRDStHgrz/bgro1PRu/rfou42rvxIxxKkW86klE+VAxKCgvd2/OTeL9oqS/xNTkWi/+adIhrBBrhUQ1WO1UCgYAt0Wmh2lNZ33VlxjZtgI9gmOSdVHUo3vFopzKgF32c2uirFe2s1H4mhZy2KipFUd4ynecZm/zVf1XvLX30ikORdim/KpvADBZnE2WKZa2mCgw318BuJFdMxKBcILf/8Fqd0CUwM+szW73hzJCKH9WmbXXczCYvk8fCr5t3vj0GMQKBgQCsY8FagnFjSYcnPx4pbX5QDvTX0mnNe/i8I/ta64CXPv0cLAVBsB7V2AUJhIVC7uSrQrU9fJutINNlZ7q+PmjUjwaRiYN2bdre500sV6jS41OX1mmj81jqUKbmy0JHs+LDB4KUG71XZteFrFQLov4lGFFnsGtv8hHhFBNs/QU3fQKBgQDZMd87tRDrYTo5rgCLBCDY8QA1+wg70k2WPpLzS8nCk0rlUDuVkM9qs3DcgldnM2Of9hxtP5yt6FTZ1VyWO5UScVpQUhvpIqarXXq63LQH/lL1Dqv5S5l2EBIHOvPHPbO10Qn83qolSGun6ZduCpqj0CFJ3fCoNsS88+wM0xpNzA==
+        #支付宝商户公钥
+        public-key: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA17/JQklufFjmqQjFMH0IOrodiiCutCkG5a9CRycDG/XP0cqCxTj/B/nslljq/IBh/nWpHThlxMsZRGXnyMGdmA6YhYGJfxQtla3MdlFeJoRbvE4P0FWbeUGpd6rYhNQpxSsKHmg63PztxBEmaB1yarLph+WuZCH1OLr7EknZnF/OidzR+sQvJ8aVGRvsrODlm8ahCja5mAdM6J7bnLNz/s4i9R33f1VKnYkhMEMR8xv2b2c7wpzW1W1aSC98+vQ+JsoPRh2ihsH3PytiWnf9q3kOembt09/m4ckEchoTHlYf4Vx0Lk2/QljUm8vioPrDl+5GOKq2z2BXSg4RaqQzFwIDAQAB
+        #正式环境使用地址
+        mcloud-api-domain: http://mcloudmonitor.com/gateway.do
+        #支付宝mcloudapi网关域名
+        open-api-domain: https://openapi.alipay.com/gateway.do
+        # 签名类型: RSA->SHA1withRsa,RSA2->SHA256withRsa
+        sign-type: RSA2
+        # 当面付最大查询次数和查询间隔（毫秒）
+        max-query-retry: 5
+        query-duration: 5000
+        # 当面付最大撤销次数和撤销间隔（毫秒）
+        max-cancel-retry: 3
+        cancel-duration: 2000
+        # 交易保障线程第一次调度延迟和调度间隔（秒）
+        heartbeat-delay: 5
+        heartbeat-duration: 900
+        #支付宝回调地址
+        notify-url:  http://mrb.amez999.com/app/alipay/notify
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+         defaultZone: http://localhost:8000/eureka/
+#分布式事务管理器
+tx-manager: tx-manager
+#声明Feign的 hystrix支持,如果设置为true，则断路器备用方法将不起作用，默认为false
+feign:
+     hystrix:
+         enabled: false
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
+                    thread:
+                        timeoutInMilliseconds: 60000
+
+#对接艾美一族接口相关参数
+amez:
+    request:
+          info:
+              dev:
+                  host: http://api.amez999.com
+                  port:
+              pro:
+                  host: http://api.amez999.com
+                  port:
+              path:
+                  accessToken: /get/microservice
+                  api: /microservice/core/api
+              #系统版本号
+              appSystem: 200
+              #security
+              security: 5222445555
+              #accessKey
+              accessKey: kkkkkkk1234567
+

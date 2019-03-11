@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-pay
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-pay
+    spec:
+      containers:
+      - name: app-pay
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-pay:v1.1.56-test
+        ports: 
+        - containerPort: 8022
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-pay-svc
+spec:
+  selector:
+    run: app-pay
+  type: NodePort
+  ports:
+    - nodePort: 30030
+      port: 8022
+      targetPort: 8022

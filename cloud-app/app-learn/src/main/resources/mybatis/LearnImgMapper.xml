@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.LearnImgMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.LearnImg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="main_status" property="mainStatus" jdbcType="TINYINT" />
+    <result column="broadcast_status" property="broadcastStatus" jdbcType="TINYINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, source_type, source_id, img_url, main_status, broadcast_status, sort, create_time, 
+    update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, source_type AS sourceType, source_id AS sourceId, img_url AS imgUrl, main_status AS mainStatus, 
+    broadcast_status AS broadcastStatus, sort, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from learn_img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from learn_img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.LearnImg" useGeneratedKeys="true" keyProperty="id" >
+    insert into learn_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="mainStatus != null" >
+        main_status,
+      </if>
+      <if test="broadcastStatus != null" >
+        broadcast_status,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mainStatus != null" >
+        #{mainStatus,jdbcType=TINYINT},
+      </if>
+      <if test="broadcastStatus != null" >
+        #{broadcastStatus,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.LearnImg" >
+    update learn_img
+    <set >
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="mainStatus != null" >
+        main_status = #{mainStatus,jdbcType=TINYINT},
+      </if>
+      <if test="broadcastStatus != null" >
+        broadcast_status = #{broadcastStatus,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.LearnImg" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from learn_img
+    <where >
+      <if test="sourceType != null" >
+        AND source_type = #{sourceType,jdbcType=INTEGER}
+      </if>
+      <if test="sourceId != null" >
+        AND source_id = #{sourceId,jdbcType=INTEGER}
+      </if>
+      <if test="imgUrl != null" >
+        AND img_url = #{imgUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="mainStatus != null" >
+        AND main_status = #{mainStatus,jdbcType=TINYINT}
+      </if>
+      <if test="broadcastStatus != null" >
+        AND broadcast_status = #{broadcastStatus,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <choose >
+      <when test="sort != null" >
+        ORDER BY sort
+      </when>
+      <otherwise >
+        ORDER BY create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="queryListByLearnImg" parameterType="com.union.aimei.common.model.learn.LearnImg" resultType="java.lang.String">
+    select img_url from learn_img
+    <where >
+      <if test="sourceType != null" >
+        AND source_type = #{sourceType,jdbcType=INTEGER}
+      </if>
+      <if test="sourceId != null" >
+        AND source_id = #{sourceId,jdbcType=INTEGER}
+      </if>
+      <if test="mainStatus != null" >
+        AND main_status = #{mainStatus,jdbcType=TINYINT}
+      </if>
+      <if test="broadcastStatus != null" >
+        AND broadcast_status = #{broadcastStatus,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+
+</mapper>

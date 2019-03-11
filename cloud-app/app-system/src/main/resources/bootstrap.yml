@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: app-system-service    # 项目名称尽量用小写
+  profiles:
+    active: @profileActive@

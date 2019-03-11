@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderProductMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="server_need_time" property="serverNeedTime" jdbcType="INTEGER" />
+    <result column="product_img" property="productImg" jdbcType="VARCHAR" />
+    <result column="product_price" property="productPrice" jdbcType="INTEGER" />
+    <result column="product_point" property="productPoint" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, store_id, order_id, product_id, product_name, server_need_time, product_img,
+    product_price, product_point, type, nums, is_enabled
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, store_id AS storeId, order_id AS orderId, product_id AS productId, product_name AS productName,
+    server_need_time AS serverNeedTime, product_img AS productImg, product_price AS productPrice,
+    product_point AS productPoint, type, nums, is_enabled AS isEnabled
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from order_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="serverNeedTime != null" >
+        server_need_time,
+      </if>
+      <if test="productImg != null" >
+        product_img,
+      </if>
+      <if test="productPrice != null" >
+        product_price,
+      </if>
+      <if test="productPoint != null" >
+        product_point,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverNeedTime != null" >
+        #{serverNeedTime,jdbcType=INTEGER},
+      </if>
+      <if test="productImg != null" >
+        #{productImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=INTEGER},
+      </if>
+      <if test="productPoint != null" >
+        #{productPoint,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderProduct" >
+    update order_product
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverNeedTime != null" >
+        server_need_time = #{serverNeedTime,jdbcType=INTEGER},
+      </if>
+      <if test="productImg != null" >
+        product_img = #{productImg,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=INTEGER},
+      </if>
+      <if test="productPoint != null" >
+        product_point = #{productPoint,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderProduct" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from order_product
+    <where >
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+        AND order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="productName != null" >
+        AND product_name = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="serverNeedTime != null" >
+        AND server_need_time = #{serverNeedTime,jdbcType=INTEGER}
+      </if>
+      <if test="productImg != null" >
+        AND product_img = #{productImg,jdbcType=VARCHAR}
+      </if>
+      <if test="productPrice != null" >
+        AND product_price = #{productPrice,jdbcType=INTEGER}
+      </if>
+      <if test="productPoint != null" >
+        AND product_point = #{productPoint,jdbcType=INTEGER}
+      </if>
+      <if test="type != null" >
+        AND type = #{type,jdbcType=TINYINT}
+      </if>
+      <if test="nums != null" >
+        AND nums = #{nums,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+
+  <select id="queryByOrderId" parameterType="integer" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/>
+    FROM order_product
+    WHERE order_id=#{orderId}
+  </select>
+</mapper>

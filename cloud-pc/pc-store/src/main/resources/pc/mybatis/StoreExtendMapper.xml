@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.store.mapper.StoreExtendMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreExtend">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="contract" property="contract" jdbcType="VARCHAR"/>
+        <result column="company_name" property="companyName" jdbcType="VARCHAR"/>
+        <result column="business_license_number" property="businessLicenseNumber" jdbcType="VARCHAR"/>
+        <result column="legal_person_name" property="legalPersonName" jdbcType="VARCHAR"/>
+        <result column="legal_person_idcard" property="legalPersonIdcard" jdbcType="VARCHAR"/>
+        <result column="era_bank" property="eraBank" jdbcType="VARCHAR"/>
+        <result column="era_area" property="eraArea" jdbcType="VARCHAR"/>
+        <result column="era_bank_branch" property="eraBankBranch" jdbcType="VARCHAR"/>
+        <result column="era_company_name" property="eraCompanyName" jdbcType="VARCHAR"/>
+        <result column="era_bank_card_number" property="eraBankCardNumber" jdbcType="VARCHAR"/>
+        <result column="pra_bank" property="praBank" jdbcType="VARCHAR"/>
+        <result column="pra_area" property="praArea" jdbcType="VARCHAR"/>
+        <result column="pra_bank_branch" property="praBankBranch" jdbcType="VARCHAR"/>
+        <result column="pra_account_name" property="praAccountName" jdbcType="VARCHAR"/>
+        <result column="pra_bank_card_number" property="praBankCardNumber" jdbcType="VARCHAR"/>
+        <result column="business_license" property="businessLicense" jdbcType="VARCHAR"/>
+        <result column="hygienic_license" property="hygienicLicense" jdbcType="VARCHAR"/>
+        <result column="idcard_positive_photo" property="idcardPositivePhoto" jdbcType="VARCHAR"/>
+        <result column="idcard_negative_photo" property="idcardNegativePhoto" jdbcType="VARCHAR"/>
+        <result column="idcard_handheld_photo" property="idcardHandheldPhoto" jdbcType="VARCHAR"/>
+        <result column="store_door_photo" property="storeDoorPhoto" jdbcType="VARCHAR"/>
+        <result column="store_cashier_photo" property="storeCashierPhoto" jdbcType="VARCHAR"/>
+        <result column="store_in_photo" property="storeInPhoto" jdbcType="VARCHAR"/>
+        <result column="margin_payment_status" property="marginPaymentStatus" jdbcType="BIT"/>
+        <result column="payment_amount" property="paymentAmount" jdbcType="INTEGER"/>
+        <result column="store_area" property="storeArea" jdbcType="INTEGER"/>
+        <result column="store_honor_photo" property="storeHonorPhoto" jdbcType="VARCHAR"/>
+        <result column="store_phote" property="storePhote" jdbcType="VARCHAR"/>
+        <result column="other_service" property="otherService" jdbcType="VARCHAR"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, store_id, contract, company_name, business_license_number, legal_person_name,
+    legal_person_idcard, era_bank, era_area, era_bank_branch, era_company_name, era_bank_card_number, 
+    pra_bank, pra_area, pra_bank_branch, pra_account_name, pra_bank_card_number, business_license, hygienic_license,
+    idcard_positive_photo, idcard_negative_photo, idcard_handheld_photo, store_door_photo, 
+    store_cashier_photo, store_in_photo, margin_payment_status, payment_amount, store_area, 
+    store_honor_photo, store_phote, other_service, is_enabled, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, store_id AS storeId, contract, company_name AS companyName, business_license_number AS businessLicenseNumber,
+    legal_person_name AS legalPersonName, legal_person_idcard AS legalPersonIdcard, era_bank AS eraBank, 
+    era_area AS eraArea, era_bank_branch AS eraBankBranch, era_company_name AS eraCompanyName, 
+    era_bank_card_number AS eraBankCardNumber, pra_bank AS praBank, pra_area AS praArea, 
+    pra_bank_branch AS praBankBranch, pra_account_name AS praAccountName, pra_bank_card_number AS praBankCardNumber, 
+    business_license AS businessLicense, hygienic_license AS hygienicLicense, idcard_positive_photo AS idcardPositivePhoto,
+    idcard_negative_photo AS idcardNegativePhoto, idcard_handheld_photo AS idcardHandheldPhoto, 
+    store_door_photo AS storeDoorPhoto, store_cashier_photo AS storeCashierPhoto, store_in_photo AS storeInPhoto, 
+    margin_payment_status AS marginPaymentStatus, payment_amount AS paymentAmount, store_area AS storeArea, 
+    store_honor_photo AS storeHonorPhoto, store_phote AS storePhote, other_service AS otherService, 
+    is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_extend
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store_extend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreExtend" useGeneratedKeys="true" keyProperty="id">
+        insert into store_extend
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="contract != null">
+                contract,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="businessLicenseNumber != null">
+                business_license_number,
+            </if>
+            <if test="legalPersonName != null">
+                legal_person_name,
+            </if>
+            <if test="legalPersonIdcard != null">
+                legal_person_idcard,
+            </if>
+            <if test="eraBank != null">
+                era_bank,
+            </if>
+            <if test="eraArea != null">
+                era_area,
+            </if>
+            <if test="eraBankBranch != null">
+                era_bank_branch,
+            </if>
+            <if test="eraCompanyName != null">
+                era_company_name,
+            </if>
+            <if test="eraBankCardNumber != null">
+                era_bank_card_number,
+            </if>
+            <if test="praBank != null">
+                pra_bank,
+            </if>
+            <if test="praArea != null">
+                pra_area,
+            </if>
+            <if test="praBankBranch != null">
+                pra_bank_branch,
+            </if>
+            <if test="praAccountName != null">
+                pra_account_name,
+            </if>
+            <if test="praBankCardNumber != null">
+                pra_bank_card_number,
+            </if>
+            <if test="businessLicense != null">
+                business_license,
+            </if>
+            <if test="hygienicLicense != null">
+                hygienic_license,
+            </if>
+            <if test="idcardPositivePhoto != null">
+                idcard_positive_photo,
+            </if>
+            <if test="idcardNegativePhoto != null">
+                idcard_negative_photo,
+            </if>
+            <if test="idcardHandheldPhoto != null">
+                idcard_handheld_photo,
+            </if>
+            <if test="storeDoorPhoto != null">
+                store_door_photo,
+            </if>
+            <if test="storeCashierPhoto != null">
+                store_cashier_photo,
+            </if>
+            <if test="storeInPhoto != null">
+                store_in_photo,
+            </if>
+            <if test="marginPaymentStatus != null">
+                margin_payment_status,
+            </if>
+            <if test="paymentAmount != null">
+                payment_amount,
+            </if>
+            <if test="storeArea != null">
+                store_area,
+            </if>
+            <if test="storeHonorPhoto != null">
+                store_honor_photo,
+            </if>
+            <if test="storePhote != null">
+                store_phote,
+            </if>
+            <if test="otherService != null">
+                other_service,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="contract != null">
+                #{contract,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessLicenseNumber != null">
+                #{businessLicenseNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="legalPersonName != null">
+                #{legalPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="legalPersonIdcard != null">
+                #{legalPersonIdcard,jdbcType=VARCHAR},
+            </if>
+            <if test="eraBank != null">
+                #{eraBank,jdbcType=VARCHAR},
+            </if>
+            <if test="eraArea != null">
+                #{eraArea,jdbcType=VARCHAR},
+            </if>
+            <if test="eraBankBranch != null">
+                #{eraBankBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="eraCompanyName != null">
+                #{eraCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="eraBankCardNumber != null">
+                #{eraBankCardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="praBank != null">
+                #{praBank,jdbcType=VARCHAR},
+            </if>
+            <if test="praArea != null">
+                #{praArea,jdbcType=VARCHAR},
+            </if>
+            <if test="praBankBranch != null">
+                #{praBankBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="praAccountName != null">
+                #{praAccountName,jdbcType=VARCHAR},
+            </if>
+            <if test="praBankCardNumber != null">
+                #{praBankCardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="businessLicense != null">
+                #{businessLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="hygienicLicense != null">
+                #{hygienicLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardPositivePhoto != null">
+                #{idcardPositivePhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardNegativePhoto != null">
+                #{idcardNegativePhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardHandheldPhoto != null">
+                #{idcardHandheldPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDoorPhoto != null">
+                #{storeDoorPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCashierPhoto != null">
+                #{storeCashierPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storeInPhoto != null">
+                #{storeInPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="marginPaymentStatus != null">
+                #{marginPaymentStatus,jdbcType=BIT},
+            </if>
+            <if test="paymentAmount != null">
+                #{paymentAmount,jdbcType=INTEGER},
+            </if>
+            <if test="storeArea != null">
+                #{storeArea,jdbcType=INTEGER},
+            </if>
+            <if test="storeHonorPhoto != null">
+                #{storeHonorPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storePhote != null">
+                #{storePhote,jdbcType=VARCHAR},
+            </if>
+            <if test="otherService != null">
+                #{otherService,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreExtend">
+        update store_extend
+        <set>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="contract != null">
+                contract = #{contract,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessLicenseNumber != null">
+                business_license_number = #{businessLicenseNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="legalPersonName != null">
+                legal_person_name = #{legalPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="legalPersonIdcard != null">
+                legal_person_idcard = #{legalPersonIdcard,jdbcType=VARCHAR},
+            </if>
+            <if test="eraBank != null">
+                era_bank = #{eraBank,jdbcType=VARCHAR},
+            </if>
+            <if test="eraArea != null">
+                era_area = #{eraArea,jdbcType=VARCHAR},
+            </if>
+            <if test="eraBankBranch != null">
+                era_bank_branch = #{eraBankBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="eraCompanyName != null">
+                era_company_name = #{eraCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="eraBankCardNumber != null">
+                era_bank_card_number = #{eraBankCardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="praBank != null">
+                pra_bank = #{praBank,jdbcType=VARCHAR},
+            </if>
+            <if test="praArea != null">
+                pra_area = #{praArea,jdbcType=VARCHAR},
+            </if>
+            <if test="praBankBranch != null">
+                pra_bank_branch = #{praBankBranch,jdbcType=VARCHAR},
+            </if>
+            <if test="praAccountName != null">
+                pra_account_name = #{praAccountName,jdbcType=VARCHAR},
+            </if>
+            <if test="praBankCardNumber != null">
+                pra_bank_card_number = #{praBankCardNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="businessLicense != null">
+                business_license = #{businessLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="hygienicLicense != null">
+                hygienic_license = #{hygienicLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardPositivePhoto != null">
+                idcard_positive_photo = #{idcardPositivePhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardNegativePhoto != null">
+                idcard_negative_photo = #{idcardNegativePhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="idcardHandheldPhoto != null">
+                idcard_handheld_photo = #{idcardHandheldPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDoorPhoto != null">
+                store_door_photo = #{storeDoorPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCashierPhoto != null">
+                store_cashier_photo = #{storeCashierPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storeInPhoto != null">
+                store_in_photo = #{storeInPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="marginPaymentStatus != null">
+                margin_payment_status = #{marginPaymentStatus,jdbcType=BIT},
+            </if>
+            <if test="paymentAmount != null">
+                payment_amount = #{paymentAmount,jdbcType=INTEGER},
+            </if>
+            <if test="storeArea != null">
+                store_area = #{storeArea,jdbcType=INTEGER},
+            </if>
+            <if test="storeHonorPhoto != null">
+                store_honor_photo = #{storeHonorPhoto,jdbcType=VARCHAR},
+            </if>
+            <if test="storePhote != null">
+                store_phote = #{storePhote,jdbcType=VARCHAR},
+            </if>
+            <if test="otherService != null">
+                other_service = #{otherService,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreExtend" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_extend
+        <where>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="contract != null">
+                AND contract = #{contract,jdbcType=VARCHAR}
+            </if>
+            <if test="companyName != null">
+                AND company_name = #{companyName,jdbcType=VARCHAR}
+            </if>
+            <if test="businessLicenseNumber != null">
+                AND business_license_number = #{businessLicenseNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="legalPersonName != null">
+                AND legal_person_name = #{legalPersonName,jdbcType=VARCHAR}
+            </if>
+            <if test="legalPersonIdcard != null">
+                AND legal_person_idcard = #{legalPersonIdcard,jdbcType=VARCHAR}
+            </if>
+            <if test="eraBank != null">
+                AND era_bank = #{eraBank,jdbcType=VARCHAR}
+            </if>
+            <if test="eraArea != null">
+                AND era_area = #{eraArea,jdbcType=VARCHAR}
+            </if>
+            <if test="eraBankBranch != null">
+                AND era_bank_branch = #{eraBankBranch,jdbcType=VARCHAR}
+            </if>
+            <if test="eraCompanyName != null">
+                AND era_company_name = #{eraCompanyName,jdbcType=VARCHAR}
+            </if>
+            <if test="eraBankCardNumber != null">
+                AND era_bank_card_number = #{eraBankCardNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="praBank != null">
+                AND pra_bank = #{praBank,jdbcType=VARCHAR}
+            </if>
+            <if test="praArea != null">
+                AND pra_area = #{praArea,jdbcType=VARCHAR}
+            </if>
+            <if test="praBankBranch != null">
+                AND pra_bank_branch = #{praBankBranch,jdbcType=VARCHAR}
+            </if>
+            <if test="praAccountName != null">
+                AND pra_account_name = #{praAccountName,jdbcType=VARCHAR}
+            </if>
+            <if test="praBankCardNumber != null">
+                AND pra_bank_card_number = #{praBankCardNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="businessLicense != null">
+                AND business_license = #{businessLicense,jdbcType=VARCHAR}
+            </if>
+            <if test="hygienicLicense != null">
+                AND hygienic_license = #{hygienicLicense,jdbcType=VARCHAR}
+            </if>
+            <if test="idcardPositivePhoto != null">
+                AND idcard_positive_photo = #{idcardPositivePhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="idcardNegativePhoto != null">
+                AND idcard_negative_photo = #{idcardNegativePhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="idcardHandheldPhoto != null">
+                AND idcard_handheld_photo = #{idcardHandheldPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="storeDoorPhoto != null">
+                AND store_door_photo = #{storeDoorPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="storeCashierPhoto != null">
+                AND store_cashier_photo = #{storeCashierPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="storeInPhoto != null">
+                AND store_in_photo = #{storeInPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="marginPaymentStatus != null">
+                AND margin_payment_status = #{marginPaymentStatus,jdbcType=BIT}
+            </if>
+            <if test="paymentAmount != null">
+                AND payment_amount = #{paymentAmount,jdbcType=INTEGER}
+            </if>
+            <if test="storeArea != null">
+                AND store_area = #{storeArea,jdbcType=INTEGER}
+            </if>
+            <if test="storeHonorPhoto != null">
+                AND store_honor_photo = #{storeHonorPhoto,jdbcType=VARCHAR}
+            </if>
+            <if test="storePhote != null">
+                AND store_phote = #{storePhote,jdbcType=VARCHAR}
+            </if>
+            <if test="otherService != null">
+                AND other_service = #{otherService,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByStoreId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_extend
+        where store_id = #{storeId,jdbcType=INTEGER}
+        limit 1
+    </select>
+
+    <update id="updateByDisableByStoreId" parameterType="java.lang.Integer">
+    update store_extend
+    set is_enabled = 0
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

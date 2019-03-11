@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common-service</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+        <relativePath>../../common/common-service/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>app-store</artifactId>
+    <version>${app.store.version}</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.union.common</groupId>
+            <artifactId>common-baidumap</artifactId>
+            <version>1.0.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-lang</artifactId>
+                    <groupId>commons-lang</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+        <!-- 环信 -->
+        <dependency>
+            <groupId>com.easemob</groupId>
+            <artifactId>rest-java-sdk</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
+        <!--Feign-->
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-product</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-im</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-learn</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-order</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-store</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-system</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-umeng</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-app-member</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.common</groupId>
+            <artifactId>common-redis</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>appStore</finalName>
+    </build>
+</project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common-service-pc</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+        <relativePath>../../common/common-service-pc/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>pc-learn</artifactId>
+    <version>${pc.learn.version}</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.union.common</groupId>
+            <artifactId>common-baidumap</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-umeng</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-product</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-system</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-store</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>pcLearn</finalName>
+    </build>
+</project>

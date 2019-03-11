@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.FreightTemplateMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.FreightTemplate">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="template_code" property="templateCode" jdbcType="VARCHAR"/>
+        <result column="template_name" property="templateName" jdbcType="VARCHAR"/>
+        <result column="transport_method" property="transportMethod" jdbcType="TINYINT"/>
+        <result column="pricing_method" property="pricingMethod" jdbcType="TINYINT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, template_code, template_name, transport_method, pricing_method, is_enabled, create_time, 
+    update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, template_code AS templateCode, template_name AS templateName, transport_method AS transportMethod, 
+    pricing_method AS pricingMethod, is_enabled AS isEnabled, create_time AS createTime, 
+    update_time AS updateTime
+  </sql>
+
+    <sql id="FreigthTemplateAliasColumn">
+        ft.id, ft.template_code AS templateCode, ft.template_name AS templateName, ft.transport_method AS transportMethod,
+        ft.pricing_method AS pricingMethod, ft.is_enabled AS isEnabled, ft.create_time AS createTime,
+        ft.update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from freight_template
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from freight_template
+        where id = #{id,jdbcType=INTEGER}
+      </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.FreightTemplate" useGeneratedKeys="true" keyProperty="id">
+        insert into freight_template
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="templateCode != null">
+                template_code,
+            </if>
+            <if test="templateName != null">
+                template_name,
+            </if>
+            <if test="transportMethod != null">
+                transport_method,
+            </if>
+            <if test="pricingMethod != null">
+                pricing_method,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="templateCode != null">
+                #{templateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="templateName != null">
+                #{templateName,jdbcType=VARCHAR},
+            </if>
+            <if test="transportMethod != null">
+                #{transportMethod,jdbcType=TINYINT},
+            </if>
+            <if test="pricingMethod != null">
+                #{pricingMethod,jdbcType=TINYINT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.FreightTemplate">
+        update freight_template
+        <set>
+            <if test="templateCode != null">
+                template_code = #{templateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="templateName != null">
+                template_name = #{templateName,jdbcType=VARCHAR},
+            </if>
+            <if test="transportMethod != null">
+                transport_method = #{transportMethod,jdbcType=TINYINT},
+            </if>
+            <if test="pricingMethod != null">
+                pricing_method = #{pricingMethod,jdbcType=TINYINT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.FreightTemplate" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from freight_template
+        <where>
+            <if test="templateCode != null">
+                AND template_code = #{templateCode,jdbcType=VARCHAR}
+            </if>
+            <if test="templateName != null">
+                AND template_name = #{templateName,jdbcType=VARCHAR}
+            </if>
+            <if test="transportMethod != null">
+                AND transport_method = #{transportMethod,jdbcType=TINYINT}
+            </if>
+            <if test="pricingMethod != null">
+                AND pricing_method = #{pricingMethod,jdbcType=TINYINT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+</mapper>

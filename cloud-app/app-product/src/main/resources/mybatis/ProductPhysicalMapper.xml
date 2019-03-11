@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.ProductPhysicalMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductPhysical">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="physical_name" property="physicalName" jdbcType="VARCHAR"/>
+        <result column="physical_code" property="physicalCode" jdbcType="VARCHAR"/>
+        <result column="cover_img" property="coverImg" jdbcType="VARCHAR"/>
+        <result column="physical_img" property="physicalImg" jdbcType="LONGVARCHAR"/>
+        <result column="sale_price" property="salePrice" jdbcType="INTEGER"/>
+        <result column="unit" property="unit" jdbcType="VARCHAR"/>
+        <result column="inventory_total" property="inventoryTotal" jdbcType="INTEGER"/>
+        <result column="inventory_consumable" property="inventoryConsumable" jdbcType="INTEGER"/>
+        <result column="inventory_order_reservation" property="inventoryOrderReservation" jdbcType="INTEGER"/>
+        <result column="inventory_warning" property="inventoryWarning" jdbcType="INTEGER"/>
+        <result column="inventory_warning_switch" property="inventoryWarningSwitch" jdbcType="BIT"/>
+        <result column="delivery_place_id" property="deliveryPlaceId" jdbcType="INTEGER"/>
+        <result column="delivery_place" property="deliveryPlace" jdbcType="VARCHAR"/>
+        <result column="physical_detail" property="physicalDetail" jdbcType="LONGVARCHAR"/>
+        <result column="sale_volume" property="saleVolume" jdbcType="INTEGER"/>
+        <result column="postage_type" property="postageType" jdbcType="TINYINT"/>
+        <result column="template_id" property="templateId" jdbcType="INTEGER"/>
+        <result column="weight" property="weight" jdbcType="DECIMAL"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, physical_name, physical_code, cover_img, physical_img, sale_price, unit,
+        inventory_total, inventory_consumable, inventory_order_reservation, inventory_warning,
+        inventory_warning_switch, delivery_place_id, delivery_place, physical_detail, sale_volume,
+        postage_type, template_id, weight, is_enabled, create_time, update_time
+    </sql>
+
+    <sql id="ProductPhysical_Column_List">
+        p.id, p.physical_name, p.physical_code, p.cover_img, p.physical_img, p.sale_price, p.unit, p.inventory, p.inventory_total,
+        p.inventory_consumable, p.inventory_order_reservation, p.inventory_warning, p.inventory_warning_switch, p.delivery_place_id, p.delivery_place,
+        p.physical_detail, p.sale_volume, p.postage_type, p.template_id, p.weight, p.is_enabled, p.create_time, p.update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, physical_name AS physicalName, physical_code AS physicalCode, cover_img AS coverImg,
+        physical_img AS physicalImg, sale_price AS salePrice, unit, inventory_total AS inventoryTotal,
+        inventory_consumable AS inventoryConsumable, inventory_order_reservation AS inventoryOrderReservation,
+        inventory_warning AS inventoryWarning, inventory_warning_switch AS inventoryWarningSwitch,
+        delivery_place_id AS deliveryPlaceId, delivery_place AS deliveryPlace, physical_detail AS physicalDetail,
+        sale_volume AS saleVolume, postage_type AS postageType, template_id AS templateId,
+        weight, is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_physical
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_physical
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductPhysical" useGeneratedKeys="true" keyProperty="id">
+        insert into product_physical
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="physicalName != null">
+                physical_name,
+            </if>
+            <if test="physicalCode != null">
+                physical_code,
+            </if>
+            <if test="coverImg != null">
+                cover_img,
+            </if>
+            <if test="physicalImg != null">
+                physical_img,
+            </if>
+            <if test="salePrice != null">
+                sale_price,
+            </if>
+            <if test="unit != null">
+                unit,
+            </if>
+            <if test="inventoryTotal != null">
+                inventory_total,
+            </if>
+            <if test="inventoryConsumable != null">
+                inventory_consumable,
+            </if>
+            <if test="inventoryOrderReservation != null">
+                inventory_order_reservation,
+            </if>
+            <if test="inventoryWarning != null">
+                inventory_warning,
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                inventory_warning_switch,
+            </if>
+            <if test="deliveryPlaceId != null">
+                delivery_place_id,
+            </if>
+            <if test="deliveryPlace != null">
+                delivery_place,
+            </if>
+            <if test="physicalDetail != null">
+                physical_detail,
+            </if>
+            <if test="saleVolume != null">
+                sale_volume,
+            </if>
+            <if test="postageType != null">
+                postage_type,
+            </if>
+            <if test="templateId != null">
+                template_id,
+            </if>
+            <if test="weight != null">
+                weight,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="physicalName != null">
+                #{physicalName,jdbcType=VARCHAR},
+            </if>
+            <if test="physicalCode != null">
+                #{physicalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="physicalImg != null">
+                #{physicalImg,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="salePrice != null">
+                #{salePrice,jdbcType=INTEGER},
+            </if>
+            <if test="unit != null">
+                #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="inventoryTotal != null">
+                #{inventoryTotal,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryConsumable != null">
+                #{inventoryConsumable,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryOrderReservation != null">
+                #{inventoryOrderReservation,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarning != null">
+                #{inventoryWarning,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                #{inventoryWarningSwitch,jdbcType=BIT},
+            </if>
+            <if test="deliveryPlaceId != null">
+                #{deliveryPlaceId,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryPlace != null">
+                #{deliveryPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="physicalDetail != null">
+                #{physicalDetail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="saleVolume != null">
+                #{saleVolume,jdbcType=INTEGER},
+            </if>
+            <if test="postageType != null">
+                #{postageType,jdbcType=TINYINT},
+            </if>
+            <if test="templateId != null">
+                #{templateId,jdbcType=INTEGER},
+            </if>
+            <if test="weight != null">
+                #{weight,jdbcType=DECIMAL},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductPhysical">
+        update product_physical
+        <set>
+            <if test="physicalName != null">
+                physical_name = #{physicalName,jdbcType=VARCHAR},
+            </if>
+            <if test="physicalCode != null">
+                physical_code = #{physicalCode,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                cover_img = #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="physicalImg != null">
+                physical_img = #{physicalImg,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="salePrice != null">
+                sale_price = #{salePrice,jdbcType=INTEGER},
+            </if>
+            <if test="unit != null">
+                unit = #{unit,jdbcType=VARCHAR},
+            </if>
+            <if test="inventoryTotal != null">
+                inventory_total = #{inventoryTotal,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryConsumable != null">
+                inventory_consumable = #{inventoryConsumable,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryOrderReservation != null">
+                inventory_order_reservation = #{inventoryOrderReservation,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarning != null">
+                inventory_warning = #{inventoryWarning,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                inventory_warning_switch = #{inventoryWarningSwitch,jdbcType=BIT},
+            </if>
+            <if test="deliveryPlaceId != null">
+                delivery_place_id = #{deliveryPlaceId,jdbcType=INTEGER},
+            </if>
+            <if test="deliveryPlace != null">
+                delivery_place = #{deliveryPlace,jdbcType=VARCHAR},
+            </if>
+            <if test="physicalDetail != null">
+                physical_detail = #{physicalDetail,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="saleVolume != null">
+                sale_volume = #{saleVolume,jdbcType=INTEGER},
+            </if>
+            <if test="postageType != null">
+                postage_type = #{postageType,jdbcType=TINYINT},
+            </if>
+            <if test="templateId != null">
+                template_id = #{templateId,jdbcType=INTEGER},
+            </if>
+            <if test="weight != null">
+                weight = #{weight,jdbcType=DECIMAL},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductPhysical" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_physical
+        <where>
+            <if test="physicalName != null">
+                AND physical_name = #{physicalName,jdbcType=VARCHAR}
+            </if>
+            <if test="physicalCode != null">
+                AND physical_code = #{physicalCode,jdbcType=VARCHAR}
+            </if>
+            <if test="coverImg != null">
+                AND cover_img = #{coverImg,jdbcType=VARCHAR}
+            </if>
+            <if test="physicalImg != null">
+                AND physical_img = #{physicalImg,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="salePrice != null">
+                AND sale_price = #{salePrice,jdbcType=INTEGER}
+            </if>
+            <if test="unit != null">
+                AND unit = #{unit,jdbcType=VARCHAR}
+            </if>
+            <if test="inventoryTotal != null">
+                AND inventory_total = #{inventoryTotal,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryConsumable != null">
+                AND inventory_consumable = #{inventoryConsumable,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryOrderReservation != null">
+                AND inventory_order_reservation = #{inventoryOrderReservation,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryWarning != null">
+                AND inventory_warning = #{inventoryWarning,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                AND inventory_warning_switch = #{inventoryWarningSwitch,jdbcType=BIT}
+            </if>
+            <if test="deliveryPlaceId != null">
+                AND delivery_place_id = #{deliveryPlaceId,jdbcType=INTEGER}
+            </if>
+            <if test="deliveryPlace != null">
+                AND delivery_place = #{deliveryPlace,jdbcType=VARCHAR}
+            </if>
+            <if test="physicalDetail != null">
+                AND physical_detail = #{physicalDetail,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="saleVolume != null">
+                AND sale_volume = #{saleVolume,jdbcType=INTEGER}
+            </if>
+            <if test="postageType != null">
+                AND postage_type = #{postageType,jdbcType=TINYINT}
+            </if>
+            <if test="templateId != null">
+                AND template_id = #{templateId,jdbcType=INTEGER}
+            </if>
+            <if test="weight != null">
+                AND weight = #{weight,jdbcType=DECIMAL}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListByCategory" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByCategoryVo" resultMap="BaseResultMap">
+        select
+        <include refid="ProductPhysical_Column_List"/>
+        from product_physical p, physical_category_ref pc
+        where p.id = pc.physical_id
+        and p.is_enabled = 1
+        and pc.is_enabled = 1
+        and pc.category_id = #{categoryId}
+        order by p.create_time desc
+    </select>
+
+    <select id="selectListByIdBatch" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByIdBatchVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_physical p
+        where is_enabled = 1
+        and
+        (
+        <foreach item="item" index="index" collection="productPhysicalIdList" open="(" separator="or" close=")">
+            id = #{item}
+        </foreach>
+        )
+    </select>
+
+    <select id="inventoryPurchaseCheck" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo" resultType="java.lang.Boolean">
+        select
+        if(sum(inventory_consumable >= #{physicalNumber}) > 0, true, false) as inventoryFlag
+        from product_physical
+        where is_enabled = true
+        and id = #{productPhysicalId}
+    </select>
+
+    <update id="inventoryPurchaseReservation" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical
+        set inventory_consumable = inventory_consumable - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation + #{physicalNumber}
+        where is_enabled = true
+        and id = #{productPhysicalId}
+        and inventory_consumable >= #{physicalNumber}
+    </update>
+
+</mapper>

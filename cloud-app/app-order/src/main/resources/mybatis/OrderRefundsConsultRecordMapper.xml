@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.app.api.order.mapper.OrderRefundsConsultRecordMapper" >
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderRefundsConsultRecord" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_return_id" property="orderReturnId" jdbcType="INTEGER" />
+        <result column="apply_member_id" property="applyMemberId" jdbcType="INTEGER" />
+        <result column="apply_member_head_img" property="applyMemberHeadImg" jdbcType="VARCHAR" />
+        <result column="apply_member_nickname" property="applyMemberNickname" jdbcType="VARCHAR" />
+        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+        <result column="apply_reason" property="applyReason" jdbcType="VARCHAR" />
+        <result column="apply_remark" property="applyRemark" jdbcType="VARCHAR" />
+        <result column="refuse_person_id" property="refusePersonId" jdbcType="INTEGER" />
+        <result column="refuse_person_head_img" property="refusePersonHeadImg" jdbcType="VARCHAR" />
+        <result column="refuse_person_nickname" property="refusePersonNickname" jdbcType="VARCHAR" />
+        <result column="refuse_time" property="refuseTime" jdbcType="TIMESTAMP" />
+        <result column="refuse_remark" property="refuseRemark" jdbcType="VARCHAR" />
+        <result column="refuse_voucher" property="refuseVoucher" jdbcType="VARCHAR" />
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+        <result column="oper_type" property="operType" jdbcType="TINYINT" />
+        <result column="oper_content" property="operContent" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, order_return_id, apply_member_id, apply_member_head_img, apply_member_nickname,
+        apply_time, apply_reason, apply_remark, refuse_person_id, refuse_person_head_img,
+        refuse_person_nickname, refuse_time, refuse_remark, refuse_voucher, is_enabled, add_time,
+        oper_type, oper_content
+    </sql>
+
+    <sql id="BaseAliasColumn" >
+        id, order_return_id AS orderReturnId, apply_member_id AS applyMemberId, apply_member_head_img AS applyMemberHeadImg,
+        apply_member_nickname AS applyMemberNickname, apply_time AS applyTime, apply_reason AS applyReason,
+        apply_remark AS applyRemark, refuse_person_id AS refusePersonId, refuse_person_head_img AS refusePersonHeadImg,
+        refuse_person_nickname AS refusePersonNickname, refuse_time AS refuseTime, refuse_remark AS refuseRemark,
+        refuse_voucher AS refuseVoucher, is_enabled AS isEnabled, add_time AS addTime, oper_type AS operType,
+        oper_content AS operContent
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from order_refunds_consult_record
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from order_refunds_consult_record
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderRefundsConsultRecord" useGeneratedKeys="true" keyProperty="id" >
+        insert into order_refunds_consult_record
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderReturnId != null" >
+                order_return_id,
+            </if>
+            <if test="applyMemberId != null" >
+                apply_member_id,
+            </if>
+            <if test="applyMemberHeadImg != null" >
+                apply_member_head_img,
+            </if>
+            <if test="applyMemberNickname != null" >
+                apply_member_nickname,
+            </if>
+            <if test="applyTime != null" >
+                apply_time,
+            </if>
+            <if test="applyReason != null" >
+                apply_reason,
+            </if>
+            <if test="applyRemark != null" >
+                apply_remark,
+            </if>
+            <if test="refusePersonId != null" >
+                refuse_person_id,
+            </if>
+            <if test="refusePersonHeadImg != null" >
+                refuse_person_head_img,
+            </if>
+            <if test="refusePersonNickname != null" >
+                refuse_person_nickname,
+            </if>
+            <if test="refuseTime != null" >
+                refuse_time,
+            </if>
+            <if test="refuseRemark != null" >
+                refuse_remark,
+            </if>
+            <if test="refuseVoucher != null" >
+                refuse_voucher,
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled,
+            </if>
+            <if test="addTime != null" >
+                add_time,
+            </if>
+            <if test="operType != null" >
+                oper_type,
+            </if>
+            <if test="operContent != null" >
+                oper_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orderReturnId != null" >
+                #{orderReturnId,jdbcType=INTEGER},
+            </if>
+            <if test="applyMemberId != null" >
+                #{applyMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="applyMemberHeadImg != null" >
+                #{applyMemberHeadImg,jdbcType=VARCHAR},
+            </if>
+            <if test="applyMemberNickname != null" >
+                #{applyMemberNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="applyTime != null" >
+                #{applyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="applyReason != null" >
+                #{applyReason,jdbcType=VARCHAR},
+            </if>
+            <if test="applyRemark != null" >
+                #{applyRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="refusePersonId != null" >
+                #{refusePersonId,jdbcType=INTEGER},
+            </if>
+            <if test="refusePersonHeadImg != null" >
+                #{refusePersonHeadImg,jdbcType=VARCHAR},
+            </if>
+            <if test="refusePersonNickname != null" >
+                #{refusePersonNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="refuseTime != null" >
+                #{refuseTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="refuseRemark != null" >
+                #{refuseRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="refuseVoucher != null" >
+                #{refuseVoucher,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null" >
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="addTime != null" >
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operType != null" >
+                #{operType,jdbcType=TINYINT},
+            </if>
+            <if test="operContent != null" >
+                #{operContent,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderRefundsConsultRecord" >
+        update order_refunds_consult_record
+        <set >
+            <if test="orderReturnId != null" >
+                order_return_id = #{orderReturnId,jdbcType=INTEGER},
+            </if>
+            <if test="applyMemberId != null" >
+                apply_member_id = #{applyMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="applyMemberHeadImg != null" >
+                apply_member_head_img = #{applyMemberHeadImg,jdbcType=VARCHAR},
+            </if>
+            <if test="applyMemberNickname != null" >
+                apply_member_nickname = #{applyMemberNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="applyTime != null" >
+                apply_time = #{applyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="applyReason != null" >
+                apply_reason = #{applyReason,jdbcType=VARCHAR},
+            </if>
+            <if test="applyRemark != null" >
+                apply_remark = #{applyRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="refusePersonId != null" >
+                refuse_person_id = #{refusePersonId,jdbcType=INTEGER},
+            </if>
+            <if test="refusePersonHeadImg != null" >
+                refuse_person_head_img = #{refusePersonHeadImg,jdbcType=VARCHAR},
+            </if>
+            <if test="refusePersonNickname != null" >
+                refuse_person_nickname = #{refusePersonNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="refuseTime != null" >
+                refuse_time = #{refuseTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="refuseRemark != null" >
+                refuse_remark = #{refuseRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="refuseVoucher != null" >
+                refuse_voucher = #{refuseVoucher,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="addTime != null" >
+                add_time = #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operType != null" >
+                oper_type = #{operType,jdbcType=TINYINT},
+            </if>
+            <if test="operContent != null" >
+                oper_content = #{operContent,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderRefundsConsultRecord" resultMap="BaseResultMap" >
+        select <include refid="Base_Column_List"/> from order_refunds_consult_record
+        <where >
+            <if test="orderReturnId != null" >
+                AND order_return_id = #{orderReturnId,jdbcType=INTEGER}
+            </if>
+            <if test="applyMemberId != null" >
+                AND apply_member_id = #{applyMemberId,jdbcType=INTEGER}
+            </if>
+            <if test="applyMemberHeadImg != null" >
+                AND apply_member_head_img = #{applyMemberHeadImg,jdbcType=VARCHAR}
+            </if>
+            <if test="applyMemberNickname != null" >
+                AND apply_member_nickname = #{applyMemberNickname,jdbcType=VARCHAR}
+            </if>
+            <if test="applyTime != null" >
+                AND apply_time = #{applyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="applyReason != null" >
+                AND apply_reason = #{applyReason,jdbcType=VARCHAR}
+            </if>
+            <if test="applyRemark != null" >
+                AND apply_remark = #{applyRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="refusePersonId != null" >
+                AND refuse_person_id = #{refusePersonId,jdbcType=INTEGER}
+            </if>
+            <if test="refusePersonHeadImg != null" >
+                AND refuse_person_head_img = #{refusePersonHeadImg,jdbcType=VARCHAR}
+            </if>
+            <if test="refusePersonNickname != null" >
+                AND refuse_person_nickname = #{refusePersonNickname,jdbcType=VARCHAR}
+            </if>
+            <if test="refuseTime != null" >
+                AND refuse_time = #{refuseTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="refuseRemark != null" >
+                AND refuse_remark = #{refuseRemark,jdbcType=VARCHAR}
+            </if>
+            <if test="refuseVoucher != null" >
+                AND refuse_voucher = #{refuseVoucher,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnabled != null" >
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="addTime != null" >
+                AND add_time = #{addTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="operType != null" >
+                AND oper_type = #{operType,jdbcType=TINYINT}
+            </if>
+            <if test="operContent != null" >
+                AND oper_content = #{operContent,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+  <update id="batchUpdateIsEnabled" parameterType="list">
+    <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+      update order_refunds_consult_record
+      <set>
+        is_enabled = 0
+      </set>
+      where id = ${item.id}
+    </foreach>
+  </update>
+
+
+    <select id="queryByOrderNo" parameterType="string" resultType="com.union.aimei.common.model.order.OrderRefundsConsultRecord">
+                SELECT
+            orcr.id,
+            orcr.order_return_id AS orderReturnId,
+            orcr.apply_member_id AS applyMemberId,
+            orcr.apply_member_head_img AS applyMemberHeadImg,
+            orcr.apply_member_nickname AS applyMemberNickname,
+            orcr.apply_time AS applyTime,
+            orcr.apply_reason AS applyReason,
+            orcr.apply_remark AS applyRemark,
+            orcr.refuse_person_id AS refusePersonId,
+            orcr.refuse_person_head_img AS refusePersonHeadImg,
+            orcr.refuse_person_nickname AS refusePersonNickname,
+            orcr.refuse_time AS refuseTime,
+            orcr.refuse_remark AS refuseRemark,
+            orcr.refuse_voucher AS refuseVoucher,
+            orcr.is_enabled AS isEnabled
+        FROM
+            order_refunds_consult_record orcr
+        LEFT JOIN order_return ort ON orcr.order_return_id = ort.id
+        LEFT JOIN order_base o ON o.id = ort.order_id
+        WHERE
+            o.order_no = #{orderNo}
+        AND orcr.is_enabled = 1
+    </select>
+
+
+    <select id="queryNewestRecord" parameterType="string" resultType="com.union.aimei.common.model.order.OrderRefundsConsultRecord">
+                 SELECT
+            orcr.id,
+            orcr.order_return_id AS orderReturnId,
+            orcr.apply_member_id AS applyMemberId,
+            orcr.apply_member_head_img AS applyMemberHeadImg,
+            orcr.apply_member_nickname AS applyMemberNickname,
+            orcr.apply_time AS applyTime,
+            orcr.apply_reason AS applyReason,
+            orcr.apply_remark AS applyRemark,
+            orcr.refuse_person_id AS refusePersonId,
+            orcr.refuse_person_head_img AS refusePersonHeadImg,
+            orcr.refuse_person_nickname AS refusePersonNickname,
+            orcr.refuse_time AS refuseTime,
+            orcr.refuse_remark AS refuseRemark,
+            orcr.refuse_voucher AS refuseVoucher,
+            orcr.is_enabled AS isEnabled
+        FROM
+            order_refunds_consult_record orcr
+        LEFT JOIN order_return ort ON orcr.order_return_id = ort.id
+        LEFT JOIN order_base o ON o.id = ort.order_id
+        WHERE
+            o.order_no = #{orderNo}
+            and orcr.is_enabled=1
+        ORDER BY
+            orcr.add_time DESC
+        LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.financial.mapper.PlatformTradeDetailMapper">
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.financial.PlatformTradeDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="transaction_serial_number" jdbcType="VARCHAR" property="transactionSerialNumber" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="trade_type" jdbcType="INTEGER" property="tradeType" />
+    <result column="trade_status" jdbcType="INTEGER" property="tradeStatus" />
+    <result column="order_amount" jdbcType="INTEGER" property="orderAmount" />
+    <result column="actually_amount" jdbcType="INTEGER" property="actuallyAmount" />
+    <result column="beautician_commission" jdbcType="INTEGER" property="beauticianCommission" />
+    <result column="store_net_income" jdbcType="INTEGER" property="storeNetIncome" />
+    <result column="settlement_amount" jdbcType="INTEGER" property="settlementAmount" />
+    <result column="platform_commission" jdbcType="INTEGER" property="platformCommission" />
+    <result column="pay_method" jdbcType="INTEGER" property="payMethod" />
+    <result column="pay_rate" jdbcType="INTEGER" property="payRate" />
+    <result column="settlement_time" jdbcType="TIMESTAMP" property="settlementTime" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="store_name" jdbcType="VARCHAR" property="storeName" />
+    <result column="store_phone" jdbcType="VARCHAR" property="storePhone" />
+    <result column="store_bboss" jdbcType="VARCHAR" property="storeBboss" />
+    <result column="beautician_id" jdbcType="INTEGER" property="beauticianId" />
+    <result column="beautician_name" jdbcType="VARCHAR" property="beauticianName" />
+    <result column="beautician_phone" jdbcType="VARCHAR" property="beauticianPhone" />
+    <result column="buyers_nickname" jdbcType="VARCHAR" property="buyersNickname" />
+    <result column="buyers_phone" jdbcType="VARCHAR" property="buyersPhone" />
+    <result column="service_name" jdbcType="VARCHAR" property="serviceName" />
+    <result column="unit_price" jdbcType="INTEGER" property="unitPrice" />
+    <result column="coupons" jdbcType="INTEGER" property="coupons" />
+    <result column="membership_card_discount" jdbcType="INTEGER" property="membershipCardDiscount" />
+    <result column="one_cartoon_preferential" jdbcType="INTEGER" property="oneCartoonPreferential" />
+    <result column="membershi_card" jdbcType="VARCHAR" property="membershiCard" />
+    <result column="card_content" jdbcType="VARCHAR" property="cardContent" />
+    <result column="face_value" jdbcType="INTEGER" property="faceValue" />
+    <result column="sell_card_channel_reward" jdbcType="INTEGER" property="sellCardChannelReward" />
+    <result column="total_price" jdbcType="INTEGER" property="totalPrice" />
+    <result column="statistics_year" jdbcType="VARCHAR" property="statisticsYear" />
+    <result column="statistics_year_month" jdbcType="VARCHAR" property="statisticsYearMonth" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, order_number, transaction_serial_number, pay_time, trade_type, trade_status,
+    order_amount, actually_amount, beautician_commission, store_net_income, settlement_amount,
+    platform_commission, pay_method, pay_rate, settlement_time, store_id, store_name,
+    store_phone, store_bboss, beautician_id, beautician_name, beautician_phone, buyers_nickname,
+    buyers_phone, service_name, unit_price, coupons, membership_card_discount, one_cartoon_preferential,
+    membershi_card, card_content, face_value, sell_card_channel_reward, total_price,
+    statistics_year, statistics_year_month, create_time, update_time, remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from platform_trade_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from platform_trade_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from platform_trade_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetailExample">
+    delete from platform_trade_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetail">
+    insert into platform_trade_detail (id, order_number, transaction_serial_number,
+    pay_time, trade_type, trade_status,
+    order_amount, actually_amount, beautician_commission,
+    store_net_income, settlement_amount, platform_commission,
+    pay_method, pay_rate, settlement_time,
+    store_id, store_name, store_phone,
+    store_bboss, beautician_id, beautician_name,
+    beautician_phone, buyers_nickname, buyers_phone,
+    service_name, unit_price, coupons,
+    membership_card_discount, one_cartoon_preferential,
+    membershi_card, card_content, face_value,
+    sell_card_channel_reward, total_price, statistics_year,
+    statistics_year_month, create_time, update_time,
+    remarks)
+    values (#{id,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, #{transactionSerialNumber,jdbcType=VARCHAR},
+    #{payTime,jdbcType=TIMESTAMP}, #{tradeType,jdbcType=INTEGER}, #{tradeStatus,jdbcType=INTEGER},
+    #{orderAmount,jdbcType=INTEGER}, #{actuallyAmount,jdbcType=INTEGER}, #{beauticianCommission,jdbcType=INTEGER},
+    #{storeNetIncome,jdbcType=INTEGER}, #{settlementAmount,jdbcType=INTEGER}, #{platformCommission,jdbcType=INTEGER},
+    #{payMethod,jdbcType=INTEGER}, #{payRate,jdbcType=INTEGER}, #{settlementTime,jdbcType=TIMESTAMP},
+    #{storeId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR},
+    #{storeBboss,jdbcType=VARCHAR}, #{beauticianId,jdbcType=INTEGER}, #{beauticianName,jdbcType=VARCHAR},
+    #{beauticianPhone,jdbcType=VARCHAR}, #{buyersNickname,jdbcType=VARCHAR}, #{buyersPhone,jdbcType=VARCHAR},
+    #{serviceName,jdbcType=VARCHAR}, #{unitPrice,jdbcType=INTEGER}, #{coupons,jdbcType=INTEGER},
+    #{membershipCardDiscount,jdbcType=INTEGER}, #{oneCartoonPreferential,jdbcType=INTEGER},
+    #{membershiCard,jdbcType=VARCHAR}, #{cardContent,jdbcType=VARCHAR}, #{faceValue,jdbcType=INTEGER},
+    #{sellCardChannelReward,jdbcType=INTEGER}, #{totalPrice,jdbcType=INTEGER}, #{statisticsYear,jdbcType=VARCHAR},
+    #{statisticsYearMonth,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+    #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetail" useGeneratedKeys="true" keyProperty="id" >
+    insert into platform_trade_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNumber != null">
+        order_number,
+      </if>
+      <if test="transactionSerialNumber != null">
+        transaction_serial_number,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="tradeType != null">
+        trade_type,
+      </if>
+      <if test="tradeStatus != null">
+        trade_status,
+      </if>
+      <if test="orderAmount != null">
+        order_amount,
+      </if>
+      <if test="actuallyAmount != null">
+        actually_amount,
+      </if>
+      <if test="beauticianCommission != null">
+        beautician_commission,
+      </if>
+      <if test="storeNetIncome != null">
+        store_net_income,
+      </if>
+      <if test="settlementAmount != null">
+        settlement_amount,
+      </if>
+      <if test="platformCommission != null">
+        platform_commission,
+      </if>
+      <if test="payMethod != null">
+        pay_method,
+      </if>
+      <if test="payRate != null">
+        pay_rate,
+      </if>
+      <if test="settlementTime != null">
+        settlement_time,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="storeName != null">
+        store_name,
+      </if>
+      <if test="storePhone != null">
+        store_phone,
+      </if>
+      <if test="storeBboss != null">
+        store_bboss,
+      </if>
+      <if test="beauticianId != null">
+        beautician_id,
+      </if>
+      <if test="beauticianName != null">
+        beautician_name,
+      </if>
+      <if test="beauticianPhone != null">
+        beautician_phone,
+      </if>
+      <if test="buyersNickname != null">
+        buyers_nickname,
+      </if>
+      <if test="buyersPhone != null">
+        buyers_phone,
+      </if>
+      <if test="serviceName != null">
+        service_name,
+      </if>
+      <if test="unitPrice != null">
+        unit_price,
+      </if>
+      <if test="coupons != null">
+        coupons,
+      </if>
+      <if test="membershipCardDiscount != null">
+        membership_card_discount,
+      </if>
+      <if test="oneCartoonPreferential != null">
+        one_cartoon_preferential,
+      </if>
+      <if test="membershiCard != null">
+        membershi_card,
+      </if>
+      <if test="cardContent != null">
+        card_content,
+      </if>
+      <if test="faceValue != null">
+        face_value,
+      </if>
+      <if test="sellCardChannelReward != null">
+        sell_card_channel_reward,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="statisticsYear != null">
+        statistics_year,
+      </if>
+      <if test="statisticsYearMonth != null">
+        statistics_year_month,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionSerialNumber != null">
+        #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="tradeStatus != null">
+        #{tradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="actuallyAmount != null">
+        #{actuallyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianCommission != null">
+        #{beauticianCommission,jdbcType=INTEGER},
+      </if>
+      <if test="storeNetIncome != null">
+        #{storeNetIncome,jdbcType=INTEGER},
+      </if>
+      <if test="settlementAmount != null">
+        #{settlementAmount,jdbcType=INTEGER},
+      </if>
+      <if test="platformCommission != null">
+        #{platformCommission,jdbcType=INTEGER},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="payRate != null">
+        #{payRate,jdbcType=INTEGER},
+      </if>
+      <if test="settlementTime != null">
+        #{settlementTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null">
+        #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBboss != null">
+        #{storeBboss,jdbcType=VARCHAR},
+      </if>
+      <if test="beauticianId != null">
+        #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianName != null">
+        #{beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="beauticianPhone != null">
+        #{beauticianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyersNickname != null">
+        #{buyersNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="buyersPhone != null">
+        #{buyersPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null">
+        #{unitPrice,jdbcType=INTEGER},
+      </if>
+      <if test="coupons != null">
+        #{coupons,jdbcType=INTEGER},
+      </if>
+      <if test="membershipCardDiscount != null">
+        #{membershipCardDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="oneCartoonPreferential != null">
+        #{oneCartoonPreferential,jdbcType=INTEGER},
+      </if>
+      <if test="membershiCard != null">
+        #{membershiCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardContent != null">
+        #{cardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="faceValue != null">
+        #{faceValue,jdbcType=INTEGER},
+      </if>
+      <if test="sellCardChannelReward != null">
+        #{sellCardChannelReward,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsYear != null">
+        #{statisticsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticsYearMonth != null">
+        #{statisticsYearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetailExample" resultType="java.lang.Long">
+    select count(*) from platform_trade_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update platform_trade_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNumber != null">
+        order_number = #{record.orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transactionSerialNumber != null">
+        transaction_serial_number = #{record.transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payTime != null">
+        pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tradeType != null">
+        trade_type = #{record.tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="record.tradeStatus != null">
+        trade_status = #{record.tradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderAmount != null">
+        order_amount = #{record.orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.actuallyAmount != null">
+        actually_amount = #{record.actuallyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.beauticianCommission != null">
+        beautician_commission = #{record.beauticianCommission,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeNetIncome != null">
+        store_net_income = #{record.storeNetIncome,jdbcType=INTEGER},
+      </if>
+      <if test="record.settlementAmount != null">
+        settlement_amount = #{record.settlementAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformCommission != null">
+        platform_commission = #{record.platformCommission,jdbcType=INTEGER},
+      </if>
+      <if test="record.payMethod != null">
+        pay_method = #{record.payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="record.payRate != null">
+        pay_rate = #{record.payRate,jdbcType=INTEGER},
+      </if>
+      <if test="record.settlementTime != null">
+        settlement_time = #{record.settlementTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeName != null">
+        store_name = #{record.storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storePhone != null">
+        store_phone = #{record.storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeBboss != null">
+        store_bboss = #{record.storeBboss,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beauticianId != null">
+        beautician_id = #{record.beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="record.beauticianName != null">
+        beautician_name = #{record.beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beauticianPhone != null">
+        beautician_phone = #{record.beauticianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyersNickname != null">
+        buyers_nickname = #{record.buyersNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyersPhone != null">
+        buyers_phone = #{record.buyersPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceName != null">
+        service_name = #{record.serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitPrice != null">
+        unit_price = #{record.unitPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.coupons != null">
+        coupons = #{record.coupons,jdbcType=INTEGER},
+      </if>
+      <if test="record.membershipCardDiscount != null">
+        membership_card_discount = #{record.membershipCardDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="record.oneCartoonPreferential != null">
+        one_cartoon_preferential = #{record.oneCartoonPreferential,jdbcType=INTEGER},
+      </if>
+      <if test="record.membershiCard != null">
+        membershi_card = #{record.membershiCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardContent != null">
+        card_content = #{record.cardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.faceValue != null">
+        face_value = #{record.faceValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellCardChannelReward != null">
+        sell_card_channel_reward = #{record.sellCardChannelReward,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalPrice != null">
+        total_price = #{record.totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.statisticsYear != null">
+        statistics_year = #{record.statisticsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statisticsYearMonth != null">
+        statistics_year_month = #{record.statisticsYearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update platform_trade_detail
+    set id = #{record.id,jdbcType=INTEGER},
+    order_number = #{record.orderNumber,jdbcType=VARCHAR},
+    transaction_serial_number = #{record.transactionSerialNumber,jdbcType=VARCHAR},
+    pay_time = #{record.payTime,jdbcType=TIMESTAMP},
+    trade_type = #{record.tradeType,jdbcType=INTEGER},
+    trade_status = #{record.tradeStatus,jdbcType=INTEGER},
+    order_amount = #{record.orderAmount,jdbcType=INTEGER},
+    actually_amount = #{record.actuallyAmount,jdbcType=INTEGER},
+    beautician_commission = #{record.beauticianCommission,jdbcType=INTEGER},
+    store_net_income = #{record.storeNetIncome,jdbcType=INTEGER},
+    settlement_amount = #{record.settlementAmount,jdbcType=INTEGER},
+    platform_commission = #{record.platformCommission,jdbcType=INTEGER},
+    pay_method = #{record.payMethod,jdbcType=INTEGER},
+    pay_rate = #{record.payRate,jdbcType=INTEGER},
+    settlement_time = #{record.settlementTime,jdbcType=TIMESTAMP},
+    store_id = #{record.storeId,jdbcType=INTEGER},
+    store_name = #{record.storeName,jdbcType=VARCHAR},
+    store_phone = #{record.storePhone,jdbcType=VARCHAR},
+    store_bboss = #{record.storeBboss,jdbcType=VARCHAR},
+    beautician_id = #{record.beauticianId,jdbcType=INTEGER},
+    beautician_name = #{record.beauticianName,jdbcType=VARCHAR},
+    beautician_phone = #{record.beauticianPhone,jdbcType=VARCHAR},
+    buyers_nickname = #{record.buyersNickname,jdbcType=VARCHAR},
+    buyers_phone = #{record.buyersPhone,jdbcType=VARCHAR},
+    service_name = #{record.serviceName,jdbcType=VARCHAR},
+    unit_price = #{record.unitPrice,jdbcType=INTEGER},
+    coupons = #{record.coupons,jdbcType=INTEGER},
+    membership_card_discount = #{record.membershipCardDiscount,jdbcType=INTEGER},
+    one_cartoon_preferential = #{record.oneCartoonPreferential,jdbcType=INTEGER},
+    membershi_card = #{record.membershiCard,jdbcType=VARCHAR},
+    card_content = #{record.cardContent,jdbcType=VARCHAR},
+    face_value = #{record.faceValue,jdbcType=INTEGER},
+    sell_card_channel_reward = #{record.sellCardChannelReward,jdbcType=INTEGER},
+    total_price = #{record.totalPrice,jdbcType=INTEGER},
+    statistics_year = #{record.statisticsYear,jdbcType=VARCHAR},
+    statistics_year_month = #{record.statisticsYearMonth,jdbcType=VARCHAR},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetail">
+    update platform_trade_detail
+    <set>
+      <if test="orderNumber != null">
+        order_number = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionSerialNumber != null">
+        transaction_serial_number = #{transactionSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradeType != null">
+        trade_type = #{tradeType,jdbcType=INTEGER},
+      </if>
+      <if test="tradeStatus != null">
+        trade_status = #{tradeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderAmount != null">
+        order_amount = #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="actuallyAmount != null">
+        actually_amount = #{actuallyAmount,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianCommission != null">
+        beautician_commission = #{beauticianCommission,jdbcType=INTEGER},
+      </if>
+      <if test="storeNetIncome != null">
+        store_net_income = #{storeNetIncome,jdbcType=INTEGER},
+      </if>
+      <if test="settlementAmount != null">
+        settlement_amount = #{settlementAmount,jdbcType=INTEGER},
+      </if>
+      <if test="platformCommission != null">
+        platform_commission = #{platformCommission,jdbcType=INTEGER},
+      </if>
+      <if test="payMethod != null">
+        pay_method = #{payMethod,jdbcType=INTEGER},
+      </if>
+      <if test="payRate != null">
+        pay_rate = #{payRate,jdbcType=INTEGER},
+      </if>
+      <if test="settlementTime != null">
+        settlement_time = #{settlementTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null">
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storePhone != null">
+        store_phone = #{storePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeBboss != null">
+        store_bboss = #{storeBboss,jdbcType=VARCHAR},
+      </if>
+      <if test="beauticianId != null">
+        beautician_id = #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianName != null">
+        beautician_name = #{beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="beauticianPhone != null">
+        beautician_phone = #{beauticianPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyersNickname != null">
+        buyers_nickname = #{buyersNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="buyersPhone != null">
+        buyers_phone = #{buyersPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceName != null">
+        service_name = #{serviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null">
+        unit_price = #{unitPrice,jdbcType=INTEGER},
+      </if>
+      <if test="coupons != null">
+        coupons = #{coupons,jdbcType=INTEGER},
+      </if>
+      <if test="membershipCardDiscount != null">
+        membership_card_discount = #{membershipCardDiscount,jdbcType=INTEGER},
+      </if>
+      <if test="oneCartoonPreferential != null">
+        one_cartoon_preferential = #{oneCartoonPreferential,jdbcType=INTEGER},
+      </if>
+      <if test="membershiCard != null">
+        membershi_card = #{membershiCard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardContent != null">
+        card_content = #{cardContent,jdbcType=VARCHAR},
+      </if>
+      <if test="faceValue != null">
+        face_value = #{faceValue,jdbcType=INTEGER},
+      </if>
+      <if test="sellCardChannelReward != null">
+        sell_card_channel_reward = #{sellCardChannelReward,jdbcType=INTEGER},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsYear != null">
+        statistics_year = #{statisticsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticsYearMonth != null">
+        statistics_year_month = #{statisticsYearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetail">
+    update platform_trade_detail
+    set order_number = #{orderNumber,jdbcType=VARCHAR},
+    transaction_serial_number = #{transactionSerialNumber,jdbcType=VARCHAR},
+    pay_time = #{payTime,jdbcType=TIMESTAMP},
+    trade_type = #{tradeType,jdbcType=INTEGER},
+    trade_status = #{tradeStatus,jdbcType=INTEGER},
+    order_amount = #{orderAmount,jdbcType=INTEGER},
+    actually_amount = #{actuallyAmount,jdbcType=INTEGER},
+    beautician_commission = #{beauticianCommission,jdbcType=INTEGER},
+    store_net_income = #{storeNetIncome,jdbcType=INTEGER},
+    settlement_amount = #{settlementAmount,jdbcType=INTEGER},
+    platform_commission = #{platformCommission,jdbcType=INTEGER},
+    pay_method = #{payMethod,jdbcType=INTEGER},
+    pay_rate = #{payRate,jdbcType=INTEGER},
+    settlement_time = #{settlementTime,jdbcType=TIMESTAMP},
+    store_id = #{storeId,jdbcType=INTEGER},
+    store_name = #{storeName,jdbcType=VARCHAR},
+    store_phone = #{storePhone,jdbcType=VARCHAR},
+    store_bboss = #{storeBboss,jdbcType=VARCHAR},
+    beautician_id = #{beauticianId,jdbcType=INTEGER},
+    beautician_name = #{beauticianName,jdbcType=VARCHAR},
+    beautician_phone = #{beauticianPhone,jdbcType=VARCHAR},
+    buyers_nickname = #{buyersNickname,jdbcType=VARCHAR},
+    buyers_phone = #{buyersPhone,jdbcType=VARCHAR},
+    service_name = #{serviceName,jdbcType=VARCHAR},
+    unit_price = #{unitPrice,jdbcType=INTEGER},
+    coupons = #{coupons,jdbcType=INTEGER},
+    membership_card_discount = #{membershipCardDiscount,jdbcType=INTEGER},
+    one_cartoon_preferential = #{oneCartoonPreferential,jdbcType=INTEGER},
+    membershi_card = #{membershiCard,jdbcType=VARCHAR},
+    card_content = #{cardContent,jdbcType=VARCHAR},
+    face_value = #{faceValue,jdbcType=INTEGER},
+    sell_card_channel_reward = #{sellCardChannelReward,jdbcType=INTEGER},
+    total_price = #{totalPrice,jdbcType=INTEGER},
+    statistics_year = #{statisticsYear,jdbcType=VARCHAR},
+    statistics_year_month = #{statisticsYearMonth,jdbcType=VARCHAR},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM platform_trade_detail LIMIT #{offset},#{limit}
+  </select>
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.financial.PlatformTradeDetail" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from platform_trade_detail
+    <where>
+      <if test="orderNumber != null">
+        and order_number = #{orderNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="transactionSerialNumber != null">
+        and transaction_serial_number = #{transactionSerialNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="payTime != null">
+        and pay_time = #{payTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="tradeType != null">
+        and trade_type = #{tradeType,jdbcType=INTEGER}
+      </if>
+      <if test="tradeStatus != null">
+        and trade_status = #{tradeStatus,jdbcType=INTEGER}
+      </if>
+      <if test="orderAmount != null">
+        and order_amount = #{orderAmount,jdbcType=INTEGER}
+      </if>
+      <if test="actuallyAmount != null">
+        and actually_amount = #{actuallyAmount,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianCommission != null">
+        and beautician_commission = #{beauticianCommission,jdbcType=INTEGER}
+      </if>
+      <if test="storeNetIncome != null">
+        and store_net_income = #{storeNetIncome,jdbcType=INTEGER}
+      </if>
+      <if test="settlementAmount != null">
+        and settlement_amount = #{settlementAmount,jdbcType=INTEGER}
+      </if>
+      <if test="platformCommission != null">
+        and platform_commission = #{platformCommission,jdbcType=INTEGER}
+      </if>
+      <if test="payMethod != null">
+        and pay_method = #{payMethod,jdbcType=INTEGER}
+      </if>
+      <if test="payRate != null">
+        and pay_rate = #{payRate,jdbcType=INTEGER}
+      </if>
+      <if test="settlementTime != null">
+        and settlement_time = #{settlementTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="storeId != null">
+        and store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="storeName != null">
+        and store_name = #{storeName,jdbcType=VARCHAR}
+      </if>
+      <if test="storePhone != null">
+        and store_phone = #{storePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="storeBboss != null">
+        and store_bboss = #{storeBboss,jdbcType=VARCHAR}
+      </if>
+      <if test="beauticianId != null">
+        and beautician_id = #{beauticianId,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianName != null">
+        and beautician_name = #{beauticianName,jdbcType=VARCHAR}
+      </if>
+      <if test="beauticianPhone != null">
+        and beautician_phone = #{beauticianPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="buyersNickname != null">
+        and buyers_nickname = #{buyersNickname,jdbcType=VARCHAR}
+      </if>
+      <if test="buyersPhone != null">
+        and buyers_phone = #{buyersPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="serviceName != null">
+        and service_name = #{serviceName,jdbcType=VARCHAR}
+      </if>
+      <if test="unitPrice != null">
+        and unit_price = #{unitPrice,jdbcType=INTEGER}
+      </if>
+      <if test="coupons != null">
+        and coupons = #{coupons,jdbcType=INTEGER}
+      </if>
+      <if test="membershipCardDiscount != null">
+        and membership_card_discount = #{membershipCardDiscount,jdbcType=INTEGER}
+      </if>
+      <if test="oneCartoonPreferential != null">
+        and one_cartoon_preferential = #{oneCartoonPreferential,jdbcType=INTEGER}
+      </if>
+      <if test="membershiCard != null">
+        and membershi_card = #{membershiCard,jdbcType=VARCHAR}
+      </if>
+      <if test="cardContent != null">
+        and card_content = #{cardContent,jdbcType=VARCHAR}
+      </if>
+      <if test="faceValue != null">
+        and face_value = #{faceValue,jdbcType=INTEGER}
+      </if>
+      <if test="sellCardChannelReward != null">
+        and sell_card_channel_reward = #{sellCardChannelReward,jdbcType=INTEGER}
+      </if>
+      <if test="totalPrice != null">
+        and total_price = #{totalPrice,jdbcType=INTEGER}
+      </if>
+      <if test="statisticsYear != null">
+        and statistics_year = #{statisticsYear,jdbcType=VARCHAR}
+      </if>
+      <if test="statisticsYearMonth != null">
+        and statistics_year_month = #{statisticsYearMonth,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remarks != null">
+        and remarks = #{remarks,jdbcType=VARCHAR}
+      </if>
+    </where>
+    ORDER BY create_time DESC
+  </select>
+</mapper>

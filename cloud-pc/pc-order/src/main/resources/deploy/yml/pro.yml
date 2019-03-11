@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: pc-order
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: pc-order
+    spec:
+      containers:
+      - name: pc-order
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/pc-order:v1.1.3
+        ports: 
+        - containerPort: 8016
+      imagePullSecrets:
+      - name: k8slogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pc-order-svc
+spec:
+  selector:
+    run: pc-order
+  type: NodePort
+  ports:
+    - nodePort: 30018
+      port: 8016
+      targetPort: 8016

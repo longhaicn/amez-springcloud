@@ -1,0 +1,62 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info",
+      "type": "com.union.aimei.remote.config.AmezRequestProperties"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info.dev",
+      "type": "com.union.aimei.remote.config.AmezRequestProperties$Dev"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info.pro",
+      "type": "com.union.aimei.remote.config.AmezRequestProperties$Pro"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info.access-key",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info.app-system",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties$Dev",
+      "name": "amez.request.info.dev.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties$Dev",
+      "name": "amez.request.info.dev.port",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info.path",
+      "type": "java.util.Map<java.lang.String,java.lang.String>"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties$Pro",
+      "name": "amez.request.info.pro.host",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties$Pro",
+      "name": "amez.request.info.pro.port",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.union.aimei.remote.config.AmezRequestProperties",
+      "name": "amez.request.info.security",
+      "type": "java.lang.String"
+    }
+  ]
+}

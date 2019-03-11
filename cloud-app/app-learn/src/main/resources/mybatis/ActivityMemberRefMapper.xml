@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.ActivityMemberRefMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.ActivityMemberRef" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="memeber_id" property="memeberId" jdbcType="INTEGER" />
+    <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="BIT" />
+    <result column="tag" property="tag" jdbcType="INTEGER" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="trade_ref_id" property="tradeRefId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="weekday_entry" property="weekdayEntry" jdbcType="VARCHAR" />
+    <result column="weekday_end" property="weekdayEnd" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, activity_id, memeber_id, beautician_id,name, phone, sex, tag, contact_phone, store_id, store_name,
+    trade_ref_id,create_time, update_time, weekday_entry, weekday_end, status
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, activity_id AS activityId, memeber_id AS memeberId,beautician_id AS beauticianId, name, phone, sex, tag, contact_phone AS contactPhone,
+    store_id AS storeId, store_name AS storeName,trade_ref_id AS tradeRefId, create_time AS createTime, update_time AS updateTime,
+    weekday_entry AS weekdayEntry, weekday_end AS weekdayEnd, status
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from activity_member_ref
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity_member_ref
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.ActivityMemberRef" useGeneratedKeys="true" keyProperty="id" >
+    insert into activity_member_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="memeberId != null" >
+        memeber_id,
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="tradeRefId != null" >
+        trade_ref_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="weekdayEntry != null" >
+        weekday_entry,
+      </if>
+      <if test="weekdayEnd != null" >
+        weekday_end,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="memeberId != null" >
+        #{memeberId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianId != null" >
+        #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=INTEGER},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeRefId != null" >
+        #{tradeRefId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekdayEntry != null" >
+        #{weekdayEntry,jdbcType=VARCHAR},
+      </if>
+      <if test="weekdayEnd != null" >
+        #{weekdayEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.ActivityMemberRef" >
+    update activity_member_ref
+    <set >
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="memeberId != null" >
+        memeber_id = #{memeberId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id = #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=INTEGER},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeRefId != null" >
+        trade_ref_id = #{tradeRefId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekdayEntry != null" >
+        weekday_entry = #{weekdayEntry,jdbcType=VARCHAR},
+      </if>
+      <if test="weekdayEnd != null" >
+        weekday_end = #{weekdayEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.ActivityMemberRef" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from activity_member_ref
+    <where >
+      <if test="activityId != null" >
+        AND activity_id = #{activityId,jdbcType=INTEGER}
+      </if>
+      <if test="memeberId != null" >
+        AND memeber_id = #{memeberId,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianId != null" >
+        AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+      </if>
+      <if test="name != null" >
+        AND name = #{name,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null" >
+        AND phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null" >
+        AND sex = #{sex,jdbcType=BIT}
+      </if>
+      <if test="tag != null" >
+        AND tag = #{tag,jdbcType=INTEGER}
+      </if>
+      <if test="contactPhone != null" >
+        AND contact_phone = #{contactPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="storeName != null" >
+        AND store_name = #{storeName,jdbcType=VARCHAR}
+      </if>
+      <if test="tradeRefId != null" >
+        AND trade_ref_id = #{tradeRefId,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="weekdayEntry != null" >
+        AND weekday_entry = #{weekdayEntry,jdbcType=VARCHAR}
+      </if>
+      <if test="weekdayEnd != null" >
+        AND weekday_end = #{weekdayEnd,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        AND status = #{status,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+
+  <select id="checkRepeatActivity" parameterType="com.union.aimei.common.vo.learn.app.CheckRepeatActivityVo" resultType="integer">
+    SELECT COUNT(id) FROM activity_member_ref
+    <where>
+      <if test="activityId != null" >
+        AND activity_id = #{activityId,jdbcType=INTEGER}
+      </if>
+      <if test="memberId != null" >
+        AND memeber_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      AND status = 0
+    </where>
+  </select>
+
+  <select id="selectRepeatBeauticianIdBatch" parameterType="com.union.aimei.common.vo.learn.app.ActivityMemberRefVo" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from activity_member_ref
+    <where >
+      <if test="activityId != null" >
+        AND activity_id = #{activityId,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianIdList != null" >
+        AND beautician_id in
+        <foreach collection="beauticianIdList" item="beauticianId" open="(" close=")" separator=",">
+          #{beauticianId}
+        </foreach>
+      </if>
+    </where>
+    AND status = 0
+  </select>
+
+  <insert id="insertBatch">
+    insert into activity_member_ref
+    (activity_id,memeber_id,beautician_id,name,phone,
+    sex,tag,contact_phone,store_id,
+    store_name,trade_ref_id,status)
+    values
+    <foreach collection="list" index="index" item="item"  separator="," >
+      (#{item.activityId},#{item.memeberId},#{item.beauticianId},#{item.name},#{item.phone}
+      ,#{item.sex},#{item.tag},#{item.contactPhone},#{item.storeId}
+      ,#{item.storeName},#{item.tradeRefId},#{item.status})
+    </foreach>
+  </insert>
+
+  <update id="updateStatusByTradeRefId" parameterType="integer" >
+    UPDATE activity_member_ref SET status = 0 WHERE trade_ref_id = #{tradeRefId,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="queryActivityMemberRefDetail" parameterType="com.union.aimei.common.vo.learn.app.ActivityMemberRefDetailsVo" resultType="com.union.aimei.common.vo.learn.app.ActivityMemberRefDetailsVo">
+      select a.id AS id,a.mtitle AS mtitle ,a.costs AS costs,amr.name AS name,amr.store_id AS storeId,
+      amr.beautician_id AS beauticianId,amr.memeber_id AS memberId ,amr.contact_phone AS contactPhone,
+      ltr.trade_amount AS tradeAmount,ltr.actual_trade_amount AS actualTradeAmount
+      from activity a JOIN activity_member_ref amr ON a.id = amr.activity_id
+      JOIN learn_trade_recode ltr ON ltr.id = amr.trade_ref_id
+      where amr.activity_id = #{activityId}
+      <if test="storeId != null">
+        and amr.store_id = #{storeId}
+      </if>
+      <if test="beauticianId != null">
+        and amr.beautician_id = #{beauticianId}
+      </if>
+  </select>
+
+</mapper>

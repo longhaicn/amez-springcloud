@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.CourseProductRefMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.CourseProductRef" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="server_id" property="serverId" jdbcType="INTEGER" />
+    <result column="server_name" property="serverName" jdbcType="VARCHAR" />
+    <result column="server_type_name" property="serverTypeName" jdbcType="VARCHAR" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="is_support_home" property="isSupportHome" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, course_id, server_id, server_name,server_type_name, is_enabled, create_time, update_time ,is_support_home
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, course_id AS courseId, server_id AS serverId, server_name AS serverName, server_type_name AS serverTypeName ,is_enabled AS isEnabled,
+    create_time AS createTime, update_time AS updateTime , is_support_home AS isSupportHome
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from course_product_ref
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_product_ref
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <delete id="deleteByPrimaryKeyList" parameterType="java.util.List">
+    delete from course_product_ref
+    where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.CourseProductRef" useGeneratedKeys="true" keyProperty="id" >
+    insert into course_product_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="serverId != null" >
+        server_id,
+      </if>
+      <if test="serverName != null" >
+        server_name,
+      </if>
+      <if test="serverTypeName != null" >
+        server_type_name,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isSupportHome != null" >
+        is_support_home,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="serverId != null" >
+        #{serverId,jdbcType=INTEGER},
+      </if>
+      <if test="serverName != null" >
+        #{serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverTypeName != null" >
+        #{serverTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSupportHome != null" >
+        #{isSupportHome,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.CourseProductRef" >
+    update course_product_ref
+    <set >
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="serverId != null" >
+        server_id = #{serverId,jdbcType=INTEGER},
+      </if>
+      <if test="serverName != null" >
+        server_name = #{serverName,jdbcType=VARCHAR},
+      </if>
+      <if test="serverTypeName != null" >
+        server_type_name = #{serverTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSupportHome != null" >
+        is_support_home = #{isSupportHome,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.CourseProductRef" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from course_product_ref
+    <where >
+      <if test="courseId != null" >
+        AND course_id = #{courseId,jdbcType=INTEGER}
+      </if>
+      <if test="serverId != null" >
+        AND server_id = #{serverId,jdbcType=INTEGER}
+      </if>
+      <if test="serverName != null" >
+        AND server_name = #{serverName,jdbcType=VARCHAR}
+      </if>
+      <if test="serverTypeName != null" >
+        AND server_type_name = #{serverTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isSupportHome != null" >
+        AND is_support_home = #{isSupportHome,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+  <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into course_product_ref (course_id, server_id, server_name , server_type_name, is_support_home)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.courseId}, #{item.serverId}, #{item.serverName} , #{item.serverTypeName} , #{item.isSupportHome})
+    </foreach>
+  </insert>
+
+</mapper>

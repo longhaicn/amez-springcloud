@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-store
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-store
+    spec:
+      containers:
+      - name: app-store
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-store:v1.1.56-test
+        ports: 
+        - containerPort: 8018
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-store-svc
+spec:
+  selector:
+    run: app-store
+  type: NodePort
+  ports:
+    - nodePort: 30027
+      port: 8018
+      targetPort: 8018

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.Article" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="article_type" property="articleType" jdbcType="TINYINT" />
+    <result column="mtitle" property="mtitle" jdbcType="VARCHAR" />
+    <result column="sub_heading" property="subHeading" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="main_img" property="mainImg" jdbcType="VARCHAR" />
+    <result column="article_tag" property="articleTag" jdbcType="VARCHAR" />
+    <result column="top_status" property="topStatus" jdbcType="TINYINT" />
+    <result column="weight_top" property="weightTop" jdbcType="INTEGER" />
+    <result column="release_status" property="releaseStatus" jdbcType="INTEGER" />
+    <result column="article_detail" property="articleDetail" jdbcType="LONGVARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, article_type, mtitle,sub_heading, icon, main_img, article_tag, top_status, weight_top, release_status,
+    article_detail, create_time, update_time, release_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, article_type AS articleType, mtitle,sub_heading AS subHeading, icon, main_img AS mainImg, article_tag AS articleTag,
+    top_status AS topStatus, weight_top AS weightTop, release_status AS releaseStatus, 
+    article_detail AS articleDetail, create_time AS createTime, update_time AS updateTime, 
+    release_time AS releaseTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from article
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from article
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.Article" useGeneratedKeys="true" keyProperty="id" >
+    insert into article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="articleType != null" >
+        article_type,
+      </if>
+      <if test="mtitle != null" >
+        mtitle,
+      </if>
+      <if test="subHeading != null" >
+        sub_heading,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="mainImg != null" >
+        main_img,
+      </if>
+      <if test="articleTag != null" >
+        article_tag,
+      </if>
+      <if test="topStatus != null" >
+        top_status,
+      </if>
+      <if test="weightTop != null" >
+        weight_top,
+      </if>
+      <if test="releaseStatus != null" >
+        release_status,
+      </if>
+      <if test="articleDetail != null" >
+        article_detail,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="releaseTime != null" >
+        release_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="articleType != null" >
+        #{articleType,jdbcType=TINYINT},
+      </if>
+      <if test="mtitle != null" >
+        #{mtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subHeading != null" >
+        #{subHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImg != null" >
+        #{mainImg,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTag != null" >
+        #{articleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="topStatus != null" >
+        #{topStatus,jdbcType=TINYINT},
+      </if>
+      <if test="weightTop != null" >
+        #{weightTop,jdbcType=INTEGER},
+      </if>
+      <if test="releaseStatus != null" >
+        #{releaseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="articleDetail != null" >
+        #{articleDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.Article" >
+    update article
+    <set >
+      <if test="articleType != null" >
+        article_type = #{articleType,jdbcType=TINYINT},
+      </if>
+      <if test="mtitle != null" >
+        mtitle = #{mtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="subHeading != null" >
+        sub_heading = #{subHeading,jdbcType=VARCHAR},
+      </if>
+      <if test="mainImg != null" >
+        main_img = #{mainImg,jdbcType=VARCHAR},
+      </if>
+      <if test="articleTag != null" >
+        article_tag = #{articleTag,jdbcType=VARCHAR},
+      </if>
+      <if test="topStatus != null" >
+        top_status = #{topStatus,jdbcType=TINYINT},
+      </if>
+      <if test="weightTop != null" >
+        weight_top = #{weightTop,jdbcType=INTEGER},
+      </if>
+      <if test="releaseStatus != null" >
+        release_status = #{releaseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="articleDetail != null" >
+        article_detail = #{articleDetail,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.Article" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from article
+    <where >
+      <if test="articleType != null" >
+        AND article_type = #{articleType,jdbcType=TINYINT}
+      </if>
+      <if test="mtitle != null" >
+        AND mtitle = #{mtitle,jdbcType=VARCHAR}
+      </if>
+      <if test="subHeading != null" >
+        AND sub_heading = #{subHeading,jdbcType=VARCHAR}
+      </if>
+      <if test="icon != null" >
+        AND icon = #{icon,jdbcType=VARCHAR}
+      </if>
+      <if test="mainImg != null" >
+        AND main_img = #{mainImg,jdbcType=VARCHAR}
+      </if>
+      <if test="articleTag != null" >
+        AND article_tag = #{articleTag,jdbcType=VARCHAR}
+      </if>
+      <if test="topStatus != null" >
+        AND top_status = #{topStatus,jdbcType=TINYINT}
+      </if>
+      <if test="weightTop != null" >
+        AND weight_top = #{weightTop,jdbcType=INTEGER}
+      </if>
+      <if test="releaseStatus != null" >
+        AND release_status = #{releaseStatus,jdbcType=INTEGER}
+      </if>
+      <if test="articleDetail != null" >
+        AND article_detail = #{articleDetail,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="releaseTime != null" >
+        AND release_time = #{releaseTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    ORDER BY top_status DESC,weight_top DESC,create_time DESC
+  </select>
+
+</mapper>

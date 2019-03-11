@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: admin-server
+  rabbitmq:
+     host: 120.79.42.13
+     port: 5672
+     username: guest
+     password: guest
+  boot:
+    admin:
+      turbine:
+#        clusters: default
+##设置turbine端点的service-id，由于目前turbine功能已经集成到了admin-cloud-server程序中，所以这里填写的是该程序注册到注册中心的service-Id
+        location: http://120.79.42.13:${turbine.stream.port}/turbine.stream
+#        location: turbine
+      routes:
+        endpoints: env,metrics,dump,jolokia,info,configprops,trace,logfile,refresh,flyway,liquibase,heapdump,loggers,auditevents,hystrix.stream
+#turbine:
+#  clusterNameExpression: new String("default")
+##设置需要监控的serviceId
+#  app-config: app-api
+turbine:
+  stream:
+    port: 8088
+
+server:
+  port: 8899
+eureka:
+  client:
+    serviceUrl:
+        defaultZone: http://120.79.42.13:8000/eureka/
+  instance:
+    hostname: feign                 # 此处，preferIpAddress不设置或者设为false，不能设为true，否则影响turbine的测试。turbine存在的问题：eureka.instance.hostname一致时只能检测到一个节点，会造成turbine数据不完整
+    prefer-ip-address: true
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+logging:
+  level:
+    root: INFO
+
+

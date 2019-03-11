@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-learn
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-learn
+    spec:
+      containers:
+      - name: app-learn
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-learn:v1.1.3
+        ports: 
+        - containerPort: 8028
+      imagePullSecrets:
+      - name: k8slogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-learn-svc
+spec:
+  selector:
+    run: app-learn
+  type: NodePort
+  ports:
+    - nodePort: 30033
+      port: 8028
+      targetPort: 8028

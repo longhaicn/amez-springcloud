@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: pc-store
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: pc-store
+    spec:
+      containers:
+      - name: pc-store
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/pc-store:v1.1.56-test
+        ports: 
+        - containerPort: 8019
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pc-store-svc
+spec:
+  selector:
+    run: pc-store
+  type: NodePort
+  ports:
+    - nodePort: 30016
+      port: 8019
+      targetPort: 8019

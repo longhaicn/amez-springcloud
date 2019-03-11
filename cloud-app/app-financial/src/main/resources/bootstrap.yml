@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: app-financial-service
+  profiles:
+      active: @profileActive@

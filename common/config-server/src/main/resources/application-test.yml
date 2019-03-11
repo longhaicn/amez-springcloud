@@ -1,0 +1,41 @@
+server:
+  port: 8006
+eureka:
+  instance:
+    hostname: 120.79.42.13
+    prefer-ip-address: true
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/info
+  client:
+    service-url:
+      defaultZone: http://120.79.42.13:8000/eureka/
+spring:
+  cloud:
+    #忽律指定网卡，解决应用无法连接配置中心的问题
+#    inetutils:
+#      ignored-interfaces:
+#             - docker0
+#             - veth.*
+#             - eth0
+#      preferred-networks:
+#             - 120.79.42.13
+    config:
+      server:
+        git:
+          uri: http://123.207.5.13:8888/liufeihua/aimei-cloud-config.git
+          search-paths: config-repo/*
+          username: gaowei
+          password: gaowei123
+          clone-on-start: true
+          force-pull: true
+  rabbitmq:
+        host: 120.79.42.13
+        port: 5672
+        username: guest
+        password: guest
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@

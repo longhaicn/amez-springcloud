@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.app.api.order.mapper.OrderBeauticianMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderBeautician" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_id" property="orderId" jdbcType="INTEGER" />
+        <result column="store_id" property="storeId" jdbcType="INTEGER" />
+        <result column="store_seller_phone" property="storeSellerPhone" jdbcType="VARCHAR" />
+        <result column="store_seller_member_id" property="storeSellerMemberId" jdbcType="INTEGER" />
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+        <result column="beautician_im_user_id" property="beauticianImUserId" jdbcType="INTEGER" />
+        <result column="beautician_im_user_name" property="beauticianImUserName" jdbcType="VARCHAR" />
+        <result column="beautician_member_id" property="beauticianMemberId" jdbcType="INTEGER" />
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+        <result column="beautician_name" property="beauticianName" jdbcType="VARCHAR" />
+        <result column="beautician_nick_name" property="beauticianNickName" jdbcType="VARCHAR" />
+        <result column="beautician_commission" property="beauticianCommission" jdbcType="INTEGER" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="TINYINT" />
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, order_id, store_id, store_seller_phone, store_seller_member_id, beautician_id,
+        beautician_im_user_id, beautician_im_user_name, beautician_member_id, img_url, beautician_name,
+        beautician_nick_name, beautician_commission, mobile, type, is_enabled, create_time,
+        update_time
+    </sql>
+
+    <sql id="BaseAliasColumn" >
+        id, order_id AS orderId, store_id AS storeId, store_seller_phone AS storeSellerPhone,
+        store_seller_member_id AS storeSellerMemberId, beautician_id AS beauticianId, beautician_im_user_id AS beauticianImUserId,
+        beautician_im_user_name AS beauticianImUserName, beautician_member_id AS beauticianMemberId,
+        img_url AS imgUrl, beautician_name AS beauticianName, beautician_nick_name AS beauticianNickName,
+        beautician_commission AS beauticianCommission, mobile, type, is_enabled AS isEnabled,
+        create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from order_beautician
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from order_beautician
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderBeautician" useGeneratedKeys="true" keyProperty="id" >
+        insert into order_beautician
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderId != null" >
+                order_id,
+            </if>
+            <if test="storeId != null" >
+                store_id,
+            </if>
+            <if test="storeSellerPhone != null" >
+                store_seller_phone,
+            </if>
+            <if test="storeSellerMemberId != null" >
+                store_seller_member_id,
+            </if>
+            <if test="beauticianId != null" >
+                beautician_id,
+            </if>
+            <if test="beauticianImUserId != null" >
+                beautician_im_user_id,
+            </if>
+            <if test="beauticianImUserName != null" >
+                beautician_im_user_name,
+            </if>
+            <if test="beauticianMemberId != null" >
+                beautician_member_id,
+            </if>
+            <if test="imgUrl != null" >
+                img_url,
+            </if>
+            <if test="beauticianName != null" >
+                beautician_name,
+            </if>
+            <if test="beauticianNickName != null" >
+                beautician_nick_name,
+            </if>
+            <if test="beauticianCommission != null" >
+                beautician_commission,
+            </if>
+            <if test="mobile != null" >
+                mobile,
+            </if>
+            <if test="type != null" >
+                type,
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orderId != null" >
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null" >
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeSellerPhone != null" >
+                #{storeSellerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSellerMemberId != null" >
+                #{storeSellerMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianId != null" >
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianImUserId != null" >
+                #{beauticianImUserId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianImUserName != null" >
+                #{beauticianImUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianMemberId != null" >
+                #{beauticianMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="imgUrl != null" >
+                #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianName != null" >
+                #{beauticianName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianNickName != null" >
+                #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianCommission != null" >
+                #{beauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="mobile != null" >
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                #{type,jdbcType=TINYINT},
+            </if>
+            <if test="isEnabled != null" >
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderBeautician" >
+        update order_beautician
+        <set >
+            <if test="orderId != null" >
+                order_id = #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null" >
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeSellerPhone != null" >
+                store_seller_phone = #{storeSellerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSellerMemberId != null" >
+                store_seller_member_id = #{storeSellerMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianId != null" >
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianImUserId != null" >
+                beautician_im_user_id = #{beauticianImUserId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianImUserName != null" >
+                beautician_im_user_name = #{beauticianImUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianMemberId != null" >
+                beautician_member_id = #{beauticianMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="imgUrl != null" >
+                img_url = #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianName != null" >
+                beautician_name = #{beauticianName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianNickName != null" >
+                beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianCommission != null" >
+                beautician_commission = #{beauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="mobile != null" >
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null" >
+                type = #{type,jdbcType=TINYINT},
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderBeautician" resultMap="BaseResultMap" >
+        select <include refid="Base_Column_List"/> from order_beautician
+        <where >
+            <if test="orderId != null" >
+                AND order_id = #{orderId,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null" >
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeSellerPhone != null" >
+                AND store_seller_phone = #{storeSellerPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="storeSellerMemberId != null" >
+                AND store_seller_member_id = #{storeSellerMemberId,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianId != null" >
+                AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianImUserId != null" >
+                AND beautician_im_user_id = #{beauticianImUserId,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianImUserName != null" >
+                AND beautician_im_user_name = #{beauticianImUserName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianMemberId != null" >
+                AND beautician_member_id = #{beauticianMemberId,jdbcType=INTEGER}
+            </if>
+            <if test="imgUrl != null" >
+                AND img_url = #{imgUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianName != null" >
+                AND beautician_name = #{beauticianName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianNickName != null" >
+                AND beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianCommission != null" >
+                AND beautician_commission = #{beauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="mobile != null" >
+                AND mobile = #{mobile,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null" >
+                AND type = #{type,jdbcType=TINYINT}
+            </if>
+            <if test="isEnabled != null" >
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null" >
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null" >
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+    <!--根据订单ID查询订单美容师信息-->
+    <select id="queryByOrderId" parameterType="integer" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM order_beautician
+        WHERE order_id=#{orderId}
+    </select>
+
+    <!--美容师预约看板-->
+    <select id="queryBeauticianReserved" parameterType="map" resultType="map">
+    SELECT
+    o.id as orderId,
+    op.product_name as productName,
+    ob.id,
+    ob.beautician_name as beauticianName,
+    ob.mobile,
+    ob.img_url as imgUrl,
+    o.server_start_time as serverStartTime,
+    o.server_end_time as serverEndTime,
+    o.type,
+    o.status as status,
+    o.member_real_name as memberRealName,
+    o.member_nick_Name as memberNickName
+    COUNT(0) AS num
+    FROM
+    (
+    SELECT
+    obt.id,
+    obt.beautician_name
+    FROM
+    `order_beautician` obt
+    LEFT JOIN order_base oba ON obt.order_id = oba.id
+    WHERE
+    obt.create_time <![CDATA[ >= ]]> #{startTime}
+    AND obt.create_time <![CDATA[ <= ]]> #{endTime}
+    GROUP BY
+    obt.id,
+    obt.beautician_name
+    ) t
+    RIGHT JOIN order_beautician ob ON t.beautician_name = ob.beautician_name
+    RIGHT JOIN order_base o ON ob.order_id = o.id
+    inner JOIN order_product op ON op.order_id=o.id
+    WHERE
+    ob.create_time <![CDATA[ >= ]]> #{startTime}
+    AND ob.create_time <![CDATA[ <= ]]> #{endTime}
+    AND o.status = 2
+    AND o.is_enabled = 1
+    AND ob.is_enabled = 1
+    GROUP BY
+    op.product_name,
+    ob.id,
+    ob.beautician_name,
+    ob.mobile,
+    ob.img_url,
+    o.server_start_time,
+    o.server_end_time,
+    o.type,
+    o.status
+    </select>
+
+    <!--查看美容师订单安排计划详情-->
+    <select id="queryBeauticianArrange" parameterType="map" resultType="com.union.aimei.common.vo.order.BeauticianArrangeVo">
+        SELECT
+        o.id as orderId,
+        ob.id,
+        op.product_name AS productName,
+        ob.beautician_name AS beauticianName,
+        ob.beautician_nick_name as beauticianNickName,
+        ob.img_url AS imgUrl,
+        ob.beautician_im_user_id as imUserId,
+        ob.beautician_im_user_name as imUserName,
+        o.server_start_time AS serverStartTime,
+        o.server_end_time AS serverEndTime,
+        o.type,
+        o.member_phone as memberPhone,
+        o.member_real_name as memberRealName,
+        o.member_nick_Name as memberNickName,
+        o.customer_name as customerName,
+        o.customer_phone as customerPhone,
+        o.customer_address as customerAddress
+        FROM
+        order_beautician ob
+        RIGHT JOIN order_base o ON ob.order_id = o.id
+        INNER JOIN order_product op ON op.order_id = o.id
+        WHERE
+        o.status = 2
+        AND o.is_enabled = 1
+        AND ob.is_enabled = 1
+        AND ob.beautician_id = #{id}
+        AND o.server_start_time <![CDATA[ >= ]]> #{startTime}
+        AND o.server_start_time <![CDATA[ <= ]]> #{endTime}
+    </select>
+
+
+    <!--分组查询店铺美容师基本信息-->
+    <select id="queryStoreBeauticianByGroup" parameterType="map" resultType="map">
+        SELECT
+        DISTINCT(ob.beautician_id) AS beauticianId,
+        ob.beautician_name as beauticianName,
+        ob.img_url as imgUrl
+        FROM
+        order_beautician ob
+        INNER JOIN order_base o ON ob.order_id = o.id
+        WHERE
+        o.store_id=#{storeId} AND
+        o.server_start_time  <![CDATA[ >= ]]>  #{startTime}
+        AND o.server_start_time <![CDATA[ <= ]]> #{endTime}
+        GROUP BY
+        ob.beautician_id,
+        ob.beautician_name,
+        ob.img_url
+    </select>
+
+    <!--查询美容师预约数量-->
+    <select id="queryBeauticianOrderNum" parameterType="map" resultType="int">
+        SELECT
+        count(0)
+        FROM
+        order_beautician ob
+        RIGHT JOIN order_base o ON ob.order_id = o.id
+        INNER JOIN order_product op ON op.order_id = o.id
+        WHERE
+        o.status = 2
+        AND o.is_enabled = 1
+        AND ob.is_enabled = 1
+        AND ob.beautician_id = #{beauticianId}
+        AND o.server_start_time <![CDATA[ >= ]]> #{startTime}
+        AND o.server_start_time <![CDATA[ <= ]]> #{endTime}
+    </select>
+
+    <!--查询美容师订单信息-->
+    <select id="queryBeauticianOrderInfo" parameterType="map" resultType="map">
+        SELECT
+        o.id as orderId,
+        o.server_start_time as serverStartTime,
+        o.server_end_time as serverEndTime,
+        o.type,
+        op.product_name,
+        o.`status`
+        FROM
+        order_beautician ob
+        LEFT JOIN order_base o ON ob.order_id = o.id
+        LEFT JOIN order_product op ON op.order_id=o.id
+        WHERE
+        o.status=2
+        AND o.is_enabled = 1
+        AND ob.is_enabled = 1
+        AND ob.beautician_id = #{beauticianId}
+        AND o.server_start_time &gt;= #{startTime}
+        AND o.server_start_time &lt;= #{endTime}
+    </select>
+
+
+    <!--查询店铺及美容师订单时间信息-->
+    <select id="queryStoreBeauticianOrderTime" parameterType="map" resultType="com.union.aimei.common.vo.order.OrderTimeVo" >
+        SELECT
+        o.server_start_time as serverStartTime,
+        o.server_end_time as serverEndTime
+        FROM
+        order_beautician ob
+        INNER JOIN order_base o ON o.id = ob.order_id
+        RIGHT JOIN order_product op ON ob.order_id = op.order_id
+        WHERE
+        o.status=2
+        AND  ob.beautician_id=#{beauticianId}
+        AND  ob.is_enabled = 1
+        AND (server_start_time BETWEEN #{chooseStartTime} AND #{chooseEndTime})
+        AND (server_end_time BETWEEN #{chooseStartTime} AND #{chooseEndTime})
+    </select>
+
+    <!--查询美容师当前时间是否已安排-->
+    <select id="queryBeauticianChooseTimeTimeForBusy" parameterType="com.union.aimei.common.vo.order.ChooseBeauticianListVo" resultType="java.lang.Integer" >
+        SELECT
+        ob.beautician_id AS beauticianId
+        FROM
+        order_beautician ob
+        INNER JOIN order_base o ON o.id = ob.order_id
+        WHERE
+        (
+        <foreach item="item" index="index" collection="beauticianIdList" open="(" separator="or" close=")">
+            ob.beautician_id = #{item}
+        </foreach>
+        )
+        AND #{chooseTime} BETWEEN server_start_time AND server_end_time
+        AND o.status = 2
+        AND o.is_enabled = 1
+        AND ob.is_enabled = 1
+    </select>
+
+
+
+    <select id="queryByOrderNo" parameterType="string" resultType="com.union.aimei.common.model.order.OrderBeautician">
+        SELECT
+        ob.id,
+        ob.order_id AS orderId,
+        ob.store_id AS storeId,
+        ob.store_seller_phone AS storeSellerPhone,
+        ob.store_seller_member_id AS storeSellerMemberId,
+        ob.beautician_id AS beauticianId,
+        ob.beautician_im_user_id AS beauticianImUserId,
+        ob.beautician_im_user_name AS beauticianImUserName,
+        ob.beautician_member_id AS beauticianMemberId,
+        ob.img_url AS imgUrl,
+        ob.beautician_name AS beauticianName,
+        ob.mobile,
+        ob.type,
+        ob.is_enabled AS isEnabled,
+        ob.create_time AS createTime,
+        ob.update_time AS updateTime
+      FROM order_beautician ob
+      INNER JOIN order_base o on ob.order_id=o.id
+      WHERE o.order_no=#{orderNo}
+
+    </select>
+
+</mapper>

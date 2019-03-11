@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.Course" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_code" property="courseCode" jdbcType="VARCHAR" />
+    <result column="before_course_id" property="beforeCourseId" jdbcType="VARCHAR" />
+    <result column="before_course_name" property="beforeCourseName" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="cover_img" property="coverImg" jdbcType="VARCHAR" />
+    <result column="course_content" property="courseContent" jdbcType="LONGVARCHAR" />
+    <result column="course_attention" property="courseAttention" jdbcType="VARCHAR" />
+    <result column="course_label" property="courseLabel" jdbcType="VARCHAR" />
+    <result column="training_expenses" property="trainingExpenses" jdbcType="INTEGER" />
+    <result column="is_free" property="isFree" jdbcType="BIT" />
+    <result column="training_allow_number" property="trainingAllowNumber" jdbcType="INTEGER" />
+    <result column="is_restrict" property="isRestrict" jdbcType="BIT" />
+    <result column="registration_begin" property="registrationBegin" jdbcType="TIMESTAMP" />
+    <result column="registration_end" property="registrationEnd" jdbcType="TIMESTAMP" />
+    <result column="training_begin" property="trainingBegin" jdbcType="TIMESTAMP" />
+    <result column="training_end" property="trainingEnd" jdbcType="TIMESTAMP" />
+    <result column="training_count_number" property="trainingCountNumber" jdbcType="INTEGER" />
+    <result column="training_out_number" property="trainingOutNumber" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="area_name" property="areaName" jdbcType="VARCHAR" />
+    <result column="store_longitude" property="storeLongitude" jdbcType="DECIMAL" />
+    <result column="store_latitude" property="storeLatitude" jdbcType="DECIMAL" />
+    <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+    <result column="training_status" property="trainingStatus" jdbcType="TINYINT" />
+    <result column="course_status" property="courseStatus" jdbcType="INTEGER" />
+    <result column="training_hours" property="trainingHours" jdbcType="INTEGER" />
+    <result column="training_day" property="trainingDay" jdbcType="INTEGER" />
+    <result column="growth_value" property="growthValue" jdbcType="INTEGER" />
+    <result column="training_review_number" property="trainingReviewNumber" jdbcType="INTEGER" />
+    <result column="permissions_sort" property="permissionsSort" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="is_condition" property="isCondition" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, course_code, before_course_id, before_course_name, course_name, cover_img, course_content,
+    course_attention, course_label, course_status, is_enabled, create_time, update_time,
+    training_expenses , is_free , training_allow_number , is_restrict ,
+    registration_begin , registration_end , training_begin , training_end ,
+    training_count_number , training_out_number ,
+    province_id , city_id , area_id , province_name , city_name , area_name ,
+    training_hours , training_day , growth_value , training_review_number ,
+    store_longitude , store_latitude , store_address , training_status , permissions_sort , is_condition
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, course_code AS courseCode, before_course_id AS beforeCourseId, before_course_name AS beforeCourseName,
+    course_name AS courseName, cover_img AS coverImg, course_content AS courseContent,
+    course_attention AS courseAttention , course_label AS courseLabel , course_status AS courseStatus, is_enabled AS isEnabled,
+    create_time AS createTime, update_time AS updateTime ,
+    training_expenses AS trainingExpenses , is_free AS isFree, training_allow_number AS trainingAllowNumber, is_restrict AS isRestrict,
+    registration_begin AS registrationBegin, registration_end AS registrationEnd, training_begin AS trainingBegin, training_end AS trainingEnd,
+    training_count_number AS trainingCountNumber, training_out_number AS trainingOutNumber,
+    province_id AS provinceId, city_id AS cityId , area_id AS areaId , province_name AS provinceName, city_name AS cityName , area_name AS areaName ,
+    training_hours AS trainingHours , training_day AS trainingDay , growth_value AS growthValue , training_review_number AS trainingReviewNumber ,
+    store_longitude AS storeLongitude , store_latitude AS storeLatitude , store_address AS storeAddress , training_status AS trainingStatus ,
+    permissions_sort AS permissionsSort , is_condition AS isCondition
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.Course"  useGeneratedKeys="true" keyProperty="id"  >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="courseCode != null" >
+        course_code,
+      </if>
+      <if test="beforeCourseId != null" >
+        before_course_id,
+      </if>
+      <if test="beforeCourseName != null" >
+        before_course_name,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="coverImg != null" >
+        cover_img,
+      </if>
+      <if test="courseContent != null" >
+        course_content,
+      </if>
+      <if test="courseAttention != null" >
+        course_attention,
+      </if>
+      <if test="courseLabel != null" >
+        course_label,
+      </if>
+      <if test="courseStatus != null" >
+        course_status,
+      </if>
+      <if test="trainingExpenses != null" >
+        training_expenses,
+      </if>
+      <if test="isFree != null" >
+        is_free,
+      </if>
+      <if test="trainingAllowNumber != null" >
+        training_allow_number,
+      </if>
+      <if test="isRestrict != null" >
+        is_restrict,
+      </if>
+      <if test="registrationBegin != null" >
+        registration_begin,
+      </if>
+      <if test="registrationEnd != null" >
+        registration_end,
+      </if>
+      <if test="trainingBegin != null" >
+        training_begin,
+      </if>
+      <if test="trainingEnd != null" >
+        training_end,
+      </if>
+      <if test="trainingCountNumber != null" >
+        training_count_number,
+      </if>
+      <if test="trainingOutNumber != null" >
+        training_out_number,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="areaName != null" >
+        area_name,
+      </if>
+      <if test="storeLongitude != null" >
+        store_longitude,
+      </if>
+      <if test="storeLatitude != null" >
+        store_latitude,
+      </if>
+      <if test="storeAddress != null" >
+        store_address,
+      </if>
+      <if test="trainingStatus != null" >
+        training_status,
+      </if>
+      <if test="trainingHours != null" >
+        training_hours,
+      </if>
+      <if test="trainingDay != null" >
+        training_day,
+      </if>
+      <if test="growthValue != null" >
+        growth_value,
+      </if>
+      <if test="trainingReviewNumber != null" >
+        training_review_number,
+      </if>
+      <if test="permissionsSort != null" >
+        permissions_sort ,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isCondition != null" >
+        is_condition,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseCode != null" >
+        #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeCourseId != null" >
+        #{beforeCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeCourseName != null" >
+        #{beforeCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null" >
+        #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="courseContent != null" >
+        #{courseContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="courseAttention != null" >
+        #{courseAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLabel != null" >
+        #{courseLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="courseStatus != null" >
+        #{courseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="trainingExpenses != null" >
+        #{trainingExpenses,jdbcType=INTEGER},
+      </if>
+      <if test="isFree != null" >
+        #{isFree,jdbcType=BIT},
+      </if>
+      <if test="trainingAllowNumber != null" >
+        #{trainingAllowNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isRestrict != null" >
+        #{isRestrict,jdbcType=BIT},
+      </if>
+      <if test="registrationBegin != null" >
+        #{registrationBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationEnd != null" >
+        #{registrationEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingBegin != null" >
+        #{trainingBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingEnd != null" >
+        #{trainingEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingCountNumber != null" >
+        #{trainingCountNumber,jdbcType=INTEGER},
+      </if>
+      <if test="trainingOutNumber != null" >
+        #{trainingOutNumber,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLongitude != null" >
+        #{storeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="storeLatitude != null" >
+        #{storeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="storeAddress != null" >
+        #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingStatus != null" >
+        #{trainingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="trainingHours  != null" >
+        #{trainingHours ,jdbcType=INTEGER},
+      </if>
+      <if test="trainingDay  != null" >
+        #{trainingDay ,jdbcType=INTEGER},
+      </if>
+      <if test="growthValue  != null" >
+        #{growthValue ,jdbcType=INTEGER},
+      </if>
+      <if test="trainingReviewNumber  != null" >
+        #{trainingReviewNumber ,jdbcType=INTEGER},
+      </if>
+      <if test="permissionsSort  != null" >
+        #{permissionsSort  ,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCondition != null" >
+        #{isCondition,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.Course" >
+    update course
+    <set >
+      <if test="courseCode != null" >
+        course_code = #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeCourseId != null" >
+        before_course_id = #{beforeCourseId,jdbcType=VARCHAR},
+      </if>
+      <if test="beforeCourseName != null" >
+        before_course_name = #{beforeCourseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null" >
+        cover_img = #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="courseContent != null" >
+        course_content = #{courseContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="courseAttention != null" >
+        course_attention = #{courseAttention,jdbcType=VARCHAR},
+      </if>
+      <if test="courseLabel != null" >
+        course_label = #{courseLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="courseStatus != null" >
+        course_status = #{courseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="trainingExpenses != null" >
+        training_expenses = #{trainingExpenses,jdbcType=INTEGER},
+      </if>
+      <if test="isFree != null" >
+        is_free = #{isFree,jdbcType=BIT},
+      </if>
+      <if test="trainingAllowNumber != null" >
+        training_allow_number = #{trainingAllowNumber,jdbcType=INTEGER},
+      </if>
+      <if test="isRestrict != null" >
+        is_restrict = #{isRestrict,jdbcType=BIT},
+      </if>
+      <if test="registrationBegin != null" >
+        registration_begin = #{registrationBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="registrationEnd != null" >
+        registration_end = #{registrationEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingBegin != null" >
+        training_begin = #{trainingBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingEnd != null" >
+        training_end = #{trainingEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingCountNumber != null" >
+        training_count_number = #{trainingCountNumber,jdbcType=INTEGER},
+      </if>
+      <if test="trainingOutNumber != null" >
+        training_out_number = #{trainingOutNumber,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeLongitude != null" >
+        store_longitude = #{storeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="storeLatitude != null" >
+        store_latitude = #{storeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="storeAddress != null" >
+        store_address = #{storeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingStatus != null" >
+        training_status = #{trainingStatus,jdbcType=TINYINT},
+      </if>
+      <if test="trainingHours  != null" >
+        training_hours = #{trainingHours ,jdbcType=INTEGER},
+      </if>
+      <if test="trainingDay  != null" >
+        training_day = #{trainingDay ,jdbcType=INTEGER},
+      </if>
+      <if test="growthValue  != null" >
+        growth_value = #{growthValue ,jdbcType=INTEGER},
+      </if>
+      <if test="trainingReviewNumber  != null" >
+        training_review_number = #{trainingReviewNumber ,jdbcType=INTEGER},
+      </if>
+      <if test="permissionsSort   != null" >
+        permissions_sort = #{permissionsSort  ,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isCondition != null" >
+        is_condition = #{isCondition,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.Course" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from course
+    <where >
+      <if test="courseCode != null" >
+        AND course_code = #{courseCode,jdbcType=VARCHAR}
+      </if>
+      <if test="beforeCourseId != null" >
+        AND before_course_id = #{beforeCourseId,jdbcType=VARCHAR}
+      </if>
+      <if test="beforeCourseName != null" >
+        AND before_course_name = #{beforeCourseName,jdbcType=VARCHAR}
+      </if>
+      <if test="courseName != null" >
+        AND course_name = #{courseName,jdbcType=VARCHAR}
+      </if>
+      <if test="coverImg != null" >
+        AND cover_img = #{coverImg,jdbcType=VARCHAR}
+      </if>
+      <if test="courseContent != null" >
+        AND course_content = #{courseContent,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="courseAttention != null" >
+        AND course_attention = #{courseAttention,jdbcType=VARCHAR}
+      </if>
+      <if test="courseLabel != null" >
+        AND course_label = #{courseLabel,jdbcType=VARCHAR}
+      </if>
+      <if test="courseStatus != null" >
+        AND course_status = #{courseStatus,jdbcType=INTEGER}
+      </if>
+      <if test="trainingExpenses != null" >
+        AND training_expenses = #{trainingExpenses,jdbcType=INTEGER}
+      </if>
+      <if test="isFree != null" >
+        AND is_free = #{isFree,jdbcType=BIT}
+      </if>
+      <if test="trainingAllowNumber != null" >
+        AND training_allow_number = #{trainingAllowNumber,jdbcType=INTEGER}
+      </if>
+      <if test="isRestrict != null" >
+        AND is_restrict = #{isRestrict,jdbcType=BIT}
+      </if>
+      <if test="registrationBegin != null" >
+        AND registration_begin = #{registrationBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="registrationEnd != null" >
+        AND registration_end = #{registrationEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingBegin != null" >
+        AND training_begin = #{trainingBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingEnd != null" >
+        AND training_end = #{trainingEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingCountNumber != null" >
+        AND training_count_number = #{trainingCountNumber,jdbcType=INTEGER}
+      </if>
+      <if test="trainingOutNumber != null" >
+        AND training_out_number = #{trainingOutNumber,jdbcType=INTEGER}
+      </if>
+      <if test="provinceId != null" >
+        AND province_id = #{provinceId,jdbcType=INTEGER}
+      </if>
+      <if test="cityId != null" >
+        AND city_id = #{cityId,jdbcType=INTEGER}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId,jdbcType=INTEGER}
+      </if>
+      <if test="provinceName != null" >
+        AND province_name = #{provinceName,jdbcType=VARCHAR}
+      </if>
+      <if test="cityName != null" >
+        AND city_name = #{cityName,jdbcType=VARCHAR}
+      </if>
+      <if test="areaName != null" >
+        AND area_name = #{areaName,jdbcType=VARCHAR}
+      </if>
+      <if test="storeLongitude != null" >
+        AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+      </if>
+      <if test="storeLatitude != null" >
+        AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+      </if>
+      <if test="storeAddress != null" >
+        AND store_address = #{storeAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="trainingStatus != null" >
+        AND training_status = #{trainingStatus,jdbcType=TINYINT}
+      </if>
+      <if test="trainingHours  != null" >
+        AND training_hours = #{trainingHours ,jdbcType=INTEGER}
+      </if>
+      <if test="trainingDay  != null" >
+        AND training_day = #{trainingDay ,jdbcType=INTEGER}
+      </if>
+      <if test="growthValue  != null" >
+        AND growth_value = #{growthValue ,jdbcType=INTEGER}
+      </if>
+      <if test="trainingReviewNumber  != null" >
+        AND training_review_number = #{trainingReviewNumber ,jdbcType=INTEGER}
+      </if>
+      <if test="permissionsSort   != null" >
+        AND permissions_sort = #{permissionsSort  ,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isCondition != null" >
+        AND is_condition = #{isCondition,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectListPageByCourse" parameterType="com.union.aimei.common.vo.learn.pc.CourseParamVo" resultType="com.union.aimei.common.model.learn.Course">
+    select <include refid="BaseAliasColumn"/> from course
+    <where >
+      <if test="searchCourseName != null" >
+        AND course_name like concat(concat('%',#{searchCourseName}),'%')
+      </if>
+      <if test="courseCode != null" >
+        AND course_code = #{courseCode,jdbcType=VARCHAR}
+      </if>
+      <if test="beforeCourseId != null" >
+        AND before_course_id = #{beforeCourseId,jdbcType=VARCHAR}
+      </if>
+      <if test="beforeCourseName != null" >
+        AND before_course_name = #{beforeCourseName,jdbcType=VARCHAR}
+      </if>
+      <if test="courseName != null" >
+        AND course_name = #{courseName,jdbcType=VARCHAR}
+      </if>
+      <if test="coverImg != null" >
+        AND cover_img = #{coverImg,jdbcType=VARCHAR}
+      </if>
+      <if test="courseContent != null" >
+        AND course_content = #{courseContent,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="courseAttention != null" >
+        AND course_attention = #{courseAttention,jdbcType=VARCHAR}
+      </if>
+      <if test="courseLabel != null" >
+        AND course_label = #{courseLabel,jdbcType=VARCHAR}
+      </if>
+      <if test="courseStatus != null" >
+        AND course_status = #{courseStatus,jdbcType=INTEGER}
+      </if>
+      <if test="trainingExpenses != null" >
+        AND training_expenses = #{trainingExpenses,jdbcType=INTEGER}
+      </if>
+      <if test="isFree != null" >
+        AND is_free = #{isFree,jdbcType=BIT}
+      </if>
+      <if test="trainingAllowNumber != null" >
+        AND training_allow_number = #{trainingAllowNumber,jdbcType=INTEGER}
+      </if>
+      <if test="isRestrict != null" >
+        AND is_restrict = #{isRestrict,jdbcType=BIT}
+      </if>
+      <if test="registrationBegin != null" >
+        AND registration_begin = #{registrationBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="registrationEnd != null" >
+        AND registration_end = #{registrationEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingBegin != null" >
+        AND training_begin = #{trainingBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingEnd != null" >
+        AND training_end = #{trainingEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingCountNumber != null" >
+        AND training_count_number = #{trainingCountNumber,jdbcType=INTEGER}
+      </if>
+      <if test="trainingOutNumber != null" >
+        AND training_out_number = #{trainingOutNumber,jdbcType=INTEGER}
+      </if>
+      <if test="provinceId != null" >
+        AND province_id = #{provinceId,jdbcType=INTEGER}
+      </if>
+      <if test="cityId != null" >
+        AND city_id = #{cityId,jdbcType=INTEGER}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId,jdbcType=INTEGER}
+      </if>
+      <if test="provinceName != null" >
+        AND province_name = #{provinceName,jdbcType=VARCHAR}
+      </if>
+      <if test="cityName != null" >
+        AND city_name = #{cityName,jdbcType=VARCHAR}
+      </if>
+      <if test="areaName != null" >
+        AND area_name = #{areaName,jdbcType=VARCHAR}
+      </if>
+      <if test="storeLongitude != null" >
+        AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+      </if>
+      <if test="storeLatitude != null" >
+        AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+      </if>
+      <if test="storeAddress != null" >
+        AND store_address = #{storeAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="trainingStatus != null" >
+        AND training_status = #{trainingStatus,jdbcType=TINYINT}
+      </if>
+      <if test="trainingHours  != null" >
+        AND training_hours = #{trainingHours ,jdbcType=INTEGER}
+      </if>
+      <if test="trainingDay  != null" >
+        AND training_day = #{trainingDay ,jdbcType=INTEGER}
+      </if>
+      <if test="growthValue  != null" >
+        AND growth_value = #{growthValue ,jdbcType=INTEGER}
+      </if>
+      <if test="trainingReviewNumber  != null" >
+        AND training_review_number = #{trainingReviewNumber ,jdbcType=INTEGER}
+      </if>
+      <if test="permissionsSort   != null" >
+        AND permissions_sort = #{permissionsSort  ,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isCondition != null" >
+        AND is_condition = #{isCondition,jdbcType=BIT}
+      </if>
+      <if test="trainingBeginStart != null and trainingBeginEnd != null" >
+        AND training_begin BETWEEN #{trainingBeginStart,jdbcType=TIMESTAMP} AND #{trainingBeginEnd,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by permissions_sort desc , create_time desc
+  </select>
+
+  <select id="countByConditions" parameterType="com.union.aimei.common.model.learn.Course" resultType="java.lang.Integer">
+    select count(*) from course
+    <where >
+      <if test="courseCode != null" >
+        AND course_code = #{courseCode,jdbcType=VARCHAR}
+      </if>
+      <if test="beforeCourseId != null" >
+        AND before_course_id = #{beforeCourseId,jdbcType=VARCHAR}
+      </if>
+      <if test="beforeCourseName != null" >
+        AND before_course_name = #{beforeCourseName,jdbcType=VARCHAR}
+      </if>
+      <if test="courseName != null" >
+        AND course_name = #{courseName,jdbcType=VARCHAR}
+      </if>
+      <if test="coverImg != null" >
+        AND cover_img = #{coverImg,jdbcType=VARCHAR}
+      </if>
+      <if test="courseContent != null" >
+        AND course_content = #{courseContent,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="courseAttention != null" >
+        AND course_attention = #{courseAttention,jdbcType=VARCHAR}
+      </if>
+      <if test="courseLabel != null" >
+        AND course_label = #{courseLabel,jdbcType=VARCHAR}
+      </if>
+      <if test="courseStatus != null" >
+        AND course_status = #{courseStatus,jdbcType=INTEGER}
+      </if>
+      <if test="trainingExpenses != null" >
+        AND training_expenses = #{trainingExpenses,jdbcType=INTEGER}
+      </if>
+      <if test="isFree != null" >
+        AND is_free = #{isFree,jdbcType=BIT}
+      </if>
+      <if test="trainingAllowNumber != null" >
+        AND training_allow_number = #{trainingAllowNumber,jdbcType=INTEGER}
+      </if>
+      <if test="isRestrict != null" >
+        AND is_restrict = #{isRestrict,jdbcType=BIT}
+      </if>
+      <if test="registrationBegin != null" >
+        AND registration_begin = #{registrationBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="registrationEnd != null" >
+        AND registration_end = #{registrationEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingBegin != null" >
+        AND training_begin = #{trainingBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingEnd != null" >
+        AND training_end = #{trainingEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainingCountNumber != null" >
+        AND training_count_number = #{trainingCountNumber,jdbcType=INTEGER}
+      </if>
+      <if test="trainingOutNumber != null" >
+        AND training_out_number = #{trainingOutNumber,jdbcType=INTEGER}
+      </if>
+      <if test="provinceId != null" >
+        AND province_id = #{provinceId,jdbcType=INTEGER}
+      </if>
+      <if test="cityId != null" >
+        AND city_id = #{cityId,jdbcType=INTEGER}
+      </if>
+      <if test="areaId != null" >
+        AND area_id = #{areaId,jdbcType=INTEGER}
+      </if>
+      <if test="provinceName != null" >
+        AND province_name = #{provinceName,jdbcType=VARCHAR}
+      </if>
+      <if test="cityName != null" >
+        AND city_name = #{cityName,jdbcType=VARCHAR}
+      </if>
+      <if test="areaName != null" >
+        AND area_name = #{areaName,jdbcType=VARCHAR}
+      </if>
+      <if test="storeLongitude != null" >
+        AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+      </if>
+      <if test="storeLatitude != null" >
+        AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+      </if>
+      <if test="storeAddress != null" >
+        AND store_address = #{storeAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="trainingStatus != null" >
+        AND training_status = #{trainingStatus,jdbcType=TINYINT}
+      </if>
+      <if test="trainingHours  != null" >
+        AND training_hours = #{trainingHours ,jdbcType=INTEGER}
+      </if>
+      <if test="trainingDay  != null" >
+        AND training_day = #{trainingDay ,jdbcType=INTEGER}
+      </if>
+      <if test="growthValue  != null" >
+        AND growth_value = #{growthValue ,jdbcType=INTEGER}
+      </if>
+      <if test="trainingReviewNumber != null" >
+        AND training_review_number = #{trainingReviewNumber ,jdbcType=INTEGER}
+      </if>
+      <if test="permissionsSort != null" >
+        AND permissions_sort = #{permissionsSort  ,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isCondition != null" >
+        AND is_condition = #{isCondition,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+  <update id="updateByOngoingCourse" parameterType="com.union.aimei.common.model.learn.Course">
+    UPDATE course
+      SET
+    <if test="trainingStatus != null" >
+      training_status = #{trainingStatus,jdbcType=TINYINT}
+    </if>
+      where
+        training_begin <![CDATA[ <= ]]> now()
+    and
+      training_end <![CDATA[ > ]]> now()
+    <if test="courseStatus != null" >
+      and course_status = #{courseStatus,jdbcType=INTEGER}
+    </if>
+  </update>
+
+  <update id="updateByEndedCourse" parameterType="com.union.aimei.common.model.learn.Course">
+    UPDATE course
+      SET
+    <if test="trainingStatus != null" >
+      training_status = #{trainingStatus,jdbcType=TINYINT}
+    </if>
+    where
+      training_end <![CDATA[ <= ]]> now()
+    <if test="courseStatus != null" >
+      and course_status = #{courseStatus,jdbcType=INTEGER}
+    </if>
+  </update>
+
+  <select id="findIsAboutToBeginCourse" parameterType="com.union.aimei.common.vo.learn.pc.CourseParamVo" resultType="com.union.aimei.common.vo.learn.pc.CourseBeauticianRefResultVo">
+    select
+        ref.mobile_phone mobilePhone ,
+        ref.member_id memberId ,
+        cou.id courseId ,
+        cou.course_name courseName ,
+        cou.training_begin trainingBegin
+    from
+      course cou  ,
+      course_beautician_ref ref
+    where
+      cou.is_enabled = TRUE
+      and ref.is_enabled = TRUE
+      and ref.course_id = cou.id
+    <if test="trainingBeginStart != null and trainingBeginEnd != null" >
+      and cou.training_begin BETWEEN #{trainingBeginStart,jdbcType=TIMESTAMP} AND #{trainingBeginEnd,jdbcType=TIMESTAMP}
+    </if>
+    <if test="refIdList != null">
+      and ref.id in
+      <foreach close=")" collection="refIdList" item="listItem" open="("
+               separator=",">
+        #{listItem}
+      </foreach>
+    </if>
+  </select>
+
+</mapper>

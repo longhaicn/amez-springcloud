@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.system.mapper.BaseScheduleJobMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseScheduleJob">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
+        <result column="job_code" jdbcType="VARCHAR" property="jobCode"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="job_class" jdbcType="VARCHAR" property="jobClass"/>
+        <result column="job_method" jdbcType="VARCHAR" property="jobMethod"/>
+        <result column="job_state" jdbcType="TINYINT" property="jobState"/>
+        <result column="cron_expression" jdbcType="VARCHAR" property="cronExpression"/>
+        <result column="is_enable" jdbcType="TINYINT" property="isEnable"/>
+        <result column="is_concurrent" jdbcType="TINYINT" property="isConcurrent"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, job_name, job_code, description, job_class, job_method, job_state, cron_expression,
+        is_enable, is_concurrent, create_time, update_time
+    </sql>
+    <select id="selectByExample" parameterType="com.union.aimei.common.model.system.BaseScheduleJobExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from base_schedule_job
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_schedule_job
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from base_schedule_job
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseScheduleJobExample">
+        delete from base_schedule_job
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseScheduleJob">
+        insert into base_schedule_job (id, job_name, job_code,
+        description, job_class, job_method,
+        job_state, cron_expression, is_enable,
+        is_concurrent, create_time, update_time
+        )
+        values (#{id,jdbcType=INTEGER}, #{jobName,jdbcType=VARCHAR}, #{jobCode,jdbcType=VARCHAR},
+        #{description,jdbcType=VARCHAR}, #{jobClass,jdbcType=VARCHAR}, #{jobMethod,jdbcType=VARCHAR},
+        #{jobState,jdbcType=TINYINT}, #{cronExpression,jdbcType=VARCHAR}, #{isEnable,jdbcType=TINYINT},
+        #{isConcurrent,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseScheduleJob">
+        insert into base_schedule_job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="jobName != null">
+                job_name,
+            </if>
+            <if test="jobCode != null">
+                job_code,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="jobClass != null">
+                job_class,
+            </if>
+            <if test="jobMethod != null">
+                job_method,
+            </if>
+            <if test="jobState != null">
+                job_state,
+            </if>
+            <if test="cronExpression != null">
+                cron_expression,
+            </if>
+            <if test="isEnable != null">
+                is_enable,
+            </if>
+            <if test="isConcurrent != null">
+                is_concurrent,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="jobName != null">
+                #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobCode != null">
+                #{jobCode,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="jobClass != null">
+                #{jobClass,jdbcType=VARCHAR},
+            </if>
+            <if test="jobMethod != null">
+                #{jobMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="jobState != null">
+                #{jobState,jdbcType=TINYINT},
+            </if>
+            <if test="cronExpression != null">
+                #{cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnable != null">
+                #{isEnable,jdbcType=TINYINT},
+            </if>
+            <if test="isConcurrent != null">
+                #{isConcurrent,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseScheduleJobExample"
+            resultType="java.lang.Long">
+        select count(*) from base_schedule_job
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_schedule_job
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.jobName != null">
+                job_name = #{record.jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jobCode != null">
+                job_code = #{record.jobCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.description != null">
+                description = #{record.description,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jobClass != null">
+                job_class = #{record.jobClass,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jobMethod != null">
+                job_method = #{record.jobMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="record.jobState != null">
+                job_state = #{record.jobState,jdbcType=TINYINT},
+            </if>
+            <if test="record.cronExpression != null">
+                cron_expression = #{record.cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="record.isEnable != null">
+                is_enable = #{record.isEnable,jdbcType=TINYINT},
+            </if>
+            <if test="record.isConcurrent != null">
+                is_concurrent = #{record.isConcurrent,jdbcType=TINYINT},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_schedule_job
+        set id = #{record.id,jdbcType=INTEGER},
+        job_name = #{record.jobName,jdbcType=VARCHAR},
+        job_code = #{record.jobCode,jdbcType=VARCHAR},
+        description = #{record.description,jdbcType=VARCHAR},
+        job_class = #{record.jobClass,jdbcType=VARCHAR},
+        job_method = #{record.jobMethod,jdbcType=VARCHAR},
+        job_state = #{record.jobState,jdbcType=TINYINT},
+        cron_expression = #{record.cronExpression,jdbcType=VARCHAR},
+        is_enable = #{record.isEnable,jdbcType=TINYINT},
+        is_concurrent = #{record.isConcurrent,jdbcType=TINYINT},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseScheduleJob">
+        update base_schedule_job
+        <set>
+            <if test="jobName != null">
+                job_name = #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobCode != null">
+                job_code = #{jobCode,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="jobClass != null">
+                job_class = #{jobClass,jdbcType=VARCHAR},
+            </if>
+            <if test="jobMethod != null">
+                job_method = #{jobMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="jobState != null">
+                job_state = #{jobState,jdbcType=TINYINT},
+            </if>
+            <if test="cronExpression != null">
+                cron_expression = #{cronExpression,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnable != null">
+                is_enable = #{isEnable,jdbcType=TINYINT},
+            </if>
+            <if test="isConcurrent != null">
+                is_concurrent = #{isConcurrent,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseScheduleJob">
+        update base_schedule_job
+        set job_name = #{jobName,jdbcType=VARCHAR},
+        job_code = #{jobCode,jdbcType=VARCHAR},
+        description = #{description,jdbcType=VARCHAR},
+        job_class = #{jobClass,jdbcType=VARCHAR},
+        job_method = #{jobMethod,jdbcType=VARCHAR},
+        job_state = #{jobState,jdbcType=TINYINT},
+        cron_expression = #{cronExpression,jdbcType=VARCHAR},
+        is_enable = #{isEnable,jdbcType=TINYINT},
+        is_concurrent = #{isConcurrent,jdbcType=TINYINT},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_schedule_job LIMIT #{offset},#{limit}
+    </select>
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.system.BaseScheduleJob"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_schedule_job
+        <where>
+            <if test="jobName != null">
+                and job_name = #{jobName,jdbcType=VARCHAR}
+            </if>
+            <if test="jobCode != null">
+                and job_code = #{jobCode,jdbcType=VARCHAR}
+            </if>
+            <if test="description != null">
+                and description = #{description,jdbcType=VARCHAR}
+            </if>
+            <if test="jobClass != null">
+                and job_class = #{jobClass,jdbcType=VARCHAR}
+            </if>
+            <if test="jobMethod != null">
+                and job_method = #{jobMethod,jdbcType=VARCHAR}
+            </if>
+            <if test="jobState != null">
+                and job_state = #{jobState,jdbcType=TINYINT}
+            </if>
+            <if test="cronExpression != null">
+                and cron_expression = #{cronExpression,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnable != null">
+                and is_enable = #{isEnable,jdbcType=TINYINT}
+            </if>
+            <if test="isConcurrent != null">
+                and is_concurrent = #{isConcurrent,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

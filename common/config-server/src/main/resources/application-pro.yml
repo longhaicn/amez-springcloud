@@ -1,0 +1,31 @@
+server:
+  port: 8006
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://120.78.94.124:8000/eureka/,http://39.108.187.198:8000/eureka/
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://123.207.5.13:8888/liufeihua/aimei-cloud-config.git
+          search-paths: config-repo/*
+          username: gaowei
+          password: gaowei123
+          clone-on-start: true
+          force-pull: true
+  rabbitmq:
+        host: 47.106.90.37
+        port: 5672
+        username: guest
+        password: aimeirabbit123456!
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@

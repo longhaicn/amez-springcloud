@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: pc-system
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: pc-system
+    spec:
+      containers:
+      - name: pc-system
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/pc-system:v1.1.56-test
+        ports:
+        - containerPort: 8011
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pc-system-svc
+spec:
+  selector:
+    run: pc-system
+  type: NodePort
+  ports:
+    - nodePort: 30015
+      port: 8011
+      targetPort: 8011

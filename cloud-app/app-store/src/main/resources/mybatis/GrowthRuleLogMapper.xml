@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.store.mapper.GrowthRuleLogMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.GrowthRuleLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="TINYINT" />
+    <result column="rel_id" property="relId" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="INTEGER" />
+    <result column="conndition_id" property="connditionId" jdbcType="INTEGER" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="growth_type" property="growthType" jdbcType="TINYINT" />
+    <result column="growth_value" property="growthValue" jdbcType="INTEGER" />
+    <result column="growth_calculate_type" property="growthCalculateType" jdbcType="TINYINT" />
+    <result column="condition_type" property="conditionType" jdbcType="TINYINT" />
+    <result column="condition_value_number" property="conditionValueNumber" jdbcType="INTEGER" />
+    <result column="condition_value_day" property="conditionValueDay" jdbcType="INTEGER" />
+    <result column="condition_value_month" property="conditionValueMonth" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, source_type, source_id, item_name, growth_type, growth_value, growth_calculate_type, 
+    condition_type, condition_value_number, condition_value_day, condition_value_month, 
+    is_enabled, create_time, update_time ,rel_id ,conndition_id
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, source_type AS sourceType, source_id AS sourceId, item_name AS itemName, growth_type AS growthType, 
+    growth_value AS growthValue, growth_calculate_type AS growthCalculateType, condition_type AS conditionType, 
+    condition_value_number AS conditionValueNumber, condition_value_day AS conditionValueDay, 
+    condition_value_month AS conditionValueMonth, is_enabled AS isEnabled, create_time AS createTime, 
+    update_time AS updateTime , rel_id AS relId , conndition_id AS connditionId
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from growth_rule_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from growth_rule_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.GrowthRuleLog" useGeneratedKeys="true" keyProperty="id" >
+    insert into growth_rule_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="connditionId != null" >
+        conndition_id,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="growthType != null" >
+        growth_type,
+      </if>
+      <if test="growthValue != null" >
+        growth_value,
+      </if>
+      <if test="growthCalculateType != null" >
+        growth_calculate_type,
+      </if>
+      <if test="conditionType != null" >
+        condition_type,
+      </if>
+      <if test="conditionValueNumber != null" >
+        condition_value_number,
+      </if>
+      <if test="conditionValueDay != null" >
+        condition_value_day,
+      </if>
+      <if test="conditionValueMonth != null" >
+        condition_value_month,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="relId != null" >
+        rel_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="connditionId != null" >
+        #{connditionId,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="growthType != null" >
+        #{growthType,jdbcType=TINYINT},
+      </if>
+      <if test="growthValue != null" >
+        #{growthValue,jdbcType=INTEGER},
+      </if>
+      <if test="growthCalculateType != null" >
+        #{growthCalculateType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionType != null" >
+        #{conditionType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionValueNumber != null" >
+        #{conditionValueNumber,jdbcType=INTEGER},
+      </if>
+      <if test="conditionValueDay != null" >
+        #{conditionValueDay,jdbcType=INTEGER},
+      </if>
+      <if test="conditionValueMonth != null" >
+        #{conditionValueMonth,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relId != null" >
+        #{relId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.GrowthRuleLog" >
+    update growth_rule_log
+    <set >
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="connditionId != null" >
+        conndition_id = #{connditionId,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="growthType != null" >
+        growth_type = #{growthType,jdbcType=TINYINT},
+      </if>
+      <if test="growthValue != null" >
+        growth_value = #{growthValue,jdbcType=INTEGER},
+      </if>
+      <if test="growthCalculateType != null" >
+        growth_calculate_type = #{growthCalculateType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionType != null" >
+        condition_type = #{conditionType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionValueNumber != null" >
+        condition_value_number = #{conditionValueNumber,jdbcType=INTEGER},
+      </if>
+      <if test="conditionValueDay != null" >
+        condition_value_day = #{conditionValueDay,jdbcType=INTEGER},
+      </if>
+      <if test="conditionValueMonth != null" >
+        condition_value_month = #{conditionValueMonth,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relId != null" >
+        rel_id = #{relId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByVo" resultType="java.util.Map" parameterType="com.union.aimei.common.vo.store.app.GrowthRuleLogVo">
+    select
+      count(*) totalCount ,
+      IFNULL(sum( growth_value ),0) totalGrowthValue
+    from growth_rule_log
+    <where >
+      <if test="sourceType != null" >
+        AND source_type = #{sourceType,jdbcType=TINYINT}
+      </if>
+      <if test="sourceId != null" >
+        AND source_id = #{sourceId,jdbcType=INTEGER}
+      </if>
+      <if test="connditionId != null" >
+        AND conndition_id = #{connditionId,jdbcType=INTEGER}
+      </if>
+      <if test="itemName != null" >
+        AND item_name = #{itemName,jdbcType=VARCHAR}
+      </if>
+      <if test="growthType != null" >
+        AND growth_type = #{growthType,jdbcType=TINYINT}
+      </if>
+      <if test="growthValue != null" >
+        AND growth_value = #{growthValue,jdbcType=INTEGER}
+      </if>
+      <if test="growthCalculateType != null" >
+        AND growth_calculate_type = #{growthCalculateType,jdbcType=TINYINT}
+      </if>
+      <if test="conditionType != null" >
+        AND condition_type = #{conditionType,jdbcType=TINYINT}
+      </if>
+      <if test="conditionValueNumber != null" >
+        AND condition_value_number = #{conditionValueNumber,jdbcType=INTEGER}
+      </if>
+      <if test="conditionValueDay != null" >
+        AND condition_value_day = #{conditionValueDay,jdbcType=INTEGER}
+      </if>
+      <if test="conditionValueMonth != null" >
+        AND condition_value_month = #{conditionValueMonth,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="relId != null" >
+        AND rel_id = #{relId,jdbcType=INTEGER}
+      </if>
+      <if test="startCreateTime != null" >
+        <if test="endCreateTime != null" >
+          AND create_time between #{startCreateTime,jdbcType=TIMESTAMP} and #{endCreateTime,jdbcType=TIMESTAMP}
+        </if>
+      </if>
+    </where>
+  </select>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.GrowthRuleLog" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from growth_rule_log
+    <where >
+      <if test="sourceType != null" >
+        AND source_type = #{sourceType,jdbcType=TINYINT}
+      </if>
+      <if test="sourceId != null" >
+        AND source_id = #{sourceId,jdbcType=INTEGER}
+      </if>
+      <if test="connditionId != null" >
+        AND conndition_id = #{connditionId,jdbcType=INTEGER}
+      </if>
+      <if test="itemName != null" >
+        AND item_name = #{itemName,jdbcType=VARCHAR}
+      </if>
+      <if test="growthType != null" >
+        AND growth_type = #{growthType,jdbcType=TINYINT}
+      </if>
+      <if test="growthValue != null" >
+        AND growth_value = #{growthValue,jdbcType=INTEGER}
+      </if>
+      <if test="growthCalculateType != null" >
+        AND growth_calculate_type = #{growthCalculateType,jdbcType=TINYINT}
+      </if>
+      <if test="conditionType != null" >
+        AND condition_type = #{conditionType,jdbcType=TINYINT}
+      </if>
+      <if test="conditionValueNumber != null" >
+        AND condition_value_number = #{conditionValueNumber,jdbcType=INTEGER}
+      </if>
+      <if test="conditionValueDay != null" >
+        AND condition_value_day = #{conditionValueDay,jdbcType=INTEGER}
+      </if>
+      <if test="conditionValueMonth != null" >
+        AND condition_value_month = #{conditionValueMonth,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="relId != null" >
+        AND rel_id = #{relId,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+</mapper>

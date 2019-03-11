@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.ProductBeauticianRefMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductBeauticianRef">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="sponsor" property="sponsor" jdbcType="TINYINT"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER"/>
+        <result column="is_show" property="isShow" jdbcType="TINYINT"/>
+        <result column="server_type" property="serverType" jdbcType="TINYINT"/>
+        <result column="is_recruit" property="isRecruit" jdbcType="BIT"/>
+        <result column="audit_status" property="auditStatus" jdbcType="TINYINT"/>
+        <result column="audit_reason" property="auditReason" jdbcType="VARCHAR"/>
+        <result column="is_select" property="isSelect" jdbcType="BIT"/>
+        <result column="is_order" property="isOrder" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, sponsor, store_id, store_name, product_id, beautician_id, server_type, is_recruit,
+        audit_status, audit_reason, is_select, is_order, is_enabled, create_time, update_time , is_show
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, sponsor, store_id AS storeId, store_name AS storeName, product_id AS productId,
+        beautician_id AS beauticianId, server_type AS serverType, is_recruit AS isRecruit,
+        audit_status AS auditStatus, audit_reason AS auditReason, is_select AS isSelect,
+        is_order AS isOrder, is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime , is_show AS isShow
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_beautician_ref
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_beautician_ref
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductBeauticianRef" useGeneratedKeys="true" keyProperty="id">
+        insert into product_beautician_ref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sponsor != null">
+                sponsor,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="beauticianId != null">
+                beautician_id,
+            </if>
+            <if test="serverType != null">
+                server_type,
+            </if>
+            <if test="isRecruit != null">
+                is_recruit,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="auditReason != null">
+                audit_reason,
+            </if>
+            <if test="isSelect != null">
+                is_select,
+            </if>
+            <if test="isOrder != null">
+                is_order,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isShow != null">
+                is_show,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sponsor != null">
+                #{sponsor,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianId != null">
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="serverType != null">
+                #{serverType,jdbcType=TINYINT},
+            </if>
+            <if test="isRecruit != null">
+                #{isRecruit,jdbcType=BIT},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="isSelect != null">
+                #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="isOrder != null">
+                #{isOrder,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isShow != null">
+                #{isShow,jdbcType=TINYINT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductBeauticianRef">
+        update product_beautician_ref
+        <set>
+            <if test="sponsor != null">
+                sponsor = #{sponsor,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianId != null">
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="serverType != null">
+                server_type = #{serverType,jdbcType=TINYINT},
+            </if>
+            <if test="isRecruit != null">
+                is_recruit = #{isRecruit,jdbcType=BIT},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                audit_reason = #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="isSelect != null">
+                is_select = #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="isOrder != null">
+                is_order = #{isOrder,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isShow != null">
+                is_show = #{isShow,jdbcType=TINYINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductBeauticianRef" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_beautician_ref
+        where is_enabled = true
+
+        <if test="sponsor != null">
+            AND sponsor = #{sponsor,jdbcType=TINYINT}
+        </if>
+        <if test="storeId != null">
+            AND store_id = #{storeId,jdbcType=INTEGER}
+        </if>
+        <if test="storeName != null">
+            AND store_name = #{storeName,jdbcType=VARCHAR}
+        </if>
+        <if test="productId != null">
+            AND product_id = #{productId,jdbcType=INTEGER}
+        </if>
+        <if test="beauticianId != null">
+            AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+        </if>
+        <if test="serverType != null">
+            AND server_type = #{serverType,jdbcType=TINYINT}
+        </if>
+        <if test="isRecruit != null">
+            AND is_recruit = #{isRecruit,jdbcType=BIT}
+        </if>
+        <if test="auditStatus != null">
+            AND audit_status = #{auditStatus,jdbcType=TINYINT}
+        </if>
+        <if test="auditReason != null">
+            AND audit_reason = #{auditReason,jdbcType=VARCHAR}
+        </if>
+        <if test="isSelect != null">
+            AND is_select = #{isSelect,jdbcType=BIT}
+        </if>
+        <if test="isOrder != null">
+            AND is_order = #{isOrder,jdbcType=BIT}
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="isShow != null">
+            AND is_show = #{isShow,jdbcType=TINYINT}
+        </if>
+    </select>
+
+    <select id="selectByRandom" parameterType="com.union.aimei.common.vo.product.app.ProductBeauticianRefByRandomVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        (select * from product_beautician_ref
+        where store_id = #{storeId} and product_id = #{productId} and server_type = #{serverType} and agree_status = 1 and auth_status = 1 and is_enabled = 1)
+        as t1
+        join (
+        select
+        round(
+        rand() * (
+        (select max(id) from product_beautician_ref
+        where store_id = #{storeId} and product_id = #{productId} and server_type = #{serverType} and agree_status = 1 and auth_status = 1 and is_enabled = 1)
+        -
+        (select min(id) from product_beautician_ref
+        where store_id = #{storeId} and product_id = #{productId} and server_type = #{serverType} and agree_status = 1 and auth_status = 1 and is_enabled = 1)
+        )
+        +
+        (select min(id) from product_beautician_ref
+        where store_id = #{storeId} and product_id = #{productId} and server_type = #{serverType} and agree_status = 1 and auth_status = 1 and is_enabled = 1)
+        ) as id2)
+        as t2
+        where t1.id >= t2.id2
+        order by t1.id
+        limit 1
+    </select>
+
+    <delete id="deleteByProductId" parameterType="java.lang.Integer">
+        delete from product_beautician_ref
+        where product_id = #{productId}
+    </delete>
+
+    <insert id="addBatch" parameterType="com.union.aimei.common.vo.product.app.ProductBeauticianRefByBatchVo" useGeneratedKeys="true">
+        insert into product_beautician_ref (sponsor, store_id, store_name, product_id, beautician_id, server_type, is_recruit, audit_status, audit_reason, is_select, is_order)
+        values
+        <foreach collection="productBeauticianRefList" item="item" index="index" separator=",">
+            (#{item.sponsor}, #{item.storeId}, #{item.storeName}, #{item.productId}, #{item.beauticianId}, #{item.serverType}, #{item.isRecruit}, #{item.auditStatus},
+            #{item.auditReason}, #{item.isSelect}, #{item.isOrder})
+        </foreach>
+    </insert>
+
+    <select id="selectListByRecruit" parameterType="com.union.aimei.common.model.product.ProductBeauticianRef" resultType="com.union.aimei.common.vo.product.app.ProductBeauticianRefByRecruitResVo">
+        select
+        pbr.id, pbr.product_id AS productId, pbr.store_id AS storeId, pbr.store_name AS storeName, pbr.beautician_id AS beauticianId,
+        pbr.beautician_nick_name AS beauticianNickName, pbr.beautician_head_img_url AS beauticianHeadImgUrl, pbr.beautician_status AS beauticianStatus, pbr.member_id AS memberId,
+        pbr.server_type AS serverType, pbr.agree_status AS agreeStatus, pbr.auth_status AS authStatus, pbr.create_time AS createTime,
+        p.server_name AS serverName, p.sale_price AS salePrice, p.formal_beautician_commission AS formalBeauticianCommission,
+        p.parttime_beautician_commission AS parttimeBeauticianCommission, p.server_need_time AS serverNeedTime, p.cover_img AS coverImg, p.home_fee AS homeFee
+        from product_beautician_ref pbr, product p
+        where pbr.product_id = p.id
+        and pbr.is_recruit = true
+        and pbr.is_enabled = true
+        <if test="productId != null">
+            AND pbr.product_id = #{productId,jdbcType=INTEGER}
+        </if>
+        <if test="storeId != null">
+            AND pbr.store_id = #{storeId,jdbcType=INTEGER}
+        </if>
+        <if test="storeName != null">
+            AND pbr.store_name = #{storeName,jdbcType=VARCHAR}
+        </if>
+        <if test="beauticianId != null">
+            AND pbr.beautician_id = #{beauticianId,jdbcType=INTEGER}
+        </if>
+        <if test="beauticianNickName != null">
+            AND pbr.beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR}
+        </if>
+        <if test="beauticianHeadImgUrl != null">
+            AND pbr.beautician_head_img_url = #{beauticianHeadImgUrl,jdbcType=VARCHAR}
+        </if>
+        <if test="beauticianStatus != null">
+            AND pbr.beautician_status = #{beauticianStatus,jdbcType=TINYINT}
+        </if>
+        <if test="memberId != null">
+            AND pbr.member_id = #{memberId,jdbcType=INTEGER}
+        </if>
+        <if test="serverType != null">
+            AND pbr.server_type = #{serverType,jdbcType=TINYINT}
+        </if>
+        <if test="agreeStatus != null">
+            AND pbr.agree_status = #{agreeStatus,jdbcType=TINYINT}
+        </if>
+        <if test="agreeReason != null">
+            AND pbr.agree_reason = #{agreeReason,jdbcType=LONGVARCHAR}
+        </if>
+        <if test="authStatus != null">
+            AND pbr.auth_status = #{authStatus,jdbcType=TINYINT}
+        </if>
+        <if test="authReason != null">
+            AND pbr.auth_reason = #{authReason,jdbcType=VARCHAR}
+        </if>
+        <if test="groupPhoto != null">
+            AND pbr.group_photo = #{groupPhoto,jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null">
+            AND pbr.create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND pbr.update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        order by pbr.create_time desc
+    </select>
+
+    <select id="selectByRefId" parameterType="com.union.aimei.common.vo.product.app.ProductBeauticianRefByRefIdVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_beautician_ref
+        where is_enabled = true
+        and sponsor = #{sponsor}
+        and beautician_id = #{beauticianId}
+        and store_id = #{storeId}
+        and product_id = #{productId}
+        and server_type = #{serverType}
+        <if test="null != auditStatusList and auditStatusList.size > 0">
+            and audit_status in
+            <foreach collection="auditStatusList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <update id="updateIsSelect" parameterType="java.util.Map">
+        update product_beautician_ref
+        set is_select = #{isSelect}
+        where is_enabled = true
+        and product_id = #{productId}
+        and store_id = #{storeId}
+        and server_type = #{serverType}
+        <if test="null != beauticianIdList and beauticianIdList.size > 0">
+            and beautician_id in
+            <foreach collection="beauticianIdList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </update>
+
+    <update id="updateAuditStatus" parameterType="java.util.Map">
+        update product_beautician_ref
+        set audit_status = #{auditStatus}
+        where is_enabled = true
+        and product_id = #{productId}
+        and store_id = #{storeId}
+        and beautician_id = #{beauticianId}
+    </update>
+
+    <delete id="removeStoreByProductId" parameterType="java.lang.Integer">
+        update product_beautician_ref
+        set is_enabled = false
+        where is_enabled = true
+        and product_id = #{productId}
+        and store_id = #{storeId}
+        and server_type = #{serverType}
+        and beautician_id in
+        <foreach collection="beauticianIdList" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="removeStoreByBeauticianId" parameterType="java.util.Map">
+        update product_beautician_ref pbr
+        set pbr.is_enabled = false
+        where pbr.is_enabled = true
+        and pbr.product_id in (
+        select
+        p.id
+        from product p, product_store_ref psr
+        where p.id = psr.product_id
+        and psr.store_id = #{storeId}
+        and p.product_type = #{productType}
+        )
+        and pbr.beautician_id = #{beauticianId}
+    </update>
+
+    <update id="cancelSelect" parameterType="map">
+        update product_beautician_ref
+        set is_select = false
+        where is_enabled = true
+        and is_select = true
+        and product_id = #{productId}
+        and store_id = #{storeId}
+    </update>
+
+</mapper>

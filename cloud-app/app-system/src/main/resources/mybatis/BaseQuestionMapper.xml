@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.system.mapper.BaseQuestionMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseQuestion">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="question_tile" jdbcType="VARCHAR" property="questionTile"/>
+        <result column="question_type_id" jdbcType="INTEGER" property="questionTypeId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.union.aimei.common.model.system.BaseQuestion">
+        <result column="question_content" jdbcType="LONGVARCHAR" property="questionContent"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, question_tile, question_type_id, create_time, update_time
+  </sql>
+    <sql id="Blob_Column_List">
+    question_content
+  </sql>
+    <select id="selectByExampleWithBLOBs" parameterType="com.union.aimei.common.model.system.BaseQuestionExample"
+            resultMap="ResultMapWithBLOBs">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from base_question
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByExample" parameterType="com.union.aimei.common.model.system.BaseQuestionExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from base_question
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from base_question
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_question
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseQuestionExample">
+        delete from base_question
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseQuestion">
+    insert into base_question (id, question_tile, question_type_id,
+    create_time, update_time, question_content
+    )
+    values (#{id,jdbcType=INTEGER}, #{questionTile,jdbcType=VARCHAR}, #{questionTypeId,jdbcType=INTEGER},
+    #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{questionContent,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseQuestion">
+        insert into base_question
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="questionTile != null">
+                question_tile,
+            </if>
+            <if test="questionTypeId != null">
+                question_type_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="questionContent != null">
+                question_content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="questionTile != null">
+                #{questionTile,jdbcType=VARCHAR},
+            </if>
+            <if test="questionTypeId != null">
+                #{questionTypeId,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="questionContent != null">
+                #{questionContent,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseQuestionExample"
+            resultType="java.lang.Long">
+        select count(*) from base_question
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_question
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.questionTile != null">
+                question_tile = #{record.questionTile,jdbcType=VARCHAR},
+            </if>
+            <if test="record.questionTypeId != null">
+                question_type_id = #{record.questionTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.questionContent != null">
+                question_content = #{record.questionContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExampleWithBLOBs" parameterType="map">
+        update base_question
+        set id = #{record.id,jdbcType=INTEGER},
+        question_tile = #{record.questionTile,jdbcType=VARCHAR},
+        question_type_id = #{record.questionTypeId,jdbcType=INTEGER},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        question_content = #{record.questionContent,jdbcType=LONGVARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_question
+        set id = #{record.id,jdbcType=INTEGER},
+        question_tile = #{record.questionTile,jdbcType=VARCHAR},
+        question_type_id = #{record.questionTypeId,jdbcType=INTEGER},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseQuestion">
+        update base_question
+        <set>
+            <if test="questionTile != null">
+                question_tile = #{questionTile,jdbcType=VARCHAR},
+            </if>
+            <if test="questionTypeId != null">
+                question_type_id = #{questionTypeId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="questionContent != null">
+                question_content = #{questionContent,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.union.aimei.common.model.system.BaseQuestion">
+    update base_question
+    set question_tile = #{questionTile,jdbcType=VARCHAR},
+    question_type_id = #{questionTypeId,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP},
+    question_content = #{questionContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseQuestion">
+    update base_question
+    set question_tile = #{questionTile,jdbcType=VARCHAR},
+    question_type_id = #{questionTypeId,jdbcType=INTEGER},
+    create_time = #{createTime,jdbcType=TIMESTAMP},
+    update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_question LIMIT #{offset},#{limit}
+    </select>
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.system.BaseQuestion"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_question
+        <where>
+            <if test="questionTile != null">
+                and question_tile = #{questionTile,jdbcType=VARCHAR}
+            </if>
+            <if test="questionTypeId != null">
+                and question_type_id = #{questionTypeId,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+    <select id="selectListByConditionsForBg" parameterType="com.union.aimei.common.model.system.BaseQuestion"
+            resultType="map">
+        SELECT
+        q.id,
+        q.question_tile AS questionTile,
+        q.question_content AS questionContent,
+        q.create_time AS createTime,
+        q.update_time AS updateTime,
+        qt.type_name typeName,
+        qt.weight_value AS weightValue,
+        qt.client_type AS clientType
+        FROM
+        base_question q
+        LEFT JOIN base_question_type qt ON q.question_type_id = qt.id
+        WHERE
+        1 = 1
+        <if test="typeName != null">
+            AND qt.type_name = #{typeName}
+        </if>
+        <if test="clientType != null">
+            AND qt.client_type = #{clientType}
+        </if>
+        ORDER BY
+        qt.weight_value DESC
+    </select>
+</mapper>

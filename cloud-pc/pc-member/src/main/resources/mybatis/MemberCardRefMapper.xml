@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberCardRefMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberCardRef">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="card_id" property="cardId" jdbcType="INTEGER"/>
+        <result column="member_name" property="memberName" jdbcType="VARCHAR"/>
+        <result column="member_mobile" property="memberMobile" jdbcType="VARCHAR"/>
+        <result column="total_balance" property="totalBalance" jdbcType="INTEGER"/>
+        <result column="useable_balance" property="useableBalance" jdbcType="INTEGER"/>
+        <result column="frozen_balance" property="frozenBalance" jdbcType="INTEGER"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="expired_time" property="expiredTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, member_id, card_id, member_name, member_mobile, total_balance, useable_balance, 
+    frozen_balance, is_enabled, create_time, update_time,expired_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, member_id AS memberId, card_id AS cardId, member_name AS memberName, member_mobile AS memberMobile, 
+    total_balance AS totalBalance, useable_balance AS useableBalance, frozen_balance AS frozenBalance, 
+    is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime,expired_time AS expiredTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from member_card_ref
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_ref
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberCardRef" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into member_card_ref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="cardId != null">
+                card_id,
+            </if>
+            <if test="memberName != null">
+                member_name,
+            </if>
+            <if test="memberMobile != null">
+                member_mobile,
+            </if>
+            <if test="totalBalance != null">
+                total_balance,
+            </if>
+            <if test="useableBalance != null">
+                useable_balance,
+            </if>
+            <if test="frozenBalance != null">
+                frozen_balance,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="expiredTime != null">
+                expired_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="cardId != null">
+                #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="memberName != null">
+                #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberMobile != null">
+                #{memberMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="totalBalance != null">
+                #{totalBalance,jdbcType=INTEGER},
+            </if>
+            <if test="useableBalance != null">
+                #{useableBalance,jdbcType=INTEGER},
+            </if>
+            <if test="frozenBalance != null">
+                #{frozenBalance,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expiredTime != null">
+                #{expiredTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberCardRef">
+        update member_card_ref
+        <set>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="cardId != null">
+                card_id = #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="memberName != null">
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberMobile != null">
+                member_mobile = #{memberMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="totalBalance != null">
+                total_balance = #{totalBalance,jdbcType=INTEGER},
+            </if>
+            <if test="useableBalance != null">
+                useable_balance = #{useableBalance,jdbcType=INTEGER},
+            </if>
+            <if test="frozenBalance != null">
+                frozen_balance = #{frozenBalance,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expiredTime != null">
+                expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberCardRef"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from member_card_ref
+        <where>
+            <if test="memberId != null">
+                AND member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="cardId != null">
+                AND card_id = #{cardId,jdbcType=INTEGER}
+            </if>
+            <if test="memberName != null">
+                AND member_name = #{memberName,jdbcType=VARCHAR}
+            </if>
+            <if test="memberMobile != null">
+                AND member_mobile = #{memberMobile,jdbcType=VARCHAR}
+            </if>
+            <if test="totalBalance != null">
+                AND total_balance = #{totalBalance,jdbcType=INTEGER}
+            </if>
+            <if test="useableBalance != null">
+                AND useable_balance = #{useableBalance,jdbcType=INTEGER}
+            </if>
+            <if test="frozenBalance != null">
+                AND frozen_balance = #{frozenBalance,jdbcType=INTEGER}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="expiredTime != null">
+                AND expired_time = #{expiredTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="cardUnEffective" parameterType="com.union.aimei.common.model.member.MemberCardRef" resultType="java.lang.Integer">
+        SELECT id FROM  member_card_ref mcr
+        WHERE mcr.expired_time <![CDATA[ <= ]]> #{expiredTime}
+    </select>
+
+    <update id="updateBatch" parameterType="java.util.List">
+        update member_card_ref set is_enabled = 2 where id in
+        <foreach collection="list" item="item" index="index" open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+    </update>
+</mapper>

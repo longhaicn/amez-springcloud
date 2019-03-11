@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.ProductCollectionMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductCollection">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="is_collection" property="isCollection" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, product_id, member_id, is_collection, is_enabled, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, product_id AS productId, member_id AS memberId, is_collection AS isCollection, is_enabled AS isEnabled, create_time AS createTime,
+    update_time AS updateTime
+  </sql>
+
+    <!--自定义计算距离SQL语句-->
+    <sql id="caculateDistance">
+        IFNULL(ROUND(
+        6378.138 * 2 * ASIN(
+        SQRT(POW(SIN((${point.y} * PI() / 180 - prodrel.store_latitude * PI() / 180) / 2),2) +
+        COS(${point.y} * PI() / 180) * COS(prodrel.store_latitude * PI() / 180) * POW(
+        SIN((${point.x} * PI() / 180 - prodrel.store_longitude * PI() / 180) / 2),2))) * 1000
+        ), 0) AS distance
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_collection
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_collection
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductCollection" useGeneratedKeys="true" keyProperty="id">
+        insert into product_collection
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="isCollection != null">
+                is_collection,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="isCollection != null">
+                #{isCollection,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductCollection">
+        update product_collection
+        <set>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="isCollection != null">
+                is_collection = #{isCollection,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductCollection" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_collection
+        where is_enabled = true
+        <if test="productId != null">
+            AND product_id = #{productId,jdbcType=INTEGER}
+        </if>
+        <if test="memberId != null">
+            AND member_id = #{memberId,jdbcType=INTEGER}
+        </if>
+        <if test="isCollection != null">
+            AND is_collection = #{isCollection,jdbcType=BIT}
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+    <select id="selectListByMemberIdProductId" parameterType="com.union.aimei.common.model.product.ProductCollection" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_collection
+        <where>
+            <if test="productId != null">
+                AND product_id = #{productId,jdbcType=INTEGER}
+            </if>
+            <if test="memberId != null">
+                AND member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="isCollection != null">
+                AND is_collection = #{isCollection,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListPageCollectionByMemberId" parameterType="com.union.aimei.common.vo.product.app.ProductCollectionVo"
+            resultType="com.union.aimei.common.vo.product.app.ProductCollectionResultVo">
+        SELECT
+            prod.id,
+            prod.cover_img AS coverImg,
+            prod.server_name AS serverName,
+            prod.original_price AS originalPrice,
+            prod.wholesale_price AS wholesalePrice,
+            prod.retail_price AS retailPrice,
+            prod.sale_price AS salePrice,
+            prod.sale_status AS saleStatus,
+            prod.audit_status AS auditStatus,
+            prod.is_platform AS isPlatform
+        FROM
+         product_collection collec ,
+         product prod
+        WHERE
+          collec.product_id = prod.id
+        AND
+          prod.sale_status = 1
+        AND
+          collec.is_enabled = TRUE
+        <if test="memberId != null">
+            AND collec.member_id = #{memberId,jdbcType=INTEGER}
+        </if>
+        <if test="searchStr != null">
+            AND prod.server_name like concat(concat('%',#{searchStr}),'%')
+        </if>
+        order by
+            collec.create_time desc ,
+            collec.update_time desc
+    </select>
+
+    <select id="isCollection" parameterType="java.util.Map" resultType="java.lang.Boolean">
+        select
+        if(0 = count(*), false, (select is_collection from product_collection where is_enabled = true and product_id = #{productId} and member_id = #{memberId} limit 1))
+		from product_collection
+        where is_enabled = true
+        and product_id = #{productId}
+        and member_id = #{memberId}
+        limit 1
+    </select>
+
+</mapper>

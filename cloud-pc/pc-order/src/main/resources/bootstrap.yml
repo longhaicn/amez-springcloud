@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: pc-order-service
+  profiles:
+      active: @profileActive@

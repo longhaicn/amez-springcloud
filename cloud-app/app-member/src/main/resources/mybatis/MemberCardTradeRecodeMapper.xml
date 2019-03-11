@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberCardTradeRecodeMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberCardTradeRecode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="is_platform" property="isPlatform" jdbcType="BIT" />
+    <result column="issue_name" property="issueName" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_card_id" property="memberCardId" jdbcType="INTEGER" />
+    <result column="member_card_ref_id" property="memberCardRefId" jdbcType="INTEGER" />
+    <result column="member_card_no" property="memberCardNo" jdbcType="VARCHAR" />
+    <result column="trade_amount" property="tradeAmount" jdbcType="INTEGER" />
+    <result column="use_type" property="useType" jdbcType="TINYINT" />
+    <result column="use_time" property="useTime" jdbcType="TIMESTAMP" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="TINYINT" />
+    <result column="pay_status" property="payStatus" jdbcType="TINYINT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, is_platform, issue_name, member_id, member_card_id, member_card_ref_id, member_card_no,
+    trade_amount, use_type, use_time, store_id, store_name, order_no, trade_no, pay_type,
+    pay_status
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, is_platform AS isPlatform, issue_name AS issueName, member_id AS memberId, member_card_id AS memberCardId,
+    member_card_ref_id AS memberCardRefId, member_card_no AS memberCardNo, trade_amount AS tradeAmount,
+    use_type AS useType, use_time AS useTime, store_id AS storeId, store_name AS storeName,
+    order_no AS orderNo, trade_no AS tradeNo, pay_type AS payType, pay_status AS payStatus
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from member_card_trade_recode
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_card_trade_recode
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberCardTradeRecode" useGeneratedKeys="true" keyProperty="id" >
+    insert into member_card_trade_recode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="isPlatform != null" >
+        is_platform,
+      </if>
+      <if test="issueName != null" >
+        issue_name,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memberCardId != null" >
+        member_card_id,
+      </if>
+      <if test="memberCardRefId != null" >
+        member_card_ref_id,
+      </if>
+      <if test="memberCardNo != null" >
+        member_card_no,
+      </if>
+      <if test="tradeAmount != null" >
+        trade_amount,
+      </if>
+      <if test="useType != null" >
+        use_type,
+      </if>
+      <if test="useTime != null" >
+        use_time,
+      </if>
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="storeName != null" >
+        store_name,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="isPlatform != null" >
+        #{isPlatform,jdbcType=BIT},
+      </if>
+      <if test="issueName != null" >
+        #{issueName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardId != null" >
+        #{memberCardId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardRefId != null" >
+        #{memberCardRefId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardNo != null" >
+        #{memberCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAmount != null" >
+        #{tradeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="useType != null" >
+        #{useType,jdbcType=TINYINT},
+      </if>
+      <if test="useTime != null" >
+        #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberCardTradeRecode" >
+    update member_card_trade_recode
+    <set >
+      <if test="isPlatform != null" >
+        is_platform = #{isPlatform,jdbcType=BIT},
+      </if>
+      <if test="issueName != null" >
+        issue_name = #{issueName,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardId != null" >
+        member_card_id = #{memberCardId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardRefId != null" >
+        member_card_ref_id = #{memberCardRefId,jdbcType=INTEGER},
+      </if>
+      <if test="memberCardNo != null" >
+        member_card_no = #{memberCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAmount != null" >
+        trade_amount = #{tradeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="useType != null" >
+        use_type = #{useType,jdbcType=TINYINT},
+      </if>
+      <if test="useTime != null" >
+        use_time = #{useTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="storeName != null" >
+        store_name = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberCardTradeRecode" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from member_card_trade_recode
+    <where >
+      <if test="isPlatform != null" >
+        AND is_platform = #{isPlatform,jdbcType=BIT}
+      </if>
+      <if test="issueName != null" >
+        AND issue_name = #{issueName,jdbcType=VARCHAR}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="memberCardId != null" >
+        AND member_card_id = #{memberCardId,jdbcType=INTEGER}
+      </if>
+      <if test="memberCardRefId != null" >
+        AND member_card_ref_id = #{memberCardRefId,jdbcType=INTEGER}
+      </if>
+      <if test="memberCardNo != null" >
+        AND member_card_no = #{memberCardNo,jdbcType=VARCHAR}
+      </if>
+      <if test="tradeAmount != null" >
+        AND trade_amount = #{tradeAmount,jdbcType=INTEGER}
+      </if>
+      <if test="useType != null" >
+        AND use_type = #{useType,jdbcType=TINYINT}
+      </if>
+      <if test="useTime != null" >
+        AND use_time = #{useTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="storeName != null" >
+        AND store_name = #{storeName,jdbcType=VARCHAR}
+      </if>
+      <if test="orderNo != null" >
+        AND order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="tradeNo != null" >
+        AND trade_no = #{tradeNo,jdbcType=VARCHAR}
+      </if>
+      <if test="payType != null" >
+        AND pay_type = #{payType,jdbcType=TINYINT}
+      </if>
+      <if test="payStatus != null" >
+        AND pay_status = #{payStatus,jdbcType=TINYINT}
+      </if>
+    </where>
+    order by use_time desc
+  </select>
+
+  <!--根据订单编号查询-->
+  <select id="queryByOrderNo" parameterType="string" resultMap="BaseResultMap">
+      SELECT <include refid="Base_Column_List"/> from member_card_trade_recode
+      where order_no=#{orderNo}
+  </select>
+</mapper>

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.financial.mapper.StoreshipWithdrawalMapper">
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.financial.StoreshipWithdrawal">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="withdrawal_amount" jdbcType="INTEGER" property="withdrawalAmount" />
+    <result column="number_bank_slip" jdbcType="VARCHAR" property="numberBankSlip" />
+    <result column="bank" jdbcType="VARCHAR" property="bank" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="account_number" jdbcType="VARCHAR" property="accountNumber" />
+    <result column="withdrawal_status" jdbcType="TINYINT" property="withdrawalStatus" />
+    <result column="remaining_amount" jdbcType="INTEGER" property="remainingAmount" />
+    <result column="statistics_year" jdbcType="VARCHAR" property="statisticsYear" />
+    <result column="statistics_year_month" jdbcType="VARCHAR" property="statisticsYearMonth" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="arrive_time" jdbcType="TIMESTAMP" property="arriveTime" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, store_id, withdrawal_amount, number_bank_slip, bank, user_name, account_number, withdrawal_status,
+    remaining_amount, statistics_year, statistics_year_month, create_time, update_time,
+    remarks , arrive_time
+  </sql>
+  <select id="selectByExample" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawalExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from storeship_withdrawal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from storeship_withdrawal
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from storeship_withdrawal
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawalExample">
+    delete from storeship_withdrawal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawal">
+    insert into storeship_withdrawal (id, store_id, withdrawal_amount,
+      number_bank_slip, bank, user_name,
+      account_number, withdrawal_status, remaining_amount,
+      statistics_year, statistics_year_month, create_time,
+      update_time,arrive_time, remarks )
+    values (#{id,jdbcType=INTEGER}, #{storeId,jdbcType=INTEGER}, #{withdrawalAmount,jdbcType=INTEGER},
+      #{numberBankSlip,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+      #{accountNumber,jdbcType=VARCHAR}, #{withdrawalStatus,jdbcType=TINYINT}, #{remainingAmount,jdbcType=INTEGER},
+      #{statisticsYear,jdbcType=VARCHAR}, #{statisticsYearMonth,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}, #{arriveTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawal">
+    insert into storeship_withdrawal
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="withdrawalAmount != null">
+        withdrawal_amount,
+      </if>
+      <if test="numberBankSlip != null">
+        number_bank_slip,
+      </if>
+      <if test="bank != null">
+        bank,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="accountNumber != null">
+        account_number,
+      </if>
+      <if test="withdrawalStatus != null">
+        withdrawal_status,
+      </if>
+      <if test="remainingAmount != null">
+        remaining_amount,
+      </if>
+      <if test="statisticsYear != null">
+        statistics_year,
+      </if>
+      <if test="statisticsYearMonth != null">
+        statistics_year_month,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="arriveTime != null">
+        arrive_time,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawalAmount != null">
+        #{withdrawalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="numberBankSlip != null">
+        #{numberBankSlip,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawalStatus != null">
+        #{withdrawalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remainingAmount != null">
+        #{remainingAmount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsYear != null">
+        #{statisticsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticsYearMonth != null">
+        #{statisticsYearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveTime != null">
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawalExample" resultType="java.lang.Long">
+    select count(*) from storeship_withdrawal
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update storeship_withdrawal
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.withdrawalAmount != null">
+        withdrawal_amount = #{record.withdrawalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.numberBankSlip != null">
+        number_bank_slip = #{record.numberBankSlip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bank != null">
+        bank = #{record.bank,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountNumber != null">
+        account_number = #{record.accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.withdrawalStatus != null">
+        withdrawal_status = #{record.withdrawalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.remainingAmount != null">
+        remaining_amount = #{record.remainingAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.statisticsYear != null">
+        statistics_year = #{record.statisticsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.statisticsYearMonth != null">
+        statistics_year_month = #{record.statisticsYearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.arriveTime != null">
+        arrive_time = #{record.arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update storeship_withdrawal
+    set id = #{record.id,jdbcType=INTEGER},
+    store_id = #{record.storeId,jdbcType=INTEGER},
+    withdrawal_amount = #{record.withdrawalAmount,jdbcType=INTEGER},
+    number_bank_slip = #{record.numberBankSlip,jdbcType=VARCHAR},
+    bank = #{record.bank,jdbcType=VARCHAR},
+    user_name = #{record.userName,jdbcType=VARCHAR},
+    account_number = #{record.accountNumber,jdbcType=VARCHAR},
+    withdrawal_status = #{record.withdrawalStatus,jdbcType=TINYINT},
+    remaining_amount = #{record.remainingAmount,jdbcType=INTEGER},
+    statistics_year = #{record.statisticsYear,jdbcType=VARCHAR},
+    statistics_year_month = #{record.statisticsYearMonth,jdbcType=VARCHAR},
+    create_time = #{record.createTime,jdbcType=TIMESTAMP},
+    update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+    arrive_time = #{record.arriveTime,jdbcType=TIMESTAMP},
+    remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawal">
+    update storeship_withdrawal
+    <set>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="withdrawalAmount != null">
+        withdrawal_amount = #{withdrawalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="numberBankSlip != null">
+        number_bank_slip = #{numberBankSlip,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null">
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountNumber != null">
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="withdrawalStatus != null">
+        withdrawal_status = #{withdrawalStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remainingAmount != null">
+        remaining_amount = #{remainingAmount,jdbcType=INTEGER},
+      </if>
+      <if test="statisticsYear != null">
+        statistics_year = #{statisticsYear,jdbcType=VARCHAR},
+      </if>
+      <if test="statisticsYearMonth != null">
+        statistics_year_month = #{statisticsYearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveTime != null">
+        arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawal">
+    update storeship_withdrawal
+    set store_id = #{storeId,jdbcType=INTEGER},
+      withdrawal_amount = #{withdrawalAmount,jdbcType=INTEGER},
+      number_bank_slip = #{numberBankSlip,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      account_number = #{accountNumber,jdbcType=VARCHAR},
+      withdrawal_status = #{withdrawalStatus,jdbcType=TINYINT},
+      remaining_amount = #{remainingAmount,jdbcType=INTEGER},
+      statistics_year = #{statisticsYear,jdbcType=VARCHAR},
+      statistics_year_month = #{statisticsYearMonth,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      arrive_time = #{arriveTime,jdbcType=TIMESTAMP},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPage" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" /> FROM storeship_withdrawal LIMIT #{offset},#{limit}
+  </select>
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.financial.StoreshipWithdrawal" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from storeship_withdrawal
+    <where>
+      <if test="storeId != null">
+        and store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="withdrawalAmount != null">
+        and withdrawal_amount = #{withdrawalAmount,jdbcType=INTEGER}
+      </if>
+      <if test="numberBankSlip != null">
+        and number_bank_slip = #{numberBankSlip,jdbcType=VARCHAR}
+      </if>
+      <if test="bank != null">
+        and bank = #{bank,jdbcType=VARCHAR}
+      </if>
+      <if test="userName != null">
+        and user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="accountNumber != null">
+        and account_number = #{accountNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="withdrawalStatus != null">
+        and withdrawal_status = #{withdrawalStatus,jdbcType=TINYINT}
+      </if>
+      <if test="remainingAmount != null">
+        and remaining_amount = #{remainingAmount,jdbcType=INTEGER}
+      </if>
+      <if test="statisticsYear != null">
+        and statistics_year = #{statisticsYear,jdbcType=VARCHAR}
+      </if>
+      <if test="statisticsYearMonth != null">
+        and statistics_year_month = #{statisticsYearMonth,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null">
+        and create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        and update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="arriveTime != null">
+        and arrive_time = #{arriveTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="remarks != null">
+        and remarks = #{remarks,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

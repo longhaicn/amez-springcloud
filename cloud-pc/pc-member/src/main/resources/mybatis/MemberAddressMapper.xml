@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberAddress" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="receiver" property="receiver" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="regson" property="regson" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="longitude" property="longitude" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="door_number" property="doorNumber" jdbcType="VARCHAR" />
+    <result column="identification" property="identification" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, member_id, city_id, receiver, phone, regson, address, longitude, latitude, is_default,
+    is_enabled, door_number, identification, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, member_id AS memberId, city_id AS cityId, receiver, phone, regson, address, longitude, latitude,
+    is_default AS isDefault, is_enabled AS isEnabled, door_number AS doorNumber,
+    identification, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from member_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberAddress" useGeneratedKeys="true" keyProperty="id" >
+    insert into member_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="receiver != null" >
+        receiver,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="regson != null" >
+        regson,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="doorNumber != null" >
+        door_number,
+      </if>
+      <if test="identification != null" >
+        identification,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="receiver != null" >
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="regson != null" >
+        #{regson,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="doorNumber != null" >
+        #{doorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null" >
+        #{identification,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberAddress" >
+    update member_address
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="receiver != null" >
+        receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="regson != null" >
+        regson = #{regson,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="doorNumber != null" >
+        door_number = #{doorNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="identification != null" >
+        identification = #{identification,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberAddress" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from member_address
+    <where >
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="cityId != null" >
+        AND city_id = #{cityId,jdbcType=INTEGER}
+      </if>
+      <if test="receiver != null" >
+        AND receiver = #{receiver,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null" >
+        AND phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="regson != null" >
+        AND regson = #{regson,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null" >
+        AND address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="longitude != null" >
+        AND longitude = #{longitude,jdbcType=VARCHAR}
+      </if>
+      <if test="latitude != null" >
+        AND latitude = #{latitude,jdbcType=VARCHAR}
+      </if>
+      <if test="isDefault != null" >
+        AND is_default = #{isDefault,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="doorNumber != null" >
+        AND door_number = #{doorNumber,jdbcType=VARCHAR}
+      </if>
+      <if test="identification != null" >
+        AND identification = #{identification,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

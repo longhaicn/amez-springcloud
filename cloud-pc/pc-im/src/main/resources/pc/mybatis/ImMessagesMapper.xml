@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.im.mapper.ImMessagesMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.im.ImMessages">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="msg_id" property="msgId" jdbcType="VARCHAR"/>
+        <result column="send_time" property="sendTime" jdbcType="BIGINT"/>
+        <result column="direction" property="direction" jdbcType="VARCHAR"/>
+        <result column="from_name" property="fromName" jdbcType="VARCHAR"/>
+        <result column="to_name" property="toName" jdbcType="VARCHAR"/>
+        <result column="chat_type" property="chatType" jdbcType="VARCHAR"/>
+        <result column="msg_type" property="msgType" jdbcType="VARCHAR"/>
+        <result column="ext" property="ext" jdbcType="LONGVARCHAR"/>
+        <result column="bodies" property="bodies" jdbcType="LONGVARCHAR"/>
+        <result column="get_time" property="getTime" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, msg_id, send_time, direction, from_name, to_name, chat_type, msg_type, ext, bodies,
+        get_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, msg_id AS msgId, send_time AS sendTime, direction, from_name AS fromName, to_name AS toName,
+        chat_type AS chatType, msg_type AS msgType, ext, bodies, get_time AS getTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from im_messages
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from im_messages
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.im.ImMessages" useGeneratedKeys="true" keyProperty="id">
+        insert into im_messages
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="msgId != null">
+                msg_id,
+            </if>
+            <if test="sendTime != null">
+                send_time,
+            </if>
+            <if test="direction != null">
+                direction,
+            </if>
+            <if test="fromName != null">
+                from_name,
+            </if>
+            <if test="toName != null">
+                to_name,
+            </if>
+            <if test="chatType != null">
+                chat_type,
+            </if>
+            <if test="msgType != null">
+                msg_type,
+            </if>
+            <if test="ext != null">
+                ext,
+            </if>
+            <if test="bodies != null">
+                bodies,
+            </if>
+            <if test="getTime != null">
+                get_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="msgId != null">
+                #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendTime != null">
+                #{sendTime,jdbcType=BIGINT},
+            </if>
+            <if test="direction != null">
+                #{direction,jdbcType=VARCHAR},
+            </if>
+            <if test="fromName != null">
+                #{fromName,jdbcType=VARCHAR},
+            </if>
+            <if test="toName != null">
+                #{toName,jdbcType=VARCHAR},
+            </if>
+            <if test="chatType != null">
+                #{chatType,jdbcType=VARCHAR},
+            </if>
+            <if test="msgType != null">
+                #{msgType,jdbcType=VARCHAR},
+            </if>
+            <if test="ext != null">
+                #{ext,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="bodies != null">
+                #{bodies,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="getTime != null">
+                #{getTime,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.im.ImMessages">
+        update im_messages
+        <set>
+            <if test="msgId != null">
+                msg_id = #{msgId,jdbcType=VARCHAR},
+            </if>
+            <if test="sendTime != null">
+                send_time = #{sendTime,jdbcType=BIGINT},
+            </if>
+            <if test="direction != null">
+                direction = #{direction,jdbcType=VARCHAR},
+            </if>
+            <if test="fromName != null">
+                from_name = #{fromName,jdbcType=VARCHAR},
+            </if>
+            <if test="toName != null">
+                to_name = #{toName,jdbcType=VARCHAR},
+            </if>
+            <if test="chatType != null">
+                chat_type = #{chatType,jdbcType=VARCHAR},
+            </if>
+            <if test="msgType != null">
+                msg_type = #{msgType,jdbcType=VARCHAR},
+            </if>
+            <if test="ext != null">
+                ext = #{ext,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="bodies != null">
+                bodies = #{bodies,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="getTime != null">
+                get_time = #{getTime,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.im.ImMessages" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from im_messages
+        <where>
+            <if test="msgId != null">
+                AND msg_id = #{msgId,jdbcType=VARCHAR}
+            </if>
+            <if test="sendTime != null">
+                AND send_time = #{sendTime,jdbcType=BIGINT}
+            </if>
+            <if test="direction != null">
+                AND direction = #{direction,jdbcType=VARCHAR}
+            </if>
+            <if test="fromName != null">
+                AND from_name = #{fromName,jdbcType=VARCHAR}
+            </if>
+            <if test="toName != null">
+                AND to_name = #{toName,jdbcType=VARCHAR}
+            </if>
+            <if test="chatType != null">
+                AND chat_type = #{chatType,jdbcType=VARCHAR}
+            </if>
+            <if test="msgType != null">
+                AND msg_type = #{msgType,jdbcType=VARCHAR}
+            </if>
+            <if test="ext != null">
+                AND ext = #{ext,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="bodies != null">
+                AND bodies = #{bodies,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="getTime != null">
+                AND get_time = #{getTime,jdbcType=BIGINT}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListByFromToList" parameterType="com.union.aimei.common.vo.im.common.ImMessagesVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from im_messages
+        where
+        (
+        <foreach item="item" index="index" collection="fromList" open="(" separator="or" close=")">
+            from_name = #{item}
+        </foreach>
+        and
+        <foreach item="item" index="index" collection="toList" open="(" separator="or" close=")">
+            to_name = #{item}
+        </foreach>
+        ) or (
+        <foreach item="item" index="index" collection="toList" open="(" separator="or" close=")">
+            from_name = #{item}
+        </foreach>
+        and
+        <foreach item="item" index="index" collection="fromList" open="(" separator="or" close=")">
+            to_name = #{item}
+        </foreach>
+        )
+        order by send_time
+    </select>
+
+    <select id="selectListByRecentContactlist" parameterType="com.union.aimei.common.vo.im.common.ImMessagesRecentContactlistVo" resultType="java.lang.String">
+        select distinct recent_contact_name
+        from
+        (
+        (
+        select from_name as recent_contact_name
+        from im_messages
+        where
+        (
+        <foreach item="item" index="index" collection="userNameList" open="(" separator="or" close=")">
+            to_name = #{item}
+        </foreach>
+        )
+        order by send_time
+        )
+        union
+        (
+        select to_name as recent_contact_name
+        from im_messages
+        where
+        (
+        <foreach item="item" index="index" collection="userNameList" open="(" separator="or" close=")">
+            from_name = #{item}
+        </foreach>
+        )
+        order by send_time
+        )
+        ) im_messages_recent_contact
+    </select>
+
+    <insert id="addBatch" parameterType="com.union.aimei.common.vo.im.common.ImMessagesByBatchVo" useGeneratedKeys="true">
+        insert into im_messages (msg_id, send_time, direction, from_name, to_name, chat_type, msg_type, ext, bodies, get_time)
+        values
+        <foreach collection="imMessagesList" item="item" index="index" separator=",">
+            (#{item.msgId}, #{item.sendTime}, #{item.direction}, #{item.fromName}, #{item.toName}, #{item.chatType}, #{item.msgType}, #{item.ext}, #{item.bodies}, #{item.getTime})
+        </foreach>
+    </insert>
+
+</mapper>

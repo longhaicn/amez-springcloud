@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderComment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="has_cancel" property="hasCancel" jdbcType="BIT" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+    <result column="procut_name" property="procutName" jdbcType="VARCHAR" />
+    <result column="product_img" property="productImg" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="member_img_url" property="memberImgUrl" jdbcType="VARCHAR" />
+    <result column="parent_comment_id" property="parentCommentId" jdbcType="INTEGER" />
+    <result column="parent_beautician_id" property="parentBeauticianId" jdbcType="INTEGER" />
+    <result column="parent_beautician_name" property="parentBeauticianName" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="reply_content" property="replyContent" jdbcType="VARCHAR" />
+    <result column="reply_time" property="replyTime" jdbcType="TIMESTAMP" />
+    <result column="servicecredit" property="servicecredit" jdbcType="INTEGER" />
+    <result column="store_environment" property="storeEnvironment" jdbcType="INTEGER" />
+    <result column="beautician_server_quality" property="beauticianServerQuality" jdbcType="INTEGER" />
+    <result column="label_code" property="labelCode" jdbcType="VARCHAR" />
+    <result column="oper_type" property="operType" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="is_checked" property="isChecked" jdbcType="BIT" />
+    <result column="is_anonymity" property="isAnonymity" jdbcType="BIT" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+    <result column="like_num" property="likeNum" jdbcType="INTEGER" />
+    <result column="product_evaluation_grade" property="productEvaluationGrade" jdbcType="TINYINT" />
+    <result column="beautician_evaluation_grade" property="beauticianEvaluationGrade" jdbcType="TINYINT" />
+    <result column="store_evaluation_grade" property="storeEvaluationGrade" jdbcType="TINYINT" />
+    <result column="has_img" property="hasImg" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+    <sql id="Base_Column_List" >
+    id, has_cancel, order_id, order_no, beautician_id, store_id, store_name, product_id,
+    procut_name, product_img, member_id, member_name, member_img_url, parent_comment_id,
+    parent_beautician_id, parent_beautician_name, content, reply_content, reply_time,
+    servicecredit, store_environment, beautician_server_quality, label_code, oper_type,
+    is_enabled, is_checked, is_anonymity, comment_num, like_num, product_evaluation_grade,
+    beautician_evaluation_grade, store_evaluation_grade, has_img, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn" >
+    id, has_cancel AS hasCancel, order_id AS orderId, order_no AS orderNo, beautician_id AS beauticianId,
+    store_id AS storeId, store_name AS storeName, product_id AS productId, procut_name AS procutName,
+    product_img AS productImg, member_id AS memberId, member_name AS memberName, member_img_url AS memberImgUrl,
+    parent_comment_id AS parentCommentId, parent_beautician_id AS parentBeauticianId,
+    parent_beautician_name AS parentBeauticianName, content, reply_content AS replyContent,
+    reply_time AS replyTime, servicecredit, store_environment AS storeEnvironment, beautician_server_quality AS beauticianServerQuality,
+    label_code AS labelCode, oper_type AS operType, is_enabled AS isEnabled, is_checked AS isChecked,
+    is_anonymity AS isAnonymity, comment_num AS commentNum, like_num AS likeNum, product_evaluation_grade AS productEvaluationGrade,
+    beautician_evaluation_grade AS beauticianEvaluationGrade, store_evaluation_grade AS storeEvaluationGrade,
+    has_img AS hasImg, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from order_comment
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_comment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderComment" useGeneratedKeys="true" keyProperty="id" >
+        insert into order_comment
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="hasCancel != null" >
+                has_cancel,
+            </if>
+            <if test="orderId != null" >
+                order_id,
+            </if>
+            <if test="orderNo != null" >
+                order_no,
+            </if>
+            <if test="beauticianId != null" >
+                beautician_id,
+            </if>
+            <if test="storeId != null" >
+                store_id,
+            </if>
+            <if test="storeName != null" >
+                store_name,
+            </if>
+            <if test="productId != null" >
+                product_id,
+            </if>
+            <if test="procutName != null" >
+                procut_name,
+            </if>
+            <if test="productImg != null" >
+                product_img,
+            </if>
+            <if test="memberId != null" >
+                member_id,
+            </if>
+            <if test="memberName != null" >
+                member_name,
+            </if>
+            <if test="memberImgUrl != null" >
+                member_img_url,
+            </if>
+            <if test="parentCommentId != null" >
+                parent_comment_id,
+            </if>
+            <if test="parentBeauticianId != null" >
+                parent_beautician_id,
+            </if>
+            <if test="parentBeauticianName != null" >
+                parent_beautician_name,
+            </if>
+            <if test="content != null" >
+                content,
+            </if>
+            <if test="replyContent != null" >
+                reply_content,
+            </if>
+            <if test="replyTime != null" >
+                reply_time,
+            </if>
+            <if test="servicecredit != null" >
+                servicecredit,
+            </if>
+            <if test="storeEnvironment != null" >
+                store_environment,
+            </if>
+            <if test="beauticianServerQuality != null" >
+                beautician_server_quality,
+            </if>
+            <if test="labelCode != null" >
+                label_code,
+            </if>
+            <if test="operType != null" >
+                oper_type,
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled,
+            </if>
+            <if test="isChecked != null" >
+                is_checked,
+            </if>
+            <if test="isAnonymity != null" >
+                is_anonymity,
+            </if>
+            <if test="commentNum != null" >
+                comment_num,
+            </if>
+            <if test="likeNum != null" >
+                like_num,
+            </if>
+            <if test="productEvaluationGrade != null" >
+                product_evaluation_grade,
+            </if>
+            <if test="beauticianEvaluationGrade != null" >
+                beautician_evaluation_grade,
+            </if>
+            <if test="storeEvaluationGrade != null" >
+                store_evaluation_grade,
+            </if>
+            <if test="hasImg != null" >
+                has_img,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="hasCancel != null" >
+                #{hasCancel,jdbcType=BIT},
+            </if>
+            <if test="orderId != null" >
+                #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null" >
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null" >
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null" >
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null" >
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null" >
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="procutName != null" >
+                #{procutName,jdbcType=VARCHAR},
+            </if>
+            <if test="productImg != null" >
+                #{productImg,jdbcType=VARCHAR},
+            </if>
+            <if test="memberId != null" >
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="memberName != null" >
+                #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberImgUrl != null" >
+                #{memberImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="parentCommentId != null" >
+                #{parentCommentId,jdbcType=INTEGER},
+            </if>
+            <if test="parentBeauticianId != null" >
+                #{parentBeauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="parentBeauticianName != null" >
+                #{parentBeauticianName,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="replyContent != null" >
+                #{replyContent,jdbcType=VARCHAR},
+            </if>
+            <if test="replyTime != null" >
+                #{replyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="servicecredit != null" >
+                #{servicecredit,jdbcType=INTEGER},
+            </if>
+            <if test="storeEnvironment != null" >
+                #{storeEnvironment,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianServerQuality != null" >
+                #{beauticianServerQuality,jdbcType=INTEGER},
+            </if>
+            <if test="labelCode != null" >
+                #{labelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="operType != null" >
+                #{operType,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null" >
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="isChecked != null" >
+                #{isChecked,jdbcType=BIT},
+            </if>
+            <if test="isAnonymity != null" >
+                #{isAnonymity,jdbcType=BIT},
+            </if>
+            <if test="commentNum != null" >
+                #{commentNum,jdbcType=INTEGER},
+            </if>
+            <if test="likeNum != null" >
+                #{likeNum,jdbcType=INTEGER},
+            </if>
+            <if test="productEvaluationGrade != null" >
+                #{productEvaluationGrade,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianEvaluationGrade != null" >
+                #{beauticianEvaluationGrade,jdbcType=TINYINT},
+            </if>
+            <if test="storeEvaluationGrade != null" >
+                #{storeEvaluationGrade,jdbcType=TINYINT},
+            </if>
+            <if test="hasImg != null" >
+                #{hasImg,jdbcType=BIT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderComment" >
+        update order_comment
+        <set >
+            <if test="hasCancel != null" >
+                has_cancel = #{hasCancel,jdbcType=BIT},
+            </if>
+            <if test="orderId != null" >
+                order_id = #{orderId,jdbcType=INTEGER},
+            </if>
+            <if test="orderNo != null" >
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null" >
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null" >
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null" >
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null" >
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="procutName != null" >
+                procut_name = #{procutName,jdbcType=VARCHAR},
+            </if>
+            <if test="productImg != null" >
+                product_img = #{productImg,jdbcType=VARCHAR},
+            </if>
+            <if test="memberId != null" >
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="memberName != null" >
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberImgUrl != null" >
+                member_img_url = #{memberImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="parentCommentId != null" >
+                parent_comment_id = #{parentCommentId,jdbcType=INTEGER},
+            </if>
+            <if test="parentBeauticianId != null" >
+                parent_beautician_id = #{parentBeauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="parentBeauticianName != null" >
+                parent_beautician_name = #{parentBeauticianName,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null" >
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="replyContent != null" >
+                reply_content = #{replyContent,jdbcType=VARCHAR},
+            </if>
+            <if test="replyTime != null" >
+                reply_time = #{replyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="servicecredit != null" >
+                servicecredit = #{servicecredit,jdbcType=INTEGER},
+            </if>
+            <if test="storeEnvironment != null" >
+                store_environment = #{storeEnvironment,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianServerQuality != null" >
+                beautician_server_quality = #{beauticianServerQuality,jdbcType=INTEGER},
+            </if>
+            <if test="labelCode != null" >
+                label_code = #{labelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="operType != null" >
+                oper_type = #{operType,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="isChecked != null" >
+                is_checked = #{isChecked,jdbcType=BIT},
+            </if>
+            <if test="isAnonymity != null" >
+                is_anonymity = #{isAnonymity,jdbcType=BIT},
+            </if>
+            <if test="commentNum != null" >
+                comment_num = #{commentNum,jdbcType=INTEGER},
+            </if>
+            <if test="likeNum != null" >
+                like_num = #{likeNum,jdbcType=INTEGER},
+            </if>
+            <if test="productEvaluationGrade != null" >
+                product_evaluation_grade = #{productEvaluationGrade,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianEvaluationGrade != null" >
+                beautician_evaluation_grade = #{beauticianEvaluationGrade,jdbcType=TINYINT},
+            </if>
+            <if test="storeEvaluationGrade != null" >
+                store_evaluation_grade = #{storeEvaluationGrade,jdbcType=TINYINT},
+            </if>
+            <if test="hasImg != null" >
+                has_img = #{hasImg,jdbcType=BIT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderComment" resultMap="BaseResultMap" >
+        select <include refid="Base_Column_List"/> from order_comment
+        <where >
+            <if test="hasCancel != null" >
+                AND has_cancel = #{hasCancel,jdbcType=BIT}
+            </if>
+            <if test="orderId != null" >
+                AND order_id = #{orderId,jdbcType=INTEGER}
+            </if>
+            <if test="orderNo != null" >
+                AND order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianId != null" >
+                AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null" >
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null" >
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="productId != null" >
+                AND product_id = #{productId,jdbcType=INTEGER}
+            </if>
+            <if test="procutName != null" >
+                AND procut_name = #{procutName,jdbcType=VARCHAR}
+            </if>
+            <if test="productImg != null" >
+                AND product_img = #{productImg,jdbcType=VARCHAR}
+            </if>
+            <if test="memberId != null" >
+                AND member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="memberName != null" >
+                AND member_name = #{memberName,jdbcType=VARCHAR}
+            </if>
+            <if test="memberImgUrl != null" >
+                AND member_img_url = #{memberImgUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="parentCommentId != null" >
+                AND parent_comment_id = #{parentCommentId,jdbcType=INTEGER}
+            </if>
+            <if test="parentBeauticianId != null" >
+                AND parent_beautician_id = #{parentBeauticianId,jdbcType=INTEGER}
+            </if>
+            <if test="parentBeauticianName != null" >
+                AND parent_beautician_name = #{parentBeauticianName,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null" >
+                AND content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="replyContent != null" >
+                AND reply_content = #{replyContent,jdbcType=VARCHAR}
+            </if>
+            <if test="replyTime != null" >
+                AND reply_time = #{replyTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="servicecredit != null" >
+                AND servicecredit = #{servicecredit,jdbcType=INTEGER}
+            </if>
+            <if test="storeEnvironment != null" >
+                AND store_environment = #{storeEnvironment,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianServerQuality != null" >
+                AND beautician_server_quality = #{beauticianServerQuality,jdbcType=INTEGER}
+            </if>
+            <if test="labelCode != null" >
+                AND label_code = #{labelCode,jdbcType=VARCHAR}
+            </if>
+            <if test="operType != null" >
+                AND oper_type = #{operType,jdbcType=INTEGER}
+            </if>
+            <if test="isEnabled != null" >
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="isChecked != null" >
+                AND is_checked = #{isChecked,jdbcType=BIT}
+            </if>
+            <if test="isAnonymity != null" >
+                AND is_anonymity = #{isAnonymity,jdbcType=BIT}
+            </if>
+            <if test="commentNum != null" >
+                AND comment_num = #{commentNum,jdbcType=INTEGER}
+            </if>
+            <if test="likeNum != null" >
+                AND like_num = #{likeNum,jdbcType=INTEGER}
+            </if>
+            <if test="productEvaluationGrade != null" >
+                AND product_evaluation_grade = #{productEvaluationGrade,jdbcType=TINYINT}
+            </if>
+            <if test="beauticianEvaluationGrade != null" >
+                AND beautician_evaluation_grade = #{beauticianEvaluationGrade,jdbcType=TINYINT}
+            </if>
+            <if test="storeEvaluationGrade != null" >
+                AND store_evaluation_grade = #{storeEvaluationGrade,jdbcType=TINYINT}
+            </if>
+            <if test="hasImg != null" >
+                AND has_img = #{hasImg,jdbcType=BIT}
+            </if>
+            <if test="createTime != null" >
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null" >
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+  <!--查询订单评论时间-->
+  <select id="queryOrderCommentTime" parameterType="integer" resultType="com.union.aimei.common.model.order.OrderComment">
+    SELECT create_time AS createTime FROM  order_comment
+    WHERE order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+
+
+  <!--通过订单评论ID查询评论图片-->
+  <select id="queryOrderCommentImgList" parameterType="integer" resultType="string">
+    SELECT comment_img_url AS  commentImgUrl FROM order_comment_img
+    WHERE comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+
+
+
+    <!--根据订单ID查询评论内容 -->
+    <select id="queryByOrderId" parameterType="integer" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        from order_comment
+        WHERE order_id=#{orderId}
+        and is_enabled=1
+    </select>
+</mapper>

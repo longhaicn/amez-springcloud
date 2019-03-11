@@ -1,0 +1,17 @@
+server:
+  port: 8000
+eureka:
+  instance:
+    hostname: 39.108.187.198
+  client:
+    serviceUrl:
+      defaultZone: http://120.78.94.124:${server.port}/eureka/
+#是否打开自我保护，如果设置为true，很容易会出现红色字体的自我保护提示，不方便测试
+  server:
+    enable-self-preservation: false
+#清理时间，默认是60*1000毫秒，修改短一点，保证开发时，客户端失效后，能够快速剔除客户端
+    eviction-interval-timer-in-ms: 10000
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@

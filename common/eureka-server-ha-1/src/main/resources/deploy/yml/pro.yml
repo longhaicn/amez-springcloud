@@ -1,0 +1,33 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: eureka1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: eureka1
+    spec:
+      containers:
+      - name: eureka1
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/eureka-server-ha-1:v1.1.3
+        ports: 
+        - containerPort: 8000
+      nodeSelector:
+        disktype: k8s-node1
+      imagePullSecrets:
+      - name: k8slogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eureka1-svc
+spec:
+  selector:
+    run: eureka1
+  type: NodePort
+  ports:
+    - nodePort: 30010
+      port: 8000
+      targetPort: 8000

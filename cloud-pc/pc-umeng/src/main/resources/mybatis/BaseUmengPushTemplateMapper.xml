@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.umeng.mapper.BaseUmengPushTemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.umeng.BaseUmengPushTemplate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="send_type" property="sendType" jdbcType="INTEGER" />
+    <result column="receiver_type" property="receiverType" jdbcType="INTEGER" />
+    <result column="push_ticker" property="pushTicker" jdbcType="VARCHAR" />
+    <result column="push_title" property="pushTitle" jdbcType="VARCHAR" />
+    <result column="push_text" property="pushText" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+    <result column="push_time" property="pushTime" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, send_type, receiver_type, push_ticker, push_title, push_text, member_id, device_token,
+    push_time, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, send_type AS sendType, receiver_type AS receiverType, push_ticker AS pushTicker,
+    push_title AS pushTitle, push_text AS pushText, member_id AS memberId, device_token AS deviceToken,
+    push_time AS pushTime, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_umeng_push_template
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_umeng_push_template
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushTemplate" useGeneratedKeys="true" keyProperty="id" >
+    insert into base_umeng_push_template
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sendType != null" >
+        send_type,
+      </if>
+      <if test="receiverType != null" >
+        receiver_type,
+      </if>
+      <if test="pushTicker != null" >
+        push_ticker,
+      </if>
+      <if test="pushTitle != null" >
+        push_title,
+      </if>
+      <if test="pushText != null" >
+        push_text,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="deviceToken != null" >
+        device_token,
+      </if>
+      <if test="pushTime != null" >
+        push_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sendType != null" >
+        #{sendType,jdbcType=INTEGER},
+      </if>
+      <if test="receiverType != null" >
+        #{receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="pushTicker != null" >
+        #{pushTicker,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTitle != null" >
+        #{pushTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pushText != null" >
+        #{pushText,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceToken != null" >
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null" >
+        #{pushTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushTemplate" >
+    update base_umeng_push_template
+    <set >
+      <if test="sendType != null" >
+        send_type = #{sendType,jdbcType=INTEGER},
+      </if>
+      <if test="receiverType != null" >
+        receiver_type = #{receiverType,jdbcType=INTEGER},
+      </if>
+      <if test="pushTicker != null" >
+        push_ticker = #{pushTicker,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTitle != null" >
+        push_title = #{pushTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pushText != null" >
+        push_text = #{pushText,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceToken != null" >
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTime != null" >
+        push_time = #{pushTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushTemplate" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from base_umeng_push_template
+    <where >
+      <if test="sendType != null" >
+        AND send_type = #{sendType,jdbcType=INTEGER}
+      </if>
+      <if test="receiverType != null" >
+        AND receiver_type = #{receiverType,jdbcType=INTEGER}
+      </if>
+      <if test="pushTicker != null" >
+        AND push_ticker = #{pushTicker,jdbcType=VARCHAR}
+      </if>
+      <if test="pushTitle != null" >
+        AND push_title = #{pushTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="pushText != null" >
+        AND push_text = #{pushText,jdbcType=VARCHAR}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="deviceToken != null" >
+        AND device_token = #{deviceToken,jdbcType=VARCHAR}
+      </if>
+      <if test="pushTime != null" >
+        AND push_time = #{pushTime,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+</mapper>

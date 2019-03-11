@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.umeng.mapper.BaseMemberDeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.umeng.BaseMemberDevice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="device_type" property="deviceType" jdbcType="INTEGER" />
+    <result column="device_system" property="deviceSystem" jdbcType="INTEGER" />
+    <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+    <result column="token_online" property="tokenOnline" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, member_id, device_type, device_system, device_token,token_online, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, member_id AS memberId, device_type AS deviceType, device_system AS deviceSystem,
+     device_token AS deviceToken,token_online AS tokenOnline,
+    create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_member_device
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_member_device
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.umeng.BaseMemberDevice" useGeneratedKeys="true" keyProperty="id" >
+    insert into base_member_device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="deviceSystem != null" >
+        device_system,
+      </if>
+      <if test="deviceToken != null" >
+        device_token,
+      </if>
+      <if test="tokenOnline != null" >
+        token_online,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSystem != null" >
+        #{deviceSystem,jdbcType=INTEGER},
+      </if>
+      <if test="deviceToken != null" >
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenOnline != null" >
+        #{tokenOnline,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.umeng.BaseMemberDevice" >
+    update base_member_device
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="deviceSystem != null" >
+        device_system = #{deviceSystem,jdbcType=INTEGER},
+      </if>
+      <if test="deviceToken != null" >
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenOnline != null" >
+        token_online = #{tokenOnline,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.umeng.BaseMemberDevice" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from base_member_device
+    <where >
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="deviceType != null" >
+        AND device_type = #{deviceType,jdbcType=INTEGER}
+      </if>
+      <if test="deviceSystem != null" >
+        AND device_system = #{deviceSystem,jdbcType=INTEGER}
+      </if>
+      <if test="deviceToken != null" >
+        AND device_token = #{deviceToken,jdbcType=VARCHAR}
+      </if>
+      <if test="tokenOnline != null" >
+        AND token_online = #{tokenOnline,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by update_time desc
+  </select>
+
+  <select id="queryDeviceTokenByMemberId" parameterType="java.lang.Integer" resultType="java.lang.String">
+    SELECT device_token FROM
+    base_member_device WHERE member_id = #{memberId,jdbcType=INTEGER} order by create_time desc
+  </select>
+
+  <select id="queryTokenByMemberId" parameterType="java.lang.Integer" resultType="java.lang.String">
+    SELECT device_token FROM
+    base_member_device WHERE member_id = #{memberId} and token_online = 1 order by create_time desc
+  </select>
+
+  <select id="queryIdListByToken" parameterType="java.lang.String" resultType="integer">
+    select id FROM
+    base_member_device WHERE device_token = #{token}
+  </select>
+
+  <!-- 批量数据 -->
+  <delete id="deleteBatch" parameterType="int">
+    delete from base_member_device where id in
+    <foreach item="item" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+</mapper>

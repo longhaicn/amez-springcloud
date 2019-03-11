@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-umeng
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-umeng
+    spec:
+      containers:
+      - name: app-umeng
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-umeng:v1.1.56-test
+        ports: 
+        - containerPort: 8026
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-umeng-svc
+spec:
+  selector:
+    run: app-umeng
+  type: NodePort
+  ports:
+    - nodePort: 30025
+      port: 8026
+      targetPort: 8026

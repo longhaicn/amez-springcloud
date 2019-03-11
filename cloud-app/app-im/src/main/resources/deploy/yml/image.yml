@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-im
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-im
+    spec:
+      containers:
+      - name: app-im
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-im:v1.1.56-test
+        ports: 
+        - containerPort: 8014
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-im-svc
+spec:
+  selector:
+    run: app-im
+  type: NodePort
+  ports:
+    - nodePort: 30034
+      port: 8014
+      targetPort: 8014

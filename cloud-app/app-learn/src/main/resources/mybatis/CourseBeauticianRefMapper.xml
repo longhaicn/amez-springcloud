@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.CourseBeauticianRefMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.CourseBeauticianRef" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="trade_ref_id" property="tradeRefId" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="beautician_name" property="beauticianName" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="BIT" />
+    <result column="school_roll" property="schoolRoll" jdbcType="VARCHAR" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+    <result column="beauti_training_end" property="beautiTrainingEnd" jdbcType="TIMESTAMP" />
+    <result column="learning_status" property="learningStatus" jdbcType="TINYINT" />
+    <result column="sign_status" property="signStatus" jdbcType="TINYINT" />
+    <result column="evaluate_score" property="evaluateScore" jdbcType="INTEGER" />
+    <result column="evaluate_answer" property="evaluateAnswer" jdbcType="VARCHAR" />
+    <result column="evaluate_time" property="evaluateTime" jdbcType="TIMESTAMP" />
+    <result column="is_training_out" property="isTrainingOut" jdbcType="BIT" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="is_scheduling" property="isScheduling" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, beautician_name, mobile_phone, gender, school_roll, course_id, beautician_id,sign_status,evaluate_score,evaluate_answer,
+    beauti_training_end, learning_status, is_training_out, is_enabled, create_time, update_time , evaluate_time , is_scheduling ,
+    trade_ref_id , member_id
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, beautician_name AS beauticianName, mobile_phone AS mobilePhone, gender, school_roll AS schoolRoll,
+    course_id AS courseId, beautician_id AS beauticianId, beauti_training_end AS beautiTrainingEnd,
+    sign_status AS signStatus , evaluate_score AS evaluateScore , evaluate_answer AS evaluateAnswer,
+    learning_status AS learningStatus, is_training_out AS isTrainingOut, is_enabled AS isEnabled,
+    create_time AS createTime, update_time AS updateTime , evaluate_time AS evaluateTime,
+    is_scheduling AS isScheduling, trade_ref_id AS tradeRefId , member_id AS memberId
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from course_beautician_ref
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_beautician_ref
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.CourseBeauticianRef" useGeneratedKeys="true" keyProperty="id" >
+    insert into course_beautician_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="beauticianName != null" >
+        beautician_name,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="schoolRoll != null" >
+        school_roll,
+      </if>
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id,
+      </if>
+      <if test="beautiTrainingEnd != null" >
+        beauti_training_end,
+      </if>
+      <if test="learningStatus != null" >
+        learning_status,
+      </if>
+      <if test="signStatus != null" >
+        sign_status,
+      </if>
+      <if test="evaluateScore != null" >
+        evaluate_score,
+      </if>
+      <if test="evaluateAnswer != null" >
+        evaluate_answer,
+      </if>
+      <if test="evaluateTime != null" >
+        evaluate_time,
+      </if>
+      <if test="isTrainingOut != null" >
+        is_training_out,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="isScheduling != null" >
+        is_scheduling,
+      </if>
+      <if test="tradeRefId != null" >
+        trade_ref_id,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="beauticianName != null" >
+        #{beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="schoolRoll != null" >
+        #{schoolRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianId != null" >
+        #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="beautiTrainingEnd != null" >
+        #{beautiTrainingEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="learningStatus != null" >
+        #{learningStatus,jdbcType=TINYINT},
+      </if>
+      <if test="signStatus != null" >
+        #{signStatus,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateScore != null" >
+        #{evaluateScore,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateAnswer != null" >
+        #{evaluateAnswer,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateTime != null" >
+        #{evaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTrainingOut != null" >
+        #{isTrainingOut,jdbcType=BIT},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isScheduling != null" >
+        #{isScheduling,jdbcType=TINYINT},
+      </if>
+      <if test="tradeRefId != null" >
+        #{tradeRefId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.CourseBeauticianRef" >
+    update course_beautician_ref
+    <set >
+      <if test="beauticianName != null" >
+        beautician_name = #{beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="schoolRoll != null" >
+        school_roll = #{schoolRoll,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id = #{beauticianId,jdbcType=INTEGER},
+      </if>
+      <if test="beautiTrainingEnd != null" >
+        beauti_training_end = #{beautiTrainingEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="learningStatus != null" >
+        learning_status = #{learningStatus,jdbcType=TINYINT},
+      </if>
+      <if test="signStatus != null" >
+        sign_status = #{signStatus,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateScore != null" >
+        evaluate_score = #{evaluateScore,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateAnswer != null" >
+        evaluate_answer = #{evaluateAnswer,jdbcType=TINYINT},
+      </if>
+      <if test="evaluateTime != null" >
+        evaluate_time = #{evaluateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isTrainingOut != null" >
+        is_training_out = #{isTrainingOut,jdbcType=BIT},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isScheduling != null" >
+        is_scheduling = #{isScheduling,jdbcType=TINYINT},
+      </if>
+      <if test="tradeRefId != null" >
+        trade_ref_id = #{tradeRefId,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.CourseBeauticianRef" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from course_beautician_ref
+    <where >
+      <if test="beauticianName != null" >
+        AND beautician_name = #{beauticianName,jdbcType=VARCHAR}
+      </if>
+      <if test="mobilePhone != null" >
+        AND mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null" >
+        AND gender = #{gender,jdbcType=BIT}
+      </if>
+      <if test="schoolRoll != null" >
+        AND school_roll = #{schoolRoll,jdbcType=VARCHAR}
+      </if>
+      <if test="courseId != null" >
+        AND course_id = #{courseId,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianId != null" >
+        AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+      </if>
+      <if test="beautiTrainingEnd != null" >
+        AND beauti_training_end = #{beautiTrainingEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="learningStatus != null" >
+        AND learning_status = #{learningStatus,jdbcType=TINYINT}
+      </if>
+      <if test="signStatus != null" >
+        AND sign_status = #{signStatus,jdbcType=TINYINT}
+      </if>
+      <if test="evaluateScore != null" >
+        AND evaluate_score = #{evaluateScore,jdbcType=TINYINT}
+      </if>
+      <if test="evaluateAnswer != null" >
+        AND evaluate_answer = #{evaluateAnswer,jdbcType=TINYINT}
+      </if>
+      <if test="evaluateTime != null" >
+        AND evaluate_time = #{evaluateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isTrainingOut != null" >
+        AND is_training_out = #{isTrainingOut,jdbcType=BIT}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isScheduling != null" >
+        AND is_scheduling = #{isScheduling,jdbcType=TINYINT}
+      </if>
+      <if test="tradeRefId != null" >
+        AND trade_ref_id = #{tradeRefId,jdbcType=INTEGER}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+  <select id="selectCountByConditions" parameterType="com.union.aimei.common.model.learn.CourseBeauticianRef" resultType="int" >
+    select count(*) from course_beautician_ref
+    <where >
+      <if test="beauticianName != null" >
+        AND beautician_name = #{beauticianName,jdbcType=VARCHAR}
+      </if>
+      <if test="mobilePhone != null" >
+        AND mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null" >
+        AND gender = #{gender,jdbcType=BIT}
+      </if>
+      <if test="schoolRoll != null" >
+        AND school_roll = #{schoolRoll,jdbcType=VARCHAR}
+      </if>
+      <if test="courseId != null" >
+        AND course_id = #{courseId,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianId != null" >
+        AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+      </if>
+      <if test="beautiTrainingEnd != null" >
+        AND beauti_training_end = #{beautiTrainingEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="learningStatus != null" >
+        AND learning_status = #{learningStatus,jdbcType=TINYINT}
+      </if>
+      <if test="signStatus != null" >
+        AND sign_status = #{signStatus,jdbcType=TINYINT}
+      </if>
+      <if test="evaluateScore != null" >
+        AND evaluate_score = #{evaluateScore,jdbcType=TINYINT}
+      </if>
+      <if test="evaluateAnswer != null" >
+        AND evaluate_answer = #{evaluateAnswer,jdbcType=TINYINT}
+      </if>
+      <if test="evaluateTime != null" >
+        AND evaluate_time = #{evaluateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isTrainingOut != null" >
+        AND is_training_out = #{isTrainingOut,jdbcType=BIT}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isScheduling != null" >
+        AND is_scheduling = #{isScheduling,jdbcType=TINYINT}
+      </if>
+      <if test="tradeRefId != null" >
+        AND trade_ref_id = #{tradeRefId,jdbcType=INTEGER}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+  <select id="findPageCourseBeauticianRef" resultType="com.union.aimei.common.vo.learn.app.CourseBeauticianRefResultVo" parameterType="com.union.aimei.common.model.learn.CourseBeauticianRef">
+    SELECT
+      course.id courseId,
+      course.course_name courseName,
+      DATE_FORMAT(ref.create_time,'%Y-%m-%d %H:%m:%s') traininDate,
+      DATE_FORMAT( ref.create_time, '%Y' ) yearStr
+    FROM
+      course course,
+      course_beautician_ref ref
+    WHERE
+          course.is_enabled = TRUE
+      AND ref.is_enabled = TRUE
+      AND ref.course_id = course.id
+    <if test="beauticianId != null" >
+      AND ref.beautician_id = #{beauticianId,jdbcType=INTEGER}
+    </if>
+    <if test="learningStatus != null" >
+      AND ref.learning_status = #{learningStatus,jdbcType=TINYINT}
+    </if>
+    <if test="signStatus != null" >
+      AND ref.sign_status = #{signStatus,jdbcType=TINYINT}
+    </if>
+    order by ref.create_time desc
+  </select>
+
+</mapper>

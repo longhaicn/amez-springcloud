@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-rule
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-rule
+    spec:
+      containers:
+      - name: app-rule
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-rule:v1.1.56-test
+        ports: 
+        - containerPort: 8029
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-rule-svc
+spec:
+  selector:
+    run: app-rule
+  type: NodePort
+  ports:
+    - nodePort: 30028
+      port: 8029
+      targetPort: 8029

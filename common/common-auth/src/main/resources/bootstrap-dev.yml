@@ -1,0 +1,28 @@
+server:
+  port: 8007
+eureka:
+  instance:
+       hostname: localhost
+  client:
+    serviceUrl:
+       defaultZone: http://localhost:8000/eureka/
+swagger:
+  docket:
+       token:
+          title: 令牌
+          description: 更多接口稍后开发
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.auth
+          contact:
+              name: 香港Boy
+              email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+jwt:
+  params:
+    issuer: beautybond
+    expiration-time: 1
+    refresh-exp-time: 5
+    signing-key: abhuasdaqewq

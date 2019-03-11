@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderGoodsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderGoodsInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_goods_base_id" property="orderGoodsBaseId" jdbcType="INTEGER" />
+    <result column="product_physical_id" property="productPhysicalId" jdbcType="INTEGER" />
+    <result column="physical_name" property="physicalName" jdbcType="VARCHAR" />
+    <result column="cover_img" property="coverImg" jdbcType="VARCHAR" />
+    <result column="physical_img" property="physicalImg" jdbcType="LONGVARCHAR" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="sale_price" property="salePrice" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, order_goods_base_id, product_physical_id, physical_name, cover_img, physical_img, 
+    nums, sale_price, is_enabled
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, order_goods_base_id AS orderGoodsBaseId, product_physical_id AS productPhysicalId, 
+    physical_name AS physicalName, cover_img AS coverImg, physical_img AS physicalImg, 
+    nums, sale_price AS salePrice, is_enabled AS isEnabled
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_goods_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_goods_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderGoodsInfo" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_goods_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderGoodsBaseId != null" >
+        order_goods_base_id,
+      </if>
+      <if test="productPhysicalId != null" >
+        product_physical_id,
+      </if>
+      <if test="physicalName != null" >
+        physical_name,
+      </if>
+      <if test="coverImg != null" >
+        cover_img,
+      </if>
+      <if test="physicalImg != null" >
+        physical_img,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderGoodsBaseId != null" >
+        #{orderGoodsBaseId,jdbcType=INTEGER},
+      </if>
+      <if test="productPhysicalId != null" >
+        #{productPhysicalId,jdbcType=INTEGER},
+      </if>
+      <if test="physicalName != null" >
+        #{physicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null" >
+        #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="physicalImg != null" >
+        #{physicalImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderGoodsInfo" >
+    update order_goods_info
+    <set >
+      <if test="orderGoodsBaseId != null" >
+        order_goods_base_id = #{orderGoodsBaseId,jdbcType=INTEGER},
+      </if>
+      <if test="productPhysicalId != null" >
+        product_physical_id = #{productPhysicalId,jdbcType=INTEGER},
+      </if>
+      <if test="physicalName != null" >
+        physical_name = #{physicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null" >
+        cover_img = #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="physicalImg != null" >
+        physical_img = #{physicalImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderGoodsInfo" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from order_goods_info
+    <where >
+      <if test="orderGoodsBaseId != null" >
+        AND order_goods_base_id = #{orderGoodsBaseId,jdbcType=INTEGER}
+      </if>
+      <if test="productPhysicalId != null" >
+        AND product_physical_id = #{productPhysicalId,jdbcType=INTEGER}
+      </if>
+      <if test="physicalName != null" >
+        AND physical_name = #{physicalName,jdbcType=VARCHAR}
+      </if>
+      <if test="coverImg != null" >
+        AND cover_img = #{coverImg,jdbcType=VARCHAR}
+      </if>
+      <if test="physicalImg != null" >
+        AND physical_img = #{physicalImg,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="nums != null" >
+        AND nums = #{nums,jdbcType=INTEGER}
+      </if>
+      <if test="salePrice != null" >
+        AND sale_price = #{salePrice,jdbcType=INTEGER}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+     <select id="queryByOrderGoodsId" parameterType="int" resultMap="BaseResultMap">
+       select <include refid="Base_Column_List"/> from order_goods_info
+       WHERE order_goods_base_id = #{orderGoodsId,jdbcType=INTEGER}
+     </select>
+
+</mapper>

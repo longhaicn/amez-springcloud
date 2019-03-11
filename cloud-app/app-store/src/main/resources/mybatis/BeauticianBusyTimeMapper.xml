@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.store.mapper.BeauticianBusyTimeMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.BeauticianBusyTime">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER"/>
+        <result column="busy_date" property="busyDate" jdbcType="VARCHAR"/>
+        <result column="busy_time" property="busyTime" jdbcType="VARCHAR"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, beautician_id, busy_date, busy_time, is_enabled, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, beautician_id AS beauticianId, busy_date AS busyDate, busy_time AS busyTime, 
+    is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from beautician_busy_time
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from beautician_busy_time
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.BeauticianBusyTime" useGeneratedKeys="true" keyProperty="id">
+        insert into beautician_busy_time
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="beauticianId != null">
+                beautician_id,
+            </if>
+            <if test="busyDate != null">
+                busy_date,
+            </if>
+            <if test="busyTime != null">
+                busy_time,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="beauticianId != null">
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="busyDate != null">
+                #{busyDate,jdbcType=VARCHAR},
+            </if>
+            <if test="busyTime != null">
+                #{busyTime,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.BeauticianBusyTime">
+        update beautician_busy_time
+        <set>
+            <if test="beauticianId != null">
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="busyDate != null">
+                busy_date = #{busyDate,jdbcType=VARCHAR},
+            </if>
+            <if test="busyTime != null">
+                busy_time = #{busyTime,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.BeauticianBusyTime" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from beautician_busy_time
+        where is_enabled = true
+        <if test="beauticianId != null">
+            AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+        </if>
+        <if test="busyDate != null">
+            AND busy_date = #{busyDate,jdbcType=VARCHAR}
+        </if>
+        <if test="busyTime != null">
+            AND busy_time = #{busyTime,jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+    <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into beautician_busy_time (beautician_id, busy_date, busy_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.beauticianId}, #{item.busyDate}, #{item.busyTime})
+        </foreach>
+    </insert>
+
+    <update id="deleteByBeauticianIdForBusyDate" parameterType="java.util.Map">
+        update beautician_busy_time
+        set is_enabled = false
+        where is_enabled = true
+        and beautician_id = #{beauticianId}
+        and busy_date = #{busyDate}
+    </update>
+
+    <select id="selectByBeauticianIdForBusyDate" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from beautician_busy_time
+        where is_enabled = true
+        and beautician_id = #{beauticianId}
+        and busy_date = #{busyDate}
+        limit 1
+    </select>
+
+    <select id="listBeauticianListByBusyDate" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from beautician_busy_time
+        where is_enabled = true
+        <if test="null != beauticianIdList and beauticianIdList.size > 0">
+            and beautician_id in
+            <foreach collection="beauticianIdList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        and busy_date = #{busyDate}
+    </select>
+
+</mapper>

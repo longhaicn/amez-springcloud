@@ -1,0 +1,32 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+         defaultZone: http://localhost:8000/eureka/
+spring:
+  cloud:
+    config:
+          #强制拉取更新
+          force-pull: true
+          #对应前配置文件中的{profile}部分
+          profile: ${config.profile:dev}
+          #对应前配置文件的 git 分支
+          label: master
+           # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+          name: order-service
+          #安全认证,输入git账号密码
+          password: gaowei123
+          username: gaowei
+          failFast: true
+          #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+          discovery:
+             enabled: true
+             service-id: microservice-config-server-eureka
+server:
+  port: 8013
+mybatis:
+   mapper-locations: classpath:mybatis/*.xml
+   type-aliases-package: com.union.aimei.app.api.order.entity
+
+

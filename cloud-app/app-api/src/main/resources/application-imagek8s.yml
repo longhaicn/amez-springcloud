@@ -1,0 +1,293 @@
+server:
+    port: 8080
+    connection-timeout: 50000
+    tomcat:
+        max-connections: 10000
+        min-spare-threads: 100
+eureka:
+    instance:
+      prefer-ip-address: true
+    client:
+       serviceUrl:
+          defaultZone: http://120.78.188.67:30010/eureka/
+spring:
+   data:
+    mongodb:
+     uri: mongodb://172.18.71.105:27017/aimeilogs
+   application:
+     name: app-api
+   cloud:
+     loadbalancer:
+         retry:
+           enabled: true
+#     inetutils:
+#       preferred-networks: 10.0.3
+   http:
+     multipart:
+       max-file-size: 500Mb
+       max-request-size: 500Mb
+   rabbitmq:
+         host: 120.78.208.179
+         port: 5672
+         username: guest
+         password: guest
+         publisher-confirms: true
+         virtual-host: /
+   redis:
+           # Redis数据库索引（默认为0）
+           database: 1
+           # Redis服务器地址
+           host: 172.18.71.105
+           # Redis服务器连接端口
+           port: 6379
+           # Redis服务器连接密码（默认为空）
+           password:
+           # 连接超时时间（毫秒）
+           timeout: 0
+           #连接池
+           pool:
+             #最大连接数（使用负值表示没有限制）
+             max-active: -1
+             # 最大阻塞等待时间（使用负值表示没有限制）
+             max-wait: -1
+             # 中的最小空闲连接
+             min-idle: 0
+             # 最大空闲连接
+             max-idle: 8
+   sleuth:
+       sampler:
+         percentage: 1.0
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
+                    thread:
+                        timeoutInMilliseconds: 60000
+    threadpool:
+      default:
+        coreSize: 10000
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+swagger:
+  docket:
+       订单:
+          title: 订单服务
+          description: 美容邦订单接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.order
+          contact:
+              name: 高伟
+              email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       支付:
+          title: 支付服务
+          description: 美容邦支付接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.pay
+          contact:
+                  name: 高伟
+                  email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       会员:
+          title: 会员服务
+          description: 美容邦会员接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.member
+          contact:
+                  name: 后继有人小哥
+                  email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       商品:
+         title: 商品服务
+         description: 美容邦商品接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.product
+         contact:
+                 name: 刘任开
+                 email: 1002219331@qq.com
+         base-path: /**
+         excludePath: /error
+       门店:
+         title: 门店服务
+         description: 美容邦门店接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.store
+         contact:
+                 name: 刘任开
+                 email: 1002219331@qq.com
+         base-path: /**
+         excludePath: /error
+       系统管理:
+          title: 系统管理
+          description: 美容邦门店接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.system
+          contact:
+                  name: 刘飞华
+                  email: 1002219331@qq.com
+          base-path: /**
+          excludePath: /error
+       IM:
+          title: IM服务
+          description: 美容邦IM接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.im
+          contact:
+                  name: 刘任开
+                  email: false.lrk@qq.com
+          base-path: /**
+          excludePath: /error
+       资产:
+         title: 资产服务
+         description: 美容邦财务接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.financial
+         contact:
+                 name: 刘飞华
+                 email: 1002219331@qq.com
+         base-path: /**
+         excludePath: /error
+       友盟推送:
+         title: 友盟推送
+         description: 美容邦友盟推送接口
+         version: 1.0.1
+         license: Apache License, Version 2.0
+         license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+         base-package: com.union.aimei.app.api.umeng
+         contact:
+                 name: 后继
+                 email: houj@szlhxx.com
+         base-path: /**
+         excludePath: /error
+       学习:
+          title: 学习
+          description: 美容邦学习接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.learn
+          contact:
+                  name: 蔡钊铭
+                  email: caizm@szlhxx.com
+          base-path: /**
+          excludePath: /error
+       规则:
+          title: 规则服务
+          description: 美容邦规则接口
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.app.api.settle
+          contact:
+                  name: 刘任开
+                  email: 1002219331@qq.com
+          base-path: /**
+          excludePath: /error
+  #设置是否开启swagger在线文档，正式环境需关闭
+  enabled: true
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth: error
+    com.codingapi: error
+  config: classpath:logback.xml
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+#分布式事务管理器
+tx-manager: tx-manager
+
+##对接艾美一族接口相关参数
+#amez:
+#    request:
+#          info:
+#              dev:
+#                  host: http://api.amez999.com
+#                  port:
+#              pro:
+#                  host: http://api.amez999.com
+#                  port:
+#              path:
+#                  accessToken: /get/microservice
+#                  api: /microservice/core/api
+#              route-name:
+#                      #会员
+#                  member: /member
+#                      #一卡通
+#                  memberOneCard: /memberOneCard
+#                      #平台订单
+#                  platformOrder: /platformOrder
+#                      #支付
+#                  pay: /pay
+#              interface-name:
+#                  #获取accessToken：
+#                  accessToken: /accessToken
+#                  #注册会员
+#                  registerByUser: /registerByUser
+#                  #获取会员详细信息（包含会员信息，会员一卡通信息，会员余额）
+#                  findByMobileOrUserName: /findByMobileOrUserNamePassword
+#                  #初始化登录密码
+#                  initSetLoginPasswordByUUid: /initSetLoginPasswordByUUid
+#                  #初始化支付密码
+#                  initSetPayPasswordByUUid: /initSetPayPasswordByUUid
+#                  #修改登录密码
+#                  updateLoginPasswordByUuid: /updateLoginPasswordByUuid
+#                  #修改支付密码
+#                  updatePayPasswordByUuid: /updatePayPasswordByUuid
+#                  #匹配支付密码
+#                  matchPayPasswrod: /matchPayPasswrod
+#                  #获取找回登录密码或支付密码code
+#                  getForgetPwdCode: /getForgetPwdCode
+#                  #找回登录密码(未登录重置密码)
+#                  resetUpdateLoginPasswordByUuid: /resetUpdateLoginPasswordByUuid
+#                  #找回支付密码
+#                  resetUpdatePayPasswordByUuid: /resetUpdatePayPasswordByUuid
+#                  #获取会员余额
+#                  findMemberBalanceByUuid: /findMemberBalanceByUuid
+#                  #获取一卡通信息
+#                  findByMemberUuid: /findByMemberUuid
+#                  #创建第三方订单并返回支付流水
+#                  createThirdPartyOrder: /createThirdPartyOrder
+#                  #获取平台订单
+#                  getPlatform: /get
+#                  #余额支付
+#                  balancePay: /balance
+#                  #一卡通支付
+#                  oneCardPay: /oneCard
+#              #系统版本号
+#              appSystem: 200
+#              #security
+#              security: 5222445555
+#              #accessKey
+#              accessKey: kkkkkkk1234567
+
+
+
+
+

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: app-store-service
+  profiles:
+      active: @profileActive@

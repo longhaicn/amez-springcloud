@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.store.mapper.StoreCouponsReceivedMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreCouponsReceived">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_coupons_id" property="storeCouponsId" jdbcType="INTEGER"/>
+        <result column="coupon_number" property="couponNumber" jdbcType="VARCHAR"/>
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="used_product_id" property="usedProductId" jdbcType="INTEGER"/>
+        <result column="used_product_name" property="usedProductName" jdbcType="VARCHAR"/>
+        <result column="used_time" property="usedTime" jdbcType="TIMESTAMP"/>
+        <result column="is_used" property="isUsed" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_member_id" property="createMemberId" jdbcType="INTEGER"/>
+        <result column="create_member_name" property="createMemberName" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, store_coupons_id, coupon_number, order_no, used_product_id, used_product_name,
+        used_time, is_used, is_enabled, create_member_id, create_member_name, create_time,
+        update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, store_coupons_id AS storeCouponsId, coupon_number AS couponNumber, order_no AS orderNo,
+        used_product_id AS usedProductId, used_product_name AS usedProductName, used_time AS usedTime,
+        is_used AS isUsed, is_enabled AS isEnabled, create_member_id AS createMemberId, create_member_name AS createMemberName,
+        create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons_received
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from store_coupons_received
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreCouponsReceived" useGeneratedKeys="true" keyProperty="id">
+        insert into store_coupons_received
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeCouponsId != null">
+                store_coupons_id,
+            </if>
+            <if test="couponNumber != null">
+                coupon_number,
+            </if>
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="usedProductId != null">
+                used_product_id,
+            </if>
+            <if test="usedProductName != null">
+                used_product_name,
+            </if>
+            <if test="usedTime != null">
+                used_time,
+            </if>
+            <if test="isUsed != null">
+                is_used,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createMemberId != null">
+                create_member_id,
+            </if>
+            <if test="createMemberName != null">
+                create_member_name,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeCouponsId != null">
+                #{storeCouponsId,jdbcType=INTEGER},
+            </if>
+            <if test="couponNumber != null">
+                #{couponNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="usedProductId != null">
+                #{usedProductId,jdbcType=INTEGER},
+            </if>
+            <if test="usedProductName != null">
+                #{usedProductName,jdbcType=VARCHAR},
+            </if>
+            <if test="usedTime != null">
+                #{usedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isUsed != null">
+                #{isUsed,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createMemberId != null">
+                #{createMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="createMemberName != null">
+                #{createMemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreCouponsReceived">
+        update store_coupons_received
+        <set>
+            <if test="storeCouponsId != null">
+                store_coupons_id = #{storeCouponsId,jdbcType=INTEGER},
+            </if>
+            <if test="couponNumber != null">
+                coupon_number = #{couponNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="usedProductId != null">
+                used_product_id = #{usedProductId,jdbcType=INTEGER},
+            </if>
+            <if test="usedProductName != null">
+                used_product_name = #{usedProductName,jdbcType=VARCHAR},
+            </if>
+            <if test="usedTime != null">
+                used_time = #{usedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isUsed != null">
+                is_used = #{isUsed,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createMemberId != null">
+                create_member_id = #{createMemberId,jdbcType=INTEGER},
+            </if>
+            <if test="createMemberName != null">
+                create_member_name = #{createMemberName,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreCouponsReceived" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons_received
+        <where>
+            <if test="storeCouponsId != null">
+                AND store_coupons_id = #{storeCouponsId,jdbcType=INTEGER}
+            </if>
+            <if test="couponNumber != null">
+                AND coupon_number = #{couponNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="orderNo != null">
+                AND order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="usedProductId != null">
+                AND used_product_id = #{usedProductId,jdbcType=INTEGER}
+            </if>
+            <if test="usedProductName != null">
+                AND used_product_name = #{usedProductName,jdbcType=VARCHAR}
+            </if>
+            <if test="usedTime != null">
+                AND used_time = #{usedTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="isUsed != null">
+                AND is_used = #{isUsed,jdbcType=BIT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createMemberId != null">
+                AND create_member_id = #{createMemberId,jdbcType=INTEGER}
+            </if>
+            <if test="createMemberName != null">
+                AND create_member_name = #{createMemberName,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectByCountByMemberId" parameterType="com.union.aimei.common.model.store.StoreCouponsReceived" resultType="java.lang.Integer">
+        select count(*)
+        from store_coupons_received
+        <where>
+            AND is_enabled = 1
+            AND store_coupons_id = #{storeCouponsId,jdbcType=INTEGER}
+            AND create_member_id = #{createMemberId,jdbcType=INTEGER}
+        </where>
+    </select>
+
+    <select id="selectByStoreCouponsIdByMemberId" parameterType="com.union.aimei.common.model.store.StoreCouponsReceived" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons_received
+        where is_enabled = 1
+        and is_used = 1
+        and store_coupons_id = #{storeCouponsId}
+        and create_member_id = #{createMemberId}
+        order by create_time
+        limit 1
+    </select>
+
+    <update id="updateIsUsedByOrderNo" parameterType="com.union.aimei.common.model.store.StoreCouponsReceived">
+        update store_coupons_received
+        set
+          is_used = #{isUsed}
+        where order_no = #{orderNo}
+    </update>
+
+</mapper>

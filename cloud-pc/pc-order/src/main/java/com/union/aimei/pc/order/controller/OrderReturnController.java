@@ -1,0 +1,70 @@
+package com.union.aimei.pc.order.controller;
+
+
+import com.github.pagehelper.PageInfo;
+import com.union.aimei.common.model.order.OrderReturn;
+import com.union.aimei.common.vo.order.OrderRefundListVo;
+import com.union.aimei.common.vo.order.OrderRefundQueryVo;
+import com.union.aimei.pc.order.service.OrderReturnService;
+import com.union.common.utils.ResponseMessage;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+
+/**
+  * @author GaoWei
+  * @Date 18-8-13 下午2:56
+  * @description
+  */
+@Api(tags="退换货单")
+@RestController
+@RequestMapping(value="orderReturn")
+public class OrderReturnController {
+       @Resource
+       private OrderReturnService orderReturnService;
+
+       @PostMapping("/front/findByPage")
+       public PageInfo<OrderReturn> findByPageForFront(@ApiParam(value="分页索引",defaultValue="0")  @RequestParam(defaultValue="0")
+	 Integer pageNo, @ApiParam(value="每页数量",defaultValue="10")  @RequestParam(defaultValue="10")
+	 Integer pageSize, @ApiParam(value="查询条件") @RequestBody OrderReturn orderReturn) {
+              return this.orderReturnService.findByPageForFront(pageNo,pageSize,orderReturn);
+       }
+
+       @PostMapping("/insert")
+       public int insert(@RequestBody OrderReturn orderReturn) {
+              return this.orderReturnService.addObj(orderReturn);
+       }
+
+       @DeleteMapping("/deleteById/{id}")
+       public int deleteById(@PathVariable (value="id") int id) {
+              return this.orderReturnService.deleteObjById(id);
+       }
+
+       @PutMapping("/edit")
+       public int edit(@RequestBody OrderReturn orderReturn) {
+              return this.orderReturnService.modifyObj(orderReturn);
+       }
+
+       @GetMapping("/queryById/{id}")
+       public OrderReturn queryById(@PathVariable (value="id") int id) {
+              return this.orderReturnService.queryObjById(id);
+       }
+
+       @GetMapping("/queryByOrderId/{orderId}")
+       public ResponseMessage<OrderReturn> queryByOrderId(@PathVariable(value = "orderId")Integer orderId){
+              return orderReturnService.queryByOrderId(orderId);
+       }
+
+       @PostMapping(value = "/queryForPage")
+       public ResponseMessage<PageInfo<OrderRefundListVo>> queryForPage(
+               @ApiParam(value="分页索引",defaultValue="0")  @RequestParam(value = "pageNp",defaultValue="0")
+                       Integer pageNo,
+               @ApiParam(value="每页数量",defaultValue="10")  @RequestParam(value = "pageSize",defaultValue="10")
+                       Integer pageSize,
+               @ApiParam(value="查询条件") @RequestBody OrderRefundQueryVo orderRefundQueryVo
+       ){
+               return orderReturnService.queryForPage(pageNo, pageSize, orderRefundQueryVo);
+       }
+}

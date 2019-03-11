@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.store.mapper.StoreMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.Store">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="store_company_name" property="storeCompanyName" jdbcType="VARCHAR"/>
+        <result column="store_auth" property="storeAuth" jdbcType="BIT"/>
+        <result column="brand_id" property="brandId" jdbcType="INTEGER"/>
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+        <result column="level_id" property="levelId" jdbcType="INTEGER"/>
+        <result column="level_name" property="levelName" jdbcType="VARCHAR"/>
+        <result column="level_logo" property="levelLogo" jdbcType="VARCHAR"/>
+        <result column="growup_value" property="growupValue" jdbcType="INTEGER"/>
+        <result column="manage_year" property="manageYear" jdbcType="INTEGER"/>
+        <result column="store_label" property="storeLabel" jdbcType="VARCHAR"/>
+        <result column="special_project" property="specialProject" jdbcType="VARCHAR"/>
+        <result column="store_sales" property="storeSales" jdbcType="INTEGER"/>
+        <result column="boss_user_id" property="bossUserId" jdbcType="INTEGER"/>
+        <result column="boss_phone" property="bossPhone" jdbcType="VARCHAR"/>
+        <result column="boss_name" property="bossName" jdbcType="VARCHAR"/>
+        <result column="seller_user_id" property="sellerUserId" jdbcType="INTEGER"/>
+        <result column="seller_phone" property="sellerPhone" jdbcType="VARCHAR"/>
+        <result column="seller_name" property="sellerName" jdbcType="VARCHAR"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="city_id" property="cityId" jdbcType="INTEGER"/>
+        <result column="area_id" property="areaId" jdbcType="INTEGER"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+        <result column="store_longitude" property="storeLongitude" jdbcType="DECIMAL"/>
+        <result column="store_latitude" property="storeLatitude" jdbcType="DECIMAL"/>
+        <result column="store_address" property="storeAddress" jdbcType="VARCHAR"/>
+        <result column="house_number" property="houseNumber" jdbcType="VARCHAR"/>
+        <result column="store_zip" property="storeZip" jdbcType="VARCHAR"/>
+        <result column="store_tel" property="storeTel" jdbcType="VARCHAR"/>
+        <result column="store_logo" property="storeLogo" jdbcType="VARCHAR"/>
+        <result column="store_time" property="storeTime" jdbcType="VARCHAR"/>
+        <result column="store_state" property="storeState" jdbcType="TINYINT"/>
+        <result column="store_close_info" property="storeCloseInfo" jdbcType="VARCHAR"/>
+        <result column="store_end_time" property="storeEndTime" jdbcType="VARCHAR"/>
+        <result column="store_sort" property="storeSort" jdbcType="INTEGER"/>
+        <result column="store_banner" property="storeBanner" jdbcType="VARCHAR"/>
+        <result column="store_desccredit" property="storeDesccredit" jdbcType="REAL"/>
+        <result column="store_servicecredit" property="storeServicecredit" jdbcType="REAL"/>
+        <result column="store_keywords" property="storeKeywords" jdbcType="VARCHAR"/>
+        <result column="store_description" property="storeDescription" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="store_zy" property="storeZy" jdbcType="VARCHAR"/>
+        <result column="store_domain" property="storeDomain" jdbcType="VARCHAR"/>
+        <result column="store_recommend" property="storeRecommend" jdbcType="BIT"/>
+        <result column="store_theme" property="storeTheme" jdbcType="VARCHAR"/>
+        <result column="store_credit" property="storeCredit" jdbcType="INTEGER"/>
+        <result column="praise_rate" property="praiseRate" jdbcType="REAL"/>
+        <result column="store_slide" property="storeSlide" jdbcType="VARCHAR"/>
+        <result column="store_slide_url" property="storeSlideUrl" jdbcType="VARCHAR"/>
+        <result column="store_storage_alarm" property="storeStorageAlarm" jdbcType="INTEGER"/>
+        <result column="follower_total" property="followerTotal" jdbcType="INTEGER"/>
+        <result column="beautician_total" property="beauticianTotal" jdbcType="INTEGER"/>
+        <result column="account_balance" property="accountBalance" jdbcType="INTEGER"/>
+        <result column="pre_income_amount" property="preIncomeAmount" jdbcType="INTEGER"/>
+        <result column="is_old" property="isOld" jdbcType="BIT"/>
+        <result column="is_select" property="isSelect" jdbcType="BIT"/>
+        <result column="select_sort" property="selectSort" jdbcType="INTEGER"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="settled_status" property="settledStatus" jdbcType="TINYINT"/>
+        <result column="settled_code" property="settledCode" jdbcType="VARCHAR"/>
+        <result column="qualification_status" property="qualificationStatus" jdbcType="TINYINT"/>
+        <result column="qualification_reason" property="qualificationReason" jdbcType="VARCHAR"/>
+        <result column="qualification_commit_time" property="qualificationCommitTime" jdbcType="TIMESTAMP"/>
+        <result column="qualification_audit_time" property="qualificationAuditTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, store_name, store_company_name, store_auth, brand_id, brand_name, level_id, level_name,
+        level_logo, growup_value, manage_year, store_label, special_project, store_sales,
+        boss_user_id, boss_phone, boss_name, seller_user_id, seller_phone, seller_name, product_id,
+        city_id, area_id, province_name, city_name, area_name, store_longitude, store_latitude,
+        store_address, house_number, store_zip, store_tel, store_logo, store_time, store_state, store_close_info,
+        store_end_time, store_sort, store_banner, store_desccredit, store_servicecredit,
+        store_keywords, store_description, description, store_zy, store_domain, store_recommend,
+        store_theme, store_credit, praise_rate, store_slide, store_slide_url, store_storage_alarm,
+        follower_total, beautician_total, account_balance, pre_income_amount, is_old, is_select, select_sort, is_enabled,
+        create_time, update_time, settled_status, settled_code, qualification_status, qualification_reason,
+        qualification_commit_time, qualification_audit_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, store_name AS storeName, store_company_name AS storeCompanyName, store_auth AS storeAuth,
+        brand_id AS brandId, brand_name AS brandName, level_id AS levelId, level_name AS levelName, level_logo AS levelLogo,
+        growup_value AS growupValue, manage_year AS manageYear, store_label AS storeLabel,
+        special_project AS specialProject, store_sales AS storeSales, boss_user_id AS bossUserId,
+        boss_phone AS bossPhone, boss_name AS bossName, seller_user_id AS sellerUserId, seller_phone AS sellerPhone,
+        seller_name AS sellerName, product_id AS productId, city_id AS cityId, area_id AS areaId,
+        province_name AS provinceName, city_name AS cityName, area_name AS areaName, store_longitude AS storeLongitude,
+        store_latitude AS storeLatitude, store_address AS storeAddress, house_number AS houseNumber, store_zip AS storeZip,
+        store_tel AS storeTel, store_logo AS storeLogo, store_time AS storeTime, store_state AS storeState,
+        store_close_info AS storeCloseInfo, store_end_time AS storeEndTime, store_sort AS storeSort,
+        store_banner AS storeBanner, store_desccredit AS storeDesccredit, store_servicecredit AS storeServicecredit,
+        store_keywords AS storeKeywords, store_description AS storeDescription, description,
+        store_zy AS storeZy, store_domain AS storeDomain, store_recommend AS storeRecommend,
+        store_theme AS storeTheme, store_credit AS storeCredit, praise_rate AS praiseRate,
+        store_slide AS storeSlide, store_slide_url AS storeSlideUrl, store_storage_alarm AS storeStorageAlarm,
+        follower_total AS followerTotal, beautician_total AS beauticianTotal, account_balance AS accountBalance,
+        pre_income_amount AS preIncomeAmount, is_old AS isOld, is_select AS isSelect, select_sort AS selectSort, is_enabled AS isEnabled, create_time AS createTime,
+        update_time AS updateTime, settled_status AS settledStatus, settled_code AS settledCode, qualification_status AS qualificationStatus,
+        qualification_reason AS qualificationReason, qualification_commit_time AS qualificationCommitTime, qualification_audit_time AS qualificationAuditTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from store
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.Store" useGeneratedKeys="true" keyProperty="id">
+        insert into store
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="storeCompanyName != null">
+                store_company_name,
+            </if>
+            <if test="storeAuth != null">
+                store_auth,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="brandName != null">
+                brand_name,
+            </if>
+            <if test="levelId != null">
+                level_id,
+            </if>
+            <if test="levelName != null">
+                level_name,
+            </if>
+            <if test="levelLogo != null">
+                level_logo,
+            </if>
+            <if test="growupValue != null">
+                growup_value,
+            </if>
+            <if test="manageYear != null">
+                manage_year,
+            </if>
+            <if test="storeLabel != null">
+                store_label,
+            </if>
+            <if test="specialProject != null">
+                special_project,
+            </if>
+            <if test="storeSales != null">
+                store_sales,
+            </if>
+            <if test="bossUserId != null">
+                boss_user_id,
+            </if>
+            <if test="bossPhone != null">
+                boss_phone,
+            </if>
+            <if test="bossName != null">
+                boss_name,
+            </if>
+            <if test="sellerUserId != null">
+                seller_user_id,
+            </if>
+            <if test="sellerPhone != null">
+                seller_phone,
+            </if>
+            <if test="sellerName != null">
+                seller_name,
+            </if>
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="provinceName != null">
+                province_name,
+            </if>
+            <if test="cityName != null">
+                city_name,
+            </if>
+            <if test="areaName != null">
+                area_name,
+            </if>
+            <if test="storeLongitude != null">
+                store_longitude,
+            </if>
+            <if test="storeLatitude != null">
+                store_latitude,
+            </if>
+            <if test="storeAddress != null">
+                store_address,
+            </if>
+            <if test="houseNumber != null">
+                house_number,
+            </if>
+            <if test="storeZip != null">
+                store_zip,
+            </if>
+            <if test="storeTel != null">
+                store_tel,
+            </if>
+            <if test="storeLogo != null">
+                store_logo,
+            </if>
+            <if test="storeTime != null">
+                store_time,
+            </if>
+            <if test="storeState != null">
+                store_state,
+            </if>
+            <if test="storeCloseInfo != null">
+                store_close_info,
+            </if>
+            <if test="storeEndTime != null">
+                store_end_time,
+            </if>
+            <if test="storeSort != null">
+                store_sort,
+            </if>
+            <if test="storeBanner != null">
+                store_banner,
+            </if>
+            <if test="storeDesccredit != null">
+                store_desccredit,
+            </if>
+            <if test="storeServicecredit != null">
+                store_servicecredit,
+            </if>
+            <if test="storeKeywords != null">
+                store_keywords,
+            </if>
+            <if test="storeDescription != null">
+                store_description,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="storeZy != null">
+                store_zy,
+            </if>
+            <if test="storeDomain != null">
+                store_domain,
+            </if>
+            <if test="storeRecommend != null">
+                store_recommend,
+            </if>
+            <if test="storeTheme != null">
+                store_theme,
+            </if>
+            <if test="storeCredit != null">
+                store_credit,
+            </if>
+            <if test="praiseRate != null">
+                praise_rate,
+            </if>
+            <if test="storeSlide != null">
+                store_slide,
+            </if>
+            <if test="storeSlideUrl != null">
+                store_slide_url,
+            </if>
+            <if test="storeStorageAlarm != null">
+                store_storage_alarm,
+            </if>
+            <if test="followerTotal != null">
+                follower_total,
+            </if>
+            <if test="beauticianTotal != null">
+                beautician_total,
+            </if>
+            <if test="accountBalance != null">
+                account_balance,
+            </if>
+            <if test="preIncomeAmount != null">
+                pre_income_amount,
+            </if>
+            <if test="isOld != null">
+                is_old,
+            </if>
+            <if test="isSelect != null">
+                is_select,
+            </if>
+            <if test="selectSort != null">
+                select_sort,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="settledStatus != null">
+                settled_status,
+            </if>
+            <if test="settledCode != null">
+                settled_code,
+            </if>
+            <if test="qualificationStatus != null">
+                qualification_status,
+            </if>
+            <if test="qualificationReason != null">
+                qualification_reason,
+            </if>
+            <if test="qualificationCommitTime != null">
+                qualification_commit_time,
+            </if>
+            <if test="qualificationAuditTime != null">
+                qualification_audit_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCompanyName != null">
+                #{storeCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeAuth != null">
+                #{storeAuth,jdbcType=BIT},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelId != null">
+                #{levelId,jdbcType=INTEGER},
+            </if>
+            <if test="levelName != null">
+                #{levelName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelLogo != null">
+                #{levelLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="growupValue != null">
+                #{growupValue,jdbcType=INTEGER},
+            </if>
+            <if test="manageYear != null">
+                #{manageYear,jdbcType=INTEGER},
+            </if>
+            <if test="storeLabel != null">
+                #{storeLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="specialProject != null">
+                #{specialProject,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSales != null">
+                #{storeSales,jdbcType=INTEGER},
+            </if>
+            <if test="bossUserId != null">
+                #{bossUserId,jdbcType=INTEGER},
+            </if>
+            <if test="bossPhone != null">
+                #{bossPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="bossName != null">
+                #{bossName,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerUserId != null">
+                #{sellerUserId,jdbcType=INTEGER},
+            </if>
+            <if test="sellerPhone != null">
+                #{sellerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerName != null">
+                #{sellerName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="provinceName != null">
+                #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityName != null">
+                #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLongitude != null">
+                #{storeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeLatitude != null">
+                #{storeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeAddress != null">
+                #{storeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="storeZip != null">
+                #{storeZip,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTel != null">
+                #{storeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLogo != null">
+                #{storeLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTime != null">
+                #{storeTime,jdbcType=VARCHAR},
+            </if>
+            <if test="storeState != null">
+                #{storeState,jdbcType=TINYINT},
+            </if>
+            <if test="storeCloseInfo != null">
+                #{storeCloseInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="storeEndTime != null">
+                #{storeEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSort != null">
+                #{storeSort,jdbcType=INTEGER},
+            </if>
+            <if test="storeBanner != null">
+                #{storeBanner,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDesccredit != null">
+                #{storeDesccredit,jdbcType=REAL},
+            </if>
+            <if test="storeServicecredit != null">
+                #{storeServicecredit,jdbcType=REAL},
+            </if>
+            <if test="storeKeywords != null">
+                #{storeKeywords,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDescription != null">
+                #{storeDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="storeZy != null">
+                #{storeZy,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDomain != null">
+                #{storeDomain,jdbcType=VARCHAR},
+            </if>
+            <if test="storeRecommend != null">
+                #{storeRecommend,jdbcType=BIT},
+            </if>
+            <if test="storeTheme != null">
+                #{storeTheme,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCredit != null">
+                #{storeCredit,jdbcType=INTEGER},
+            </if>
+            <if test="praiseRate != null">
+                #{praiseRate,jdbcType=REAL},
+            </if>
+            <if test="storeSlide != null">
+                #{storeSlide,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSlideUrl != null">
+                #{storeSlideUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="storeStorageAlarm != null">
+                #{storeStorageAlarm,jdbcType=INTEGER},
+            </if>
+            <if test="followerTotal != null">
+                #{followerTotal,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianTotal != null">
+                #{beauticianTotal,jdbcType=INTEGER},
+            </if>
+            <if test="accountBalance != null">
+                #{accountBalance,jdbcType=INTEGER},
+            </if>
+            <if test="preIncomeAmount != null">
+                #{preIncomeAmount,jdbcType=INTEGER},
+            </if>
+            <if test="isOld != null">
+                #{isOld,jdbcType=BIT},
+            </if>
+            <if test="isSelect != null">
+                #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="selectSort != null">
+                #{selectSort,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="settledStatus != null">
+                #{settledStatus,jdbcType=TINYINT},
+            </if>
+            <if test="settledCode != null">
+                #{settledCode,jdbcType=VARCHAR},
+            </if>
+            <if test="qualificationStatus != null">
+                #{qualificationStatus,jdbcType=TINYINT},
+            </if>
+            <if test="qualificationReason != null">
+                #{qualificationReason,jdbcType=VARCHAR},
+            </if>
+            <if test="qualificationCommitTime != null">
+                #{qualificationCommitTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="qualificationAuditTime != null">
+                #{qualificationAuditTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.Store">
+        update store
+        <set>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCompanyName != null">
+                store_company_name = #{storeCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeAuth != null">
+                store_auth = #{storeAuth,jdbcType=BIT},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelId != null">
+                level_id = #{levelId,jdbcType=INTEGER},
+            </if>
+            <if test="levelName != null">
+                level_name = #{levelName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelLogo != null">
+                level_logo = #{levelLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="growupValue != null">
+                growup_value = #{growupValue,jdbcType=INTEGER},
+            </if>
+            <if test="manageYear != null">
+                manage_year = #{manageYear,jdbcType=INTEGER},
+            </if>
+            <if test="storeLabel != null">
+                store_label = #{storeLabel,jdbcType=VARCHAR},
+            </if>
+            <if test="specialProject != null">
+                special_project = #{specialProject,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSales != null">
+                store_sales = #{storeSales,jdbcType=INTEGER},
+            </if>
+            <if test="bossUserId != null">
+                boss_user_id = #{bossUserId,jdbcType=INTEGER},
+            </if>
+            <if test="bossPhone != null">
+                boss_phone = #{bossPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="bossName != null">
+                boss_name = #{bossName,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerUserId != null">
+                seller_user_id = #{sellerUserId,jdbcType=INTEGER},
+            </if>
+            <if test="sellerPhone != null">
+                seller_phone = #{sellerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="sellerName != null">
+                seller_name = #{sellerName,jdbcType=VARCHAR},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="provinceName != null">
+                province_name = #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityName != null">
+                city_name = #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                area_name = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLongitude != null">
+                store_longitude = #{storeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeLatitude != null">
+                store_latitude = #{storeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeAddress != null">
+                store_address = #{storeAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="houseNumber != null">
+                house_number = #{houseNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="storeZip != null">
+                store_zip = #{storeZip,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTel != null">
+                store_tel = #{storeTel,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLogo != null">
+                store_logo = #{storeLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="storeTime != null">
+                store_time = #{storeTime,jdbcType=VARCHAR},
+            </if>
+            <if test="storeState != null">
+                store_state = #{storeState,jdbcType=TINYINT},
+            </if>
+            <if test="storeCloseInfo != null">
+                store_close_info = #{storeCloseInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="storeEndTime != null">
+                store_end_time = #{storeEndTime,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSort != null">
+                store_sort = #{storeSort,jdbcType=INTEGER},
+            </if>
+            <if test="storeBanner != null">
+                store_banner = #{storeBanner,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDesccredit != null">
+                store_desccredit = #{storeDesccredit,jdbcType=REAL},
+            </if>
+            <if test="storeServicecredit != null">
+                store_servicecredit = #{storeServicecredit,jdbcType=REAL},
+            </if>
+            <if test="storeKeywords != null">
+                store_keywords = #{storeKeywords,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDescription != null">
+                store_description = #{storeDescription,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="storeZy != null">
+                store_zy = #{storeZy,jdbcType=VARCHAR},
+            </if>
+            <if test="storeDomain != null">
+                store_domain = #{storeDomain,jdbcType=VARCHAR},
+            </if>
+            <if test="storeRecommend != null">
+                store_recommend = #{storeRecommend,jdbcType=BIT},
+            </if>
+            <if test="storeTheme != null">
+                store_theme = #{storeTheme,jdbcType=VARCHAR},
+            </if>
+            <if test="storeCredit != null">
+                store_credit = #{storeCredit,jdbcType=INTEGER},
+            </if>
+            <if test="praiseRate != null">
+                praise_rate = #{praiseRate,jdbcType=REAL},
+            </if>
+            <if test="storeSlide != null">
+                store_slide = #{storeSlide,jdbcType=VARCHAR},
+            </if>
+            <if test="storeSlideUrl != null">
+                store_slide_url = #{storeSlideUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="storeStorageAlarm != null">
+                store_storage_alarm = #{storeStorageAlarm,jdbcType=INTEGER},
+            </if>
+            <if test="followerTotal != null">
+                follower_total = #{followerTotal,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianTotal != null">
+                beautician_total = #{beauticianTotal,jdbcType=INTEGER},
+            </if>
+            <if test="accountBalance != null">
+                account_balance = #{accountBalance,jdbcType=INTEGER},
+            </if>
+            <if test="preIncomeAmount != null">
+                pre_income_amount = #{preIncomeAmount,jdbcType=INTEGER},
+            </if>
+            <if test="isOld != null">
+                is_old = #{isOld,jdbcType=BIT},
+            </if>
+            <if test="isSelect != null">
+                is_select = #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="selectSort != null">
+                select_sort = #{selectSort,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="settledStatus != null">
+                settled_status = #{settledStatus,jdbcType=TINYINT},
+            </if>
+            <if test="settledCode != null">
+                settled_code = #{settledCode,jdbcType=VARCHAR},
+            </if>
+            <if test="qualificationStatus != null">
+                qualification_status = #{qualificationStatus,jdbcType=TINYINT},
+            </if>
+            <if test="qualificationReason != null">
+                qualification_reason = #{qualificationReason,jdbcType=VARCHAR},
+            </if>
+            <if test="qualificationCommitTime != null">
+                qualification_commit_time = #{qualificationCommitTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="qualificationAuditTime != null">
+                qualification_audit_time = #{qualificationAuditTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.Store" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        <if test="point !=null and point.x != null and point.y !=null">
+            ,
+            <include refid="caculateDistance"/>
+        </if>
+        from store
+        where is_enabled = true
+        <if test="storeName != null">
+            AND store_name like concat('%', #{storeName,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="storeCompanyName != null">
+            AND store_company_name = #{storeCompanyName,jdbcType=VARCHAR}
+        </if>
+        <if test="storeAuth != null">
+            AND store_auth = #{storeAuth,jdbcType=BIT}
+        </if>
+        <if test="brandId != null">
+            AND brand_id = #{brandId,jdbcType=INTEGER}
+        </if>
+        <if test="brandName != null">
+            AND brand_name = #{brandName,jdbcType=VARCHAR}
+        </if>
+        <if test="levelId != null">
+            AND level_id = #{levelId,jdbcType=INTEGER}
+        </if>
+        <if test="levelName != null">
+            AND level_name = #{levelName,jdbcType=VARCHAR}
+        </if>
+        <if test="levelLogo != null">
+            AND level_logo = #{levelLogo,jdbcType=VARCHAR}
+        </if>
+        <if test="growupValue != null">
+            AND growup_value = #{growupValue,jdbcType=INTEGER}
+        </if>
+        <if test="manageYear != null">
+            AND manage_year = #{manageYear,jdbcType=INTEGER}
+        </if>
+        <if test="storeLabel != null">
+            AND store_label = #{storeLabel,jdbcType=VARCHAR}
+        </if>
+        <if test="specialProject != null">
+            AND special_project = #{specialProject,jdbcType=VARCHAR}
+        </if>
+        <if test="storeSales != null">
+            AND store_sales = #{storeSales,jdbcType=INTEGER}
+        </if>
+        <if test="bossUserId != null">
+            AND boss_user_id = #{bossUserId,jdbcType=INTEGER}
+        </if>
+        <if test="bossPhone != null">
+            AND boss_phone = #{bossPhone,jdbcType=VARCHAR}
+        </if>
+        <if test="bossName != null">
+            AND boss_name = #{bossName,jdbcType=VARCHAR}
+        </if>
+        <if test="sellerUserId != null">
+            AND seller_user_id = #{sellerUserId,jdbcType=INTEGER}
+        </if>
+        <if test="sellerPhone != null">
+            AND seller_phone = #{sellerPhone,jdbcType=VARCHAR}
+        </if>
+        <if test="sellerName != null">
+            AND seller_name = #{sellerName,jdbcType=VARCHAR}
+        </if>
+        <if test="productId != null">
+            AND product_id = #{productId,jdbcType=INTEGER}
+        </if>
+        <if test="cityId != null">
+            AND city_id = #{cityId,jdbcType=INTEGER}
+        </if>
+        <if test="areaId != null">
+            AND area_id = #{areaId,jdbcType=INTEGER}
+        </if>
+        <if test="provinceName != null">
+            AND province_name = #{provinceName,jdbcType=VARCHAR}
+        </if>
+        <if test="cityName != null">
+            AND city_name = #{cityName,jdbcType=VARCHAR}
+        </if>
+        <if test="areaName != null">
+            AND area_name = #{areaName,jdbcType=VARCHAR}
+        </if>
+        <if test="storeLongitude != null">
+            AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+        </if>
+        <if test="storeLatitude != null">
+            AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+        </if>
+        <if test="storeAddress != null">
+            AND store_address = #{storeAddress,jdbcType=VARCHAR}
+        </if>
+        <if test="houseNumber != null">
+            AND house_number = #{houseNumber,jdbcType=VARCHAR}
+        </if>
+        <if test="storeZip != null">
+            AND store_zip = #{storeZip,jdbcType=VARCHAR}
+        </if>
+        <if test="storeTel != null">
+            AND store_tel = #{storeTel,jdbcType=VARCHAR}
+        </if>
+        <if test="storeLogo != null">
+            AND store_logo = #{storeLogo,jdbcType=VARCHAR}
+        </if>
+        <if test="storeTime != null">
+            AND store_time = #{storeTime,jdbcType=VARCHAR}
+        </if>
+        <if test="storeState != null">
+            AND store_state = #{storeState,jdbcType=TINYINT}
+        </if>
+        <if test="storeCloseInfo != null">
+            AND store_close_info = #{storeCloseInfo,jdbcType=VARCHAR}
+        </if>
+        <if test="storeEndTime != null">
+            AND store_end_time = #{storeEndTime,jdbcType=VARCHAR}
+        </if>
+        <if test="storeSort != null">
+            AND store_sort = #{storeSort,jdbcType=INTEGER}
+        </if>
+        <if test="storeBanner != null">
+            AND store_banner = #{storeBanner,jdbcType=VARCHAR}
+        </if>
+        <if test="storeDesccredit != null">
+            AND store_desccredit = #{storeDesccredit,jdbcType=REAL}
+        </if>
+        <if test="storeServicecredit != null">
+            AND store_servicecredit = #{storeServicecredit,jdbcType=REAL}
+        </if>
+        <if test="storeKeywords != null">
+            AND store_keywords = #{storeKeywords,jdbcType=VARCHAR}
+        </if>
+        <if test="storeDescription != null">
+            AND store_description = #{storeDescription,jdbcType=VARCHAR}
+        </if>
+        <if test="description != null">
+            AND description = #{description,jdbcType=VARCHAR}
+        </if>
+        <if test="storeZy != null">
+            AND store_zy = #{storeZy,jdbcType=VARCHAR}
+        </if>
+        <if test="storeDomain != null">
+            AND store_domain = #{storeDomain,jdbcType=VARCHAR}
+        </if>
+        <if test="storeRecommend != null">
+            AND store_recommend = #{storeRecommend,jdbcType=BIT}
+        </if>
+        <if test="storeTheme != null">
+            AND store_theme = #{storeTheme,jdbcType=VARCHAR}
+        </if>
+        <if test="storeCredit != null">
+            AND store_credit = #{storeCredit,jdbcType=INTEGER}
+        </if>
+        <if test="praiseRate != null">
+            AND praise_rate = #{praiseRate,jdbcType=REAL}
+        </if>
+        <if test="storeSlide != null">
+            AND store_slide = #{storeSlide,jdbcType=VARCHAR}
+        </if>
+        <if test="storeSlideUrl != null">
+            AND store_slide_url = #{storeSlideUrl,jdbcType=VARCHAR}
+        </if>
+        <if test="storeStorageAlarm != null">
+            AND store_storage_alarm = #{storeStorageAlarm,jdbcType=INTEGER}
+        </if>
+        <if test="followerTotal != null">
+            AND follower_total = #{followerTotal,jdbcType=INTEGER}
+        </if>
+        <if test="beauticianTotal != null">
+            AND beautician_total = #{beauticianTotal,jdbcType=INTEGER}
+        </if>
+        <if test="accountBalance != null">
+            AND account_balance = #{accountBalance,jdbcType=INTEGER}
+        </if>
+        <if test="preIncomeAmount != null">
+            AND pre_income_amount = #{preIncomeAmount,jdbcType=INTEGER}
+        </if>
+        <if test="isOld != null">
+            AND is_old = #{isOld,jdbcType=BIT}
+        </if>
+        <if test="isSelect != null">
+            AND is_select = #{isSelect,jdbcType=BIT}
+        </if>
+        <if test="selectSort != null">
+            AND select_sort = #{selectSort,jdbcType=INTEGER}
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="settledStatus != null">
+            AND settled_status = #{settledStatus,jdbcType=TINYINT}
+        </if>
+        <if test="settledCode != null">
+            AND settled_code = #{settledCode,jdbcType=VARCHAR}
+        </if>
+        <if test="qualificationStatus != null">
+            AND qualification_status = #{qualificationStatus,jdbcType=TINYINT}
+        </if>
+        <if test="qualificationReason != null">
+            AND qualification_reason = #{qualificationReason,jdbcType=VARCHAR}
+        </if>
+        <if test="qualificationCommitTime != null">
+            AND qualification_commit_time = #{qualificationCommitTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="qualificationAuditTime != null">
+            AND qualification_audit_time = #{qualificationAuditTime,jdbcType=TIMESTAMP}
+        </if>
+        order by create_time desc
+    </select>
+
+    <select id="selectListByMemberCard" parameterType="com.union.aimei.common.vo.store.pc.StoreByMemberCardVo" resultType="com.union.aimei.common.vo.store.pc.StoreByMemberCardResultVo">
+        select
+        id, store_name AS storeName, boss_phone AS bossPhone, boss_name AS bossName, province_name AS provinceName,
+        city_name AS cityName, area_name AS areaName
+        from store
+        where is_enabled = 1
+        <if test="brandId != null">
+            and brand_id = #{brandId,jdbcType=INTEGER}
+        </if>
+        <if test="storeName != null">
+            and store_name like concat('%', #{storeName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="productId != null">
+            and product_id = #{productId,jdbcType=INTEGER}
+        </if>
+        <if test="cityId != null">
+            and city_id = #{cityId,jdbcType=INTEGER}
+        </if>
+        <if test="areaId != null">
+            and area_id = #{areaId,jdbcType=INTEGER}
+        </if>
+        <if test="storeIdList != null">
+            and
+            (
+            <foreach item="item" index="index" collection="storeIdList" open="(" separator="or" close=")">
+                id = #{item}
+            </foreach>
+            )
+        </if>
+        order by update_time
+    </select>
+
+    <select id="selectListByBrandId" parameterType="com.union.aimei.common.vo.store.pc.StoreByBrandIdVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store
+        where is_enabled = true
+        <if test="brandId != null">
+            and brand_id = #{brandId,jdbcType=INTEGER}
+        </if>
+        <if test="cityIdList != null">
+            and
+            (
+            <foreach item="item" index="index" collection="cityIdList" open="(" separator="or" close=")">
+                city_id = #{item}
+            </foreach>
+            )
+        </if>
+        order by update_time
+    </select>
+
+    <!--自定义计算距离SQL语句-->
+    <sql id="caculateDistance">
+        IFNULL(ROUND(
+        6378.138 * 2 * ASIN(
+        SQRT(POW(SIN((${point.y} * PI() / 180 - store_latitude * PI() / 180) / 2),2) +
+        COS(${point.y} * PI() / 180) * COS(store_latitude * PI() / 180) * POW(
+        SIN((${point.x} * PI() / 180 - store_longitude * PI() / 180) / 2),2))) * 1000
+        ), 0) AS distance
+    </sql>
+
+    <select id="queryDistanceById" parameterType="com.union.aimei.common.vo.store.pc.StoreByIdVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        <if test="point !=null and point.x != null and point.y !=null">
+            ,
+            <include refid="caculateDistance"/>
+        </if>
+        from store WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectListByIdBatch" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store
+        where is_enabled = true
+        and store_state = #{storeState}
+        and
+        (
+        <foreach item="item" index="index" collection="idList" open="(" separator="or" close=")">
+            id = #{item}
+        </foreach>
+        )
+    </select>
+
+    <select id="addByCount"  parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(id)
+        from store
+        where is_enabled = true
+        AND create_time <![CDATA[ >= ]]> #{startTime}
+        AND create_time <![CDATA[ <= ]]> #{endTime}
+    </select>
+
+    <select id="findByPageForFrontByDate" parameterType="com.union.aimei.common.vo.store.pc.StoreByDateVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        <if test="point !=null and point.x != null and point.y !=null">
+            ,
+            <include refid="caculateDistance"/>
+        </if>
+        from store
+        <where>
+            <if test="storeName != null">
+                AND store_name like concat('%', #{storeName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="storeCompanyName != null">
+                AND store_company_name = #{storeCompanyName,jdbcType=VARCHAR}
+            </if>
+            <if test="storeAuth != null">
+                AND store_auth = #{storeAuth,jdbcType=BIT}
+            </if>
+            <if test="brandId != null">
+                AND brand_id = #{brandId,jdbcType=INTEGER}
+            </if>
+            <if test="brandName != null">
+                AND brand_name = #{brandName,jdbcType=VARCHAR}
+            </if>
+            <if test="levelId != null">
+                AND level_id = #{levelId,jdbcType=INTEGER}
+            </if>
+            <if test="levelName != null">
+                AND level_name = #{levelName,jdbcType=VARCHAR}
+            </if>
+            <if test="levelLogo != null">
+                AND level_logo = #{levelLogo,jdbcType=VARCHAR}
+            </if>
+            <if test="growupValue != null">
+                AND growup_value = #{growupValue,jdbcType=INTEGER}
+            </if>
+            <if test="manageYear != null">
+                AND manage_year = #{manageYear,jdbcType=INTEGER}
+            </if>
+            <if test="storeLabel != null">
+                AND store_label = #{storeLabel,jdbcType=VARCHAR}
+            </if>
+            <if test="specialProject != null">
+                AND special_project = #{specialProject,jdbcType=VARCHAR}
+            </if>
+            <if test="storeSales != null">
+                AND store_sales = #{storeSales,jdbcType=INTEGER}
+            </if>
+            <if test="bossUserId != null">
+                AND boss_user_id = #{bossUserId,jdbcType=INTEGER}
+            </if>
+            <if test="bossPhone != null">
+                AND boss_phone = #{bossPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="bossName != null">
+                AND boss_name = #{bossName,jdbcType=VARCHAR}
+            </if>
+            <if test="sellerUserId != null">
+                AND seller_user_id = #{sellerUserId,jdbcType=INTEGER}
+            </if>
+            <if test="sellerPhone != null">
+                AND seller_phone = #{sellerPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="sellerName != null">
+                AND seller_name = #{sellerName,jdbcType=VARCHAR}
+            </if>
+            <if test="productId != null">
+                AND product_id = #{productId,jdbcType=INTEGER}
+            </if>
+            <if test="cityId != null">
+                AND city_id = #{cityId,jdbcType=INTEGER}
+            </if>
+            <if test="areaId != null">
+                AND area_id = #{areaId,jdbcType=INTEGER}
+            </if>
+            <if test="provinceName != null">
+                AND province_name = #{provinceName,jdbcType=VARCHAR}
+            </if>
+            <if test="cityName != null">
+                AND city_name = #{cityName,jdbcType=VARCHAR}
+            </if>
+            <if test="areaName != null">
+                AND area_name = #{areaName,jdbcType=VARCHAR}
+            </if>
+            <if test="storeLongitude != null">
+                AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+            </if>
+            <if test="storeLatitude != null">
+                AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+            </if>
+            <if test="storeAddress != null">
+                AND store_address = #{storeAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="houseNumber != null">
+                AND house_number = #{houseNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="storeZip != null">
+                AND store_zip = #{storeZip,jdbcType=VARCHAR}
+            </if>
+            <if test="storeTel != null">
+                AND store_tel = #{storeTel,jdbcType=VARCHAR}
+            </if>
+            <if test="storeLogo != null">
+                AND store_logo = #{storeLogo,jdbcType=VARCHAR}
+            </if>
+            <if test="storeTime != null">
+                AND store_time = #{storeTime,jdbcType=VARCHAR}
+            </if>
+            <if test="storeState != null">
+                AND store_state = #{storeState,jdbcType=TINYINT}
+            </if>
+            <if test="storeCloseInfo != null">
+                AND store_close_info = #{storeCloseInfo,jdbcType=VARCHAR}
+            </if>
+            <if test="storeEndTime != null">
+                AND store_end_time = #{storeEndTime,jdbcType=VARCHAR}
+            </if>
+            <if test="storeSort != null">
+                AND store_sort = #{storeSort,jdbcType=INTEGER}
+            </if>
+            <if test="storeBanner != null">
+                AND store_banner = #{storeBanner,jdbcType=VARCHAR}
+            </if>
+            <if test="storeDesccredit != null">
+                AND store_desccredit = #{storeDesccredit,jdbcType=REAL}
+            </if>
+            <if test="storeServicecredit != null">
+                AND store_servicecredit = #{storeServicecredit,jdbcType=REAL}
+            </if>
+            <if test="storeKeywords != null">
+                AND store_keywords = #{storeKeywords,jdbcType=VARCHAR}
+            </if>
+            <if test="storeDescription != null">
+                AND store_description = #{storeDescription,jdbcType=VARCHAR}
+            </if>
+            <if test="description != null">
+                AND description = #{description,jdbcType=VARCHAR}
+            </if>
+            <if test="storeZy != null">
+                AND store_zy = #{storeZy,jdbcType=VARCHAR}
+            </if>
+            <if test="storeDomain != null">
+                AND store_domain = #{storeDomain,jdbcType=VARCHAR}
+            </if>
+            <if test="storeRecommend != null">
+                AND store_recommend = #{storeRecommend,jdbcType=BIT}
+            </if>
+            <if test="storeTheme != null">
+                AND store_theme = #{storeTheme,jdbcType=VARCHAR}
+            </if>
+            <if test="storeCredit != null">
+                AND store_credit = #{storeCredit,jdbcType=INTEGER}
+            </if>
+            <if test="praiseRate != null">
+                AND praise_rate = #{praiseRate,jdbcType=REAL}
+            </if>
+            <if test="storeSlide != null">
+                AND store_slide = #{storeSlide,jdbcType=VARCHAR}
+            </if>
+            <if test="storeSlideUrl != null">
+                AND store_slide_url = #{storeSlideUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="storeStorageAlarm != null">
+                AND store_storage_alarm = #{storeStorageAlarm,jdbcType=INTEGER}
+            </if>
+            <if test="followerTotal != null">
+                AND follower_total = #{followerTotal,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianTotal != null">
+                AND beautician_total = #{beauticianTotal,jdbcType=INTEGER}
+            </if>
+            <if test="accountBalance != null">
+                AND account_balance = #{accountBalance,jdbcType=INTEGER}
+            </if>
+            <if test="preIncomeAmount != null">
+                AND pre_income_amount = #{preIncomeAmount,jdbcType=INTEGER}
+            </if>
+            <if test="isOld != null">
+                AND is_old = #{isOld,jdbcType=BIT}
+            </if>
+            <if test="isSelect != null">
+                AND is_select = #{isSelect,jdbcType=BIT}
+            </if>
+            <if test="selectSort != null">
+                AND select_sort = #{selectSort,jdbcType=INTEGER}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createTimeBegin != null">
+                <if test="createTimeEnd != null">
+                    AND create_time between #{createTimeBegin,jdbcType=TIMESTAMP} and #{createTimeEnd,jdbcType=TIMESTAMP}
+                </if>
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <update id="cancelSelectByCityId" parameterType="java.lang.Integer">
+        update store
+        set is_select = false
+        where city_id = #{cityId}
+    </update>
+
+    <update id="updateBatchBySelect" parameterType="java.util.List">
+        <foreach collection="storeList" item="item" index="index" open="" close="" separator=";">
+            update store
+            set is_select = true, select_sort = #{item.sort}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <select id="listQualification" parameterType="com.union.aimei.common.vo.store.pc.StoreListQualificationVo" resultType="com.union.aimei.common.vo.store.pc.StoreListQualificationResVo">
+        select
+        s.id as storeId, s.store_name as storeName, se.legal_person_name as legalPersonName, se.legal_person_idcard as legalPersonIdcard,
+        se.business_license_number as businessLicenseNumber,s.qualification_status as qualificationStatus, s.qualification_commit_time as qualificationCommitTime,
+        s.qualification_audit_time as qualificationAuditTime
+        from store s, store_extend se
+        where s.id = se.store_id
+        and s.is_enabled = true
+        and se.is_enabled = true
+        <if test="null != storeName and '' != storeName">
+            and s.store_name like concat('%', #{storeName}, '%')
+        </if>
+        <if test="null != legalPersonName and '' != legalPersonName">
+            and se.legal_person_name like concat('%', #{legalPersonName}, '%')
+        </if>
+        <if test="null != legalPersonIdcard and '' != legalPersonIdcard">
+            and se.legal_person_idcard like concat('%', #{legalPersonIdcard}, '%')
+        </if>
+        <if test="null != businessLicenseNumber and '' != businessLicenseNumber">
+            and se.business_license_number like concat('%', #{businessLicenseNumber}, '%')
+        </if>
+        <if test="null != qualificationStatus">
+            and s.qualification_status = #{qualificationStatus}
+        </if>
+        order by s.update_time desc
+    </select>
+
+    <select id="getBySellerPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store
+        where seller_phone = #{sellerPhone}
+        limit 1
+    </select>
+
+</mapper>

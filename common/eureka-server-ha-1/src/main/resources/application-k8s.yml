@@ -1,0 +1,15 @@
+server:
+  port: 8000
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#是否打开自我保护，如果设置为true，很容易会出现红色字体的自我保护提示，不方便测试
+  server:
+    enable-self-preservation: false
+#清理时间，默认是60*1000毫秒，修改短一点，保证开发时，客户端失效后，能够快速剔除客户端
+    eviction-interval-timer-in-ms: 1000

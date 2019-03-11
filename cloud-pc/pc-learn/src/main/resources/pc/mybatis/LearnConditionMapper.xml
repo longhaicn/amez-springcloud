@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.LearnConditionMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.LearnCondition" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="TINYINT" />
+    <result column="condition_name" property="conditionName" jdbcType="VARCHAR" />
+    <result column="conditional_data" property="conditionalData" jdbcType="VARCHAR" />
+    <result column="conditional_according" property="conditionalAccording" jdbcType="TINYINT" />
+    <result column="conditional_type" property="conditionalType" jdbcType="TINYINT" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, source_id, source_type, condition_name, conditional_data, conditional_according, 
+    conditional_type, is_enabled, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, source_id AS sourceId, source_type AS sourceType, condition_name AS conditionName, 
+    conditional_data AS conditionalData, conditional_according AS conditionalAccording, 
+    conditional_type AS conditionalType, is_enabled AS isEnabled, create_time AS createTime, 
+    update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from learn_condition
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from learn_condition
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.LearnCondition" useGeneratedKeys="true" keyProperty="id" >
+    insert into learn_condition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="conditionName != null" >
+        condition_name,
+      </if>
+      <if test="conditionalData != null" >
+        conditional_data,
+      </if>
+      <if test="conditionalAccording != null" >
+        conditional_according,
+      </if>
+      <if test="conditionalType != null" >
+        conditional_type,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionName != null" >
+        #{conditionName,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionalData != null" >
+        #{conditionalData,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionalAccording != null" >
+        #{conditionalAccording,jdbcType=TINYINT},
+      </if>
+      <if test="conditionalType != null" >
+        #{conditionalType,jdbcType=TINYINT},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.LearnCondition" >
+    update learn_condition
+    <set >
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionName != null" >
+        condition_name = #{conditionName,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionalData != null" >
+        conditional_data = #{conditionalData,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionalAccording != null" >
+        conditional_according = #{conditionalAccording,jdbcType=TINYINT},
+      </if>
+      <if test="conditionalType != null" >
+        conditional_type = #{conditionalType,jdbcType=TINYINT},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.LearnCondition" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from learn_condition
+    <where >
+      <if test="sourceId != null" >
+        AND source_id = #{sourceId,jdbcType=INTEGER}
+      </if>
+      <if test="sourceType != null" >
+            AND source_type = #{sourceType,jdbcType=TINYINT}
+      </if>
+      <if test="conditionName != null" >
+        AND condition_name = #{conditionName,jdbcType=VARCHAR}
+      </if>
+      <if test="conditionalData != null" >
+        AND conditional_data = #{conditionalData,jdbcType=VARCHAR}
+      </if>
+      <if test="conditionalAccording != null" >
+        AND conditional_according = #{conditionalAccording,jdbcType=TINYINT}
+      </if>
+      <if test="conditionalType != null" >
+        AND conditional_type = #{conditionalType,jdbcType=TINYINT}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+
+  <delete id="deleteByPrimaryKeyList" parameterType="java.util.List">
+    delete from learn_condition
+    where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+
+
+  <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into learn_condition (source_id,source_type,condition_name,conditional_data,conditional_according,conditional_type)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.sourceId}, #{item.sourceType}, #{item.conditionName}, #{item.conditionalData} , #{item.conditionalAccording} ,#{item.conditionalType})
+    </foreach>
+  </insert>
+
+  <select id="queryIdListBySourceId" parameterType="integer" resultType="integer">
+    SELECT id FROM learn_condition WHERE source_id = #{sourceId,jdbcType=INTEGER} and source_type = 1 or  source_type = 2
+  </select>
+
+</mapper>

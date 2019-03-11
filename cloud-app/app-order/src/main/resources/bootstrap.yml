@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: app-order-service
+  profiles:
+      active: @profileActive@

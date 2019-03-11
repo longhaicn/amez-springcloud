@@ -1,0 +1,153 @@
+server:
+    port: 8081
+eureka:
+    instance:
+      prefer-ip-address: true
+    client:
+       serviceUrl:
+            defaultZone: http://39.108.59.54:30010/eureka/
+spring:
+   application:
+     name: pc-api
+   rabbitmq:
+         host: 47.106.90.37
+         port: 5672
+         username: guest
+         password: aimeirabbit123456!
+         publisher-confirms: true
+         publisher-returns: true
+   http:
+        multipart:
+          max-file-size: 500Mb
+          max-request-size: 500Mb
+   data:
+       mongodb:
+   #      uri: mongodb://name:pass@localhost:27017/test
+   #      uri: mongodb://localhost:27017/aimeilogs
+         uri: mongodb://47.106.90.37:27017/aimeilogs
+#声明Feign的 hystrix支持,如果设置为true，则断路器备用方法将不起作用，默认为false
+   sleuth:
+        sampler:
+          percentage: 1.0
+feign:
+     hystrix:
+         enabled: true
+     httpclient: false
+     okhttp:
+         enable: true
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
+                    thread:
+                        timeoutInMilliseconds: 60000
+swagger:
+  docket:
+       系统管理:
+          title: 系统管理服务
+          description: 更多接口稍后开发
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.pc.api.system
+          contact:
+              name: 刘飞华
+              email: 1002219331@qq.com
+          base-path: /**
+          excludePath: /error
+       商品服务管理:
+           title: 商品管理服务
+           description: 更多接口稍后开发
+           version: 1.0.1
+           license: Apache License, Version 2.0
+           license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+           base-package: com.union.aimei.pc.api.product
+           contact:
+               name: 刘任开
+               email: 1002219331@qq.com
+           base-path: /**
+           excludePath: /error
+       店铺服务管理:
+          title: 店铺管理服务
+          description: 更多接口稍后开发
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.pc.api.store
+          contact:
+              name: 刘飞华
+              email: 1002219331@qq.com
+          base-path: /**
+          excludePath: /error
+       会员管理:
+          title: 美容邦会员管理API接口
+          description: 更多接口稍后开发
+          version: 1.0.1
+          license: Apache License, Version 2.0
+          license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+          base-package: com.union.aimei.pc.api.member
+          contact:
+                name: 高伟
+                email: 526201403@qq.com
+          base-path: /**
+          excludePath: /error
+       订单管理:
+                 title: 美容邦会员管理API接口
+                 description: 更多接口稍后开发
+                 version: 1.0.1
+                 license: Apache License, Version 2.0
+                 license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+                 base-package: com.union.aimei.pc.api.order
+                 contact:
+                       name: 高伟
+                       email: 526201403@qq.com
+                 base-path: /**
+                 excludePath: /error
+       IM:
+                 title: 美容邦IM管理API接口
+                 description: 更多接口稍后开发
+                 version: 1.0.1
+                 license: Apache License, Version 2.0
+                 license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+                 base-package: com.union.aimei.pc.api.im
+                 contact:
+                       name: 刘任开
+                       email: false.lrk@qq.com
+                 base-path: /**
+                 excludePath: /error
+       财务:
+                 title: 美容邦财务管理API接口
+                 description: 更多接口稍后开发
+                 version: 1.0.1
+                 license: Apache License, Version 2.0
+                 license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+                 base-package: com.union.aimei.pc.api.financial
+                 contact:
+                       name: 刘飞华
+                       email: 1002219331@qq.com
+                 base-path: /**
+                 excludePath: /error
+  enabled: true
+logging:
+  level:
+    root: INFO
+    com.codingapi: error
+  config: classpath:logback.xml
+job:
+  is:
+    enable: false
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+#开启ribbon饥饿加载，解决重新部署后第一次调用没有服务实例可用导致没有任何回应的BUG
+ribbon:
+  eager-load:
+    enabled: true
+#分布式事务管理器
+tx-manager: tx-manager

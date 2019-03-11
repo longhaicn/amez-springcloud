@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: app-learn-service
+  profiles:
+      active: @profileActive@

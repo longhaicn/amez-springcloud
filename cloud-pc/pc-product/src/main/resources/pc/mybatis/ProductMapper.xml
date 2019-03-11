@@ -1,0 +1,1480 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.product.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.Product">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="server_name" property="serverName" jdbcType="VARCHAR"/>
+        <result column="product_type" property="productType" jdbcType="TINYINT"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="brand_id" property="brandId" jdbcType="INTEGER"/>
+        <result column="brand_name" property="brandName" jdbcType="VARCHAR"/>
+        <result column="is_brand" property="isBrand" jdbcType="BIT"/>
+        <result column="label" property="label" jdbcType="TINYINT"/>
+        <result column="appointment" property="appointment" jdbcType="INTEGER"/>
+        <result column="sale_volume" property="saleVolume" jdbcType="INTEGER"/>
+        <result column="original_price" property="originalPrice" jdbcType="INTEGER"/>
+        <result column="home_fee" property="homeFee" jdbcType="INTEGER"/>
+        <result column="wholesale_price" property="wholesalePrice" jdbcType="INTEGER"/>
+        <result column="retail_price" property="retailPrice" jdbcType="INTEGER"/>
+        <result column="sale_price" property="salePrice" jdbcType="INTEGER"/>
+        <result column="fulltime_commission" property="fulltimeCommission" jdbcType="INTEGER"/>
+        <result column="fulltime_commission_ratio" property="fulltimeCommissionRatio" jdbcType="INTEGER"/>
+        <result column="parttime_commission" property="parttimeCommission" jdbcType="INTEGER"/>
+        <result column="parttime_commission_ratio" property="parttimeCommissionRatio" jdbcType="INTEGER"/>
+        <result column="server_introduce" property="serverIntroduce" jdbcType="LONGVARCHAR"/>
+        <result column="server_need_time" property="serverNeedTime" jdbcType="INTEGER"/>
+        <result column="server_content" property="serverContent" jdbcType="LONGVARCHAR"/>
+        <result column="server_fit_people" property="serverFitPeople" jdbcType="VARCHAR"/>
+        <result column="server_fit_part" property="serverFitPart" jdbcType="VARCHAR"/>
+        <result column="server_effect" property="serverEffect" jdbcType="VARCHAR"/>
+        <result column="server_attention" property="serverAttention" jdbcType="VARCHAR"/>
+        <result column="cover_img" property="coverImg" jdbcType="VARCHAR"/>
+        <result column="sequence" property="sequence" jdbcType="INTEGER"/>
+        <result column="sale_status" property="saleStatus" jdbcType="TINYINT"/>
+        <result column="audit_status" property="auditStatus" jdbcType="TINYINT"/>
+        <result column="audit_reason" property="auditReason" jdbcType="VARCHAR"/>
+        <result column="limit_status" property="limitStatus" jdbcType="TINYINT"/>
+        <result column="limit_quota" property="limitQuota" jdbcType="INTEGER"/>
+        <result column="limit_buy_quota" property="limitBuyQuota" jdbcType="INTEGER"/>
+        <result column="collection_total" property="collectionTotal" jdbcType="INTEGER"/>
+        <result column="is_support_store" property="isSupportStore" jdbcType="BIT"/>
+        <result column="is_support_home" property="isSupportHome" jdbcType="BIT"/>
+        <result column="is_support_wholesale" property="isSupportWholesale" jdbcType="BIT"/>
+        <result column="is_support_retail" property="isSupportRetail" jdbcType="BIT"/>
+        <result column="is_platform" property="isPlatform" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="is_allow_recruit" property="isAllowRecruit" jdbcType="BIT"/>
+        <result column="apply_recruit_total" property="applyRecruitTotal" jdbcType="INTEGER"/>
+        <result column="recruit_total" property="recruitTotal" jdbcType="INTEGER"/>
+        <result column="formal_beautician_commission" property="formalBeauticianCommission" jdbcType="INTEGER"/>
+        <result column="parttime_beautician_commission" property="parttimeBeauticianCommission" jdbcType="INTEGER"/>
+        <result column="is_course" property="isCourse" jdbcType="BIT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+            id, server_name, product_type, store_id, store_name, brand_id, brand_name, is_brand,
+    label, appointment, sale_volume, original_price, home_fee, wholesale_price, retail_price,
+    sale_price, fulltime_commission, fulltime_commission_ratio, parttime_commission,
+    parttime_commission_ratio, server_introduce, server_need_time, server_content, server_fit_people,
+    server_fit_part, server_effect, server_attention, cover_img, sequence, sale_status,
+    audit_status, audit_reason, limit_status, limit_quota, limit_buy_quota, collection_total,
+    is_support_store, is_support_home, is_support_wholesale, is_support_retail, is_platform,
+    is_enabled, create_time, update_time, is_allow_recruit, apply_recruit_total, recruit_total,
+    formal_beautician_commission, parttime_beautician_commission, is_course
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, server_name AS serverName, product_type AS productType, store_id AS storeId,
+    store_name AS storeName, brand_id AS brandId, brand_name AS brandName, is_brand AS isBrand,
+    label, appointment, sale_volume AS saleVolume, original_price AS originalPrice, home_fee AS homeFee,
+    wholesale_price AS wholesalePrice, retail_price AS retailPrice, sale_price AS salePrice,
+    fulltime_commission AS fulltimeCommission, fulltime_commission_ratio AS fulltimeCommissionRatio,
+    parttime_commission AS parttimeCommission, parttime_commission_ratio AS parttimeCommissionRatio,
+    server_introduce AS serverIntroduce, server_need_time AS serverNeedTime, server_content AS serverContent,
+    server_fit_people AS serverFitPeople, server_fit_part AS serverFitPart, server_effect AS serverEffect,
+    server_attention AS serverAttention, cover_img AS coverImg, sequence, sale_status AS saleStatus,
+    audit_status AS auditStatus, audit_reason AS auditReason, limit_status AS limitStatus,
+    limit_quota AS limitQuota, limit_buy_quota AS limitBuyQuota, collection_total AS collectionTotal,
+    is_support_store AS isSupportStore, is_support_home AS isSupportHome, is_support_wholesale AS isSupportWholesale,
+    is_support_retail AS isSupportRetail, is_platform AS isPlatform, is_enabled AS isEnabled,
+    create_time AS createTime, update_time AS updateTime, is_allow_recruit AS isAllowRecruit,
+    apply_recruit_total AS applyRecruitTotal, recruit_total AS recruitTotal, formal_beautician_commission AS formalBeauticianCommission,
+    parttime_beautician_commission AS parttimeBeauticianCommission, is_course AS isCourse
+    </sql>
+
+    <sql id="Product_Column_List">
+        p.id, p.server_name, p.product_type, p.store_id, p.store_name, p.brand_id, p.brand_name, p.is_brand, p.label, p.appointment, p.sale_volume,
+        p.original_price, p.home_fee, p.wholesale_price, p.retail_price, p.sale_price, p.formal_beautician_commission,
+        p.parttime_beautician_commission, p.server_introduce, p.server_need_time, p.server_content,
+        p.server_fit_people, p.server_fit_part, p.server_effect, p.server_attention, p.cover_img, p.sequence,
+        p.sale_status, p.audit_status, p.audit_reason, p.limit_status, p.limit_quota, p.limit_buy_quota,
+        p.collection_total, p.is_support_store, p.is_support_home, p.is_support_wholesale, p.is_support_retail,
+        p.is_platform, p.is_enabled, p.create_time, p.update_time, p.is_allow_recruit, p.apply_recruit_total, p.recruit_total, p.is_course
+    </sql>
+
+    <sql id="Product_Store_Store_Column_List">
+        p.id, p.server_name, p.product_type, psr.store_id, psr.store_name, p.brand_id, p.brand_name, p.is_brand, p.label, p.appointment, p.sale_volume,
+        p.original_price, p.home_fee, p.wholesale_price, p.retail_price, p.sale_price, p.formal_beautician_commission,
+        p.parttime_beautician_commission, p.server_introduce, p.server_need_time, p.server_content,
+        p.server_fit_people, p.server_fit_part, p.server_effect, p.server_attention, p.cover_img, p.sequence,
+        psr.sale_status, p.audit_status, p.audit_reason, p.limit_status, p.limit_quota, p.limit_buy_quota,
+        p.collection_total, p.is_support_store, p.is_support_home, p.is_support_wholesale, p.is_support_retail,
+        p.is_platform, p.is_enabled, p.create_time, p.update_time, p.is_allow_recruit, p.apply_recruit_total, p.recruit_total, p.is_course
+    </sql>
+
+    <sql id="Product_Store_Manage_Column_List">
+        p.id, p.server_name, p.product_type, psr.store_id, psr.store_name, p.brand_id, p.brand_name, p.is_brand, p.label, p.appointment, p.sale_volume,
+        p.original_price, p.home_fee, p.wholesale_price, p.retail_price, p.sale_price, p.formal_beautician_commission,
+        p.parttime_beautician_commission, p.server_introduce, p.server_need_time, p.server_content,
+        p.server_fit_people, p.server_fit_part, p.server_effect, p.server_attention, p.cover_img, p.sequence,
+        p.sale_status, p.audit_status, p.audit_reason, p.limit_status, p.limit_quota, p.limit_buy_quota,
+        p.collection_total, p.is_support_store, p.is_support_home, p.is_support_wholesale, p.is_support_retail,
+        p.is_platform, p.is_enabled, p.create_time, p.update_time, p.is_allow_recruit, p.apply_recruit_total, p.recruit_total, p.is_course
+    </sql>
+
+    <sql id="ProductCategoryColumnList">
+        p.id,
+        p.server_name AS serverName,
+        p.product_type AS productType,
+        p.store_id AS storeId,
+        p.store_name AS storeName,
+        p.brand_id AS brandId,
+        p.brand_name AS brandName,
+        p.is_brand AS isBrand,
+        p.label,
+        p.appointment,
+        p.sale_volume AS saleVolume,
+        p.original_price AS originalPrice,
+        p.home_fee AS homeFee,
+        p.wholesale_price AS wholesalePrice,
+        p.retail_price AS retailPrice,
+        p.sale_price AS salePrice,
+        p.formal_beautician_commission AS formalBeauticianCommission,
+        p.parttime_beautician_commission AS parttimeBeauticianCommission,
+        p.server_introduce AS serverIntroduce,
+        p.server_need_time AS serverNeedTime,
+        p.server_content AS serverContent,
+        p.server_fit_people AS serverFitPeople,
+        p.server_fit_part AS serverFitPart,
+        p.server_effect AS serverEffect,
+        p.server_attention AS serverAttention,
+        p.cover_img AS coverImg,
+        p.sequence,
+        p.sale_status AS saleStatus,
+        p.audit_status AS auditStatus,
+        p.audit_reason AS auditReason,
+        p.limit_status AS limitStatus,
+        p.limit_quota AS limitQuota,
+        p.limit_buy_quota AS limitBuyQuota,
+        p.collection_total AS collectionTotal,
+        p.is_support_store AS isSupportStore,
+        p.is_support_home AS isSupportHome,
+        p.is_support_wholesale AS isSupportWholesale,
+        p.is_support_retail AS isSupportRetail,
+        p.is_platform AS isPlatform,
+        p.is_enabled AS isEnabled,
+        p.create_time AS createTime,
+        p.update_time AS updateTime,
+        p.is_allow_recruit AS isAllowRecruit,
+        p.apply_recruit_total AS applyRecruitTotal,
+        p.recruit_total AS recruitTotal,
+        p.is_course AS isCourse ,
+        c.category_name AS categoryName ,
+        c.id AS categoryId
+    </sql>
+
+    <!-- 正常商品条件 -->
+    <sql id="condProductByNormal">
+        where p.id = psr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        <if test="auditStatus != null">
+            and p.audit_status = #{productAuditStatus}
+        </if>
+        <if test="auditStatus != null">
+            and p.sale_status = #{productSaleStatus}
+        </if>
+        <if test="auditStatus != null">
+            and psr.sale_status = #{storeSaleStatus}
+        </if>
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.Product" useGeneratedKeys="true" keyProperty="id">
+        insert into product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="serverName != null">
+                server_name,
+            </if>
+            <if test="productType != null">
+                product_type,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="brandId != null">
+                brand_id,
+            </if>
+            <if test="brandName != null">
+                brand_name,
+            </if>
+            <if test="isBrand != null">
+                is_brand,
+            </if>
+            <if test="label != null">
+                label,
+            </if>
+            <if test="appointment != null">
+                appointment,
+            </if>
+            <if test="saleVolume != null">
+                sale_volume,
+            </if>
+            <if test="originalPrice != null">
+                original_price,
+            </if>
+            <if test="homeFee != null">
+                home_fee,
+            </if>
+            <if test="wholesalePrice != null">
+                wholesale_price,
+            </if>
+            <if test="retailPrice != null">
+                retail_price,
+            </if>
+            <if test="salePrice != null">
+                sale_price,
+            </if>
+            <if test="fulltimeCommission != null">
+                fulltime_commission,
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                fulltime_commission_ratio,
+            </if>
+            <if test="parttimeCommission != null">
+                parttime_commission,
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                parttime_commission_ratio,
+            </if>
+            <if test="serverIntroduce != null">
+                server_introduce,
+            </if>
+            <if test="serverNeedTime != null">
+                server_need_time,
+            </if>
+            <if test="serverContent != null">
+                server_content,
+            </if>
+            <if test="serverFitPeople != null">
+                server_fit_people,
+            </if>
+            <if test="serverFitPart != null">
+                server_fit_part,
+            </if>
+            <if test="serverEffect != null">
+                server_effect,
+            </if>
+            <if test="serverAttention != null">
+                server_attention,
+            </if>
+            <if test="coverImg != null">
+                cover_img,
+            </if>
+            <if test="sequence != null">
+                sequence,
+            </if>
+            <if test="saleStatus != null">
+                sale_status,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="auditReason != null">
+                audit_reason,
+            </if>
+            <if test="limitStatus != null">
+                limit_status,
+            </if>
+            <if test="limitQuota != null">
+                limit_quota,
+            </if>
+            <if test="limitBuyQuota != null">
+                limit_buy_quota,
+            </if>
+            <if test="collectionTotal != null">
+                collection_total,
+            </if>
+            <if test="isSupportStore != null">
+                is_support_store,
+            </if>
+            <if test="isSupportHome != null">
+                is_support_home,
+            </if>
+            <if test="isSupportWholesale != null">
+                is_support_wholesale,
+            </if>
+            <if test="isSupportRetail != null">
+                is_support_retail,
+            </if>
+            <if test="isPlatform != null">
+                is_platform,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isAllowRecruit != null">
+                is_allow_recruit,
+            </if>
+            <if test="applyRecruitTotal != null">
+                apply_recruit_total,
+            </if>
+            <if test="recruitTotal != null">
+                recruit_total,
+            </if>
+            <if test="formalBeauticianCommission != null">
+                formal_beautician_commission,
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                parttime_beautician_commission,
+            </if>
+            <if test="isCourse != null">
+                is_course,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="serverName != null">
+                #{serverName,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null">
+                #{productType,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="isBrand != null">
+                #{isBrand,jdbcType=BIT},
+            </if>
+            <if test="label != null">
+                #{label,jdbcType=TINYINT},
+            </if>
+            <if test="appointment != null">
+                #{appointment,jdbcType=INTEGER},
+            </if>
+            <if test="saleVolume != null">
+                #{saleVolume,jdbcType=INTEGER},
+            </if>
+            <if test="originalPrice != null">
+                #{originalPrice,jdbcType=INTEGER},
+            </if>
+            <if test="homeFee != null">
+                #{homeFee,jdbcType=INTEGER},
+            </if>
+            <if test="wholesalePrice != null">
+                #{wholesalePrice,jdbcType=INTEGER},
+            </if>
+            <if test="retailPrice != null">
+                #{retailPrice,jdbcType=INTEGER},
+            </if>
+            <if test="salePrice != null">
+                #{salePrice,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommission != null">
+                #{fulltimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                #{fulltimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommission != null">
+                #{parttimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                #{parttimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="serverIntroduce != null">
+                #{serverIntroduce,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverNeedTime != null">
+                #{serverNeedTime,jdbcType=INTEGER},
+            </if>
+            <if test="serverContent != null">
+                #{serverContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverFitPeople != null">
+                #{serverFitPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="serverFitPart != null">
+                #{serverFitPart,jdbcType=VARCHAR},
+            </if>
+            <if test="serverEffect != null">
+                #{serverEffect,jdbcType=VARCHAR},
+            </if>
+            <if test="serverAttention != null">
+                #{serverAttention,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="sequence != null">
+                #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="saleStatus != null">
+                #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="limitStatus != null">
+                #{limitStatus,jdbcType=TINYINT},
+            </if>
+            <if test="limitQuota != null">
+                #{limitQuota,jdbcType=INTEGER},
+            </if>
+            <if test="limitBuyQuota != null">
+                #{limitBuyQuota,jdbcType=INTEGER},
+            </if>
+            <if test="collectionTotal != null">
+                #{collectionTotal,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportStore != null">
+                #{isSupportStore,jdbcType=BIT},
+            </if>
+            <if test="isSupportHome != null">
+                #{isSupportHome,jdbcType=BIT},
+            </if>
+            <if test="isSupportWholesale != null">
+                #{isSupportWholesale,jdbcType=BIT},
+            </if>
+            <if test="isSupportRetail != null">
+                #{isSupportRetail,jdbcType=BIT},
+            </if>
+            <if test="isPlatform != null">
+                #{isPlatform,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isAllowRecruit != null">
+                #{isAllowRecruit,jdbcType=BIT},
+            </if>
+            <if test="applyRecruitTotal != null">
+                #{applyRecruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="recruitTotal != null">
+                #{recruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="formalBeauticianCommission != null">
+                #{formalBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                #{parttimeBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="isCourse != null">
+                #{isCourse,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.Product">
+        update product
+        <set>
+            <if test="serverName != null">
+                server_name = #{serverName,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null">
+                product_type = #{productType,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="brandId != null">
+                brand_id = #{brandId,jdbcType=INTEGER},
+            </if>
+            <if test="brandName != null">
+                brand_name = #{brandName,jdbcType=VARCHAR},
+            </if>
+            <if test="isBrand != null">
+                is_brand = #{isBrand,jdbcType=BIT},
+            </if>
+            <if test="label != null">
+                label = #{label,jdbcType=TINYINT},
+            </if>
+            <if test="appointment != null">
+                appointment = #{appointment,jdbcType=INTEGER},
+            </if>
+            <if test="saleVolume != null">
+                sale_volume = #{saleVolume,jdbcType=INTEGER},
+            </if>
+            <if test="originalPrice != null">
+                original_price = #{originalPrice,jdbcType=INTEGER},
+            </if>
+            <if test="homeFee != null">
+                home_fee = #{homeFee,jdbcType=INTEGER},
+            </if>
+            <if test="wholesalePrice != null">
+                wholesale_price = #{wholesalePrice,jdbcType=INTEGER},
+            </if>
+            <if test="retailPrice != null">
+                retail_price = #{retailPrice,jdbcType=INTEGER},
+            </if>
+            <if test="salePrice != null">
+                sale_price = #{salePrice,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommission != null">
+                fulltime_commission = #{fulltimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                fulltime_commission_ratio = #{fulltimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommission != null">
+                parttime_commission = #{parttimeCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                parttime_commission_ratio = #{parttimeCommissionRatio,jdbcType=INTEGER},
+            </if>
+            <if test="serverIntroduce != null">
+                server_introduce = #{serverIntroduce,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverNeedTime != null">
+                server_need_time = #{serverNeedTime,jdbcType=INTEGER},
+            </if>
+            <if test="serverContent != null">
+                server_content = #{serverContent,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serverFitPeople != null">
+                server_fit_people = #{serverFitPeople,jdbcType=VARCHAR},
+            </if>
+            <if test="serverFitPart != null">
+                server_fit_part = #{serverFitPart,jdbcType=VARCHAR},
+            </if>
+            <if test="serverEffect != null">
+                server_effect = #{serverEffect,jdbcType=VARCHAR},
+            </if>
+            <if test="serverAttention != null">
+                server_attention = #{serverAttention,jdbcType=VARCHAR},
+            </if>
+            <if test="coverImg != null">
+                cover_img = #{coverImg,jdbcType=VARCHAR},
+            </if>
+            <if test="sequence != null">
+                sequence = #{sequence,jdbcType=INTEGER},
+            </if>
+            <if test="saleStatus != null">
+                sale_status = #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                audit_reason = #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="limitStatus != null">
+                limit_status = #{limitStatus,jdbcType=TINYINT},
+            </if>
+            <if test="limitQuota != null">
+                limit_quota = #{limitQuota,jdbcType=INTEGER},
+            </if>
+            <if test="limitBuyQuota != null">
+                limit_buy_quota = #{limitBuyQuota,jdbcType=INTEGER},
+            </if>
+            <if test="collectionTotal != null">
+                collection_total = #{collectionTotal,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportStore != null">
+                is_support_store = #{isSupportStore,jdbcType=BIT},
+            </if>
+            <if test="isSupportHome != null">
+                is_support_home = #{isSupportHome,jdbcType=BIT},
+            </if>
+            <if test="isSupportWholesale != null">
+                is_support_wholesale = #{isSupportWholesale,jdbcType=BIT},
+            </if>
+            <if test="isSupportRetail != null">
+                is_support_retail = #{isSupportRetail,jdbcType=BIT},
+            </if>
+            <if test="isPlatform != null">
+                is_platform = #{isPlatform,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isAllowRecruit != null">
+                is_allow_recruit = #{isAllowRecruit,jdbcType=BIT},
+            </if>
+            <if test="applyRecruitTotal != null">
+                apply_recruit_total = #{applyRecruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="recruitTotal != null">
+                recruit_total = #{recruitTotal,jdbcType=INTEGER},
+            </if>
+            <if test="formalBeauticianCommission != null">
+                formal_beautician_commission = #{formalBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                parttime_beautician_commission = #{parttimeBeauticianCommission,jdbcType=INTEGER},
+            </if>
+            <if test="isCourse != null">
+                is_course = #{isCourse,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.Product" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        <where>
+            <if test="serverName != null">
+                AND server_name = #{serverName,jdbcType=VARCHAR}
+            </if>
+            <if test="productType != null">
+                AND product_type = #{productType,jdbcType=TINYINT}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="brandId != null">
+                AND brand_id = #{brandId,jdbcType=INTEGER}
+            </if>
+            <if test="brandName != null">
+                AND brand_name = #{brandName,jdbcType=VARCHAR}
+            </if>
+            <if test="isBrand != null">
+                AND is_brand = #{isBrand,jdbcType=BIT}
+            </if>
+            <if test="label != null">
+                AND label = #{label,jdbcType=TINYINT}
+            </if>
+            <if test="appointment != null">
+                AND appointment = #{appointment,jdbcType=INTEGER}
+            </if>
+            <if test="saleVolume != null">
+                AND sale_volume = #{saleVolume,jdbcType=INTEGER}
+            </if>
+            <if test="originalPrice != null">
+                AND original_price = #{originalPrice,jdbcType=INTEGER}
+            </if>
+            <if test="homeFee != null">
+                AND home_fee = #{homeFee,jdbcType=INTEGER}
+            </if>
+            <if test="wholesalePrice != null">
+                AND wholesale_price = #{wholesalePrice,jdbcType=INTEGER}
+            </if>
+            <if test="retailPrice != null">
+                AND retail_price = #{retailPrice,jdbcType=INTEGER}
+            </if>
+            <if test="salePrice != null">
+                AND sale_price = #{salePrice,jdbcType=INTEGER}
+            </if>
+            <if test="fulltimeCommission != null">
+                AND fulltime_commission = #{fulltimeCommission,jdbcType=INTEGER}
+            </if>
+            <if test="fulltimeCommissionRatio != null">
+                AND fulltime_commission_ratio = #{fulltimeCommissionRatio,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeCommission != null">
+                AND parttime_commission = #{parttimeCommission,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeCommissionRatio != null">
+                AND parttime_commission_ratio = #{parttimeCommissionRatio,jdbcType=INTEGER}
+            </if>
+            <if test="serverIntroduce != null">
+                AND server_introduce = #{serverIntroduce,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serverNeedTime != null">
+                AND server_need_time = #{serverNeedTime,jdbcType=INTEGER}
+            </if>
+            <if test="serverContent != null">
+                AND server_content = #{serverContent,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serverFitPeople != null">
+                AND server_fit_people = #{serverFitPeople,jdbcType=VARCHAR}
+            </if>
+            <if test="serverFitPart != null">
+                AND server_fit_part = #{serverFitPart,jdbcType=VARCHAR}
+            </if>
+            <if test="serverEffect != null">
+                AND server_effect = #{serverEffect,jdbcType=VARCHAR}
+            </if>
+            <if test="serverAttention != null">
+                AND server_attention = #{serverAttention,jdbcType=VARCHAR}
+            </if>
+            <if test="coverImg != null">
+                AND cover_img = #{coverImg,jdbcType=VARCHAR}
+            </if>
+            <if test="sequence != null">
+                AND sequence = #{sequence,jdbcType=INTEGER}
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditStatus != null">
+                AND audit_status = #{auditStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditReason != null">
+                AND audit_reason = #{auditReason,jdbcType=VARCHAR}
+            </if>
+            <if test="limitStatus != null">
+                AND limit_status = #{limitStatus,jdbcType=TINYINT}
+            </if>
+            <if test="limitQuota != null">
+                AND limit_quota = #{limitQuota,jdbcType=INTEGER}
+            </if>
+            <if test="limitBuyQuota != null">
+                AND limit_buy_quota = #{limitBuyQuota,jdbcType=INTEGER}
+            </if>
+            <if test="collectionTotal != null">
+                AND collection_total = #{collectionTotal,jdbcType=INTEGER}
+            </if>
+            <if test="isSupportStore != null">
+                AND is_support_store = #{isSupportStore,jdbcType=BIT}
+            </if>
+            <if test="isSupportHome != null">
+                AND is_support_home = #{isSupportHome,jdbcType=BIT}
+            </if>
+            <if test="isSupportWholesale != null">
+                AND is_support_wholesale = #{isSupportWholesale,jdbcType=BIT}
+            </if>
+            <if test="isSupportRetail != null">
+                AND is_support_retail = #{isSupportRetail,jdbcType=BIT}
+            </if>
+            <if test="isPlatform != null">
+                AND is_platform = #{isPlatform,jdbcType=BIT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="isAllowRecruit != null">
+                AND is_allow_recruit = #{isAllowRecruit,jdbcType=BIT}
+            </if>
+            <if test="applyRecruitTotal != null">
+                AND apply_recruit_total = #{applyRecruitTotal,jdbcType=INTEGER}
+            </if>
+            <if test="recruitTotal != null">
+                AND recruit_total = #{recruitTotal,jdbcType=INTEGER}
+            </if>
+            <if test="formalBeauticianCommission != null">
+                AND formal_beautician_commission = #{formalBeauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                AND parttime_beautician_commission = #{parttimeBeauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="isCourse != null">
+                AND is_course = #{isCourse,jdbcType=BIT}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!--自定义计算距离SQL语句-->
+    <sql id="caculateDistance">
+        IFNULL(ROUND(
+        6378.138 * 2 * ASIN(
+        SQRT(POW(SIN((${point.y} * PI() / 180 - store_latitude * PI() / 180) / 2),2) +
+        COS(${point.y} * PI() / 180) * COS(store_latitude * PI() / 180) * POW(
+        SIN((${point.x} * PI() / 180 - store_longitude * PI() / 180) / 2),2))) * 1000
+        ), 0) AS distance
+    </sql>
+
+    <!-- 商品上架条件（店铺） -->
+    <sql id="condProductByOnSaleForStore">
+        where p.id = psr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        <if test="auditStatus != null">
+            and p.audit_status = #{auditStatus}
+        </if>
+        <if test="saleStatus != null">
+            and p.sale_status = #{saleStatus}
+        </if>
+        <if test="saleStatus != null">
+            and psr.sale_status = #{saleStatus}
+        </if>
+        <if test="productStatus != null">
+            and psr.product_status = #{productStatus}
+        </if>
+    </sql>
+
+    <select id="selectListByBrand" parameterType="com.union.aimei.common.vo.product.pc.ProductByBrandVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        <where>
+            <if test="isBrand != null">
+                AND is_brand = #{isBrand,jdbcType=BIT}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name like concat('%', #{storeName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="brandId != null">
+                AND brand_id = #{brandId,jdbcType=INTEGER}
+            </if>
+            <if test="serverName != null">
+                AND server_name like concat('%', #{serverName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="auditStatus != null">
+                AND audit_status = #{auditStatus,jdbcType=TINYINT}
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus,jdbcType=TINYINT}
+            </if>
+            <if test="beginReleaseTime != null">
+                <![CDATA[AND update_time >= #{beginReleaseTime,jdbcType=TIMESTAMP}]]>
+            </if>
+            <if test="endReleaseTime != null">
+                <![CDATA[AND update_time < #{endReleaseTime,jdbcType=TIMESTAMP}]]>
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListByMemberCard" parameterType="com.union.aimei.common.vo.product.pc.ProductByMemberCardVo" resultType="com.union.aimei.common.vo.product.pc.ProductByMemberCardResultVo">
+        select
+        id, server_name AS serverName, sale_price AS salePrice
+        from product
+        where is_enabled = 1
+        <if test="storeIdList != null">
+            and
+            (
+            <foreach item="item" index="index" collection="storeIdList" open="(" separator="or" close=")">
+                store_id = #{item}
+            </foreach>
+            )
+        </if>
+        <if test="serverName != null">
+            and server_name like concat('%', #{serverName,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="productIdList != null">
+            and
+            (
+            <foreach item="item" index="index" collection="productIdList" open="(" separator="or" close=")">
+                id = #{item}
+            </foreach>
+            )
+        </if>
+    </select>
+
+    <select id="selectListByMultipleStore" parameterType="com.union.aimei.common.vo.product.pc.ProByStoreVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product p
+        <where>
+            <if test="serverName != null">
+                AND server_name like concat('%', #{serverName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name like concat('%', #{storeName,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="brandId != null">
+                AND brand_id = #{brandId,jdbcType=INTEGER}
+            </if>
+            <if test="brandName != null">
+                AND brand_name = #{brandName,jdbcType=VARCHAR}
+            </if>
+            <if test="isBrand != null">
+                AND is_brand = #{isBrand,jdbcType=BIT}
+            </if>
+            <if test="label != null">
+                AND label = #{label,jdbcType=TINYINT}
+            </if>
+            <if test="appointment != null">
+                AND appointment = #{appointment,jdbcType=INTEGER}
+            </if>
+            <if test="saleVolume != null">
+                AND sale_volume = #{saleVolume,jdbcType=INTEGER}
+            </if>
+            <if test="originalPrice != null">
+                AND original_price = #{originalPrice,jdbcType=INTEGER}
+            </if>
+            <if test="homeFee != null">
+                AND home_fee = #{homeFee,jdbcType=INTEGER}
+            </if>
+            <if test="wholesalePrice != null">
+                AND wholesale_price = #{wholesalePrice,jdbcType=INTEGER}
+            </if>
+            <if test="retailPrice != null">
+                AND retail_price = #{retailPrice,jdbcType=INTEGER}
+            </if>
+            <if test="salePrice != null">
+                AND sale_price = #{salePrice,jdbcType=INTEGER}
+            </if>
+            <if test="formalBeauticianCommission != null">
+                AND formal_beautician_commission = #{formalBeauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="parttimeBeauticianCommission != null">
+                AND parttime_beautician_commission = #{parttimeBeauticianCommission,jdbcType=INTEGER}
+            </if>
+            <if test="serverIntroduce != null">
+                AND server_introduce = #{serverIntroduce,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serverNeedTime != null">
+                AND server_need_time = #{serverNeedTime,jdbcType=INTEGER}
+            </if>
+            <if test="serverContent != null">
+                AND server_content = #{serverContent,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serverFitPeople != null">
+                AND server_fit_people = #{serverFitPeople,jdbcType=VARCHAR}
+            </if>
+            <if test="serverFitPart != null">
+                AND server_fit_part = #{serverFitPart,jdbcType=VARCHAR}
+            </if>
+            <if test="serverEffect != null">
+                AND server_effect = #{serverEffect,jdbcType=VARCHAR}
+            </if>
+            <if test="serverAttention != null">
+                AND server_attention = #{serverAttention,jdbcType=VARCHAR}
+            </if>
+            <if test="coverImg != null">
+                AND cover_img = #{coverImg,jdbcType=VARCHAR}
+            </if>
+            <if test="sequence != null">
+                AND sequence = #{sequence,jdbcType=INTEGER}
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditStatus != null">
+                AND audit_status = #{auditStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditReason != null">
+                AND audit_reason = #{auditReason,jdbcType=VARCHAR}
+            </if>
+            <if test="limitStatus != null">
+                AND limit_status = #{limitStatus,jdbcType=TINYINT}
+            </if>
+            <if test="limitQuota != null">
+                AND limit_quota = #{limitQuota,jdbcType=INTEGER}
+            </if>
+            <if test="limitBuyQuota != null">
+                AND limit_buy_quota = #{limitBuyQuota,jdbcType=INTEGER}
+            </if>
+            <if test="collectionTotal != null">
+                AND collection_total = #{collectionTotal,jdbcType=INTEGER}
+            </if>
+            <if test="isSupportStore != null">
+                AND is_support_store = #{isSupportStore,jdbcType=BIT}
+            </if>
+            <if test="isSupportHome != null">
+                AND is_support_home = #{isSupportHome,jdbcType=BIT}
+            </if>
+            <if test="isSupportWholesale != null">
+                AND is_support_wholesale = #{isSupportWholesale,jdbcType=BIT}
+            </if>
+            <if test="isSupportRetail != null">
+                AND is_support_retail = #{isSupportRetail,jdbcType=BIT}
+            </if>
+            <if test="isPlatform != null">
+                AND is_platform = #{isPlatform,jdbcType=BIT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="cityId != null">
+                AND p.id in (select product_id from product_city where is_enabled = true and product_id = p.id and city_id = #{cityId})
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectListByStore" parameterType="com.union.aimei.common.vo.product.pc.ProByStoreVo" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Store_Store_Column_List"/>
+        from product p, product_store_ref psr
+        where p.id = psr.product_id
+        <if test="serverName != null">
+            AND p.server_name like concat('%', #{serverName,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="storeId != null">
+            AND psr.store_id = #{storeId,jdbcType=INTEGER}
+        </if>
+        <if test="storeName != null">
+            AND psr.store_name concat('%', #{storeName,jdbcType=VARCHAR}, '%')
+        </if>
+        <if test="brandId != null">
+            AND p.brand_id = #{brandId,jdbcType=INTEGER}
+        </if>
+        <if test="brandName != null">
+            AND p.brand_name = #{brandName,jdbcType=VARCHAR}
+        </if>
+        <if test="isBrand != null">
+            AND p.is_brand = #{isBrand,jdbcType=BIT}
+        </if>
+        <if test="label != null">
+            AND p.label = #{label,jdbcType=TINYINT}
+        </if>
+        <if test="appointment != null">
+            AND p.appointment = #{appointment,jdbcType=INTEGER}
+        </if>
+        <if test="saleVolume != null">
+            AND p.sale_volume = #{saleVolume,jdbcType=INTEGER}
+        </if>
+        <if test="originalPrice != null">
+            AND p.original_price = #{originalPrice,jdbcType=INTEGER}
+        </if>
+        <if test="homeFee != null">
+            AND p.home_fee = #{homeFee,jdbcType=INTEGER}
+        </if>
+        <if test="wholesalePrice != null">
+            AND p.wholesale_price = #{wholesalePrice,jdbcType=INTEGER}
+        </if>
+        <if test="retailPrice != null">
+            AND p.retail_price = #{retailPrice,jdbcType=INTEGER}
+        </if>
+        <if test="salePrice != null">
+            AND p.sale_price = #{salePrice,jdbcType=INTEGER}
+        </if>
+        <if test="formalBeauticianCommission != null">
+            AND p.formal_beautician_commission = #{formalBeauticianCommission,jdbcType=INTEGER}
+        </if>
+        <if test="parttimeBeauticianCommission != null">
+            AND p.parttime_beautician_commission = #{parttimeBeauticianCommission,jdbcType=INTEGER}
+        </if>
+        <if test="serverIntroduce != null">
+            AND p.server_introduce = #{serverIntroduce,jdbcType=LONGVARCHAR}
+        </if>
+        <if test="serverNeedTime != null">
+            AND p.server_need_time = #{serverNeedTime,jdbcType=INTEGER}
+        </if>
+        <if test="serverContent != null">
+            AND p.server_content = #{serverContent,jdbcType=LONGVARCHAR}
+        </if>
+        <if test="serverFitPeople != null">
+            AND p.server_fit_people = #{serverFitPeople,jdbcType=VARCHAR}
+        </if>
+        <if test="serverFitPart != null">
+            AND p.server_fit_part = #{serverFitPart,jdbcType=VARCHAR}
+        </if>
+        <if test="serverEffect != null">
+            AND p.server_effect = #{serverEffect,jdbcType=VARCHAR}
+        </if>
+        <if test="serverAttention != null">
+            AND p.server_attention = #{serverAttention,jdbcType=VARCHAR}
+        </if>
+        <if test="coverImg != null">
+            AND p.cover_img = #{coverImg,jdbcType=VARCHAR}
+        </if>
+        <if test="sequence != null">
+            AND p.sequence = #{sequence,jdbcType=INTEGER}
+        </if>
+        <if test="saleStatus != null">
+            AND psr.sale_status = #{saleStatus,jdbcType=TINYINT}
+        </if>
+        <if test="auditStatus != null">
+            AND p.audit_status = #{auditStatus,jdbcType=TINYINT}
+        </if>
+        <if test="auditReason != null">
+            AND p.audit_reason = #{auditReason,jdbcType=VARCHAR}
+        </if>
+        <if test="limitStatus != null">
+            AND p.limit_status = #{limitStatus,jdbcType=TINYINT}
+        </if>
+        <if test="limitQuota != null">
+            AND p.limit_quota = #{limitQuota,jdbcType=INTEGER}
+        </if>
+        <if test="limitBuyQuota != null">
+            AND p.limit_buy_quota = #{limitBuyQuota,jdbcType=INTEGER}
+        </if>
+        <if test="collectionTotal != null">
+            AND p.collection_total = #{collectionTotal,jdbcType=INTEGER}
+        </if>
+        <if test="isSupportStore != null">
+            AND p.is_support_store = #{isSupportStore,jdbcType=BIT}
+        </if>
+        <if test="isSupportHome != null">
+            AND p.is_support_home = #{isSupportHome,jdbcType=BIT}
+        </if>
+        <if test="isSupportWholesale != null">
+            AND p.is_support_wholesale = #{isSupportWholesale,jdbcType=BIT}
+        </if>
+        <if test="isSupportRetail != null">
+            AND p.is_support_retail = #{isSupportRetail,jdbcType=BIT}
+        </if>
+        <if test="isPlatform != null">
+            AND p.is_platform = #{isPlatform,jdbcType=BIT}
+        </if>
+        <if test="isEnabled != null">
+            AND p.is_enabled = #{isEnabled,jdbcType=BIT}
+        </if>
+        <if test="createTime != null">
+            AND p.create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND p.update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="cityId != null">
+            AND psr.city_id = #{cityId}
+        </if>
+        <if test="productStatus != null">
+            AND psr.product_status = #{productStatus}
+        </if>
+        <if test="productSaleStatus != null">
+            and p.sale_status = #{productSaleStatus}
+        </if>
+        order by p.create_time desc
+    </select>
+
+    <select id="pendingByCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(*)
+        from product
+        where is_enabled = true
+        AND audit_status = #{auditStatus}
+        AND create_time <![CDATA[ >= ]]> #{startTime}
+        AND create_time <![CDATA[ <= ]]> #{endTime}
+        <if test="storeId != null and storeId != 0">
+            and store_id = #{storeId}
+        </if>
+    </select>
+
+    <select id="addByCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select
+        count(*)
+        from product
+        where is_enabled = true
+        AND create_time <![CDATA[ >= ]]> #{startTime}
+        AND create_time <![CDATA[ <= ]]> #{endTime}
+        <if test="storeId != null and storeId != 0">
+            and store_id = #{storeId}
+        </if>
+    </select>
+
+    <select id="selectListByStoreIdForSort" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Store_Store_Column_List"/>
+        from product p, product_store_ref psr
+        <include refid="condProductByOnSaleForStore"/>
+        <if test="storeId != null">
+            and psr.store_id = #{storeId}
+        </if>
+        <if test="brandId != null">
+            and p.brand_id = #{brandId}
+        </if>
+        <if test="sortType != null">
+            <choose>
+                <when test="sortType == 1">
+                    order by p.sale_volume desc
+                </when>
+                <when test="sortType == 2">
+                    and p.is_support_home = true
+                    order by p.sale_volume desc
+                </when>
+                <when test="sortType == 3">
+                    order by p.create_time desc
+                </when>
+                <when test="sortType == 4">
+                    <choose>
+                        <when test="sort == 1">
+                            order by p.sale_price asc
+                        </when>
+                        <otherwise>
+                            order by p.sale_price desc
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    order by p.sale_volume desc
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <select id="selectListByIdBatch" parameterType="com.union.aimei.common.vo.common.IdBatchVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where is_enabled = true
+        and id in
+        <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="selectListByLabel" parameterType="com.union.aimei.common.vo.product.pc.ProByLabelVo" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Column_List"/>
+        from product p, product_city pc
+        where p.id = pc.product_id
+        and p.is_enabled = true
+        and pc.is_enabled = true
+        and p.sale_status = #{productSaleStatus}
+        and p.audit_status = #{productAuditStatus}
+        <if test="cityId != null">
+            AND pc.city_id = #{cityId}
+        </if>
+        <if test="productLabel != null">
+            AND pc.product_label = #{productLabel}
+        </if>
+        <if test="serverName != null">
+            AND p.server_name like concat('%', #{serverName,jdbcType=VARCHAR}, '%')
+        </if>
+        order by p.create_time desc
+    </select>
+
+    <select id="selectListByStoreCouponsForBrand" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.pc.ProductByStoreCouponsForBrandResultVo">
+        select
+        p.id, p.server_name AS serverName, p.brand_name AS brandName, p.sale_price AS salePrice
+        from product p, product_store_ref psr
+        <include refid="condProductByNormal"/>
+        <if test="brandId != null">
+            and p.brand_id = #{brandId}
+        </if>
+        <if test="storeId != null">
+            and psr.store_id = #{storeId}
+        </if>
+        <if test="serverName != null">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+        <if test="productType != null">
+            and p.product_type = #{productType}
+        </if>
+    </select>
+
+    <select id="selectListByStoreCouponsForSelf" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.product.pc.ProductByStoreCouponsForSelfResultVo">
+        select
+        p.id, p.server_name AS serverName, pcr.category_name AS categoryName, p.sale_price AS salePrice
+        from product p, product_store_ref psr, product_category_ref pcr
+        <include refid="condProductByNormal"/>
+        and p.id = pcr.product_id
+        and pcr.is_enabled = true
+        <if test="storeId != null">
+            and psr.store_id = #{storeId}
+        </if>
+        <if test="serverName != null">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+        <if test="productType != null">
+            and p.product_type = #{productType}
+        </if>
+    </select>
+
+    <select id="selectListByActivity" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Column_List"/>
+        from product p, activity_product_ref apr
+        where p.id = apr.product_id
+        and p.is_enabled = true
+        and apr.is_enabled = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and ifnull((select count(*) from product_store_ref psr where psr.product_id = p.id and psr.is_enabled = true and sale_status = #{storeSaleStatus}), 0) > 0
+        and apr.activity_id = #{activityId}
+        order by apr.sort
+    </select>
+
+    <select id="findProductCategoryRefListByIdBatch" parameterType="com.union.aimei.common.vo.common.IdBatchVo" resultType="com.union.aimei.common.vo.product.pc.ProductByCategoryRefVo">
+        select
+        <include refid="ProductCategoryColumnList"/>
+        from
+        product p,
+        product_category_ref ref,
+        product_category c
+        where
+        p.is_enabled = true
+        and
+        ref.is_enabled = true
+        and
+        c.is_enabled = true
+        and
+        ref.product_id = p.id
+        and
+        ref.category_id = c.id
+        and p.id in
+        <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findIsEnableIdListByIdBatch" parameterType="com.union.aimei.common.vo.common.IdBatchVo" resultType="int">
+        select
+        p.id
+        from
+        product p
+        where
+        p.is_enabled = true
+        and p.id in
+        <foreach item="item" index="index" collection="idList" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="listManageByStore" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <choose>
+            <when test="null != storeId and '' != storeId">
+                <include refid="Product_Store_Store_Column_List"/>
+            </when>
+            <otherwise>
+                <include refid="Product_Store_Manage_Column_List"/>
+            </otherwise>
+        </choose>
+        from product p, product_store_ref psr
+        where p.id = psr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        <if test="null != productType ">
+            and p.product_type = #{productType}
+        </if>
+        <choose>
+            <when test="null != storeId and '' != storeId">
+                and psr.store_id = #{storeId}
+                and p.sale_status = #{productSaleStatus}
+                <if test="null != saleStatus and '' != saleStatus">
+                    and psr.sale_status = #{saleStatus}
+                </if>
+            </when>
+            <otherwise>
+                <if test="null != saleStatus and '' != saleStatus">
+                    and p.sale_status = #{saleStatus}
+                </if>
+            </otherwise>
+        </choose>
+        <if test="null != serverName and '' != serverName">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+        <if test="null != storeName and '' != storeName">
+            and psr.store_name like concat('%', #{storeName}, '%')
+        </if>
+        <if test="null != auditStatus">
+            and p.audit_status = #{auditStatus}
+        </if>
+        <if test="null != isSupportStore and '' != isSupportStore">
+            and p.is_support_store = #{isSupportStore}
+        </if>
+        <if test="null != isSupportHome and '' != isSupportHome">
+            and p.is_support_home = #{isSupportHome}
+        </if>
+        order by p.create_time desc
+    </select>
+
+    <select id="listManage" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Column_List"/>
+        from product p
+        where p.is_enabled = true
+        <if test="null != productType and '' != productType">
+            and p.product_type = #{productType}
+        </if>
+        <if test="null != serverName and '' != serverName">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+        <if test="null != saleStatus and '' != saleStatus">
+            and p.sale_status = #{saleStatus}
+        </if>
+        <if test="null != auditStatus and '' != auditStatus">
+            and p.audit_status = #{auditStatus}
+        </if>
+        <if test="null != isSupportStore and '' != isSupportStore">
+            and p.is_support_store = #{isSupportStore}
+        </if>
+        <if test="null != isSupportHome and '' != isSupportHome">
+            and p.is_support_home = #{isSupportHome}
+        </if>
+        order by p.create_time desc
+    </select>
+
+    <select id="listByStoreId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product
+        where is_enabled = true
+        and store_id = #{storeId}
+    </select>
+
+    <select id="listStoreHomeFloor" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Product_Column_List"/>
+        from product p, product_city pc
+        where p.id = pc.product_id
+        and p.is_enabled = true
+        and pc.is_enabled = true
+        and p.is_support_store = true
+        and p.audit_status = #{productAuditStatus}
+        and p.sale_status = #{productSaleStatus}
+        and pc.city_id = #{cityId}
+        <if test="null != serverName and '' != serverName">
+            and p.server_name like concat('%', #{serverName}, '%')
+        </if>
+        <if test="null != productType">
+            and p.product_type = #{productType}
+        </if>
+        and p.product_type in
+        <foreach collection="productTypeList" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        and (
+        select
+        count(*) > 0
+        from product_store_ref psr
+        where psr.product_id = p.id
+        and psr.is_enabled = true
+        and psr.sale_status = #{storeSaleStatus}
+        )
+        and (
+        select
+        count(*) > 0
+        from product_beautician_ref pbr, beautybond_store.store_beautician sb
+        where pbr.product_id = p.id
+        and pbr.beautician_id = sb.id
+        and pbr.is_enabled = true
+        and sb.is_enabled = true
+        and pbr.is_select = true
+        and pbr.is_order = true
+        and sb.is_order = true
+        and pbr.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        )
+    </select>
+
+</mapper>

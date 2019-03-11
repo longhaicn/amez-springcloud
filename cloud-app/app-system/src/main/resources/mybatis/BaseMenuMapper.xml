@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.system.mapper.BaseMenuMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseMenu">
+        <constructor>
+            <idArg column="menu_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="menu_type" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="menu_name" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="menu_code" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="menu_url" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="sort_no" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="menu_logo" jdbcType="VARCHAR" javaType="java.lang.String"/>
+            <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+        </constructor>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        menu_id, parent_id, menu_type, menu_name, menu_code, menu_url, sort_no, menu_logo,
+        create_time, update_time
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap"
+            parameterType="com.union.aimei.common.model.system.BaseMenuExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from base_menu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from base_menu
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from base_menu
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseMenuExample">
+        delete from base_menu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseMenu">
+        insert into base_menu (menu_id, parent_id, menu_type,
+        menu_name, menu_code, menu_url,
+        sort_no, menu_logo, create_time,
+        update_time)
+        values (#{menuId,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{menuType,jdbcType=VARCHAR},
+        #{menuName,jdbcType=VARCHAR}, #{menuCode,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR},
+        #{sortNo,jdbcType=INTEGER}, #{menuLogo,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseMenu">
+        insert into base_menu
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="menuId != null">
+                menu_id,
+            </if>
+            <if test="parentId != null">
+                parent_id,
+            </if>
+            <if test="menuType != null">
+                menu_type,
+            </if>
+            <if test="menuName != null">
+                menu_name,
+            </if>
+            <if test="menuCode != null">
+                menu_code,
+            </if>
+            <if test="menuUrl != null">
+                menu_url,
+            </if>
+            <if test="sortNo != null">
+                sort_no,
+            </if>
+            <if test="menuLogo != null">
+                menu_logo,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="menuId != null">
+                #{menuId,jdbcType=INTEGER},
+            </if>
+            <if test="parentId != null">
+                #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="menuType != null">
+                #{menuType,jdbcType=VARCHAR},
+            </if>
+            <if test="menuName != null">
+                #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuCode != null">
+                #{menuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUrl != null">
+                #{menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="menuLogo != null">
+                #{menuLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseMenuExample"
+            resultType="java.lang.Integer">
+        select count(*) from base_menu
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_menu
+        <set>
+            <if test="record.menuId != null">
+                menu_id = #{record.menuId,jdbcType=INTEGER},
+            </if>
+            <if test="record.parentId != null">
+                parent_id = #{record.parentId,jdbcType=INTEGER},
+            </if>
+            <if test="record.menuType != null">
+                menu_type = #{record.menuType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.menuName != null">
+                menu_name = #{record.menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.menuCode != null">
+                menu_code = #{record.menuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="record.menuUrl != null">
+                menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.sortNo != null">
+                sort_no = #{record.sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="record.menuLogo != null">
+                menu_logo = #{record.menuLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_menu
+        set menu_id = #{record.menuId,jdbcType=INTEGER},
+        parent_id = #{record.parentId,jdbcType=INTEGER},
+        menu_type = #{record.menuType,jdbcType=VARCHAR},
+        menu_name = #{record.menuName,jdbcType=VARCHAR},
+        menu_code = #{record.menuCode,jdbcType=VARCHAR},
+        menu_url = #{record.menuUrl,jdbcType=VARCHAR},
+        sort_no = #{record.sortNo,jdbcType=INTEGER},
+        menu_logo = #{record.menuLogo,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseMenu">
+        update base_menu
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="menuType != null">
+                menu_type = #{menuType,jdbcType=VARCHAR},
+            </if>
+            <if test="menuName != null">
+                menu_name = #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="menuCode != null">
+                menu_code = #{menuCode,jdbcType=VARCHAR},
+            </if>
+            <if test="menuUrl != null">
+                menu_url = #{menuUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sortNo != null">
+                sort_no = #{sortNo,jdbcType=INTEGER},
+            </if>
+            <if test="menuLogo != null">
+                menu_logo = #{menuLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseMenu">
+        update base_menu
+        set parent_id = #{parentId,jdbcType=INTEGER},
+        menu_type = #{menuType,jdbcType=VARCHAR},
+        menu_name = #{menuName,jdbcType=VARCHAR},
+        menu_code = #{menuCode,jdbcType=VARCHAR},
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+        sort_no = #{sortNo,jdbcType=INTEGER},
+        menu_logo = #{menuLogo,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where menu_id = #{menuId,jdbcType=INTEGER}
+    </update>
+</mapper>

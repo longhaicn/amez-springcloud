@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.ProductPhysicalBeauticianRefMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductPhysicalBeauticianRef">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="product_physical_id" property="productPhysicalId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER"/>
+        <result column="beautician_type" property="beauticianType" jdbcType="TINYINT"/>
+        <result column="beautician_nick_name" property="beauticianNickName" jdbcType="VARCHAR"/>
+        <result column="beautician_head_img_url" property="beauticianHeadImgUrl" jdbcType="VARCHAR"/>
+        <result column="inventory_total" property="inventoryTotal" jdbcType="INTEGER"/>
+        <result column="inventory_consumable" property="inventoryConsumable" jdbcType="INTEGER"/>
+        <result column="inventory_order_reservation" property="inventoryOrderReservation" jdbcType="INTEGER"/>
+        <result column="inventory_purchase_reservation" property="inventoryPurchaseReservation" jdbcType="INTEGER"/>
+        <result column="inventory_warning" property="inventoryWarning" jdbcType="INTEGER"/>
+        <result column="inventory_warning_switch" property="inventoryWarningSwitch" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, product_physical_id, store_id, store_name, beautician_id, beautician_type, beautician_nick_name,
+        beautician_head_img_url, inventory_total, inventory_consumable, inventory_order_reservation, inventory_purchase_reservation,
+        inventory_warning, inventory_warning_switch, is_enabled, create_time, update_time
+    </sql>
+
+    <sql id="Ppbr_Column_List">
+        ppbr.id, ppbr.product_physical_id, ppbr.store_id, ppbr.store_name, ppbr.beautician_id, ppbr.beautician_type, ppbr.beautician_nick_name,
+        ppbr.beautician_head_img_url, ppbr.inventory_total, ppbr.inventory_consumable, ppbr.inventory_order_reservation, ppbr.inventory_purchase_reservation,
+        ppbr.inventory_warning, ppbr.inventory_warning_switch, ppbr.is_enabled, ppbr.create_time, ppbr.update_time
+    </sql>
+
+
+    <sql id="BaseAliasColumn">
+        id, product_physical_id AS productPhysicalId, store_id AS storeId, store_name AS storeName,
+        beautician_id AS beauticianId, beautician_type AS beauticianType, beautician_nick_name AS beauticianNickName,
+        beautician_head_img_url AS beauticianHeadImgUrl, inventory_total AS inventoryTotal,
+        inventory_consumable AS inventoryConsumable, inventory_order_reservation AS inventoryOrderReservation, inventory_purchase_reservation AS inventoryPurchaseReservation,
+        inventory_warning AS inventoryWarning, inventory_warning_switch AS inventoryWarningSwitch,
+        is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_physical_beautician_ref
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_physical_beautician_ref
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductPhysicalBeauticianRef" useGeneratedKeys="true" keyProperty="id">
+        insert into product_physical_beautician_ref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productPhysicalId != null">
+                product_physical_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="beauticianId != null">
+                beautician_id,
+            </if>
+            <if test="beauticianType != null">
+                beautician_type,
+            </if>
+            <if test="beauticianNickName != null">
+                beautician_nick_name,
+            </if>
+            <if test="beauticianHeadImgUrl != null">
+                beautician_head_img_url,
+            </if>
+            <if test="inventoryTotal != null">
+                inventory_total,
+            </if>
+            <if test="inventoryConsumable != null">
+                inventory_consumable,
+            </if>
+            <if test="inventoryOrderReservation != null">
+                inventory_order_reservation,
+            </if>
+            <if test="inventoryPurchaseReservation != null">
+                inventory_purchase_reservation,
+            </if>
+            <if test="inventoryWarning != null">
+                inventory_warning,
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                inventory_warning_switch,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productPhysicalId != null">
+                #{productPhysicalId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null">
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianType != null">
+                #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianNickName != null">
+                #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianHeadImgUrl != null">
+                #{beauticianHeadImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="inventoryTotal != null">
+                #{inventoryTotal,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryConsumable != null">
+                #{inventoryConsumable,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryOrderReservation != null">
+                #{inventoryOrderReservation,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryPurchaseReservation != null">
+                #{inventoryPurchaseReservation,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarning != null">
+                #{inventoryWarning,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                #{inventoryWarningSwitch,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductPhysicalBeauticianRef">
+        update product_physical_beautician_ref
+        <set>
+            <if test="productPhysicalId != null">
+                product_physical_id = #{productPhysicalId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null">
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianType != null">
+                beautician_type = #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianNickName != null">
+                beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianHeadImgUrl != null">
+                beautician_head_img_url = #{beauticianHeadImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="inventoryTotal != null">
+                inventory_total = #{inventoryTotal,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryConsumable != null">
+                inventory_consumable = #{inventoryConsumable,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryOrderReservation != null">
+                inventory_order_reservation = #{inventoryOrderReservation,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryPurchaseReservation != null">
+                inventory_purchase_reservation = #{inventoryPurchaseReservation,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarning != null">
+                inventory_warning = #{inventoryWarning,jdbcType=INTEGER},
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                inventory_warning_switch = #{inventoryWarningSwitch,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductPhysicalBeauticianRef" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_physical_beautician_ref
+        <where>
+            <if test="productPhysicalId != null">
+                AND product_physical_id = #{productPhysicalId,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianId != null">
+                AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianType != null">
+                AND beautician_type = #{beauticianType,jdbcType=TINYINT}
+            </if>
+            <if test="beauticianNickName != null">
+                AND beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianHeadImgUrl != null">
+                AND beautician_head_img_url = #{beauticianHeadImgUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="inventoryTotal != null">
+                AND inventory_total = #{inventoryTotal,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryConsumable != null">
+                AND inventory_consumable = #{inventoryConsumable,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryOrderReservation != null">
+                AND inventory_order_reservation = #{inventoryOrderReservation,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryPurchaseReservation != null">
+                AND inventory_purchase_reservation = #{inventoryPurchaseReservation,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryWarning != null">
+                AND inventory_warning = #{inventoryWarning,jdbcType=INTEGER}
+            </if>
+            <if test="inventoryWarningSwitch != null">
+                AND inventory_warning_switch = #{inventoryWarningSwitch,jdbcType=BIT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="inventoryCheckByBeautician" parameterType="com.union.aimei.common.vo.product.app.ProductByInventoryVo" resultType="java.lang.Integer">
+        select ifnull(min(if(b.inventory_consumable >= p.physical_number, 1, 0)), 0)
+        from product_product_physical_ref p, product_physical_beautician_ref b
+        where p.product_physical_id = b.product_physical_id
+        and p.is_enabled = true
+        and b.is_enabled = true
+         and b.beautician_type = #{beauticianType}
+        and p.product_id = #{productId}
+        and b.beautician_id = #{beauticianId}
+    </select>
+
+    <select id="inventoryCheckByStore" parameterType="com.union.aimei.common.vo.product.app.ProductByInventoryVo" resultType="java.lang.Integer">
+        select ifnull(min(if(b.inventory_consumable >= p.physical_number, 1, 0)), 0)
+        from product_product_physical_ref p, product_physical_beautician_ref b
+        where p.product_physical_id = b.product_physical_id
+        and p.is_enabled = true
+        and b.is_enabled = true
+        and b.beautician_type = #{beauticianType}
+        and p.product_id = #{productId}
+        and b.store_id = #{storeId}
+    </select>
+
+    <update id="inventoryOrderReservationByBeautician" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation + #{physicalNumber}
+        where is_enabled = true
+        and beautician_type = 3
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+    </update>
+
+    <update id="inventoryOrderReservationByStore" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation + #{physicalNumber}
+        where is_enabled = true
+        and beautician_type = 1
+        and product_physical_id = #{productPhysicalId}
+        and store_id = #{storeId}
+    </update>
+
+    <update id="inventoryCancelOrderReservationByBeautician" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable + #{physicalNumber}, inventory_order_reservation = inventory_order_reservation - #{physicalNumber}
+        where is_enabled = 1
+        and beautician_type = 3
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+    </update>
+
+    <update id="inventoryCancelOrderReservationByStore" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable + #{physicalNumber}, inventory_order_reservation = inventory_order_reservation - #{physicalNumber}
+        where is_enabled = 1
+        and beautician_type = 1
+        and product_physical_id = #{productPhysicalId}
+        and store_id = #{storeId}
+    </update>
+
+    <update id="inventoryConsumptionByBeautician" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_total = inventory_total - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation - #{physicalNumber}
+        where is_enabled = 1
+        and beautician_type = 3
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+    </update>
+
+    <update id="inventoryConsumptionByStore" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_total = inventory_total - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation - #{physicalNumber}
+        where is_enabled = 1
+        and beautician_type = 1
+        and product_physical_id = #{productPhysicalId}
+        and store_id = #{storeId}
+    </update>
+
+    <select id="selectListByBeauticianId" parameterType="java.lang.Integer" resultType="com.union.aimei.common.vo.product.app.ProductPhysicalBeauticianRefByBeauticianIdResVo">
+      select
+        (pbr.inventory_consumable + pbr.inventory_order_reservation) AS inventoryTotal, pbr.inventory_consumable AS inventoryConsumable, pbr.inventory_order_reservation AS inventoryOrderReservation,
+        p.id, p.physical_name AS physicalName, p.physical_code AS physicalCode, p.cover_img AS coverImg
+        from product_physical_beautician_ref pbr, product_physical p
+        where pbr.product_physical_id = p.id
+        and pbr.is_enabled = 1
+        and p.is_enabled = 1
+        and pbr.beautician_id = #{beauticianId}
+        and (pbr.inventory_consumable > 0 or pbr.inventory_order_reservation > 0)
+    </select>
+
+    <select id="inventoryCheck" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo" resultType="java.lang.Boolean">
+        select
+        if(sum(ppbr.inventory_consumable >= #{physicalNumber}) > 0, true, false) as inventoryFlag
+        from product_physical_beautician_ref ppbr
+        where ppbr.is_enabled = true
+        and ppbr.product_physical_id = #{productPhysicalId}
+        <if test="null != beauticianId">
+            and ppbr.beautician_id = #{beauticianId}
+        </if>
+    </select>
+
+    <update id="inventoryOrderReservation" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation + #{physicalNumber}
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+    </update>
+
+    <update id="inventoryCancelOrderReservation" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable + #{physicalNumber}, inventory_order_reservation = inventory_order_reservation - #{physicalNumber}
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+        and inventory_order_reservation >= #{physicalNumber}
+    </update>
+
+    <update id="inventoryConsumption" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_total = inventory_total - #{physicalNumber}, inventory_order_reservation = inventory_order_reservation - #{physicalNumber}
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+        and inventory_order_reservation >= #{physicalNumber}
+    </update>
+
+    <update id="inventoryPurchaseReservation" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_total = inventory_total + #{physicalNumber}, inventory_purchase_reservation = inventory_purchase_reservation + #{physicalNumber}
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+    </update>
+
+    <select id="getByRefId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_physical_beautician_ref
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+    </select>
+
+    <update id="inventoryCancelPurchaseReservation" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_total = inventory_total - #{physicalNumber}, inventory_purchase_reservation = inventory_purchase_reservation - #{physicalNumber}
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+        and inventory_total >= #{physicalNumber}
+    </update>
+
+    <update id="inventoryPurchaseStorage" parameterType="com.union.aimei.common.vo.product.app.ProductPhysicalByInventoryVo">
+        update product_physical_beautician_ref
+        set inventory_consumable = inventory_consumable + #{physicalNumber}, inventory_purchase_reservation = inventory_purchase_reservation - #{physicalNumber}
+        where is_enabled = true
+        and product_physical_id = #{productPhysicalId}
+        and beautician_id = #{beauticianId}
+        and inventory_purchase_reservation >= #{physicalNumber}
+    </update>
+
+    <select id="listInventoryByProductId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        ppbr.id, ppbr.product_physical_id, ppbr.store_id, ppbr.store_name, sb.id as beautician_id, ppbr.inventory_total, ppbr.inventory_consumable, ppbr.inventory_order_reservation,
+        ppbr.inventory_purchase_reservation, ppbr.inventory_warning, ppbr.inventory_warning_switch, ppbr.is_enabled, ppbr.create_time, ppbr.update_time
+        from
+        (
+        select
+        tsb.id,
+        if (
+        #{fulltimeBeauticianType} = tsb.beautician_type,
+        (
+        select
+        msb.id
+        from beautybond_store.store_beautician msb
+        where msb.store_id = (
+        select
+        ssb.store_id
+        from beautybond_store.store_beautician ssb
+        where ssb.id = tsb.id
+        )
+        and msb.beautician_type = #{managerBeauticianType}
+        limit 1
+        ),
+        tsb.id
+        ) as beautician_id
+        from beautybond_store.store_beautician tsb
+        where tsb.id in
+        <foreach collection="beauticanIdList" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        ) sb, product_physical_beautician_ref ppbr, product_product_physical_ref pppr
+        where ppbr.product_physical_id = pppr.product_physical_id
+        and ppbr.is_enabled = true
+        and pppr.is_enabled = true
+        and ppbr.beautician_id = sb.beautician_id
+        and ppbr.inventory_consumable >= pppr.physical_number
+        and pppr.product_id = #{productId}
+    </select>
+
+</mapper>

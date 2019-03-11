@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>aimei-cloud</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>cloud-app</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>app-api</module>
+        <module>app-order</module>
+        <module>app-pay</module>
+        <module>app-product</module>
+        <module>app-store</module>
+        <module>app-system</module>
+        <module>app-member</module>
+        <module>app-financial</module>
+        <module>app-umeng</module>
+        <module>app-im</module>
+        <module>app-learn</module>
+        <module>app-rule</module>
+    </modules>
+</project>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+        <relativePath>../../common/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>common-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <dependencies>
+
+        <!-- 添加Eureka的依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--配置中心开始-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-bus-amqp</artifactId>-->
+        <!--</dependency>-->
+        <!--配置中心结束-->
+
+        <!--调用追踪链开始-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-sleuth-stream</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-sleuth</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-stream-binder-rabbit</artifactId>-->
+        <!--</dependency>-->
+        <!--调用追踪链结束-->
+
+        <!--swagger api配置-->
+        <dependency>
+            <groupId>com.union.common</groupId>
+            <artifactId>common-swagger2</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.union.common</groupId>
+            <artifactId>common-utils</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <!--&lt;!&ndash;lcn分布式事物框架整合springcloud&ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>com.union.common</groupId>-->
+            <!--<artifactId>common-lcn</artifactId>-->
+            <!--<version>1.0.1</version>-->
+        <!--</dependency>-->
+
+        <!--接口参数校验-->
+        <!--<dependency>-->
+            <!--<groupId>com.union.common</groupId>-->
+            <!--<artifactId>common-validate</artifactId>-->
+            <!--<version>1.0.1</version>-->
+        <!--</dependency>-->
+
+        <!--admin监控客户端 spring boot 版本-->
+        <!--<dependency>-->
+            <!--<groupId>de.codecentric</groupId>-->
+            <!--<artifactId>spring-boot-admin-starter-client</artifactId>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.8.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>common-module</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mockito</groupId>-->
+            <!--<artifactId>mockito-all</artifactId>-->
+            <!--<version>1.8.5</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+    </dependencies>
+</project>

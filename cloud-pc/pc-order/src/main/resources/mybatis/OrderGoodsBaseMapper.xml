@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderGoodsBaseMapper" >
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderGoodsBase" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+        <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="nums" property="nums" jdbcType="INTEGER" />
+        <result column="amount_total" property="amountTotal" jdbcType="INTEGER" />
+        <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+        <result column="amount_pay" property="amountPay" jdbcType="INTEGER" />
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+        <result column="beautician_belong_store_id" property="beauticianBelongStoreId" jdbcType="INTEGER" />
+        <result column="beautician_belong_store_name" property="beauticianBelongStoreName" jdbcType="VARCHAR" />
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+        <result column="beautician_type" property="beauticianType" jdbcType="TINYINT" />
+        <result column="beautician_phone" property="beauticianPhone" jdbcType="VARCHAR" />
+        <result column="beautician_real_name" property="beauticianRealName" jdbcType="VARCHAR" />
+        <result column="beautician_nick_name" property="beauticianNickName" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="address_phone" property="addressPhone" jdbcType="VARCHAR" />
+        <result column="address_reveiver" property="addressReveiver" jdbcType="VARCHAR" />
+        <result column="address_regson" property="addressRegson" jdbcType="VARCHAR" />
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+        <result column="postage" property="postage" jdbcType="INTEGER" />
+        <result column="express_company_code" property="expressCompanyCode" jdbcType="VARCHAR" />
+        <result column="express_company_name" property="expressCompanyName" jdbcType="VARCHAR" />
+        <result column="delivery_order_no" property="deliveryOrderNo" jdbcType="VARCHAR" />
+        <result column="delivery_time" property="deliveryTime" jdbcType="TIMESTAMP" />
+        <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, order_no, trade_no, status, nums, amount_total, pay_type, amount_pay, pay_time,
+        beautician_belong_store_id, beautician_belong_store_name, beautician_id, beautician_type,
+        beautician_phone, beautician_real_name, beautician_nick_name, address, address_phone,
+        address_reveiver, address_regson, add_time, postage, express_company_code, express_company_name,
+        delivery_order_no, delivery_time, receive_time, remark, is_enabled
+    </sql>
+
+    <sql id="BaseAliasColumn" >
+        id, order_no AS orderNo, trade_no AS tradeNo, status, nums, amount_total AS amountTotal,
+        pay_type AS payType, amount_pay AS amountPay, pay_time AS payTime, beautician_belong_store_id AS beauticianBelongStoreId,
+        beautician_belong_store_name AS beauticianBelongStoreName, beautician_id AS beauticianId,
+        beautician_type AS beauticianType, beautician_phone AS beauticianPhone, beautician_real_name AS beauticianRealName,
+        beautician_nick_name AS beauticianNickName, address, address_phone AS addressPhone,
+        address_reveiver AS addressReveiver, address_regson AS addressRegson, add_time AS addTime,
+        postage, express_company_code AS expressCompanyCode, express_company_name AS expressCompanyName,
+        delivery_order_no AS deliveryOrderNo, delivery_time AS deliveryTime, receive_time AS receiveTime,
+        remark, is_enabled AS isEnabled
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from order_goods_base
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from order_goods_base
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderGoodsBase" useGeneratedKeys="true" keyProperty="id" >
+        insert into order_goods_base
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="orderNo != null" >
+                order_no,
+            </if>
+            <if test="tradeNo != null" >
+                trade_no,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="nums != null" >
+                nums,
+            </if>
+            <if test="amountTotal != null" >
+                amount_total,
+            </if>
+            <if test="payType != null" >
+                pay_type,
+            </if>
+            <if test="amountPay != null" >
+                amount_pay,
+            </if>
+            <if test="payTime != null" >
+                pay_time,
+            </if>
+            <if test="beauticianBelongStoreId != null" >
+                beautician_belong_store_id,
+            </if>
+            <if test="beauticianBelongStoreName != null" >
+                beautician_belong_store_name,
+            </if>
+            <if test="beauticianId != null" >
+                beautician_id,
+            </if>
+            <if test="beauticianType != null" >
+                beautician_type,
+            </if>
+            <if test="beauticianPhone != null" >
+                beautician_phone,
+            </if>
+            <if test="beauticianRealName != null" >
+                beautician_real_name,
+            </if>
+            <if test="beauticianNickName != null" >
+                beautician_nick_name,
+            </if>
+            <if test="address != null" >
+                address,
+            </if>
+            <if test="addressPhone != null" >
+                address_phone,
+            </if>
+            <if test="addressReveiver != null" >
+                address_reveiver,
+            </if>
+            <if test="addressRegson != null" >
+                address_regson,
+            </if>
+            <if test="addTime != null" >
+                add_time,
+            </if>
+            <if test="postage != null" >
+                postage,
+            </if>
+            <if test="expressCompanyCode != null" >
+                express_company_code,
+            </if>
+            <if test="expressCompanyName != null" >
+                express_company_name,
+            </if>
+            <if test="deliveryOrderNo != null" >
+                delivery_order_no,
+            </if>
+            <if test="deliveryTime != null" >
+                delivery_time,
+            </if>
+            <if test="receiveTime != null" >
+                receive_time,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="orderNo != null" >
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null" >
+                #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="nums != null" >
+                #{nums,jdbcType=INTEGER},
+            </if>
+            <if test="amountTotal != null" >
+                #{amountTotal,jdbcType=INTEGER},
+            </if>
+            <if test="payType != null" >
+                #{payType,jdbcType=VARCHAR},
+            </if>
+            <if test="amountPay != null" >
+                #{amountPay,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null" >
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="beauticianBelongStoreId != null" >
+                #{beauticianBelongStoreId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianBelongStoreName != null" >
+                #{beauticianBelongStoreName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null" >
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianType != null" >
+                #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianPhone != null" >
+                #{beauticianPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianRealName != null" >
+                #{beauticianRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianNickName != null" >
+                #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressPhone != null" >
+                #{addressPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="addressReveiver != null" >
+                #{addressReveiver,jdbcType=VARCHAR},
+            </if>
+            <if test="addressRegson != null" >
+                #{addressRegson,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null" >
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="postage != null" >
+                #{postage,jdbcType=INTEGER},
+            </if>
+            <if test="expressCompanyCode != null" >
+                #{expressCompanyCode,jdbcType=VARCHAR},
+            </if>
+            <if test="expressCompanyName != null" >
+                #{expressCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryOrderNo != null" >
+                #{deliveryOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryTime != null" >
+                #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiveTime != null" >
+                #{receiveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null" >
+                #{isEnabled,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderGoodsBase" >
+        update order_goods_base
+        <set >
+            <if test="orderNo != null" >
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null" >
+                trade_no = #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="nums != null" >
+                nums = #{nums,jdbcType=INTEGER},
+            </if>
+            <if test="amountTotal != null" >
+                amount_total = #{amountTotal,jdbcType=INTEGER},
+            </if>
+            <if test="payType != null" >
+                pay_type = #{payType,jdbcType=VARCHAR},
+            </if>
+            <if test="amountPay != null" >
+                amount_pay = #{amountPay,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null" >
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="beauticianBelongStoreId != null" >
+                beautician_belong_store_id = #{beauticianBelongStoreId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianBelongStoreName != null" >
+                beautician_belong_store_name = #{beauticianBelongStoreName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null" >
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianType != null" >
+                beautician_type = #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianPhone != null" >
+                beautician_phone = #{beauticianPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianRealName != null" >
+                beautician_real_name = #{beauticianRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianNickName != null" >
+                beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressPhone != null" >
+                address_phone = #{addressPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="addressReveiver != null" >
+                address_reveiver = #{addressReveiver,jdbcType=VARCHAR},
+            </if>
+            <if test="addressRegson != null" >
+                address_regson = #{addressRegson,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null" >
+                add_time = #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="postage != null" >
+                postage = #{postage,jdbcType=INTEGER},
+            </if>
+            <if test="expressCompanyCode != null" >
+                express_company_code = #{expressCompanyCode,jdbcType=VARCHAR},
+            </if>
+            <if test="expressCompanyName != null" >
+                express_company_name = #{expressCompanyName,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryOrderNo != null" >
+                delivery_order_no = #{deliveryOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="deliveryTime != null" >
+                delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiveTime != null" >
+                receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null" >
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderGoodsBase" resultMap="BaseResultMap" >
+        select <include refid="Base_Column_List"/> from order_goods_base
+        <where >
+            <if test="orderNo != null" >
+                AND order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="tradeNo != null" >
+                AND trade_no = #{tradeNo,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null" >
+                AND status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="nums != null" >
+                AND nums = #{nums,jdbcType=INTEGER}
+            </if>
+            <if test="amountTotal != null" >
+                AND amount_total = #{amountTotal,jdbcType=INTEGER}
+            </if>
+            <if test="payType != null" >
+                AND pay_type = #{payType,jdbcType=VARCHAR}
+            </if>
+            <if test="amountPay != null" >
+                AND amount_pay = #{amountPay,jdbcType=INTEGER}
+            </if>
+            <if test="payTime != null" >
+                AND pay_time = #{payTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="beauticianBelongStoreId != null" >
+                AND beautician_belong_store_id = #{beauticianBelongStoreId,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianBelongStoreName != null" >
+                AND beautician_belong_store_name = #{beauticianBelongStoreName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianId != null" >
+                AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianType != null" >
+                AND beautician_type = #{beauticianType,jdbcType=TINYINT}
+            </if>
+            <if test="beauticianPhone != null" >
+                AND beautician_phone = #{beauticianPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianRealName != null" >
+                AND beautician_real_name = #{beauticianRealName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianNickName != null" >
+                AND beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null" >
+                AND address = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="addressPhone != null" >
+                AND address_phone = #{addressPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="addressReveiver != null" >
+                AND address_reveiver = #{addressReveiver,jdbcType=VARCHAR}
+            </if>
+            <if test="addressRegson != null" >
+                AND address_regson = #{addressRegson,jdbcType=VARCHAR}
+            </if>
+            <if test="addTime != null" >
+                AND add_time = #{addTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="postage != null" >
+                AND postage = #{postage,jdbcType=INTEGER}
+            </if>
+            <if test="expressCompanyCode != null" >
+                AND express_company_code = #{expressCompanyCode,jdbcType=VARCHAR}
+            </if>
+            <if test="expressCompanyName != null" >
+                AND express_company_name = #{expressCompanyName,jdbcType=VARCHAR}
+            </if>
+            <if test="deliveryOrderNo != null" >
+                AND delivery_order_no = #{deliveryOrderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="deliveryTime != null" >
+                AND delivery_time = #{deliveryTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="receiveTime != null" >
+                AND receive_time = #{receiveTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="remark != null" >
+                AND remark = #{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnabled != null" >
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+        </where>
+
+    </select>
+
+
+    <select id="queryByConditions" parameterType="com.union.aimei.common.vo.order.OrderGoodsQueryVo" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from order_goods_base
+        <where>
+            <if test="startAddTime!=null">
+               and add_time &gt;= #{startAddTime}
+            </if>
+            <if test="endAddTime!=null">
+                AND add_time &lt;= #{endAddTime}
+            </if>
+            <if test="status!=null">
+                AND status=#{status}
+            </if>
+            <if test="orderNo!=null">
+                AND order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="consigneeName!=null">
+                AND address_reveiver = #{consigneeName,jdbcType=VARCHAR}
+            </if>
+            <if test="consigneePhone!=null">
+                AND address_phone = #{consigneePhone,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="queryForOrderNo" parameterType="string" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"/> from order_goods_base
+        WHERE order_no = #{orderNo}
+    </select>
+
+
+     <select id="queryListPassTwDays" resultMap="BaseResultMap">
+         SELECT <include refid="Base_Column_List"/> from order_goods_base
+         where status = 0
+         and is_enabled=1
+         and NOW()&gt;DATE_ADD(add_time,INTERVAL 12 hour)
+     </select>
+
+
+</mapper>

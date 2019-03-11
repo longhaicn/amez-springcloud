@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.store.mapper.StoreBeauticianAffiliatedMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreBeauticianAffiliated">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="affiliated_type" property="affiliatedType" jdbcType="TINYINT"/>
+        <result column="sponsor" property="sponsor" jdbcType="TINYINT"/>
+        <result column="beautician_type" property="beauticianType" jdbcType="TINYINT"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER"/>
+        <result column="audit_status" property="auditStatus" jdbcType="TINYINT"/>
+        <result column="audit_reason" property="auditReason" jdbcType="VARCHAR"/>
+        <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP"/>
+        <result column="platform_audit_time" property="platformAuditTime" jdbcType="TIMESTAMP"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, affiliated_type, sponsor, beautician_type, store_id, store_name, beautician_id,
+        audit_status, audit_reason, audit_time, platform_audit_time, is_enabled, create_time,
+        update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, affiliated_type AS affiliatedType, sponsor, beautician_type AS beauticianType,
+        store_id AS storeId, store_name AS storeName, beautician_id AS beauticianId, audit_status AS auditStatus,
+        audit_reason AS auditReason, audit_time AS auditTime, platform_audit_time AS platformAuditTime,
+        is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <sql id="AffiliatedAliasColumn">
+        sba.id, sba.affiliated_type AS affiliatedType, sba.sponsor, sba.beautician_type AS beauticianType,
+        sba.store_id AS storeId, sba.store_name AS storeName, sba.beautician_id AS beauticianId, sba.audit_status AS auditStatus,
+        sba.audit_reason AS auditReason, sba.audit_time AS auditTime, sba.platform_audit_time AS platformAuditTime,
+        sba.is_enabled AS isEnabled, sba.create_time AS createTime, sba.update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician_affiliated
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from store_beautician_affiliated
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreBeauticianAffiliated" useGeneratedKeys="true" keyProperty="id">
+        insert into store_beautician_affiliated
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="affiliatedType != null">
+                affiliated_type,
+            </if>
+            <if test="sponsor != null">
+                sponsor,
+            </if>
+            <if test="beauticianType != null">
+                beautician_type,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="beauticianId != null">
+                beautician_id,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="auditReason != null">
+                audit_reason,
+            </if>
+            <if test="auditTime != null">
+                audit_time,
+            </if>
+            <if test="platformAuditTime != null">
+                platform_audit_time,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="affiliatedType != null">
+                #{affiliatedType,jdbcType=TINYINT},
+            </if>
+            <if test="sponsor != null">
+                #{sponsor,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianType != null">
+                #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null">
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="auditTime != null">
+                #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="platformAuditTime != null">
+                #{platformAuditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreBeauticianAffiliated">
+        update store_beautician_affiliated
+        <set>
+            <if test="affiliatedType != null">
+                affiliated_type = #{affiliatedType,jdbcType=TINYINT},
+            </if>
+            <if test="sponsor != null">
+                sponsor = #{sponsor,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianType != null">
+                beautician_type = #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianId != null">
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                audit_reason = #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="auditTime != null">
+                audit_time = #{auditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="platformAuditTime != null">
+                platform_audit_time = #{platformAuditTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreBeauticianAffiliated" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician_affiliated
+        where is_enabled = true
+        <if test="affiliatedType != null">
+            AND affiliated_type = #{affiliatedType,jdbcType=TINYINT}
+        </if>
+        <if test="sponsor != null">
+            AND sponsor = #{sponsor,jdbcType=TINYINT}
+        </if>
+        <if test="beauticianType != null">
+            AND beautician_type = #{beauticianType,jdbcType=TINYINT}
+        </if>
+        <if test="storeId != null">
+            AND store_id = #{storeId,jdbcType=INTEGER}
+        </if>
+        <if test="storeName != null">
+            AND store_name = #{storeName,jdbcType=VARCHAR}
+        </if>
+        <if test="beauticianId != null">
+            AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+        </if>
+        <if test="auditStatus != null">
+            AND audit_status = #{auditStatus,jdbcType=TINYINT}
+        </if>
+        <if test="auditReason != null">
+            AND audit_reason = #{auditReason,jdbcType=VARCHAR}
+        </if>
+        <if test="auditTime != null">
+            AND audit_time = #{auditTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="platformAuditTime != null">
+            AND platform_audit_time = #{platformAuditTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        order by update_time desc
+    </select>
+
+    <select id="listRemove" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.store.pc.AffiliatedListRemoveResVo">
+        select
+        <include refid="AffiliatedAliasColumn"/>,
+        sb.beautician_nick_name AS beauticianNickName
+        from store_beautician_affiliated sba, store_beautician sb
+        where sba.beautician_id = sb.id
+        and sba.is_enabled = true
+        and sb.is_enabled = true
+        and sba.affiliated_type = #{affiliatedType}
+        and sba.beautician_type = #{beauticianType}
+        <if test="null != inputCondition and '' != inputCondition">
+            and (sba.store_name like concat('%', #{inputCondition}, '%') or (sb.beautician_nick_name like concat('%', #{inputCondition}, '%')))
+        </if>
+        <if test="null != auditStatus">
+            and sba.audit_status = #{auditStatus}
+        </if>
+        order by sba.create_time desc
+    </select>
+
+</mapper>

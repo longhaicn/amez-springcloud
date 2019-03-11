@@ -1,0 +1,80 @@
+server:
+  port: 8020
+mybatis:
+   mapper-locations: classpath:mybatis/*.xml
+   type-aliases-package: com.union.aimei.common.model.member
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+          defaultZone: http://localhost:8000/eureka/
+spring:
+  cloud:
+    config:
+          #对应前配置文件中的{profile}部分
+          profile: ${config.profile:image}
+          #对应前配置文件的 git 分支
+          label: master
+           # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+          name: member-service
+          #安全认证,输入git账号密码
+          password: gaowei123
+          username: gaowei
+          failFast: true
+          #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+          discovery:
+             enabled: true
+             service-id: microservice-config-server-eureka
+logging:
+  level:
+    root: INFO
+    com:
+        union:
+              aimei:
+                    member: DEBUG
+com:
+  unioninfo:
+    weixin:
+      public:
+        app-id: wx85fa34f75f0706d3
+        app-secret: 4d280d9272a6945edd1745bcaaf009d4
+#    org.springframework.cloud.sleuth: DEBUG
+
+#分布式事务管理器
+tx-manager:  tx-manager
+#声明Feign的 hystrix支持,如果设置为true，则断路器备用方法将不起作用，默认为false
+feign:
+     hystrix:
+         enabled: true
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
+                    thread:
+                        timeoutInMilliseconds: 60000
+
+#对接艾美一族接口相关参数
+amez:
+    request:
+          info:
+              dev:
+                  host: http://39.108.85.127
+                  port: 19000
+              pro:
+                  host: https://gateway.amez999.com
+                  port:
+              path:
+                  accessToken: /get/microservice
+                  api: /microservice/core/api
+              #系统版本号
+              appSystem: 200
+              #security
+              security: 5222445555
+              #accessKey
+              accessKey: kkkkkkk1234567
+
+
+

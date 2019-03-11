@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>common-service-pc</artifactId>
+        <groupId>com.union.aimei</groupId>
+        <version>1.0.1</version>
+        <relativePath>../../common/common-service-pc/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>pc-store</artifactId>
+    <version>${pc.store.version}</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.union.common</groupId>
+            <artifactId>common-baidumap</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+        </dependency>
+        <!-- 环信 -->
+        <dependency>
+            <groupId>com.easemob</groupId>
+            <artifactId>rest-java-sdk</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>common-invoke-amez</groupId>
+            <artifactId>common-invoke-amez</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <!-- feign -->
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-im</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-learn</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-member</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-product</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-system</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-umeng</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.union.aimei</groupId>
+            <artifactId>feign-pc-order</artifactId>
+            <version>1.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>pcStore</finalName>
+    </build>
+</project>

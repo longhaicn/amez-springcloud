@@ -1,0 +1,1259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderBaseMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderBase">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="anchored_store_id" property="anchoredStoreId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="store_phone" property="storePhone" jdbcType="VARCHAR"/>
+        <result column="store_logo" property="storeLogo" jdbcType="VARCHAR"/>
+        <result column="order_source" property="orderSource" jdbcType="TINYINT"/>
+        <result column="order_no" property="orderNo" jdbcType="VARCHAR"/>
+        <result column="trade_no" property="tradeNo" jdbcType="VARCHAR"/>
+        <result column="beautician_reply_comment_status" property="beauticianReplyCommentStatus" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="nums" property="nums" jdbcType="INTEGER"/>
+        <result column="amount_total" property="amountTotal" jdbcType="INTEGER"/>
+        <result column="freight" property="freight" jdbcType="INTEGER"/>
+        <result column="pay_type" property="payType" jdbcType="VARCHAR"/>
+        <result column="need_pay" property="needPay" jdbcType="INTEGER"/>
+        <result column="amount_pay" property="amountPay" jdbcType="INTEGER"/>
+        <result column="point" property="point" jdbcType="INTEGER"/>
+        <result column="pay_time" property="payTime" jdbcType="TIMESTAMP"/>
+        <result column="return_status" property="returnStatus" jdbcType="INTEGER"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="member_phone" property="memberPhone" jdbcType="VARCHAR"/>
+        <result column="member_real_name" property="memberRealName" jdbcType="VARCHAR"/>
+        <result column="member_nick_name" property="memberNickName" jdbcType="VARCHAR"/>
+        <result column="customer_name" property="customerName" jdbcType="VARCHAR"/>
+        <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR"/>
+        <result column="customer_address" property="customerAddress" jdbcType="VARCHAR"/>
+        <result column="customer_longitude" property="customerLongitude" jdbcType="VARCHAR"/>
+        <result column="customer_latitude" property="customerLatitude" jdbcType="VARCHAR"/>
+        <result column="card_id" property="cardId" jdbcType="INTEGER"/>
+        <result column="card_code" property="cardCode" jdbcType="VARCHAR"/>
+        <result column="card_type_name" property="cardTypeName" jdbcType="VARCHAR"/>
+        <result column="preferential_amount" property="preferentialAmount" jdbcType="INTEGER"/>
+        <result column="member_card_reduce" property="memberCardReduce" jdbcType="INTEGER"/>
+        <result column="one_card_discount" property="oneCardDiscount" jdbcType="INTEGER"/>
+        <result column="one_card_reduce" property="oneCardReduce" jdbcType="INTEGER"/>
+        <result column="coupon_id" property="couponId" jdbcType="INTEGER"/>
+        <result column="coupon_reduce" property="couponReduce" jdbcType="INTEGER"/>
+        <result column="amount_reduce" property="amountReduce" jdbcType="INTEGER"/>
+        <result column="appointment_time" property="appointmentTime" jdbcType="VARCHAR"/>
+        <result column="address_id" property="addressId" jdbcType="INTEGER"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="address_phone" property="addressPhone" jdbcType="VARCHAR"/>
+        <result column="address_reveiver" property="addressReveiver" jdbcType="VARCHAR"/>
+        <result column="address_regson" property="addressRegson" jdbcType="VARCHAR"/>
+        <result column="server_start_time" property="serverStartTime" jdbcType="TIMESTAMP"/>
+        <result column="server_end_time" property="serverEndTime" jdbcType="TIMESTAMP"/>
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP"/>
+        <result column="delivery_time" property="deliveryTime" jdbcType="TIMESTAMP"/>
+        <result column="receive_time" property="receiveTime" jdbcType="TIMESTAMP"/>
+        <result column="return_time" property="returnTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="qr_code" property="qrCode" jdbcType="VARCHAR"/>
+        <result column="verification_code" property="verificationCode" jdbcType="VARCHAR"/>
+        <result column="actual_start_time" property="actualStartTime" jdbcType="TIMESTAMP"/>
+        <result column="actual_end_time" property="actualEndTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, store_id, anchored_store_id, store_name, store_phone, store_logo, order_source,
+        order_no, trade_no, type, status, beautician_reply_comment_status, nums, amount_total,
+        freight, pay_type, need_pay, amount_pay, point, pay_time, return_status, member_id,
+        member_phone, member_real_name, member_nick_name, customer_name, customer_phone,
+        customer_address, customer_longitude, customer_latitude, card_id, card_code, card_type_name,
+        preferential_amount, member_card_reduce, one_card_discount, one_card_reduce, coupon_id,
+        coupon_reduce, amount_reduce, appointment_time, address_id, address, address_phone,
+        address_reveiver, address_regson, server_start_time, server_end_time, add_time, delivery_time,
+        receive_time, return_time, remark, is_enabled, qr_code, verification_code, actual_start_time,
+        actual_end_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, store_id AS storeId, anchored_store_id AS anchoredStoreId, store_name AS storeName,
+        store_phone AS storePhone, store_logo AS storeLogo, order_source AS orderSource,
+        order_no AS orderNo, trade_no AS tradeNo, type, status, beautician_reply_comment_status AS
+        beauticianReplyCommentStatus,
+        nums, amount_total AS amountTotal, freight, pay_type AS payType, need_pay AS needPay,
+        amount_pay AS amountPay, point, pay_time AS payTime, return_status AS returnStatus,
+        member_id AS memberId, member_phone AS memberPhone, member_real_name AS memberRealName,
+        member_nick_name AS memberNickName, customer_name AS customerName, customer_phone AS customerPhone,
+        customer_address AS customerAddress, customer_longitude AS customerLongitude, customer_latitude AS
+        customerLatitude,
+        card_id AS cardId, card_code AS cardCode, card_type_name AS cardTypeName, preferential_amount AS
+        preferentialAmount,
+        member_card_reduce AS memberCardReduce, one_card_discount AS oneCardDiscount, one_card_reduce AS oneCardReduce,
+        coupon_id AS couponId, coupon_reduce AS couponReduce, amount_reduce AS amountReduce,
+        appointment_time AS appointmentTime, address_id AS addressId, address, address_phone AS addressPhone,
+        address_reveiver AS addressReveiver, address_regson AS addressRegson, server_start_time AS serverStartTime,
+        server_end_time AS serverEndTime, add_time AS addTime, delivery_time AS deliveryTime,
+        receive_time AS receiveTime, return_time AS returnTime, remark, is_enabled AS isEnabled,
+        qr_code AS qrCode, verification_code AS verificationCode, actual_start_time AS actualStartTime,
+        actual_end_time AS actualEndTime
+    </sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from order_base
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from order_base
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderBase" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into order_base
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="anchoredStoreId != null">
+                anchored_store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="storePhone != null">
+                store_phone,
+            </if>
+            <if test="storeLogo != null">
+                store_logo,
+            </if>
+            <if test="orderSource != null">
+                order_source,
+            </if>
+            <if test="orderNo != null">
+                order_no,
+            </if>
+            <if test="tradeNo != null">
+                trade_no,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="beauticianReplyCommentStatus != null">
+                beautician_reply_comment_status,
+            </if>
+            <if test="nums != null">
+                nums,
+            </if>
+            <if test="amountTotal != null">
+                amount_total,
+            </if>
+            <if test="freight != null">
+                freight,
+            </if>
+            <if test="payType != null">
+                pay_type,
+            </if>
+            <if test="needPay != null">
+                need_pay,
+            </if>
+            <if test="amountPay != null">
+                amount_pay,
+            </if>
+            <if test="point != null">
+                point,
+            </if>
+            <if test="payTime != null">
+                pay_time,
+            </if>
+            <if test="returnStatus != null">
+                return_status,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="memberPhone != null">
+                member_phone,
+            </if>
+            <if test="memberRealName != null">
+                member_real_name,
+            </if>
+            <if test="memberNickName != null">
+                member_nick_name,
+            </if>
+            <if test="customerName != null">
+                customer_name,
+            </if>
+            <if test="customerPhone != null">
+                customer_phone,
+            </if>
+            <if test="customerAddress != null">
+                customer_address,
+            </if>
+            <if test="customerLongitude != null">
+                customer_longitude,
+            </if>
+            <if test="customerLatitude != null">
+                customer_latitude,
+            </if>
+            <if test="cardId != null">
+                card_id,
+            </if>
+            <if test="cardCode != null">
+                card_code,
+            </if>
+            <if test="cardTypeName != null">
+                card_type_name,
+            </if>
+            <if test="preferentialAmount != null">
+                preferential_amount,
+            </if>
+            <if test="memberCardReduce != null">
+                member_card_reduce,
+            </if>
+            <if test="oneCardDiscount != null">
+                one_card_discount,
+            </if>
+            <if test="oneCardReduce != null">
+                one_card_reduce,
+            </if>
+            <if test="couponId != null">
+                coupon_id,
+            </if>
+            <if test="couponReduce != null">
+                coupon_reduce,
+            </if>
+            <if test="amountReduce != null">
+                amount_reduce,
+            </if>
+            <if test="appointmentTime != null">
+                appointment_time,
+            </if>
+            <if test="addressId != null">
+                address_id,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="addressPhone != null">
+                address_phone,
+            </if>
+            <if test="addressReveiver != null">
+                address_reveiver,
+            </if>
+            <if test="addressRegson != null">
+                address_regson,
+            </if>
+            <if test="serverStartTime != null">
+                server_start_time,
+            </if>
+            <if test="serverEndTime != null">
+                server_end_time,
+            </if>
+            <if test="addTime != null">
+                add_time,
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time,
+            </if>
+            <if test="receiveTime != null">
+                receive_time,
+            </if>
+            <if test="returnTime != null">
+                return_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="qrCode != null">
+                qr_code,
+            </if>
+            <if test="verificationCode != null">
+                verification_code,
+            </if>
+            <if test="actualStartTime != null">
+                actual_start_time,
+            </if>
+            <if test="actualEndTime != null">
+                actual_end_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="anchoredStoreId != null">
+                #{anchoredStoreId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storePhone != null">
+                #{storePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLogo != null">
+                #{storeLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderSource != null">
+                #{orderSource,jdbcType=TINYINT},
+            </if>
+            <if test="orderNo != null">
+                #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null">
+                #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianReplyCommentStatus != null">
+                #{beauticianReplyCommentStatus,jdbcType=TINYINT},
+            </if>
+            <if test="nums != null">
+                #{nums,jdbcType=INTEGER},
+            </if>
+            <if test="amountTotal != null">
+                #{amountTotal,jdbcType=INTEGER},
+            </if>
+            <if test="freight != null">
+                #{freight,jdbcType=INTEGER},
+            </if>
+            <if test="payType != null">
+                #{payType,jdbcType=VARCHAR},
+            </if>
+            <if test="needPay != null">
+                #{needPay,jdbcType=INTEGER},
+            </if>
+            <if test="amountPay != null">
+                #{amountPay,jdbcType=INTEGER},
+            </if>
+            <if test="point != null">
+                #{point,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returnStatus != null">
+                #{returnStatus,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="memberPhone != null">
+                #{memberPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="memberRealName != null">
+                #{memberRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberNickName != null">
+                #{memberNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerPhone != null">
+                #{customerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="customerAddress != null">
+                #{customerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="customerLongitude != null">
+                #{customerLongitude,jdbcType=VARCHAR},
+            </if>
+            <if test="customerLatitude != null">
+                #{customerLatitude,jdbcType=VARCHAR},
+            </if>
+            <if test="cardId != null">
+                #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="cardCode != null">
+                #{cardCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTypeName != null">
+                #{cardTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="preferentialAmount != null">
+                #{preferentialAmount,jdbcType=INTEGER},
+            </if>
+            <if test="memberCardReduce != null">
+                #{memberCardReduce,jdbcType=INTEGER},
+            </if>
+            <if test="oneCardDiscount != null">
+                #{oneCardDiscount,jdbcType=INTEGER},
+            </if>
+            <if test="oneCardReduce != null">
+                #{oneCardReduce,jdbcType=INTEGER},
+            </if>
+            <if test="couponId != null">
+                #{couponId,jdbcType=INTEGER},
+            </if>
+            <if test="couponReduce != null">
+                #{couponReduce,jdbcType=INTEGER},
+            </if>
+            <if test="amountReduce != null">
+                #{amountReduce,jdbcType=INTEGER},
+            </if>
+            <if test="appointmentTime != null">
+                #{appointmentTime,jdbcType=VARCHAR},
+            </if>
+            <if test="addressId != null">
+                #{addressId,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressPhone != null">
+                #{addressPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="addressReveiver != null">
+                #{addressReveiver,jdbcType=VARCHAR},
+            </if>
+            <if test="addressRegson != null">
+                #{addressRegson,jdbcType=VARCHAR},
+            </if>
+            <if test="serverStartTime != null">
+                #{serverStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="serverEndTime != null">
+                #{serverEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryTime != null">
+                #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiveTime != null">
+                #{receiveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returnTime != null">
+                #{returnTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="qrCode != null">
+                #{qrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="verificationCode != null">
+                #{verificationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="actualStartTime != null">
+                #{actualStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="actualEndTime != null">
+                #{actualEndTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderBase">
+        update order_base
+        <set>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="anchoredStoreId != null">
+                anchored_store_id = #{anchoredStoreId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="storePhone != null">
+                store_phone = #{storePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="storeLogo != null">
+                store_logo = #{storeLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="orderSource != null">
+                order_source = #{orderSource,jdbcType=TINYINT},
+            </if>
+            <if test="orderNo != null">
+                order_no = #{orderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeNo != null">
+                trade_no = #{tradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianReplyCommentStatus != null">
+                beautician_reply_comment_status = #{beauticianReplyCommentStatus,jdbcType=TINYINT},
+            </if>
+            <if test="nums != null">
+                nums = #{nums,jdbcType=INTEGER},
+            </if>
+            <if test="amountTotal != null">
+                amount_total = #{amountTotal,jdbcType=INTEGER},
+            </if>
+            <if test="freight != null">
+                freight = #{freight,jdbcType=INTEGER},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType,jdbcType=VARCHAR},
+            </if>
+            <if test="needPay != null">
+                need_pay = #{needPay,jdbcType=INTEGER},
+            </if>
+            <if test="amountPay != null">
+                amount_pay = #{amountPay,jdbcType=INTEGER},
+            </if>
+            <if test="point != null">
+                point = #{point,jdbcType=INTEGER},
+            </if>
+            <if test="payTime != null">
+                pay_time = #{payTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returnStatus != null">
+                return_status = #{returnStatus,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="memberPhone != null">
+                member_phone = #{memberPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="memberRealName != null">
+                member_real_name = #{memberRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberNickName != null">
+                member_nick_name = #{memberNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerPhone != null">
+                customer_phone = #{customerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="customerAddress != null">
+                customer_address = #{customerAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="customerLongitude != null">
+                customer_longitude = #{customerLongitude,jdbcType=VARCHAR},
+            </if>
+            <if test="customerLatitude != null">
+                customer_latitude = #{customerLatitude,jdbcType=VARCHAR},
+            </if>
+            <if test="cardId != null">
+                card_id = #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="cardCode != null">
+                card_code = #{cardCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cardTypeName != null">
+                card_type_name = #{cardTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="preferentialAmount != null">
+                preferential_amount = #{preferentialAmount,jdbcType=INTEGER},
+            </if>
+            <if test="memberCardReduce != null">
+                member_card_reduce = #{memberCardReduce,jdbcType=INTEGER},
+            </if>
+            <if test="oneCardDiscount != null">
+                one_card_discount = #{oneCardDiscount,jdbcType=INTEGER},
+            </if>
+            <if test="oneCardReduce != null">
+                one_card_reduce = #{oneCardReduce,jdbcType=INTEGER},
+            </if>
+            <if test="couponId != null">
+                coupon_id = #{couponId,jdbcType=INTEGER},
+            </if>
+            <if test="couponReduce != null">
+                coupon_reduce = #{couponReduce,jdbcType=INTEGER},
+            </if>
+            <if test="amountReduce != null">
+                amount_reduce = #{amountReduce,jdbcType=INTEGER},
+            </if>
+            <if test="appointmentTime != null">
+                appointment_time = #{appointmentTime,jdbcType=VARCHAR},
+            </if>
+            <if test="addressId != null">
+                address_id = #{addressId,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="addressPhone != null">
+                address_phone = #{addressPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="addressReveiver != null">
+                address_reveiver = #{addressReveiver,jdbcType=VARCHAR},
+            </if>
+            <if test="addressRegson != null">
+                address_regson = #{addressRegson,jdbcType=VARCHAR},
+            </if>
+            <if test="serverStartTime != null">
+                server_start_time = #{serverStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="serverEndTime != null">
+                server_end_time = #{serverEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="addTime != null">
+                add_time = #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time = #{deliveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="receiveTime != null">
+                receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="returnTime != null">
+                return_time = #{returnTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="qrCode != null">
+                qr_code = #{qrCode,jdbcType=VARCHAR},
+            </if>
+            <if test="verificationCode != null">
+                verification_code = #{verificationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="actualStartTime != null">
+                actual_start_time = #{actualStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="actualEndTime != null">
+                actual_end_time = #{actualEndTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderBase"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_base
+        <where>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="anchoredStoreId != null">
+                AND anchored_store_id = #{anchoredStoreId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="storePhone != null">
+                AND store_phone = #{storePhone,jdbcType=VARCHAR}
+            </if>
+            <if test="storeLogo != null">
+                AND store_logo = #{storeLogo,jdbcType=VARCHAR}
+            </if>
+            <if test="orderSource != null">
+                AND order_source = #{orderSource,jdbcType=TINYINT}
+            </if>
+            <if test="orderNo != null">
+                AND order_no = #{orderNo,jdbcType=VARCHAR}
+            </if>
+            <if test="tradeNo != null">
+                AND trade_no = #{tradeNo,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null">
+                AND type = #{type,jdbcType=INTEGER}
+            </if>
+            <if test="status != null">
+                AND status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianReplyCommentStatus != null">
+                AND beautician_reply_comment_status = #{beauticianReplyCommentStatus,jdbcType=TINYINT}
+            </if>
+            <if test="nums != null">
+                AND nums = #{nums,jdbcType=INTEGER}
+            </if>
+            <if test="amountTotal != null">
+                AND amount_total = #{amountTotal,jdbcType=INTEGER}
+            </if>
+            <if test="freight != null">
+                AND freight = #{freight,jdbcType=INTEGER}
+            </if>
+            <if test="payType != null">
+                AND pay_type = #{payType,jdbcType=VARCHAR}
+            </if>
+            <if test="needPay != null">
+                AND need_pay = #{needPay,jdbcType=INTEGER}
+            </if>
+            <if test="amountPay != null">
+                AND amount_pay = #{amountPay,jdbcType=INTEGER}
+            </if>
+            <if test="point != null">
+                AND point = #{point,jdbcType=INTEGER}
+            </if>
+            <if test="payTime != null">
+                AND pay_time = #{payTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="returnStatus != null">
+                AND return_status = #{returnStatus,jdbcType=INTEGER}
+            </if>
+            <if test="memberId != null">
+                AND member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="memberPhone != null">
+                AND member_phone = #{memberPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="memberRealName != null">
+                AND member_real_name = #{memberRealName,jdbcType=VARCHAR}
+            </if>
+            <if test="memberNickName != null">
+                AND member_nick_name = #{memberNickName,jdbcType=VARCHAR}
+            </if>
+            <if test="customerName != null">
+                AND customer_name = #{customerName,jdbcType=VARCHAR}
+            </if>
+            <if test="customerPhone != null">
+                AND customer_phone = #{customerPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="customerAddress != null">
+                AND customer_address = #{customerAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="customerLongitude != null">
+                AND customer_longitude = #{customerLongitude,jdbcType=VARCHAR}
+            </if>
+            <if test="customerLatitude != null">
+                AND customer_latitude = #{customerLatitude,jdbcType=VARCHAR}
+            </if>
+            <if test="cardId != null">
+                AND card_id = #{cardId,jdbcType=INTEGER}
+            </if>
+            <if test="cardCode != null">
+                AND card_code = #{cardCode,jdbcType=VARCHAR}
+            </if>
+            <if test="cardTypeName != null">
+                AND card_type_name = #{cardTypeName,jdbcType=VARCHAR}
+            </if>
+            <if test="preferentialAmount != null">
+                AND preferential_amount = #{preferentialAmount,jdbcType=INTEGER}
+            </if>
+            <if test="memberCardReduce != null">
+                AND member_card_reduce = #{memberCardReduce,jdbcType=INTEGER}
+            </if>
+            <if test="oneCardDiscount != null">
+                AND one_card_discount = #{oneCardDiscount,jdbcType=INTEGER}
+            </if>
+            <if test="oneCardReduce != null">
+                AND one_card_reduce = #{oneCardReduce,jdbcType=INTEGER}
+            </if>
+            <if test="couponId != null">
+                AND coupon_id = #{couponId,jdbcType=INTEGER}
+            </if>
+            <if test="couponReduce != null">
+                AND coupon_reduce = #{couponReduce,jdbcType=INTEGER}
+            </if>
+            <if test="amountReduce != null">
+                AND amount_reduce = #{amountReduce,jdbcType=INTEGER}
+            </if>
+            <if test="appointmentTime != null">
+                AND appointment_time = #{appointmentTime,jdbcType=VARCHAR}
+            </if>
+            <if test="addressId != null">
+                AND address_id = #{addressId,jdbcType=INTEGER}
+            </if>
+            <if test="address != null">
+                AND address = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="addressPhone != null">
+                AND address_phone = #{addressPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="addressReveiver != null">
+                AND address_reveiver = #{addressReveiver,jdbcType=VARCHAR}
+            </if>
+            <if test="addressRegson != null">
+                AND address_regson = #{addressRegson,jdbcType=VARCHAR}
+            </if>
+            <if test="serverStartTime != null">
+                AND server_start_time = #{serverStartTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="serverEndTime != null">
+                AND server_end_time = #{serverEndTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="addTime != null">
+                AND add_time = #{addTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="deliveryTime != null">
+                AND delivery_time = #{deliveryTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="receiveTime != null">
+                AND receive_time = #{receiveTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="returnTime != null">
+                AND return_time = #{returnTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="remark != null">
+                AND remark = #{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="qrCode != null">
+                AND qr_code = #{qrCode,jdbcType=VARCHAR}
+            </if>
+            <if test="verificationCode != null">
+                AND verification_code = #{verificationCode,jdbcType=VARCHAR}
+            </if>
+            <if test="actualStartTime != null">
+                AND actual_start_time = #{actualStartTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="actualEndTime != null">
+                AND actual_end_time = #{actualEndTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+    <!--查询订单管理列表-->
+    <select id="queryOrderList" parameterType="com.union.aimei.common.vo.order.OrderListQueryVo"
+            resultType="com.union.aimei.common.vo.order.OrderListVo">
+        SELECT
+        o.id,
+        o.order_no as orderNo,
+        o.store_id as storeId,
+        o.store_name as storeName,
+        o.store_phone as storePhone,
+        o.order_source as orderSource,
+        o.type,
+        o.status,
+        o.freight,
+        o.return_status as returnStatus,
+        o.amount_total as amountTotal,
+        o.need_pay as needPay,
+        o.amount_pay as amountPay,
+        o.member_phone as phone,
+        o.member_real_name as memberRealName,
+        o.member_nick_name as memberNickName,
+        o.customer_name as customerName,
+        o.customer_phone as customerPhone,
+        o.add_time as addTime,
+        o.pay_time as payTime,
+        op.product_price as productPrice,
+        op.product_name as productName,
+        op.product_img as productImg
+        FROM
+        order_base o
+        INNER JOIN order_product op ON o.id = op.order_id
+        <where>
+            <if test="true">
+                AND o.is_enabled=1
+            </if>
+            <if test="storeId != null">
+                AND o.store_id = #{storeId,jdbcType=VARCHAR}
+            </if>
+            <if test="storeName != null">
+                AND o.store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="orderSource != null">
+                AND o.order_source = #{orderSource}
+            </if>
+            <if test="startTime != null">
+                AND o.add_time &gt;= #{startTime}
+            </if>
+            <if test="endTime != null">
+                AND o.add_time &lt;= #{endTime}
+            </if>
+            <if test="type != null">
+                AND o.type = #{type}
+            </if>
+            <if test="status != null">
+                <if test=" status == -1 ">
+                    AND o.status&gt;=0
+                </if>
+
+                <if test="status &gt;=0">
+                    AND o.status = #{status,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="returnStatus!=null">
+                <if test="returnStatus==100">
+                    AND o.return_status&gt;0 and o.status&gt;=2
+                </if>
+                <if test="returnStatus&gt;=0 and returnStatus &lt;= 3">
+                    AND o.return_status = #{returnStatus,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="orderNo != null">
+                AND o.order_no = #{orderNo}
+            </if>
+            <if test="storeName != null">
+                AND o.store_name = #{storeName}
+            </if>
+            <if test="memberRealName != null">
+                AND o.member_real_name = #{memberRealName}
+            </if>
+            <if test="phone != null">
+                AND o.member_phone = #{phone}
+            </if>
+        </where>
+        order by o.add_time DESC
+    </select>
+
+
+    <!--查询订单详情-->
+    <select id="queryOrderDetailById" parameterType="integer" resultType="map">
+        SELECT
+        o.id,
+        o.store_id AS storeId,
+        o.store_name AS storeName,
+        o.store_phone as storePhone,
+        o.order_source AS orderSource,
+        o.order_no AS orderNo,
+        o.trade_no AS tradeNo,
+        o.type,
+        o.status,
+        o.amount_total AS amountTotal,
+        o.pay_type AS payType,
+        o.amount_pay AS amountPay,
+        o.pay_time AS payTime,
+        o.return_status AS returnStatus,
+        o.member_id AS memberId,
+        o.member_phone AS memberPhone,
+        o.member_real_name AS memberRealName,
+        o.member_card_reduce AS memberCardReduce,
+        o.customer_name as customerName,
+        o.customer_phone as customerPhone,
+        o.customer_address as customerAddress,
+        o.coupon_reduce AS couponReduce,
+        o.amount_reduce AS amountReduce,
+        o.address as memberAddress,
+        o.address_phone AS addressPhone,
+        o.address_reveiver AS addressReveiver,
+        o.address_regson AS addressRegson,
+        o.server_start_time AS serverStartTime,
+        o.server_end_time AS serverEndTime,
+        o.add_time AS addTime,
+        o.receive_time AS receiveTime,
+        o.return_time AS returnTime,
+        o.remark,
+        o.actual_start_time AS actualStartTime,
+        o.actual_end_time AS actualEndTime,
+        ob.beautician_id AS beauticianId,
+        ob.img_url AS imgUrl,
+        ob.beautician_name AS beauticianName,
+        ob.mobile AS beauticianPhone,
+        op.product_name AS productName,
+        op.product_img AS productImg,
+        op.product_price AS productPrice
+        FROM
+        order_base o
+        INNER JOIN order_beautician ob ON o.id = ob.order_id
+        INNER JOIN order_product op ON o.id = op.order_id
+        WHERE
+        o.id = #{orderId}
+    </select>
+
+
+    <update id="batchUpdateOrderStatus">
+        update order_base
+        set status=4
+        WHERE status=3 and actual_end_time &lt;
+        now()
+    </update>
+
+
+    <!--<update id="batchUpdateStatusAfterAutoRefund" parameterType="list">-->
+        <!--<foreach close="" collection="list" index="index" item="item" open="" separator=";">-->
+            <!--update order_base-->
+            <!--<set>-->
+                <!--return_status = 2, return_time = NOW()-->
+            <!--</set>-->
+            <!--where id=#{item.id,jdbcType=INTEGER}-->
+        <!--</foreach>-->
+    <!--</update>-->
+
+
+    <select id="queryHasNoCommentOrderBase" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_base
+        where status=4
+        and is_enabled=1
+        and NOW() &gt; DATE_ADD(add_time,INTERVAL 7 day)
+    </select>
+
+
+
+
+    <select id="queryPreHalfHourOrders" resultType="com.union.aimei.common.vo.order.OrderSendAppVo">
+        SELECT
+        o.id AS orderId,
+        o.order_no AS orderNo,
+        ob.store_seller_phone AS storeSellerPhone,
+        ob.store_seller_member_id AS storeSellerMemberId,
+        ob.beautician_id AS beauticianId,
+        ob.beautician_member_id AS beauticianMemberId,
+        ob.mobile AS beauticianPhone,
+        o.server_start_time AS serverStartTime,
+        o.member_id AS memberId,
+        o.member_phone AS memberPhone,
+        o.member_real_name AS memberName,
+        o.customer_name AS customerName,
+        o.customer_phone AS customerPhone,
+        op.server_need_time AS serverNeedTime,
+        op.product_name AS productName,
+        op.product_img AS productImg,
+        op.product_id AS productId,
+        o.type AS productType
+        FROM
+        order_base o
+        INNER JOIN order_beautician ob ON o.id = ob.order_id
+        INNER JOIN order_product op ON o.id = op.order_id
+        WHERE
+        o.is_enabled = 1
+        AND o.`status` = 2
+        AND o.return_status = 0
+        AND server_start_time &gt;= DATE_ADD(NOW(), INTERVAL 30 MINUTE)
+        and server_start_time &lt;= DATE_ADD(NOW(), INTERVAL 31 MINUTE)
+        GROUP BY
+        o.id,
+        o.order_no,
+        ob.store_seller_phone,
+        ob.store_seller_member_id,
+        ob.beautician_id,
+        ob.beautician_member_id,
+        ob.mobile,
+        o.server_start_time,
+        o.member_id,
+        o.member_phone,
+        o.member_real_name,
+        o.customer_name,
+        o.customer_phone,
+        op.server_need_time,
+        op.product_name,
+        op.product_img,
+        op.product_id,
+        o.type
+        ORDER BY
+        add_time ASC
+    </select>
+
+    <select id="queryHasCompleteOrderList" resultType="com.union.aimei.common.vo.order.OrderSendAppVo">
+        SELECT
+        o.id AS orderId,
+        o.order_no AS orderNo,
+        ob.store_seller_phone AS storeSellerPhone,
+        ob.store_seller_member_id AS storeSellerMemberId,
+        ob.beautician_id AS beauticianId,
+        ob.beautician_member_id AS beauticianMemberId,
+        ob.mobile AS beauticianPhone,
+        o.server_start_time AS serverStartTime,
+        o.member_id AS memberId,
+        o.member_phone AS memberPhone,
+        o.member_real_name AS memberName,
+        o.customer_name AS customerName,
+        o.customer_phone AS customerPhone,
+        op.server_need_time AS serverNeedTime,
+        op.product_name AS productName,
+        op.product_img AS productImg,
+        op.product_id AS productId,
+        o.type AS productType
+        FROM
+        order_base o
+        INNER JOIN order_beautician ob ON o.id = ob.order_id
+        INNER JOIN order_product op ON o.id = op.order_id
+        where o.`status`=3 and now() &gt; o.actual_end_time
+    </select>
+
+    <select id="countByDays" parameterType="map" resultType="hashmap">
+        SELECT
+        count(0)as num,
+        SUM(amount_pay)as total
+        FROM
+        order_base
+        <where>
+            `status`=2
+            and return_status=0
+            <if test="storeId!=null">
+                and store_id=#{storeId}
+            </if>
+            and pay_time &gt; #{chooseTime}
+            and pay_time &lt; now()
+        </where>
+
+    </select>
+
+
+    <select id="queryHasCompleteList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM order_base
+        WHERE `status`=3 and now() &gt; actual_end_time
+    </select>
+
+
+    <select id="queryAutoRefundHasOver" resultType="com.union.aimei.common.model.order.OrderBase">
+        SELECT
+        ob.id,
+        ob.store_id AS storeId,
+        ob.anchored_store_id AS anchoredStoreId,
+        ob.store_name AS storeName,
+        ob.store_phone AS storePhone,
+        ob.store_logo AS storeLogo,
+        ob.order_source AS orderSource,
+        ob.order_no AS orderNo,
+        ob.trade_no AS tradeNo,
+        ob.type,
+        ob.status,
+        ob.nums,
+        ob.amount_total AS amountTotal,
+        ob.freight,
+        ob.pay_type AS payType,
+        ob.need_pay AS needPay,
+        ob.amount_pay AS amountPay,
+        ob.point,
+        ob.pay_time AS payTime,
+        ob.return_status AS returnStatus,
+        ob.member_id AS memberId,
+        ob.member_phone AS memberPhone,
+        ob.member_real_name AS memberRealName,
+        ob.member_nick_name AS memberNickName,
+        ob.customer_name AS customerName,
+        ob.customer_phone AS customerPhone,
+        ob.customer_address AS customerAddress,
+        ob.customer_longitude AS customerLongitude,
+        ob.customer_latitude AS customerLatitude,
+        ob.card_id AS cardId,
+        ob.card_code AS cardCode,
+        ob.card_type_name AS cardTypeName,
+        ob.preferential_amount AS preferentialAmount,
+        ob.member_card_reduce AS memberCardReduce,
+        ob.coupon_reduce AS couponReduce,
+        ob.amount_reduce AS amountReduce,
+        ob.appointment_time AS appointmentTime,
+        ob.address_id AS addressId,
+        ob.address,
+        ob.address_phone AS addressPhone,
+        ob.address_reveiver AS addressReveiver,
+        ob.address_regson AS addressRegson,
+        ob.server_start_time AS serverStartTime,
+        ob.server_end_time AS serverEndTime,
+        ob.add_time AS addTime,
+        ob.delivery_time AS deliveryTime,
+        ob.receive_time AS receiveTime,
+        ob.return_time AS returnTime,
+        ob.remark,
+        ob.is_enabled AS isEnabled,
+        ob.qr_code AS qrCode,
+        ob.verification_code AS verificationCode,
+        ob.actual_start_time AS actualStartTime,
+        ob.actual_end_time AS actualEndTime
+        FROM
+        `order_base` ob
+        INNER JOIN order_return orn ON ob.id = orn.order_id
+        WHERE
+        ob.`status` = 2
+        AND ob.return_status = 1
+        AND NOW() > DATE_ADD(
+        orn.apply_time,
+        INTERVAL 2 DAY
+        )
+    </select>
+
+
+    <select id="countStoreTurnoverByDays" parameterType="map" resultType="java.lang.Integer">
+        SELECT COALESCE(sum(amount_pay),0)as turnover FROM `order_base`
+        <where>
+            <if test="true">
+               status>1
+            </if>
+            <if test="storeId!=null">
+                and store_id=#{storeId}
+            </if>
+            <if test="startTime!=null">
+                AND add_time &gt;= #{startTime}
+            </if>
+            <if test="endTime!=null">
+                AND add_time &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="countPlatformTurnoverByDays" parameterType="map" resultType="java.lang.Integer">
+        SELECT COALESCE(sum(amount_pay),0)as turnover FROM `order_base`
+        <where>
+            <if test="true">
+                 status>1
+            </if>
+            <if test="startTime!=null">
+                AND add_time &gt;= #{startTime}
+            </if>
+            <if test="endTime!=null">
+                AND add_time &lt;=#{endTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="countStoreNewAddOrderNums" parameterType="map" resultType="integer">
+        SELECT
+        count(0) AS count
+        FROM
+        order_base
+        <where>
+            <choose>
+                <when test="type==0">
+                    status>1
+                </when>
+                <when test="type==1">
+                    store_id=#{storeId} and status>1
+                </when>
+            </choose>
+            <choose>
+                <when test="query==0">
+                    and TO_DAYS(NOW())=TO_DAYS(add_time)
+                </when>
+                <when test="query==1">
+                    and DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(add_time)
+                </when>
+                <when test="query==2">
+                    and DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date(add_time)
+                </when>
+            </choose>
+
+        </where>
+    </select>
+
+    <select id="queryById" parameterType="integer" resultType="com.union.aimei.common.vo.order.OrderSendAppVo">
+            SELECT
+       o.id AS orderId,
+       o.order_no as orderNo,
+       ob.store_seller_phone as storeSellerPhone,
+       ob.store_seller_member_id as storeSellerMemberId,
+       ob.beautician_id AS beauticianId,
+       ob.beautician_member_id as beauticianMemberId,
+       ob.mobile as beauticianPhone,
+       o.server_start_time AS serverStartTime,
+       o.member_id AS memberId,
+       o.member_phone AS memberPhone,
+       o.member_real_name AS memberName,
+       o.customer_name AS customerName,
+       o.customer_phone AS customerPhone,
+       op.server_need_time AS serverNeedTime,
+       op.product_name AS productName,
+       op.product_img AS productImg,
+       op.product_id AS productId,
+       o.type AS productType
+       FROM
+       order_base o
+       INNER JOIN order_beautician ob ON o.id = ob.order_id
+       INNER JOIN order_product op ON o.id = op.order_id
+       where o.id=#{orderId}
+    </select>
+
+</mapper>

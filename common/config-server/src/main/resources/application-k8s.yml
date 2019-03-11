@@ -1,0 +1,28 @@
+server:
+  port: 8006
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+#      defaultZone: http://39.108.59.54:30010/eureka/
+      defaultZone: http://39.108.59.54:30010/eureka/
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://120.79.131.10:8888/beautybond/config.git
+          search-paths: config-repo/*
+          username: gaowei
+          password: gaowei123
+          clone-on-start: true
+          force-pull: true
+  rabbitmq:
+        host: 47.106.90.37
+        port: 5672
+        username: guest
+        password: aimeirabbit123456!
+management:
+  security:
+    enabled: false

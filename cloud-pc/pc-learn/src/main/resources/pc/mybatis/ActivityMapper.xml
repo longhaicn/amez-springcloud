@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.Activity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mtitle" property="mtitle" jdbcType="VARCHAR" />
+    <result column="stitle" property="stitle" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="publisher" property="publisher" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+    <result column="banner_img" property="bannerImg" jdbcType="VARCHAR" />
+    <result column="top_status" property="topStatus" jdbcType="TINYINT" />
+    <result column="weight_top" property="weightTop" jdbcType="INTEGER" />
+    <result column="province_id" property="provinceId" jdbcType="INTEGER" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="INTEGER" />
+    <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    <result column="district_id" property="districtId" jdbcType="INTEGER" />
+    <result column="district_name" property="districtName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="enterstart_time" property="enterstartTime" jdbcType="TIMESTAMP" />
+    <result column="enterend_time" property="enterendTime" jdbcType="TIMESTAMP" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="weekday_start" property="weekdayStart" jdbcType="VARCHAR" />
+    <result column="day_length" property="dayLength" jdbcType="INTEGER" />
+    <result column="hour_length" property="hourLength" jdbcType="INTEGER" />
+    <result column="costs" property="costs" jdbcType="INTEGER" />
+    <result column="attentions" property="attentions" jdbcType="VARCHAR" />
+    <result column="limited" property="limited" jdbcType="INTEGER" />
+    <result column="entered_sum" property="enteredSum" jdbcType="INTEGER" />
+    <result column="conditions" property="conditions" jdbcType="VARCHAR" />
+    <result column="growth_value" property="growthValue" jdbcType="INTEGER" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, mtitle, stitle, type, icon, publisher, description, banner_img, top_status,weight_top, province_id,
+    province_name, city_id, city_name, district_id, district_name, address, enterstart_time,
+    enterend_time, start_time, end_time, weekday_start, day_length, hour_length, costs,
+    attentions, limited,entered_sum, conditions, growth_value, tag, status, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, mtitle, stitle, type, icon, publisher, description, banner_img AS bannerImg,
+    top_status AS topStatus,weight_top AS weightTop, province_id AS provinceId, province_name AS provinceName,
+    city_id AS cityId, city_name AS cityName, district_id AS districtId, district_name AS districtName,
+    address, enterstart_time AS enterstartTime, enterend_time AS enterendTime, start_time AS startTime,
+    end_time AS endTime, weekday_start AS weekdayStart, day_length AS dayLength, hour_length AS hourLength,
+    costs, attentions, limited,entered_sum AS enteredSum, conditions, growth_value AS growthValue, tag, status,
+    create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.Activity" useGeneratedKeys="true" keyProperty="id" >
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mtitle != null" >
+        mtitle,
+      </if>
+      <if test="stitle != null" >
+        stitle,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="publisher != null" >
+        publisher,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="bannerImg != null" >
+          banner_img,
+      </if>
+      <if test="topStatus != null" >
+          top_status,
+      </if>
+      <if test="weightTop != null" >
+        weight_top,
+      </if>
+      <if test="provinceId != null" >
+        province_id,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="cityName != null" >
+        city_name,
+      </if>
+      <if test="districtId != null" >
+        district_id,
+      </if>
+      <if test="districtName != null" >
+        district_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="enterstartTime != null" >
+        enterstart_time,
+      </if>
+      <if test="enterendTime != null" >
+        enterend_time,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="weekdayStart != null" >
+        weekday_start,
+      </if>
+      <if test="dayLength != null" >
+        day_length,
+      </if>
+      <if test="hourLength != null" >
+        hour_length,
+      </if>
+      <if test="costs != null" >
+        costs,
+      </if>
+      <if test="attentions != null" >
+        attentions,
+      </if>
+      <if test="limited != null" >
+        limited,
+      </if>
+      <if test="enteredSum != null" >
+        entered_sum,
+      </if>
+      <if test="conditions != null" >
+        conditions,
+      </if>
+      <if test="growthValue != null" >
+        growth_value,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mtitle != null" >
+        #{mtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="stitle != null" >
+        #{stitle,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        #{publisher,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bannerImg != null" >
+          #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="topStatus != null" >
+          #{topStatus,jdbcType=TINYINT},
+      </if>
+      <if test="weightTop != null" >
+        #{weightTop,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="districtName != null" >
+        #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="enterstartTime != null" >
+        #{enterstartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterendTime != null" >
+        #{enterendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekdayStart != null" >
+        #{weekdayStart,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLength != null" >
+        #{dayLength,jdbcType=INTEGER},
+      </if>
+      <if test="hourLength != null" >
+        #{hourLength,jdbcType=INTEGER},
+      </if>
+      <if test="costs != null" >
+        #{costs,jdbcType=INTEGER},
+      </if>
+      <if test="attentions != null" >
+        #{attentions,jdbcType=VARCHAR},
+      </if>
+      <if test="limited != null" >
+        #{limited,jdbcType=INTEGER},
+      </if>
+      <if test="enteredSum != null" >
+        #{enteredSum,jdbcType=INTEGER},
+      </if>
+      <if test="conditions != null" >
+        #{conditions,jdbcType=VARCHAR},
+      </if>
+      <if test="growthValue != null" >
+        #{growthValue,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.Activity" >
+    update activity
+    <set >
+      <if test="mtitle != null" >
+        mtitle = #{mtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="stitle != null" >
+        stitle = #{stitle,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null" >
+        publisher = #{publisher,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bannerImg != null" >
+          banner_img = #{bannerImg,jdbcType=VARCHAR},
+      </if>
+      <if test="topStatus != null" >
+          top_status = #{topStatus,jdbcType=TINYINT},
+      </if>
+      <if test="weightTop != null" >
+        weight_top = #{weightTop,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        province_id = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="cityName != null" >
+        city_name = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="districtId != null" >
+        district_id = #{districtId,jdbcType=INTEGER},
+      </if>
+      <if test="districtName != null" >
+        district_name = #{districtName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="enterstartTime != null" >
+        enterstart_time = #{enterstartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enterendTime != null" >
+        enterend_time = #{enterendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekdayStart != null" >
+        weekday_start = #{weekdayStart,jdbcType=VARCHAR},
+      </if>
+      <if test="dayLength != null" >
+        day_length = #{dayLength,jdbcType=INTEGER},
+      </if>
+      <if test="hourLength != null" >
+        hour_length = #{hourLength,jdbcType=INTEGER},
+      </if>
+      <if test="costs != null" >
+        costs = #{costs,jdbcType=INTEGER},
+      </if>
+      <if test="attentions != null" >
+        attentions = #{attentions,jdbcType=VARCHAR},
+      </if>
+      <if test="limited != null" >
+        limited = #{limited,jdbcType=INTEGER},
+      </if>
+      <if test="enteredSum != null" >
+        entered_sum = #{enteredSum,jdbcType=INTEGER},
+      </if>
+      <if test="conditions != null" >
+        conditions = #{conditions,jdbcType=VARCHAR},
+      </if>
+      <if test="growthValue != null" >
+        growth_value = #{growthValue,jdbcType=INTEGER},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.Activity" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from activity
+    <where >
+      <if test="mtitle != null" >
+        AND mtitle = #{mtitle,jdbcType=VARCHAR}
+      </if>
+      <if test="stitle != null" >
+        AND stitle = #{stitle,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        AND type = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="icon != null" >
+        AND icon = #{icon,jdbcType=VARCHAR}
+      </if>
+      <if test="publisher != null" >
+        AND publisher = #{publisher,jdbcType=INTEGER}
+      </if>
+      <if test="description != null" >
+        AND description = #{description,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="bannerImg != null" >
+        AND banner_img = #{bannerImg,jdbcType=VARCHAR}
+      </if>
+      <if test="topStatus != null" >
+        AND top_status = #{topStatus,jdbcType=TINYINT}
+      </if>
+      <if test="weightTop != null" >
+        AND weight_top = #{weightTop,jdbcType=INTEGER}
+      </if>
+      <if test="provinceId != null" >
+        AND province_id = #{provinceId,jdbcType=INTEGER}
+      </if>
+      <if test="provinceName != null" >
+        AND province_name = #{provinceName,jdbcType=VARCHAR}
+      </if>
+      <if test="cityId != null" >
+        AND city_id = #{cityId,jdbcType=INTEGER}
+      </if>
+      <if test="cityName != null" >
+        AND city_name = #{cityName,jdbcType=VARCHAR}
+      </if>
+      <if test="districtId != null" >
+        AND district_id = #{districtId,jdbcType=INTEGER}
+      </if>
+      <if test="districtName != null" >
+        AND district_name = #{districtName,jdbcType=VARCHAR}
+      </if>
+      <if test="address != null" >
+        AND address = #{address,jdbcType=VARCHAR}
+      </if>
+      <if test="enterstartTime != null" >
+        AND enterstart_time = #{enterstartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="enterendTime != null" >
+        AND enterend_time = #{enterendTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="startTime != null" >
+        AND start_time = #{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime != null" >
+        AND end_time = #{endTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="weekdayStart != null" >
+        AND weekday_start = #{weekdayStart,jdbcType=VARCHAR}
+      </if>
+      <if test="dayLength != null" >
+        AND day_length = #{dayLength,jdbcType=INTEGER}
+      </if>
+      <if test="hourLength != null" >
+        AND hour_length = #{hourLength,jdbcType=INTEGER}
+      </if>
+      <if test="costs != null" >
+        AND costs = #{costs,jdbcType=INTEGER}
+      </if>
+      <if test="attentions != null" >
+        AND attentions = #{attentions,jdbcType=VARCHAR}
+      </if>
+      <if test="limited != null" >
+        AND limited = #{limited,jdbcType=INTEGER}
+      </if>
+      <if test="enteredSum != null" >
+        AND entered_sum = #{enteredSum,jdbcType=INTEGER}
+      </if>
+      <if test="conditions != null" >
+        AND conditions = #{conditions,jdbcType=VARCHAR}
+      </if>
+      <if test="growthValue != null" >
+        AND growth_value = #{growthValue,jdbcType=INTEGER}
+      </if>
+      <if test="tag != null" >
+        AND tag = #{tag,jdbcType=VARCHAR}
+      </if>
+      <if test="status != null" >
+        AND status = #{status,jdbcType=INTEGER}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+
+  <select id="selectWillStartActivity" resultType="com.union.aimei.common.vo.learn.pc.ActivityPushMemberVo" parameterType="map">
+    SELECT
+    a.id as id,a.mtitle as mtitle,a.start_time as startTime,
+    amr.memeber_id AS memberId,amr.phone as phone,amr.contact_phone as contractPhone,
+    amr.tag as tag,amr.beautician_id as beauticianId,
+    amr.store_id AS storeId
+    FROM
+    activity_member_ref amr JOIN activity a ON a.id = amr.activity_id
+    WHERE a.start_time between #{startTime} and #{endTime} AND amr.`status`=0
+  </select>
+
+   <update id="updateActivityStopStatus">
+    UPDATE activity
+    SET
+    status = 3
+     where  end_time <![CDATA[ <= ]]> NOW()
+  </update>
+
+  <select id="selectIdListWillStop" resultType="java.lang.Integer">
+    select id from activity where end_time <![CDATA[ <= ]]> NOW()
+  </select>
+
+</mapper>

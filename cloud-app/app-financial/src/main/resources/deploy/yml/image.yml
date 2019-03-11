@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: app-financial
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: app-financial
+    spec:
+      containers:
+      - name: app-financial
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/app-financial:v1.1.56-test
+        ports: 
+        - containerPort: 8024
+      imagePullSecrets:
+      - name: k8simagelogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-financial-svc
+spec:
+  selector:
+    run: app-financial
+  type: NodePort
+  ports:
+    - nodePort: 30035
+      port: 8024
+      targetPort: 8024

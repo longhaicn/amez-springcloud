@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberCardUseProductMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberCardUseProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="card_id" property="cardId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, card_id, product_id, product_name, add_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, card_id AS cardId, product_id AS productId, product_name AS productName, add_time AS addTime, 
+    update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_card_use_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_card_use_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberCardUseProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into member_card_use_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardId != null" >
+        card_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardId != null" >
+        #{cardId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberCardUseProduct" >
+    update member_card_use_product
+    <set >
+      <if test="cardId != null" >
+        card_id = #{cardId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberCardUseProduct" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from member_card_use_product
+    <where >
+      <if test="cardId != null" >
+        AND card_id = #{cardId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="productName != null" >
+        AND product_name = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="addTime != null" >
+        AND add_time = #{addTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by add_time desc
+  </select>
+
+
+  <!--批量添加-->
+  <insert id="insertCardUseProductBatch" useGeneratedKeys="true" parameterType="list">
+    insert into member_card_use_product (card_id,product_id)
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.cardId},#{item.productId})
+    </foreach>
+  </insert>
+
+  <!--通过会员卡ID查询-->
+  <select id="queryListByCardId" parameterType="integer" resultType="integer">
+      SELECT mcup.product_id FROM member_card_use_product mcup
+      WHERE card_id = #{cardId,jdbcType=INTEGER}
+  </select>
+
+  <!--根据会员卡ID删除-->
+  <delete id="deleteRecordByCardId" parameterType="integer">
+    delete from member_card_use_product
+    where card_id = #{cardId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertBatch" parameterType="hashmap">
+    insert into member_card_use_product (card_id,product_id,product_name) VALUES
+    <foreach collection="cardIdList" index="index" item="item"  separator="," >
+      (#{item,jdbcType=INTEGER},#{productId,jdbcType=INTEGER},#{productName,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+</mapper>

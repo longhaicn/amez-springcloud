@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.system.mapper.BaseUserMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseUser">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="login_name" jdbcType="VARCHAR" property="loginName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="gender" jdbcType="VARCHAR" property="gender"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="mobile_phone" jdbcType="VARCHAR" property="mobilePhone"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_disabled" jdbcType="TINYINT" property="isDisabled"/>
+        <result column="user_type" jdbcType="VARCHAR" property="userType"/>
+        <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime"/>
+        <result column="expir_etime" jdbcType="TIMESTAMP" property="expirEtime"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        user_id, login_name, nick_name, password, gender, email, mobile_phone, create_time,
+        update_time, is_disabled, user_type, last_login_time, expir_etime
+    </sql>
+    <select id="selectByExample" parameterType="com.union.aimei.common.model.system.BaseUserExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from base_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from base_user
+        where user_id = #{userId,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseUserExample">
+        delete from base_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseUser">
+        insert into base_user (user_id, login_name, nick_name,
+        password, gender, email,
+        mobile_phone, create_time, update_time,
+        is_disabled, user_type, last_login_time,
+        expir_etime)
+        values (#{userId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        #{mobilePhone,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+        #{isDisabled,jdbcType=TINYINT}, #{userType,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP},
+        #{expirEtime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseUser" useGeneratedKeys="true"
+            keyProperty="userId">
+        insert into base_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="loginName != null">
+                login_name,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDisabled != null">
+                is_disabled,
+            </if>
+            <if test="userType != null">
+                user_type,
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time,
+            </if>
+            <if test="expirEtime != null">
+                expir_etime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="loginName != null">
+                #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDisabled != null">
+                #{isDisabled,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginTime != null">
+                #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expirEtime != null">
+                #{expirEtime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseUserExample"
+            resultType="java.lang.Long">
+        select count(*) from base_user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_user
+        <set>
+            <if test="record.userId != null">
+                user_id = #{record.userId,jdbcType=INTEGER},
+            </if>
+            <if test="record.loginName != null">
+                login_name = #{record.loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.nickName != null">
+                nick_name = #{record.nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                password = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gender != null">
+                gender = #{record.gender,jdbcType=VARCHAR},
+            </if>
+            <if test="record.email != null">
+                email = #{record.email,jdbcType=VARCHAR},
+            </if>
+            <if test="record.mobilePhone != null">
+                mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.isDisabled != null">
+                is_disabled = #{record.isDisabled,jdbcType=TINYINT},
+            </if>
+            <if test="record.userType != null">
+                user_type = #{record.userType,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lastLoginTime != null">
+                last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.expirEtime != null">
+                expir_etime = #{record.expirEtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_user
+        set user_id = #{record.userId,jdbcType=INTEGER},
+        login_name = #{record.loginName,jdbcType=VARCHAR},
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+        password = #{record.password,jdbcType=VARCHAR},
+        gender = #{record.gender,jdbcType=VARCHAR},
+        email = #{record.email,jdbcType=VARCHAR},
+        mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        is_disabled = #{record.isDisabled,jdbcType=TINYINT},
+        user_type = #{record.userType,jdbcType=VARCHAR},
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+        expir_etime = #{record.expirEtime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseUser">
+        update base_user
+        <set>
+            <if test="loginName != null">
+                login_name = #{loginName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                nick_name = #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDisabled != null">
+                is_disabled = #{isDisabled,jdbcType=TINYINT},
+            </if>
+            <if test="userType != null">
+                user_type = #{userType,jdbcType=VARCHAR},
+            </if>
+            <if test="lastLoginTime != null">
+                last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="expirEtime != null">
+                expir_etime = #{expirEtime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseUser">
+        update base_user
+        set login_name = #{loginName,jdbcType=VARCHAR},
+        nick_name = #{nickName,jdbcType=VARCHAR},
+        password = #{password,jdbcType=VARCHAR},
+        gender = #{gender,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        is_disabled = #{isDisabled,jdbcType=TINYINT},
+        user_type = #{userType,jdbcType=VARCHAR},
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+        expir_etime = #{expirEtime,jdbcType=TIMESTAMP}
+        where user_id = #{userId,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_user LIMIT #{offset},#{limit}
+    </select>
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.system.BaseUser"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_user
+        <where>
+            <if test="loginName != null">
+                and login_name = #{loginName,jdbcType=VARCHAR}
+            </if>
+            <if test="nickName != null">
+                and nick_name = #{nickName,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null">
+                and password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="gender != null">
+                and gender = #{gender,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="mobilePhone != null">
+                and mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="isDisabled != null">
+                and is_disabled = #{isDisabled,jdbcType=TINYINT}
+            </if>
+            <if test="userType != null">
+                and user_type = #{userType,jdbcType=VARCHAR}
+            </if>
+            <if test="lastLoginTime != null">
+                and last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="expirEtime != null">
+                and expir_etime = #{expirEtime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderReturnProductMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderReturnProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="order_return_id" property="orderReturnId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_img" property="productImg" jdbcType="VARCHAR" />
+    <result column="nums" property="nums" jdbcType="INTEGER" />
+    <result column="return_fee" property="returnFee" jdbcType="VARCHAR" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, store_id, order_return_id, product_id, product_name, product_img, nums, return_fee, 
+    is_enabled
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, store_id AS storeId, order_return_id AS orderReturnId, product_id AS productId, 
+    product_name AS productName, product_img AS productImg, nums, return_fee AS returnFee, 
+    is_enabled AS isEnabled
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_return_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_return_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderReturnProduct" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_return_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="orderReturnId != null" >
+        order_return_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productImg != null" >
+        product_img,
+      </if>
+      <if test="nums != null" >
+        nums,
+      </if>
+      <if test="returnFee != null" >
+        return_fee,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderReturnId != null" >
+        #{orderReturnId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productImg != null" >
+        #{productImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="returnFee != null" >
+        #{returnFee,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderReturnProduct" >
+    update order_return_product
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderReturnId != null" >
+        order_return_id = #{orderReturnId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productImg != null" >
+        product_img = #{productImg,jdbcType=VARCHAR},
+      </if>
+      <if test="nums != null" >
+        nums = #{nums,jdbcType=INTEGER},
+      </if>
+      <if test="returnFee != null" >
+        return_fee = #{returnFee,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderReturnProduct" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from order_return_product
+    <where >
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="orderReturnId != null" >
+        AND order_return_id = #{orderReturnId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="productName != null" >
+        AND product_name = #{productName,jdbcType=VARCHAR}
+      </if>
+      <if test="productImg != null" >
+        AND product_img = #{productImg,jdbcType=VARCHAR}
+      </if>
+      <if test="nums != null" >
+        AND nums = #{nums,jdbcType=INTEGER}
+      </if>
+      <if test="returnFee != null" >
+        AND return_fee = #{returnFee,jdbcType=VARCHAR}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+</mapper>

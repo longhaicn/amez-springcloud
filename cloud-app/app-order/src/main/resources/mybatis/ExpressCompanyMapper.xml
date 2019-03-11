@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.app.api.order.mapper.ExpressCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.ExpressCompany" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="country_code" property="countryCode" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, company_name, company_code, type, country_code, remark
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, company_name AS companyName, company_code AS companyCode, type, country_code AS countryCode, 
+    remark
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from express_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.app.api.order.mapper.ExpressCompanyMapper" useGeneratedKeys="true" keyProperty="id" >
+    insert into express_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyCode != null" >
+        company_code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="countryCode != null" >
+        country_code,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.app.api.order.mapper.ExpressCompanyMapper" >
+    update express_company
+    <set >
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCode != null" >
+        company_code = #{companyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        country_code = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.app.api.order.mapper.ExpressCompanyMapper" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from express_company
+    <where >
+      <if test="companyName != null" >
+        AND company_name = #{companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="companyCode != null" >
+        AND company_code = #{companyCode,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        AND type = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="countryCode != null" >
+        AND country_code = #{countryCode,jdbcType=VARCHAR}
+      </if>
+      <if test="remark != null" >
+        AND remark = #{remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+</mapper>

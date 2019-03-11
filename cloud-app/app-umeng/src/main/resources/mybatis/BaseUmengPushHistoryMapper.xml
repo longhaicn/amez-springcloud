@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.umeng.mapper.BaseUmengPushHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.umeng.BaseUmengPushHistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="template_id" property="templateId" jdbcType="INTEGER" />
+    <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="INTEGER" />
+    <result column="msg_type" property="msgType" jdbcType="INTEGER" />
+    <result column="msg_code" property="msgCode" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="push_ticker" property="pushTicker" jdbcType="VARCHAR" />
+    <result column="push_title" property="pushTitle" jdbcType="VARCHAR" />
+    <result column="push_text" property="pushText" jdbcType="VARCHAR" />
+    <result column="target" property="target" jdbcType="INTEGER" />
+    <result column="param" property="param" jdbcType="VARCHAR" />
+    <result column="custom" property="custom" jdbcType="VARCHAR" />
+    <result column="forward_type" property="forwardType" jdbcType="VARCHAR" />
+    <result column="forward_url" property="forwardUrl" jdbcType="VARCHAR" />
+    <result column="read_status" property="readStatus" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, template_id, device_token, device_type, msg_type,msg_code, member_id, push_ticker, push_title,
+    push_text,target,param,custom,forward_type,forward_url, read_status, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, template_id AS templateId, device_token AS deviceToken, device_type AS deviceType, 
+    msg_type AS msgType, msg_code AS msgCode, member_id AS memberId, push_ticker AS pushTicker, push_title AS pushTitle,
+    push_text AS pushText,target as target,param as param,custom AS custom,forward_type AS forwardType,forward_url AS forwardUrl, read_status AS readStatus,
+    create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from base_umeng_push_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from base_umeng_push_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushHistory" useGeneratedKeys="true" keyProperty="id" >
+    insert into base_umeng_push_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="templateId != null" >
+        template_id,
+      </if>
+      <if test="deviceToken != null" >
+        device_token,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="msgType != null" >
+        msg_type,
+      </if>
+      <if test="msgCode != null" >
+        msg_code,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="pushTicker != null" >
+        push_ticker,
+      </if>
+      <if test="pushTitle != null" >
+        push_title,
+      </if>
+      <if test="pushText != null" >
+        push_text,
+      </if>
+      <if test="target != null" >
+        target,
+      </if>
+      <if test="param != null" >
+        param,
+      </if>
+      <if test="custom != null" >
+        custom,
+      </if>
+      <if test="forwardType != null" >
+        forward_type,
+      </if>
+      <if test="forwardUrl != null" >
+        forward_url,
+      </if>
+      <if test="readStatus != null" >
+        read_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceToken != null" >
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="msgType != null" >
+        #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgCode != null" >
+        #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="pushTicker != null" >
+        #{pushTicker,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTitle != null" >
+        #{pushTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pushText != null" >
+        #{pushText,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=INTEGER},
+      </if>
+      <if test="param != null" >
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="custom != null" >
+        #{custom,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardType != null" >
+        #{forwardType,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardUrl != null" >
+        #{forwardUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="readStatus != null" >
+        #{readStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushHistory" >
+    update base_umeng_push_history
+    <set >
+      <if test="templateId != null" >
+        template_id = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceToken != null" >
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
+      <if test="msgType != null" >
+        msg_type = #{msgType,jdbcType=INTEGER},
+      </if>
+      <if test="msgCode != null" >
+        msg_code = #{msgCode,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="pushTicker != null" >
+        push_ticker = #{pushTicker,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTitle != null" >
+        push_title = #{pushTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="pushText != null" >
+        push_text = #{pushText,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=INTEGER},
+      </if>
+      <if test="param != null" >
+        #{param,jdbcType=VARCHAR},
+      </if>
+      <if test="custom != null" >
+        custom = #{custom,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardType != null" >
+        forward_type = #{forwardType,jdbcType=VARCHAR},
+      </if>
+      <if test="forwardUrl != null" >
+        forward_url = #{forwardUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="readStatus != null" >
+        read_status = #{readStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushHistory" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from base_umeng_push_history
+    <where >
+      <if test="templateId != null" >
+        AND template_id = #{templateId,jdbcType=INTEGER}
+      </if>
+      <if test="deviceToken != null" >
+        AND device_token = #{deviceToken,jdbcType=VARCHAR}
+      </if>
+      <if test="deviceType != null" >
+        AND device_type = #{deviceType,jdbcType=INTEGER}
+      </if>
+      <if test="msgType != null" >
+        AND msg_type = #{msgType,jdbcType=INTEGER}
+      </if>
+      <if test="msgCode != null" >
+        AND msg_code = #{msgCode,jdbcType=INTEGER}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="pushTicker != null" >
+        AND push_ticker = #{pushTicker,jdbcType=VARCHAR}
+      </if>
+      <if test="pushTitle != null" >
+        AND push_title = #{pushTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="pushText != null" >
+        AND push_text = #{pushText,jdbcType=VARCHAR}
+      </if>
+      <if test="target != null" >
+        AND target = #{target,jdbcType=INTEGER}
+      </if>
+      <if test="param != null" >
+        AND param = #{param,jdbcType=VARCHAR}
+      </if>
+      <if test="custom != null" >
+        AND custom = #{custom,jdbcType=VARCHAR}
+      </if>
+      <if test="forwardType != null" >
+        AND forward_type = #{forwardType,jdbcType=VARCHAR}
+      </if>
+      <if test="forwardUrl != null" >
+        AND forward_url = #{forwardUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="readStatus != null" >
+        AND read_status = #{readStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+  <update id="updateReadStatus" parameterType="com.union.aimei.common.model.umeng.BaseUmengPushHistory" >
+      UPDATE base_umeng_push_history  SET read_status = 1
+      WHERE member_id = #{memberId,jdbcType=INTEGER} and msg_code=#{msgCode,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

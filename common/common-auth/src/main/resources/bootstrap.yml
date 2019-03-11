@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: common-auth
+  profiles:
+    active: @profileActive@

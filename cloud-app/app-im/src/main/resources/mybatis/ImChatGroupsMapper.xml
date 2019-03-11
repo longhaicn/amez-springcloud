@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.im.mapper.ImChatGroupsMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.im.ImChatGroups">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="easemob_group_id" property="easemobGroupId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="is_public" property="isPublic" jdbcType="CHAR"/>
+        <result column="membersonly" property="membersonly" jdbcType="CHAR"/>
+        <result column="allowinvites" property="allowinvites" jdbcType="CHAR"/>
+        <result column="maxusers" property="maxusers" jdbcType="INTEGER"/>
+        <result column="affiliations_count" property="affiliationsCount" jdbcType="INTEGER"/>
+        <result column="owner" property="owner" jdbcType="VARCHAR"/>
+        <result column="invite_need_confirm" property="inviteNeedConfirm" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, easemob_group_id, name, description, is_public, membersonly, allowinvites, maxusers,
+        affiliations_count, owner, invite_need_confirm
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, easemob_group_id AS easemobGroupId, name, description, is_public AS isPublic, membersonly,
+        allowinvites, maxusers, affiliations_count AS affiliationsCount, owner, invite_need_confirm AS inviteNeedConfirm
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from im_chat_groups
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from im_chat_groups
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.im.ImChatGroups" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into im_chat_groups
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="easemobGroupId != null">
+                easemob_group_id,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="isPublic != null">
+                is_public,
+            </if>
+            <if test="membersonly != null">
+                membersonly,
+            </if>
+            <if test="allowinvites != null">
+                allowinvites,
+            </if>
+            <if test="maxusers != null">
+                maxusers,
+            </if>
+            <if test="affiliationsCount != null">
+                affiliations_count,
+            </if>
+            <if test="owner != null">
+                owner,
+            </if>
+            <if test="inviteNeedConfirm != null">
+                invite_need_confirm,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="easemobGroupId != null">
+                #{easemobGroupId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isPublic != null">
+                #{isPublic,jdbcType=CHAR},
+            </if>
+            <if test="membersonly != null">
+                #{membersonly,jdbcType=CHAR},
+            </if>
+            <if test="allowinvites != null">
+                #{allowinvites,jdbcType=CHAR},
+            </if>
+            <if test="maxusers != null">
+                #{maxusers,jdbcType=INTEGER},
+            </if>
+            <if test="affiliationsCount != null">
+                #{affiliationsCount,jdbcType=INTEGER},
+            </if>
+            <if test="owner != null">
+                #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="inviteNeedConfirm != null">
+                #{inviteNeedConfirm,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.im.ImChatGroups">
+        update im_chat_groups
+        <set>
+            <if test="easemobGroupId != null">
+                easemob_group_id = #{easemobGroupId,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="isPublic != null">
+                is_public = #{isPublic,jdbcType=CHAR},
+            </if>
+            <if test="membersonly != null">
+                membersonly = #{membersonly,jdbcType=CHAR},
+            </if>
+            <if test="allowinvites != null">
+                allowinvites = #{allowinvites,jdbcType=CHAR},
+            </if>
+            <if test="maxusers != null">
+                maxusers = #{maxusers,jdbcType=INTEGER},
+            </if>
+            <if test="affiliationsCount != null">
+                affiliations_count = #{affiliationsCount,jdbcType=INTEGER},
+            </if>
+            <if test="owner != null">
+                owner = #{owner,jdbcType=VARCHAR},
+            </if>
+            <if test="inviteNeedConfirm != null">
+                invite_need_confirm = #{inviteNeedConfirm,jdbcType=CHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.im.ImChatGroups"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from im_chat_groups
+        <where>
+            <if test="easemobGroupId != null">
+                AND easemob_group_id = #{easemobGroupId,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                AND name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="description != null">
+                AND description = #{description,jdbcType=VARCHAR}
+            </if>
+            <if test="isPublic != null">
+                AND is_public = #{isPublic,jdbcType=CHAR}
+            </if>
+            <if test="membersonly != null">
+                AND membersonly = #{membersonly,jdbcType=CHAR}
+            </if>
+            <if test="allowinvites != null">
+                AND allowinvites = #{allowinvites,jdbcType=CHAR}
+            </if>
+            <if test="maxusers != null">
+                AND maxusers = #{maxusers,jdbcType=INTEGER}
+            </if>
+            <if test="affiliationsCount != null">
+                AND affiliations_count = #{affiliationsCount,jdbcType=INTEGER}
+            </if>
+            <if test="owner != null">
+                AND owner = #{owner,jdbcType=VARCHAR}
+            </if>
+            <if test="inviteNeedConfirm != null">
+                AND invite_need_confirm = #{inviteNeedConfirm,jdbcType=CHAR}
+            </if>
+        </where>
+    </select>
+
+    <update id="modify" parameterType="com.union.aimei.common.model.im.ImChatGroups">
+        update im_chat_groups
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="maxusers != null">
+                maxusers = #{maxusers,jdbcType=INTEGER},
+            </if>
+        </set>
+        where easemob_group_id = #{easemobGroupId,jdbcType=VARCHAR}
+    </update>
+
+    <delete id="deleteByEasemobGroupId" parameterType="java.lang.String">
+        delete from im_chat_groups
+        where easemob_group_id = #{easemobGroupId,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

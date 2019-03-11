@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.system.mapper.BaseHomepageGuidePageMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseHomepageGuidePage">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="client_type" jdbcType="TINYINT" property="clientType"/>
+        <result column="images_url" jdbcType="VARCHAR" property="imagesUrl"/>
+        <result column="publish_status" jdbcType="TINYINT" property="publishStatus"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, client_type, images_url, publish_status, create_time, update_time
+  </sql>
+    <select id="selectByExample" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePageExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from base_homepage_guide_page
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_homepage_guide_page
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from base_homepage_guide_page
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePageExample">
+        delete from base_homepage_guide_page
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePage">
+    insert into base_homepage_guide_page (id, client_type, images_url, 
+      publish_status, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{clientType,jdbcType=TINYINT}, #{imagesUrl,jdbcType=VARCHAR}, 
+      #{publishStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePage">
+        insert into base_homepage_guide_page
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="clientType != null">
+                client_type,
+            </if>
+            <if test="imagesUrl != null">
+                images_url,
+            </if>
+            <if test="publishStatus != null">
+                publish_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="clientType != null">
+                #{clientType,jdbcType=TINYINT},
+            </if>
+            <if test="imagesUrl != null">
+                #{imagesUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="publishStatus != null">
+                #{publishStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePageExample"
+            resultType="java.lang.Long">
+        select count(*) from base_homepage_guide_page
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_homepage_guide_page
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.clientType != null">
+                client_type = #{record.clientType,jdbcType=TINYINT},
+            </if>
+            <if test="record.imagesUrl != null">
+                images_url = #{record.imagesUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.publishStatus != null">
+                publish_status = #{record.publishStatus,jdbcType=TINYINT},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_homepage_guide_page
+        set id = #{record.id,jdbcType=INTEGER},
+        client_type = #{record.clientType,jdbcType=TINYINT},
+        images_url = #{record.imagesUrl,jdbcType=VARCHAR},
+        publish_status = #{record.publishStatus,jdbcType=TINYINT},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePage">
+        update base_homepage_guide_page
+        <set>
+            <if test="clientType != null">
+                client_type = #{clientType,jdbcType=TINYINT},
+            </if>
+            <if test="imagesUrl != null">
+                images_url = #{imagesUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="publishStatus != null">
+                publish_status = #{publishStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePage">
+    update base_homepage_guide_page
+    set client_type = #{clientType,jdbcType=TINYINT},
+      images_url = #{imagesUrl,jdbcType=VARCHAR},
+      publish_status = #{publishStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="selectByPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_homepage_guide_page LIMIT #{offset},#{limit}
+    </select>
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.system.BaseHomepageGuidePage"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_homepage_guide_page
+        <where>
+            <if test="clientType != null">
+                and client_type = #{clientType,jdbcType=TINYINT}
+            </if>
+            <if test="imagesUrl != null">
+                and images_url = #{imagesUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="publishStatus != null">
+                and publish_status = #{publishStatus,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

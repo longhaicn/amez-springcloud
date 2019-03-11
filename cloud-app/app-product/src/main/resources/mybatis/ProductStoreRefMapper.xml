@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.product.mapper.ProductStoreRefMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.product.ProductStoreRef">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="product_id" property="productId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="sale_status" property="saleStatus" jdbcType="TINYINT"/>
+        <result column="city_id" property="cityId" jdbcType="INTEGER"/>
+        <result column="store_longitude" property="storeLongitude" jdbcType="DECIMAL"/>
+        <result column="store_latitude" property="storeLatitude" jdbcType="DECIMAL"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="product_status" property="productStatus" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, product_id, store_id, store_name, sale_status, city_id, store_longitude, store_latitude,
+        is_enabled, create_time , product_status, update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, product_id AS productId, store_id AS storeId, store_name AS storeName, sale_status AS saleStatus, city_id AS cityId,
+        store_longitude AS storeLongitude, store_latitude AS storeLatitude, is_enabled AS isEnabled, product_status AS productStatus ,
+        create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from product_store_ref
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from product_store_ref
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.product.ProductStoreRef" useGeneratedKeys="true" keyProperty="id">
+        insert into product_store_ref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="saleStatus != null">
+                sale_status,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="storeLongitude != null">
+                store_longitude,
+            </if>
+            <if test="storeLatitude != null">
+                store_latitude,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="productStatus != null">
+                product_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="saleStatus != null">
+                #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="storeLongitude != null">
+                #{storeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeLatitude != null">
+                #{storeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="productStatus != null">
+                #{productStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.product.ProductStoreRef">
+        update product_store_ref
+        <set>
+            <if test="productId != null">
+                product_id = #{productId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="saleStatus != null">
+                sale_status = #{saleStatus,jdbcType=TINYINT},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="storeLongitude != null">
+                store_longitude = #{storeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="storeLatitude != null">
+                store_latitude = #{storeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="productStatus != null">
+                product_status = #{productStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.product.ProductStoreRef" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_store_ref
+        <where>
+            <if test="productId != null">
+                AND product_id = #{productId,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="saleStatus != null">
+                AND sale_status = #{saleStatus,jdbcType=TINYINT}
+            </if>
+            <if test="cityId != null">
+                AND city_id = #{cityId,jdbcType=INTEGER}
+            </if>
+            <if test="storeLongitude != null">
+                AND store_longitude = #{storeLongitude,jdbcType=DECIMAL}
+            </if>
+            <if test="storeLatitude != null">
+                AND store_latitude = #{storeLatitude,jdbcType=DECIMAL}
+            </if>
+            <if test="productStatus != null">
+                AND product_status = #{productStatus,jdbcType=TINYINT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!--自定义计算距离SQL语句-->
+    <sql id="caculateDistance">
+        IFNULL(ROUND(
+        6378.138 * 2 * ASIN(
+        SQRT(POW(SIN((${point.y} * PI() / 180 - store_latitude * PI() / 180) / 2),2) +
+        COS(${point.y} * PI() / 180) * COS(store_latitude * PI() / 180) * POW(
+        SIN((${point.x} * PI() / 180 - store_longitude * PI() / 180) / 2),2))) * 1000
+        ), 0) AS distance
+    </sql>
+
+    <!-- 正常商品条件 -->
+    <!-- 正常商品条件 -->
+    <sql id="condProductByNormal">
+        where p.id = psr.product_id
+        and p.is_enabled = true
+        and psr.is_enabled = true
+        <if test="auditStatus != null">
+            and p.audit_status = #{auditStatus}
+        </if>
+        <if test="saleStatus != null">
+            and p.sale_status = #{saleStatus}
+        </if>
+        <if test="saleStatus != null">
+            and psr.sale_status = #{saleStatus}
+        </if>
+        <if test="productStatus != null">
+            and psr.product_status = #{productStatus}
+        </if>
+    </sql>
+
+    <update id="updateIsEnabledByProductId" parameterType="com.union.aimei.common.model.product.ProductStoreRef">
+      update product_store_ref
+      set is_enabled = #{isEnabled}
+      where product_id = #{productId}
+    </update>
+
+    <update id="updateSaleStatusByProductId" parameterType="com.union.aimei.common.model.product.ProductStoreRef">
+      update product_store_ref
+      set sale_status = #{saleStatus}
+      where product_id = #{productId}
+    </update>
+
+    <select id="selectListByProductIdForOrder" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        psr.id, psr.product_id, psr.store_id, psr.store_name, psr.sale_status, psr.city_id,
+        psr.store_longitude, psr.store_latitude, psr.is_enabled, psr.create_time, psr.update_time,
+        <include refid="caculateDistance"/>
+        from product_store_ref psr, product p
+        <include refid="condProductByNormal"/>
+        <if test="cityId != null">
+            and psr.city_id = #{cityId}
+        </if>
+        <if test="productId != null">
+            and psr.product_id = #{productId}
+        </if>
+        <if test="sortType != null">
+            <choose>
+                <when test="sortType == 1">
+                    <if test="point !=null and point.x != null and point.y !=null">
+                        order by distance
+                    </if>
+                </when>
+                <when test="sortType == 2">
+                    order by p.sale_volume desc
+                </when>
+                <when test="sortType == 3">
+                    <choose>
+                        <when test="sort == 1">
+                            order by p.sale_price asc
+                        </when>
+                        <otherwise>
+                            order by p.sale_price desc
+                        </otherwise>
+                    </choose>
+                </when>
+                <otherwise>
+                    <if test="point !=null and point.x != null and point.y !=null">
+                        order by distance
+                    </if>
+                </otherwise>
+            </choose>
+        </if>
+    </select>
+
+    <update id="updateSaleStatusByProductIdByStoreId" parameterType="com.union.aimei.common.model.product.ProductStoreRef">
+        update product_store_ref
+        set sale_status = #{saleStatus}
+        where is_enabled = true
+        and product_id = #{productId}
+        and store_id = #{storeId}
+    </update>
+
+    <select id="selectByProductIdForDistanceNearest" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        psr.id, psr.product_id, psr.store_id, psr.store_name, psr.sale_status, psr.city_id,
+        psr.store_longitude, psr.store_latitude, psr.is_enabled, psr.create_time, psr.update_time,
+        <include refid="caculateDistance"/>
+        from product_store_ref psr, product p
+        <include refid="condProductByNormal"/>
+        <if test="cityId != null">
+            and psr.city_id = #{cityId}
+        </if>
+        <if test="productId != null">
+            and psr.product_id = #{productId}
+        </if>
+        <if test="point !=null and point.x != null and point.y !=null">
+            order by distance
+        </if>
+        limit 1
+    </select>
+
+    <update id="updateProductStatusByStoreId" parameterType="java.util.Map">
+        update product_store_ref
+        set product_status = #{productStatus}
+        where store_id = #{storeId}
+    </update>
+
+    <select id="getByRefId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from product_store_ref
+        where is_enabled = true
+        and product_id = #{productId}
+        and store_id = #{storeId}
+    </select>
+
+</mapper>

@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: pc-financial-service
+  profiles:
+      active: @profileActive@

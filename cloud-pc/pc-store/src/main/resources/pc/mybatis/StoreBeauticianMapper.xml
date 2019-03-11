@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.store.mapper.StoreBeauticianMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreBeautician">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="im_user_id" property="imUserId" jdbcType="INTEGER"/>
+        <result column="im_username" property="imUsername" jdbcType="VARCHAR"/>
+        <result column="beautician_name" property="beauticianName" jdbcType="VARCHAR"/>
+        <result column="beautician_nick_name" property="beauticianNickName" jdbcType="VARCHAR"/>
+        <result column="head_img_url" property="headImgUrl" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="TINYINT"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="work_card_no" property="workCardNo" jdbcType="VARCHAR"/>
+        <result column="birth_date" property="birthDate" jdbcType="VARCHAR"/>
+        <result column="entry_date" property="entryDate" jdbcType="VARCHAR"/>
+        <result column="province_id" property="provinceId" jdbcType="INTEGER"/>
+        <result column="city_id" property="cityId" jdbcType="INTEGER"/>
+        <result column="area_id" property="areaId" jdbcType="INTEGER"/>
+        <result column="province_name" property="provinceName" jdbcType="VARCHAR"/>
+        <result column="city_name" property="cityName" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="beautician_type" property="beauticianType" jdbcType="TINYINT"/>
+        <result column="years" property="years" jdbcType="INTEGER"/>
+        <result column="beautician_status" property="beauticianStatus" jdbcType="TINYINT"/>
+        <result column="beautician_level" property="beauticianLevel" jdbcType="TINYINT"/>
+        <result column="is_service" property="isService" jdbcType="BIT"/>
+        <result column="is_star" property="isStar" jdbcType="BIT"/>
+        <result column="star_sort" property="starSort" jdbcType="INTEGER"/>
+        <result column="audit_status" property="auditStatus" jdbcType="TINYINT"/>
+        <result column="audit_reason" property="auditReason" jdbcType="VARCHAR"/>
+        <result column="is_store" property="isStore" jdbcType="BIT"/>
+        <result column="is_home" property="isHome" jdbcType="BIT"/>
+        <result column="account_balance" property="accountBalance" jdbcType="INTEGER"/>
+        <result column="pre_income_amount" property="preIncomeAmount" jdbcType="INTEGER"/>
+        <result column="beautician_star" property="beauticianStar" jdbcType="INTEGER"/>
+        <result column="satisfaction" property="satisfaction" jdbcType="INTEGER"/>
+        <result column="level_id" property="levelId" jdbcType="INTEGER"/>
+        <result column="level_name" property="levelName" jdbcType="VARCHAR"/>
+        <result column="grade_id" property="gradeId" jdbcType="INTEGER"/>
+        <result column="grade_name" property="gradeName" jdbcType="VARCHAR"/>
+        <result column="level_logo" property="levelLogo" jdbcType="VARCHAR"/>
+        <result column="growup_value" property="growupValue" jdbcType="INTEGER"/>
+        <result column="follower_number" property="followerNumber" jdbcType="INTEGER"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="register_status" property="registerStatus" jdbcType="TINYINT"/>
+        <result column="is_order" property="isOrder" jdbcType="BIT"/>
+        <result column="month_online_time" property="monthOnlineTime" jdbcType="INTEGER"/>
+        <result column="label" property="label" jdbcType="VARCHAR"/>
+        <result column="service_city_id" property="serviceCityId" jdbcType="INTEGER"/>
+        <result column="service_area_id" property="serviceAreaId" jdbcType="INTEGER"/>
+        <result column="service_address" property="serviceAddress" jdbcType="VARCHAR"/>
+        <result column="service_longitude" property="serviceLongitude" jdbcType="DECIMAL"/>
+        <result column="service_latitude" property="serviceLatitude" jdbcType="DECIMAL"/>
+        <result column="service_radius" property="serviceRadius" jdbcType="INTEGER"/>
+        <result column="is_support_home" property="isSupportHome" jdbcType="BIT"/>
+        <result column="is_support_store" property="isSupportStore" jdbcType="BIT"/>
+        <result column="affiliated_status" property="affiliatedStatus" jdbcType="TINYINT"/>
+        <result column="affiliated_id" property="affiliatedId" jdbcType="INTEGER"/>
+        <result column="remove_affiliated_id" property="removeAffiliatedId" jdbcType="INTEGER"/>
+        <result column="signature" property="signature" jdbcType="VARCHAR"/>
+        <result column="start_business_hour" property="startBusinessHour" jdbcType="VARCHAR"/>
+        <result column="end_business_hour" property="endBusinessHour" jdbcType="VARCHAR"/>
+        <result column="workday" property="workday" jdbcType="VARCHAR"/>
+        <result column="real_name_status" property="realNameStatus" jdbcType="TINYINT"/>
+        <result column="qualification_certificate" property="qualificationCertificate" jdbcType="LONGVARCHAR"/>
+        <result column="service_city_name" property="serviceCityName" jdbcType="VARCHAR"/>
+        <result column="service_area_name" property="serviceAreaName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, store_id, store_name, user_id, member_id, im_user_id, im_username, beautician_name,
+        beautician_nick_name, head_img_url, sex, phone, work_card_no, birth_date, entry_date,
+        province_id, city_id, area_id, province_name, city_name, area_name, address, beautician_type,
+        years, beautician_status, beautician_level, is_service, is_star, star_sort, audit_status,
+        audit_reason, is_store, is_home, account_balance, pre_income_amount, beautician_star,
+        satisfaction, level_id, level_name, grade_id, grade_name, level_logo, growup_value,
+        follower_number, is_enabled, create_time, update_time, register_status, is_order,
+        month_online_time, label, service_city_id, service_area_id, service_address, service_longitude,
+        service_latitude, service_radius, is_support_home, is_support_store, affiliated_status,
+        affiliated_id, remove_affiliated_id, signature, start_business_hour, end_business_hour,
+        workday, real_name_status, qualification_certificate, service_city_name, service_area_name
+    </sql>
+
+    <sql id="Beautician_Column_List">
+        sb.id, sb.store_id, sb.store_name, sb.user_id, sb.member_id, sb.im_user_id, sb.im_username, sb.beautician_name,
+        sb.beautician_nick_name, sb.head_img_url, sb.sex, sb.phone, sb.work_card_no, sb.birth_date, sb.entry_date,
+        sb.province_id, sb.city_id, sb.area_id, sb.province_name, sb.city_name, sb.area_name, sb.address, sb.beautician_type,
+        sb.years, sb.beautician_status, sb.beautician_level, sb.is_service, sb.is_star, sb.star_sort, sb.audit_status,
+        sb.audit_reason, sb.is_store, sb.is_home, sb.account_balance, sb.pre_income_amount, sb.beautician_star,
+        sb.satisfaction, sb.level_id, sb.level_name, sb.grade_id, sb.grade_name, sb.level_logo, sb.growup_value,
+        sb.follower_number, sb.is_enabled, sb.create_time, sb.update_time, sb.register_status, sb.is_order,
+        sb.month_online_time, sb.label, sb.service_city_id, sb.service_area_id, sb.service_address, sb.service_longitude,
+        sb.service_latitude, sb.service_radius, sb.is_support_home, sb.is_support_store, sb.affiliated_status,
+        sb.affiliated_id, sb.remove_affiliated_id, sb.signature, sb.start_business_hour, sb.end_business_hour,
+        sb.workday, sb.real_name_status, sb.qualification_certificate, sb.service_city_name, sb.service_area_name
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, store_id AS storeId, store_name AS storeName, user_id AS userId, member_id AS memberId,
+        im_user_id AS imUserId, im_username AS imUsername, beautician_name AS beauticianName,
+        beautician_nick_name AS beauticianNickName, head_img_url AS headImgUrl, sex, phone,
+        work_card_no AS workCardNo, birth_date AS birthDate, entry_date AS entryDate, province_id AS provinceId,
+        city_id AS cityId, area_id AS areaId, province_name AS provinceName, city_name AS cityName,
+        area_name AS areaName, address, beautician_type AS beauticianType, years, beautician_status AS beauticianStatus,
+        beautician_level AS beauticianLevel, is_service AS isService, is_star AS isStar,
+        star_sort AS starSort, audit_status AS auditStatus, audit_reason AS auditReason,
+        is_store AS isStore, is_home AS isHome, account_balance AS accountBalance, pre_income_amount AS preIncomeAmount,
+        beautician_star AS beauticianStar, satisfaction, level_id AS levelId, level_name AS levelName,
+        grade_id AS gradeId, grade_name AS gradeName, level_logo AS levelLogo, growup_value AS growupValue,
+        follower_number AS followerNumber, is_enabled AS isEnabled, create_time AS createTime,
+        update_time AS updateTime, register_status AS registerStatus, is_order AS isOrder,
+        month_online_time AS monthOnlineTime, label, service_city_id AS serviceCityId, service_area_id AS serviceAreaId,
+        service_address AS serviceAddress, service_longitude AS serviceLongitude, service_latitude AS serviceLatitude,
+        service_radius AS serviceRadius, is_support_home AS isSupportHome, is_support_store AS isSupportStore,
+        affiliated_status AS affiliatedStatus, affiliated_id AS affiliatedId, remove_affiliated_id AS removeAffiliatedId,
+        signature, start_business_hour AS startBusinessHour, end_business_hour AS endBusinessHour,
+        workday, real_name_status AS realNameStatus, qualification_certificate AS qualificationCertificate,
+        service_city_name AS serviceCityName, service_area_name AS serviceAreaName
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from store_beautician
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreBeautician" useGeneratedKeys="true" keyProperty="id">
+        insert into store_beautician
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="imUserId != null">
+                im_user_id,
+            </if>
+            <if test="imUsername != null">
+                im_username,
+            </if>
+            <if test="beauticianName != null">
+                beautician_name,
+            </if>
+            <if test="beauticianNickName != null">
+                beautician_nick_name,
+            </if>
+            <if test="headImgUrl != null">
+                head_img_url,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="workCardNo != null">
+                work_card_no,
+            </if>
+            <if test="birthDate != null">
+                birth_date,
+            </if>
+            <if test="entryDate != null">
+                entry_date,
+            </if>
+            <if test="provinceId != null">
+                province_id,
+            </if>
+            <if test="cityId != null">
+                city_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="provinceName != null">
+                province_name,
+            </if>
+            <if test="cityName != null">
+                city_name,
+            </if>
+            <if test="areaName != null">
+                area_name,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="beauticianType != null">
+                beautician_type,
+            </if>
+            <if test="years != null">
+                years,
+            </if>
+            <if test="beauticianStatus != null">
+                beautician_status,
+            </if>
+            <if test="beauticianLevel != null">
+                beautician_level,
+            </if>
+            <if test="isService != null">
+                is_service,
+            </if>
+            <if test="isStar != null">
+                is_star,
+            </if>
+            <if test="starSort != null">
+                star_sort,
+            </if>
+            <if test="auditStatus != null">
+                audit_status,
+            </if>
+            <if test="auditReason != null">
+                audit_reason,
+            </if>
+            <if test="isStore != null">
+                is_store,
+            </if>
+            <if test="isHome != null">
+                is_home,
+            </if>
+            <if test="accountBalance != null">
+                account_balance,
+            </if>
+            <if test="preIncomeAmount != null">
+                pre_income_amount,
+            </if>
+            <if test="beauticianStar != null">
+                beautician_star,
+            </if>
+            <if test="satisfaction != null">
+                satisfaction,
+            </if>
+            <if test="levelId != null">
+                level_id,
+            </if>
+            <if test="levelName != null">
+                level_name,
+            </if>
+            <if test="gradeId != null">
+                grade_id,
+            </if>
+            <if test="gradeName != null">
+                grade_name,
+            </if>
+            <if test="levelLogo != null">
+                level_logo,
+            </if>
+            <if test="growupValue != null">
+                growup_value,
+            </if>
+            <if test="followerNumber != null">
+                follower_number,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="registerStatus != null">
+                register_status,
+            </if>
+            <if test="isOrder != null">
+                is_order,
+            </if>
+            <if test="monthOnlineTime != null">
+                month_online_time,
+            </if>
+            <if test="label != null">
+                label,
+            </if>
+            <if test="serviceCityId != null">
+                service_city_id,
+            </if>
+            <if test="serviceAreaId != null">
+                service_area_id,
+            </if>
+            <if test="serviceAddress != null">
+                service_address,
+            </if>
+            <if test="serviceLongitude != null">
+                service_longitude,
+            </if>
+            <if test="serviceLatitude != null">
+                service_latitude,
+            </if>
+            <if test="serviceRadius != null">
+                service_radius,
+            </if>
+            <if test="isSupportHome != null">
+                is_support_home,
+            </if>
+            <if test="isSupportStore != null">
+                is_support_store,
+            </if>
+            <if test="affiliatedStatus != null">
+                affiliated_status,
+            </if>
+            <if test="affiliatedId != null">
+                affiliated_id,
+            </if>
+            <if test="removeAffiliatedId != null">
+                remove_affiliated_id,
+            </if>
+            <if test="signature != null">
+                signature,
+            </if>
+            <if test="startBusinessHour != null">
+                start_business_hour,
+            </if>
+            <if test="endBusinessHour != null">
+                end_business_hour,
+            </if>
+            <if test="workday != null">
+                workday,
+            </if>
+            <if test="realNameStatus != null">
+                real_name_status,
+            </if>
+            <if test="qualificationCertificate != null">
+                qualification_certificate,
+            </if>
+            <if test="serviceCityName != null">
+                service_city_name,
+            </if>
+            <if test="serviceAreaName != null">
+                service_area_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="imUserId != null">
+                #{imUserId,jdbcType=INTEGER},
+            </if>
+            <if test="imUsername != null">
+                #{imUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianName != null">
+                #{beauticianName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianNickName != null">
+                #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImgUrl != null">
+                #{headImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="workCardNo != null">
+                #{workCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="birthDate != null">
+                #{birthDate,jdbcType=VARCHAR},
+            </if>
+            <if test="entryDate != null">
+                #{entryDate,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceId != null">
+                #{provinceId,jdbcType=INTEGER},
+            </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="provinceName != null">
+                #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityName != null">
+                #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianType != null">
+                #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="years != null">
+                #{years,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianStatus != null">
+                #{beauticianStatus,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianLevel != null">
+                #{beauticianLevel,jdbcType=TINYINT},
+            </if>
+            <if test="isService != null">
+                #{isService,jdbcType=BIT},
+            </if>
+            <if test="isStar != null">
+                #{isStar,jdbcType=BIT},
+            </if>
+            <if test="starSort != null">
+                #{starSort,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="isStore != null">
+                #{isStore,jdbcType=BIT},
+            </if>
+            <if test="isHome != null">
+                #{isHome,jdbcType=BIT},
+            </if>
+            <if test="accountBalance != null">
+                #{accountBalance,jdbcType=INTEGER},
+            </if>
+            <if test="preIncomeAmount != null">
+                #{preIncomeAmount,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianStar != null">
+                #{beauticianStar,jdbcType=INTEGER},
+            </if>
+            <if test="satisfaction != null">
+                #{satisfaction,jdbcType=INTEGER},
+            </if>
+            <if test="levelId != null">
+                #{levelId,jdbcType=INTEGER},
+            </if>
+            <if test="levelName != null">
+                #{levelName,jdbcType=VARCHAR},
+            </if>
+            <if test="gradeId != null">
+                #{gradeId,jdbcType=INTEGER},
+            </if>
+            <if test="gradeName != null">
+                #{gradeName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelLogo != null">
+                #{levelLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="growupValue != null">
+                #{growupValue,jdbcType=INTEGER},
+            </if>
+            <if test="followerNumber != null">
+                #{followerNumber,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="registerStatus != null">
+                #{registerStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isOrder != null">
+                #{isOrder,jdbcType=BIT},
+            </if>
+            <if test="monthOnlineTime != null">
+                #{monthOnlineTime,jdbcType=INTEGER},
+            </if>
+            <if test="label != null">
+                #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCityId != null">
+                #{serviceCityId,jdbcType=INTEGER},
+            </if>
+            <if test="serviceAreaId != null">
+                #{serviceAreaId,jdbcType=INTEGER},
+            </if>
+            <if test="serviceAddress != null">
+                #{serviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceLongitude != null">
+                #{serviceLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="serviceLatitude != null">
+                #{serviceLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="serviceRadius != null">
+                #{serviceRadius,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportHome != null">
+                #{isSupportHome,jdbcType=BIT},
+            </if>
+            <if test="isSupportStore != null">
+                #{isSupportStore,jdbcType=BIT},
+            </if>
+            <if test="affiliatedStatus != null">
+                #{affiliatedStatus,jdbcType=TINYINT},
+            </if>
+            <if test="affiliatedId != null">
+                #{affiliatedId,jdbcType=INTEGER},
+            </if>
+            <if test="removeAffiliatedId != null">
+                #{removeAffiliatedId,jdbcType=INTEGER},
+            </if>
+            <if test="signature != null">
+                #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="startBusinessHour != null">
+                #{startBusinessHour,jdbcType=VARCHAR},
+            </if>
+            <if test="endBusinessHour != null">
+                #{endBusinessHour,jdbcType=VARCHAR},
+            </if>
+            <if test="workday != null">
+                #{workday,jdbcType=VARCHAR},
+            </if>
+            <if test="realNameStatus != null">
+                #{realNameStatus,jdbcType=TINYINT},
+            </if>
+            <if test="qualificationCertificate != null">
+                #{qualificationCertificate,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serviceCityName != null">
+                #{serviceCityName,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceAreaName != null">
+                #{serviceAreaName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreBeautician">
+        update store_beautician
+        <set>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="imUserId != null">
+                im_user_id = #{imUserId,jdbcType=INTEGER},
+            </if>
+            <if test="imUsername != null">
+                im_username = #{imUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianName != null">
+                beautician_name = #{beauticianName,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianNickName != null">
+                beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR},
+            </if>
+            <if test="headImgUrl != null">
+                head_img_url = #{headImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="workCardNo != null">
+                work_card_no = #{workCardNo,jdbcType=VARCHAR},
+            </if>
+            <if test="birthDate != null">
+                birth_date = #{birthDate,jdbcType=VARCHAR},
+            </if>
+            <if test="entryDate != null">
+                entry_date = #{entryDate,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId,jdbcType=INTEGER},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=INTEGER},
+            </if>
+            <if test="provinceName != null">
+                province_name = #{provinceName,jdbcType=VARCHAR},
+            </if>
+            <if test="cityName != null">
+                city_name = #{cityName,jdbcType=VARCHAR},
+            </if>
+            <if test="areaName != null">
+                area_name = #{areaName,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="beauticianType != null">
+                beautician_type = #{beauticianType,jdbcType=TINYINT},
+            </if>
+            <if test="years != null">
+                years = #{years,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianStatus != null">
+                beautician_status = #{beauticianStatus,jdbcType=TINYINT},
+            </if>
+            <if test="beauticianLevel != null">
+                beautician_level = #{beauticianLevel,jdbcType=TINYINT},
+            </if>
+            <if test="isService != null">
+                is_service = #{isService,jdbcType=BIT},
+            </if>
+            <if test="isStar != null">
+                is_star = #{isStar,jdbcType=BIT},
+            </if>
+            <if test="starSort != null">
+                star_sort = #{starSort,jdbcType=INTEGER},
+            </if>
+            <if test="auditStatus != null">
+                audit_status = #{auditStatus,jdbcType=TINYINT},
+            </if>
+            <if test="auditReason != null">
+                audit_reason = #{auditReason,jdbcType=VARCHAR},
+            </if>
+            <if test="isStore != null">
+                is_store = #{isStore,jdbcType=BIT},
+            </if>
+            <if test="isHome != null">
+                is_home = #{isHome,jdbcType=BIT},
+            </if>
+            <if test="accountBalance != null">
+                account_balance = #{accountBalance,jdbcType=INTEGER},
+            </if>
+            <if test="preIncomeAmount != null">
+                pre_income_amount = #{preIncomeAmount,jdbcType=INTEGER},
+            </if>
+            <if test="beauticianStar != null">
+                beautician_star = #{beauticianStar,jdbcType=INTEGER},
+            </if>
+            <if test="satisfaction != null">
+                satisfaction = #{satisfaction,jdbcType=INTEGER},
+            </if>
+            <if test="levelId != null">
+                level_id = #{levelId,jdbcType=INTEGER},
+            </if>
+            <if test="levelName != null">
+                level_name = #{levelName,jdbcType=VARCHAR},
+            </if>
+            <if test="gradeId != null">
+                grade_id = #{gradeId,jdbcType=INTEGER},
+            </if>
+            <if test="gradeName != null">
+                grade_name = #{gradeName,jdbcType=VARCHAR},
+            </if>
+            <if test="levelLogo != null">
+                level_logo = #{levelLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="growupValue != null">
+                growup_value = #{growupValue,jdbcType=INTEGER},
+            </if>
+            <if test="followerNumber != null">
+                follower_number = #{followerNumber,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="registerStatus != null">
+                register_status = #{registerStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isOrder != null">
+                is_order = #{isOrder,jdbcType=BIT},
+            </if>
+            <if test="monthOnlineTime != null">
+                month_online_time = #{monthOnlineTime,jdbcType=INTEGER},
+            </if>
+            <if test="label != null">
+                label = #{label,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceCityId != null">
+                service_city_id = #{serviceCityId,jdbcType=INTEGER},
+            </if>
+            <if test="serviceAreaId != null">
+                service_area_id = #{serviceAreaId,jdbcType=INTEGER},
+            </if>
+            <if test="serviceAddress != null">
+                service_address = #{serviceAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceLongitude != null">
+                service_longitude = #{serviceLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="serviceLatitude != null">
+                service_latitude = #{serviceLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="serviceRadius != null">
+                service_radius = #{serviceRadius,jdbcType=INTEGER},
+            </if>
+            <if test="isSupportHome != null">
+                is_support_home = #{isSupportHome,jdbcType=BIT},
+            </if>
+            <if test="isSupportStore != null">
+                is_support_store = #{isSupportStore,jdbcType=BIT},
+            </if>
+            <if test="affiliatedStatus != null">
+                affiliated_status = #{affiliatedStatus,jdbcType=TINYINT},
+            </if>
+            <if test="affiliatedId != null">
+                affiliated_id = #{affiliatedId,jdbcType=INTEGER},
+            </if>
+            <if test="removeAffiliatedId != null">
+                remove_affiliated_id = #{removeAffiliatedId,jdbcType=INTEGER},
+            </if>
+            <if test="signature != null">
+                signature = #{signature,jdbcType=VARCHAR},
+            </if>
+            <if test="startBusinessHour != null">
+                start_business_hour = #{startBusinessHour,jdbcType=VARCHAR},
+            </if>
+            <if test="endBusinessHour != null">
+                end_business_hour = #{endBusinessHour,jdbcType=VARCHAR},
+            </if>
+            <if test="workday != null">
+                workday = #{workday,jdbcType=VARCHAR},
+            </if>
+            <if test="realNameStatus != null">
+                real_name_status = #{realNameStatus,jdbcType=TINYINT},
+            </if>
+            <if test="qualificationCertificate != null">
+                qualification_certificate = #{qualificationCertificate,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="serviceCityName != null">
+                service_city_name = #{serviceCityName,jdbcType=VARCHAR},
+            </if>
+            <if test="serviceAreaName != null">
+                service_area_name = #{serviceAreaName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreBeautician" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        <where>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null">
+                AND user_id = #{userId,jdbcType=INTEGER}
+            </if>
+            <if test="memberId != null">
+                AND member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="imUserId != null">
+                AND im_user_id = #{imUserId,jdbcType=INTEGER}
+            </if>
+            <if test="imUsername != null">
+                AND im_username = #{imUsername,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianName != null">
+                AND beautician_name = #{beauticianName,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianNickName != null">
+                AND beautician_nick_name = #{beauticianNickName,jdbcType=VARCHAR}
+            </if>
+            <if test="headImgUrl != null">
+                AND head_img_url = #{headImgUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                AND sex = #{sex,jdbcType=TINYINT}
+            </if>
+            <if test="phone != null">
+                AND phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="workCardNo != null">
+                AND work_card_no = #{workCardNo,jdbcType=VARCHAR}
+            </if>
+            <if test="birthDate != null">
+                AND birth_date = #{birthDate,jdbcType=VARCHAR}
+            </if>
+            <if test="entryDate != null">
+                AND entry_date = #{entryDate,jdbcType=VARCHAR}
+            </if>
+            <if test="provinceId != null">
+                AND province_id = #{provinceId,jdbcType=INTEGER}
+            </if>
+            <if test="cityId != null">
+                AND city_id = #{cityId,jdbcType=INTEGER}
+            </if>
+            <if test="areaId != null">
+                AND area_id = #{areaId,jdbcType=INTEGER}
+            </if>
+            <if test="provinceName != null">
+                AND province_name = #{provinceName,jdbcType=VARCHAR}
+            </if>
+            <if test="cityName != null">
+                AND city_name = #{cityName,jdbcType=VARCHAR}
+            </if>
+            <if test="areaName != null">
+                AND area_name = #{areaName,jdbcType=VARCHAR}
+            </if>
+            <if test="address != null">
+                AND address = #{address,jdbcType=VARCHAR}
+            </if>
+            <if test="beauticianType != null">
+                AND beautician_type = #{beauticianType,jdbcType=TINYINT}
+            </if>
+            <if test="years != null">
+                AND years = #{years,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianStatus != null">
+                AND beautician_status = #{beauticianStatus,jdbcType=TINYINT}
+            </if>
+            <if test="beauticianLevel != null">
+                AND beautician_level = #{beauticianLevel,jdbcType=TINYINT}
+            </if>
+            <if test="isService != null">
+                AND is_service = #{isService,jdbcType=BIT}
+            </if>
+            <if test="isStar != null">
+                AND is_star = #{isStar,jdbcType=BIT}
+            </if>
+            <if test="starSort != null">
+                AND star_sort = #{starSort,jdbcType=INTEGER}
+            </if>
+            <if test="auditStatus != null">
+                AND audit_status = #{auditStatus,jdbcType=TINYINT}
+            </if>
+            <if test="auditReason != null">
+                AND audit_reason = #{auditReason,jdbcType=VARCHAR}
+            </if>
+            <if test="isStore != null">
+                AND is_store = #{isStore,jdbcType=BIT}
+            </if>
+            <if test="isHome != null">
+                AND is_home = #{isHome,jdbcType=BIT}
+            </if>
+            <if test="accountBalance != null">
+                AND account_balance = #{accountBalance,jdbcType=INTEGER}
+            </if>
+            <if test="preIncomeAmount != null">
+                AND pre_income_amount = #{preIncomeAmount,jdbcType=INTEGER}
+            </if>
+            <if test="beauticianStar != null">
+                AND beautician_star = #{beauticianStar,jdbcType=INTEGER}
+            </if>
+            <if test="satisfaction != null">
+                AND satisfaction = #{satisfaction,jdbcType=INTEGER}
+            </if>
+            <if test="levelId != null">
+                AND level_id = #{levelId,jdbcType=INTEGER}
+            </if>
+            <if test="levelName != null">
+                AND level_name = #{levelName,jdbcType=VARCHAR}
+            </if>
+            <if test="gradeId != null">
+                AND grade_id = #{gradeId,jdbcType=INTEGER}
+            </if>
+            <if test="gradeName != null">
+                AND grade_name = #{gradeName,jdbcType=VARCHAR}
+            </if>
+            <if test="levelLogo != null">
+                AND level_logo = #{levelLogo,jdbcType=VARCHAR}
+            </if>
+            <if test="growupValue != null">
+                AND growup_value = #{growupValue,jdbcType=INTEGER}
+            </if>
+            <if test="followerNumber != null">
+                AND follower_number = #{followerNumber,jdbcType=INTEGER}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="registerStatus != null">
+                AND register_status = #{registerStatus,jdbcType=TINYINT}
+            </if>
+            <if test="isOrder != null">
+                AND is_order = #{isOrder,jdbcType=BIT}
+            </if>
+            <if test="monthOnlineTime != null">
+                AND month_online_time = #{monthOnlineTime,jdbcType=INTEGER}
+            </if>
+            <if test="label != null">
+                AND label = #{label,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceCityId != null">
+                AND service_city_id = #{serviceCityId,jdbcType=INTEGER}
+            </if>
+            <if test="serviceAreaId != null">
+                AND service_area_id = #{serviceAreaId,jdbcType=INTEGER}
+            </if>
+            <if test="serviceAddress != null">
+                AND service_address = #{serviceAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceLongitude != null">
+                AND service_longitude = #{serviceLongitude,jdbcType=DECIMAL}
+            </if>
+            <if test="serviceLatitude != null">
+                AND service_latitude = #{serviceLatitude,jdbcType=DECIMAL}
+            </if>
+            <if test="serviceRadius != null">
+                AND service_radius = #{serviceRadius,jdbcType=INTEGER}
+            </if>
+            <if test="isSupportHome != null">
+                AND is_support_home = #{isSupportHome,jdbcType=BIT}
+            </if>
+            <if test="isSupportStore != null">
+                AND is_support_store = #{isSupportStore,jdbcType=BIT}
+            </if>
+            <if test="affiliatedStatus != null">
+                AND affiliated_status = #{affiliatedStatus,jdbcType=TINYINT}
+            </if>
+            <if test="affiliatedId != null">
+                AND affiliated_id = #{affiliatedId,jdbcType=INTEGER}
+            </if>
+            <if test="removeAffiliatedId != null">
+                AND remove_affiliated_id = #{removeAffiliatedId,jdbcType=INTEGER}
+            </if>
+            <if test="signature != null">
+                AND signature = #{signature,jdbcType=VARCHAR}
+            </if>
+            <if test="startBusinessHour != null">
+                AND start_business_hour = #{startBusinessHour,jdbcType=VARCHAR}
+            </if>
+            <if test="endBusinessHour != null">
+                AND end_business_hour = #{endBusinessHour,jdbcType=VARCHAR}
+            </if>
+            <if test="workday != null">
+                AND workday = #{workday,jdbcType=VARCHAR}
+            </if>
+            <if test="realNameStatus != null">
+                AND real_name_status = #{realNameStatus,jdbcType=TINYINT}
+            </if>
+            <if test="qualificationCertificate != null">
+                AND qualification_certificate = #{qualificationCertificate,jdbcType=LONGVARCHAR}
+            </if>
+            <if test="serviceCityName != null">
+                AND service_city_name = #{serviceCityName,jdbcType=VARCHAR}
+            </if>
+            <if test="serviceAreaName != null">
+                AND service_area_name = #{serviceAreaName,jdbcType=VARCHAR}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = true
+        and user_id = #{userId}
+        limit 1
+    </select>
+
+    <select id="selectByPhone" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = true
+        and phone = #{phone}
+        limit 1
+    </select>
+
+    <select id="getByMemberId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = true
+        AND member_id = #{memberId}
+    </select>
+
+    <select id="selectListByRecruit" parameterType="com.union.aimei.common.vo.store.pc.StoreBeauticianByRecruitVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = true
+        <if test="beauticianType != null">
+            AND beautician_type = #{beauticianType,jdbcType=TINYINT}
+        </if>
+        <if test="beauticianStatus != null">
+            AND beautician_status = #{beauticianStatus,jdbcType=TINYINT}
+        </if>
+        <if test="auditStatus != null">
+            AND audit_status = #{auditStatus,jdbcType=TINYINT}
+        </if>
+        <![CDATA[and store_id <> #{storeId}]]>
+    </select>
+
+    <select id="selectByStoreIdForManager" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = 1
+        and beautician_type = 1
+        and store_id = #{storeId}
+    </select>
+
+    <select id="selectListByBeautician" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Beautician_Column_List"/>
+        from store_beautician sb, store s
+        where sb.store_id = s.id
+        and sb.is_enabled = true
+        and s.is_enabled = true
+        and sb.real_name_status = #{realNameStatus}
+        <if test="storeId != null">
+            and sb.store_id = #{storeId}
+        </if>
+        <if test="cityId != null">
+            and s.city_id = #{cityId}
+        </if>
+        <if test="beauticianType != null">
+            and sb.beautician_type = #{beauticianType}
+        </if>
+        <if test="isStar != null">
+            and sb.is_star = #{isStar}
+        </if>
+        <if test="beauticianName != null">
+            and sb.beautician_name like concat('%', #{beauticianName}, '%')
+        </if>
+    </select>
+
+    <select id="pendingByCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*)
+        from store_beautician
+        where is_enabled = true
+        AND create_time <![CDATA[ >= ]]> #{startTime}
+        AND create_time <![CDATA[ <= ]]> #{endTime}
+        <if test="realNameStatus != null">
+            and real_name_status = #{realNameStatus}
+        </if>
+        <if test="storeId != null and storeId != 0">
+            and store_id = #{storeId}
+        </if>
+        <if test="workCardNo != null">
+            and work_card_no = #{workCardNo}
+        </if>
+        <if test="notId != null">
+            and id != #{notId}
+        </if>
+    </select>
+
+    <update id="cancelStarByCityId" parameterType="java.lang.Integer">
+        update store_beautician
+        set is_star = false
+        where city_id = #{cityId}
+    </update>
+
+    <update id="updateBatchByStar" parameterType="java.util.List">
+        <foreach collection="beauticianList" item="item" index="index" open="" close="" separator=";">
+            update store_beautician
+            set is_star = true, star_sort = #{item.sort}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+    <select id="getByWorkCardNo" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = true
+        and store_id = #{storeId}
+        and work_card_no = #{workCardNo}
+    </select>
+
+    <update id="removeAffiliated" parameterType="java.util.Map">
+        update store_beautician
+        set store_id = null, store_name = null, affiliated_id = null, remove_affiliated_id = null, beautician_type = #{beauticianType}, affiliated_status = #{affiliatedStatus}
+        where id = #{beauticianId}
+    </update>
+
+    <select id="listFullTimeByStoreId" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_beautician
+        where is_enabled = true
+        and real_name_status = #{realNameStatus}
+        and beautician_type = #{beauticianType}
+        and store_id = #{storeId}
+    </select>
+
+    <update id="updateByStoreId" parameterType="com.union.aimei.common.model.store.StoreBeautician">
+        update store_beautician
+        <set>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where
+        store_id = #{storeId,jdbcType=INTEGER}
+    </update>
+
+    <select id="listSelectOnSaleStoreProduct" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.store.app.BeauticianListSelectOnSaleProductResVo">
+        (
+        select
+        sb.id AS beauticianId, sb.head_img_url AS headImgUrl, sb.beautician_type AS beauticianType, sb.beautician_nick_name AS beauticianNickName,
+        sb.work_card_no AS workCardNo, sb.years, sb.grade_name AS gradeName,
+        (
+        select
+        ifnull(max(pbr.is_select), 0) AS isSelect
+        from beautybond_product.product_beautician_ref pbr
+        where sb.id = pbr.beautician_id
+        and pbr.is_enabled = true
+        and pbr.audit_status = #{pbrAuditStatus}
+        <if test="null != productId">
+            and pbr.product_id = #{productId}
+        </if>
+        and pbr.store_id = #{storeId}
+        and pbr.server_type = #{serverType}
+        ) AS isSelect
+        from store_beautician sb
+        where sb.is_enabled = true
+        and sb.real_name_status = #{realNameStatus}
+        and sb.beautician_type = #{fulltimeBeauticianType}
+        and sb.store_id = #{storeId}
+        )
+        union
+        (
+        select
+        sb.id AS beauticianId, sb.head_img_url AS headImgUrl, sb.beautician_type AS beauticianType, sb.beautician_nick_name AS beauticianNickName,
+        sb.work_card_no AS workCardNo, sb.years, sb.grade_name AS gradeName, pbr.is_select AS isSelect
+        from store_beautician sb, beautybond_product.product_beautician_ref pbr
+        where sb.id = pbr.beautician_id
+        and sb.is_enabled = true
+        and pbr.is_enabled = true
+        and pbr.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        and pbr.product_id = #{productId}
+        and pbr.store_id = #{storeId}
+        and pbr.server_type = #{serverType}
+        )
+    </select>
+
+    <select id="listSelectOnSaleHomeProduct" parameterType="java.util.Map" resultType="com.union.aimei.common.vo.store.app.BeauticianListSelectOnSaleProductResVo">
+        select
+        sb.id AS beauticianId, sb.head_img_url AS headImgUrl, sb.beautician_type AS beauticianType, sb.beautician_nick_name AS beauticianNickName,
+        sb.work_card_no AS workCardNo, sb.years, sb.grade_name AS gradeName, pbr.is_select AS isSelect
+        from store_beautician sb, beautybond_product.product_beautician_ref pbr
+        where sb.id = pbr.beautician_id
+        and sb.is_enabled = true
+        and pbr.is_enabled = true
+        and pbr.audit_status = #{pbrAuditStatus}
+        and sb.real_name_status = #{realNameStatus}
+        and pbr.product_id = #{productId}
+        and pbr.server_type = #{serverType}
+    </select>
+
+</mapper>

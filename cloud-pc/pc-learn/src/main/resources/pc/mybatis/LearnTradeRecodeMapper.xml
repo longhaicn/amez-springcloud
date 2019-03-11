@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.LearnTradeRecodeMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.LearnTradeRecode" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="source_id" property="sourceId" jdbcType="INTEGER" />
+    <result column="source_name" property="sourceName" jdbcType="VARCHAR" />
+    <result column="source_rel_id" property="sourceRelId" jdbcType="INTEGER" />
+    <result column="source_type" property="sourceType" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="TINYINT" />
+    <result column="pay_status" property="payStatus" jdbcType="BIT" />
+    <result column="trade_amount" property="tradeAmount" jdbcType="INTEGER" />
+    <result column="actual_trade_amount" property="actualTradeAmount" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="trade_no" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="beautician_name" property="beauticianName" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="BIT" />
+    <result column="beautician_id" property="beauticianId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, source_id, source_name, source_type, source_rel_id, pay_type, pay_status, trade_amount,
+    actual_trade_amount, order_no, trade_no, is_enabled, create_time, update_time,member_id, beautician_name,
+    mobile_phone, gender, beautician_id
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, source_id AS sourceId, source_name AS sourceName, source_type AS sourceType,
+    source_rel_id AS sourceRelId, pay_type AS payType, pay_status AS payStatus, trade_amount AS tradeAmount,
+    actual_trade_amount AS actualTradeAmount, order_no AS orderNo, trade_no AS tradeNo,
+    is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime, member_id AS memberId,beautician_name AS beauticianName,
+    mobile_phone AS mobilePhone, gender, beautician_id AS beauticianId
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from learn_trade_recode
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from learn_trade_recode
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.LearnTradeRecode" useGeneratedKeys="true" keyProperty="id" >
+    insert into learn_trade_recode
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sourceRelId != null" >
+        source_rel_id,
+      </if>
+      <if test="sourceId != null" >
+        source_id,
+      </if>
+      <if test="sourceName != null" >
+        source_name,
+      </if>
+      <if test="sourceType != null" >
+        source_type,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="tradeAmount != null" >
+        trade_amount,
+      </if>
+      <if test="actualTradeAmount != null" >
+        actual_trade_amount,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="tradeNo != null" >
+        trade_no,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="beauticianName != null" >
+        beautician_name,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sourceRelId != null" >
+        #{sourceRelId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceName != null" >
+        #{sourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=BIT},
+      </if>
+      <if test="tradeAmount != null" >
+        #{tradeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="actualTradeAmount != null" >
+        #{actualTradeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianName != null" >
+        #{beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=BIT},
+      </if>
+      <if test="beauticianId != null" >
+        #{beauticianId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.LearnTradeRecode" >
+    update learn_trade_recode
+    <set >
+      <if test="sourceRelId != null" >
+        source_rel_id = #{sourceRelId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceId != null" >
+        source_id = #{sourceId,jdbcType=INTEGER},
+      </if>
+      <if test="sourceName != null" >
+        source_name = #{sourceName,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceType != null" >
+        source_type = #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=BIT},
+      </if>
+      <if test="tradeAmount != null" >
+        trade_amount = #{tradeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="actualTradeAmount != null" >
+        actual_trade_amount = #{actualTradeAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="beauticianName != null" >
+        beautician_name = #{beauticianName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=BIT},
+      </if>
+      <if test="beauticianId != null" >
+        beautician_id = #{beauticianId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.LearnTradeRecode" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from learn_trade_recode
+    <where >
+      <if test="sourceRelId != null" >
+        AND source_rel_id = #{sourceRelId,jdbcType=INTEGER}
+      </if>
+      <if test="sourceId != null" >
+        AND source_id = #{sourceId,jdbcType=INTEGER}
+      </if>
+      <if test="sourceName != null" >
+        AND source_name = #{sourceName,jdbcType=VARCHAR}
+      </if>
+      <if test="sourceType != null" >
+        AND source_type = #{sourceType,jdbcType=VARCHAR}
+      </if>
+      <if test="payType != null" >
+        AND pay_type = #{payType,jdbcType=TINYINT}
+      </if>
+      <if test="payStatus != null" >
+        AND pay_status = #{payStatus,jdbcType=BIT}
+      </if>
+      <if test="tradeAmount != null" >
+        AND trade_amount = #{tradeAmount,jdbcType=INTEGER}
+      </if>
+      <if test="actualTradeAmount != null" >
+        AND actual_trade_amount = #{actualTradeAmount,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+        AND order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="tradeNo != null" >
+        AND trade_no = #{tradeNo,jdbcType=VARCHAR}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="beauticianName != null" >
+        AND beautician_name = #{beauticianName,jdbcType=VARCHAR}
+      </if>
+      <if test="mobilePhone != null" >
+        AND mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="gender != null" >
+        AND gender = #{gender,jdbcType=BIT}
+      </if>
+      <if test="beauticianId != null" >
+        AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+</mapper>

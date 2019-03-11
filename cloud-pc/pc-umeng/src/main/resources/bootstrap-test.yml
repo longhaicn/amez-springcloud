@@ -1,0 +1,78 @@
+server:
+  port: 8025
+mybatis:
+   mapper-locations: classpath:mybatis/*.xml
+   type-aliases-package: com.union.aimei.common.model.umeng
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+          defaultZone: http://120.79.42.13:8000/eureka/
+spring:
+  cloud:
+    config:
+          #强制拉取更新
+          force-pull: true
+          #对应前配置文件中的{profile}部分
+          profile: ${config.profile:dev}
+          #对应前配置文件的 git 分支
+          label: master
+           # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+          name: umeng-service
+          #安全认证,输入git账号密码
+          password: gaowei123
+          username: gaowei
+          failFast: true
+          #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+          discovery:
+             enabled: true
+             service-id: microservice-config-server-eureka
+logging:
+  level:
+    root: INFO
+    com:
+        union:
+              aimei:
+                    umeng: DEBUG
+
+#友盟推送
+push:
+  umeng:
+    #android系统
+    android:
+      #美容师端
+      beautician:
+        app-key: 5a6befd1f43e4879940000cf
+        app-master-secret: l8ztz3cv3ecdjhvcmwrdklhbijx5jmi8
+      #用户端
+      consumer:
+        app-key: 5a6bed91f29d9865100000e2
+        app-master-secret: 424t4icy1g0jnttwmhlrk1smz0qzypka
+      #店长端
+      manager:
+        app-key: 5a6bef41f43e481d96000192
+        app-master-secret: yfc8frnhzkhsdedeb8opx0icakvujf6h
+    #IOS系统
+    ios:
+      #美容师端
+      beautician:
+        app-key: 5a6bf019f29d981ac400002b
+        app-master-secret: wq8ehdi8a57acweegrccnvk7ihdqetbi
+      #用户端
+      consumer:
+        app-key: 5a6beea9a40fa3298000019c
+        app-master-secret: qcqbdx4jyeq3oqh840jsv3pkjmoznan7
+      #店长端
+      manager:
+        app-key: 5a6bef9c8f4a9d343c00022d
+        app-master-secret: a9vvzutznrwhwc2jgxrfv0d6vaj1jovx
+    profiles: dev
+
+
+
+
+
+

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.Member" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="im_user_id" property="imUserId" jdbcType="INTEGER" />
+        <result column="amez_uuid" property="amezUuid" jdbcType="VARCHAR" />
+        <result column="im_username" property="imUsername" jdbcType="VARCHAR" />
+        <result column="amez_user_id" property="amezUserId" jdbcType="INTEGER" />
+        <result column="open_id" property="openId" jdbcType="VARCHAR" />
+        <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+        <result column="member_nickname" property="memberNickname" jdbcType="VARCHAR" />
+        <result column="gender" property="gender" jdbcType="BIT" />
+        <result column="member_img_url" property="memberImgUrl" jdbcType="VARCHAR" />
+        <result column="person_signature" property="personSignature" jdbcType="VARCHAR" />
+        <result column="register_phone" property="registerPhone" jdbcType="VARCHAR" />
+        <result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+        <result column="member_level" property="memberLevel" jdbcType="VARCHAR" />
+        <result column="device_tokens" property="deviceTokens" jdbcType="VARCHAR" />
+        <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, im_user_id, amez_uuid, im_username, amez_user_id, open_id, member_name, member_nickname,
+        gender, member_img_url, person_signature, register_phone, birthday, member_level,
+        device_tokens, add_time, update_time
+    </sql>
+
+    <sql id="BaseAliasColumn" >
+        id, im_user_id AS imUserId, amez_uuid AS amezUuid, im_username AS imUsername, amez_user_id AS amezUserId,
+        open_id AS openId, member_name AS memberName, member_nickname AS memberNickname,
+        gender, member_img_url AS memberImgUrl, person_signature AS personSignature, register_phone AS registerPhone,
+        birthday, member_level AS memberLevel, device_tokens AS deviceTokens, add_time AS addTime,
+        update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from member
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from member
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.Member" useGeneratedKeys="true" keyProperty="id" >
+        insert into member
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="imUserId != null" >
+                im_user_id,
+            </if>
+            <if test="amezUuid != null" >
+                amez_uuid,
+            </if>
+            <if test="imUsername != null" >
+                im_username,
+            </if>
+            <if test="amezUserId != null" >
+                amez_user_id,
+            </if>
+            <if test="openId != null" >
+                open_id,
+            </if>
+            <if test="memberName != null" >
+                member_name,
+            </if>
+            <if test="memberNickname != null" >
+                member_nickname,
+            </if>
+            <if test="gender != null" >
+                gender,
+            </if>
+            <if test="memberImgUrl != null" >
+                member_img_url,
+            </if>
+            <if test="personSignature != null" >
+                person_signature,
+            </if>
+            <if test="registerPhone != null" >
+                register_phone,
+            </if>
+            <if test="birthday != null" >
+                birthday,
+            </if>
+            <if test="memberLevel != null" >
+                member_level,
+            </if>
+            <if test="deviceTokens != null" >
+                device_tokens,
+            </if>
+            <if test="addTime != null" >
+                add_time,
+            </if>
+            <if test="updateTime != null" >
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="imUserId != null" >
+                #{imUserId,jdbcType=INTEGER},
+            </if>
+            <if test="amezUuid != null" >
+                #{amezUuid,jdbcType=VARCHAR},
+            </if>
+            <if test="imUsername != null" >
+                #{imUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="amezUserId != null" >
+                #{amezUserId,jdbcType=INTEGER},
+            </if>
+            <if test="openId != null" >
+                #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="memberName != null" >
+                #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberNickname != null" >
+                #{memberNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null" >
+                #{gender,jdbcType=BIT},
+            </if>
+            <if test="memberImgUrl != null" >
+                #{memberImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="personSignature != null" >
+                #{personSignature,jdbcType=VARCHAR},
+            </if>
+            <if test="registerPhone != null" >
+                #{registerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null" >
+                #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberLevel != null" >
+                #{memberLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceTokens != null" >
+                #{deviceTokens,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null" >
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.Member" >
+        update member
+        <set >
+            <if test="imUserId != null" >
+                im_user_id = #{imUserId,jdbcType=INTEGER},
+            </if>
+            <if test="amezUuid != null" >
+                amez_uuid = #{amezUuid,jdbcType=VARCHAR},
+            </if>
+            <if test="imUsername != null" >
+                im_username = #{imUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="amezUserId != null" >
+                amez_user_id = #{amezUserId,jdbcType=INTEGER},
+            </if>
+            <if test="openId != null" >
+                open_id = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="memberName != null" >
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberNickname != null" >
+                member_nickname = #{memberNickname,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null" >
+                gender = #{gender,jdbcType=BIT},
+            </if>
+            <if test="memberImgUrl != null" >
+                member_img_url = #{memberImgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="personSignature != null" >
+                person_signature = #{personSignature,jdbcType=VARCHAR},
+            </if>
+            <if test="registerPhone != null" >
+                register_phone = #{registerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null" >
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberLevel != null" >
+                member_level = #{memberLevel,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceTokens != null" >
+                device_tokens = #{deviceTokens,jdbcType=VARCHAR},
+            </if>
+            <if test="addTime != null" >
+                add_time = #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.Member" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from member
+    <where >
+        <if test="imUserId != null" >
+            AND im_user_id = #{imUserId,jdbcType=INTEGER}
+        </if>
+        <if test="amezUuid != null" >
+            AND amez_uuid = #{amezUuid,jdbcType=VARCHAR}
+        </if>
+        <if test="imUsername != null" >
+            AND im_username = #{imUsername,jdbcType=VARCHAR}
+        </if>
+        <if test="amezUserId != null" >
+            AND amez_user_id = #{amezUserId,jdbcType=INTEGER}
+        </if>
+        <if test="openId != null" >
+            AND open_id = #{openId,jdbcType=VARCHAR}
+        </if>
+        <if test="memberName != null" >
+            AND member_name = #{memberName,jdbcType=VARCHAR}
+        </if>
+        <if test="memberNickname != null" >
+            AND member_nickname = #{memberNickname,jdbcType=VARCHAR}
+        </if>
+        <if test="gender != null" >
+            AND gender = #{gender,jdbcType=BIT}
+        </if>
+        <if test="memberImgUrl != null" >
+            AND member_img_url = #{memberImgUrl,jdbcType=VARCHAR}
+        </if>
+        <if test="personSignature != null" >
+            AND person_signature = #{personSignature,jdbcType=VARCHAR}
+        </if>
+        <if test="registerPhone != null" >
+            AND register_phone = #{registerPhone,jdbcType=VARCHAR}
+        </if>
+        <if test="birthday != null" >
+            AND birthday = #{birthday,jdbcType=TIMESTAMP}
+        </if>
+        <if test="memberLevel != null" >
+            AND member_level = #{memberLevel,jdbcType=VARCHAR}
+        </if>
+        <if test="deviceTokens != null" >
+            AND device_tokens = #{deviceTokens,jdbcType=VARCHAR}
+        </if>
+        <if test="addTime != null" >
+            AND add_time = #{addTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null" >
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+       </where>
+        order by add_time DESC
+    </select>
+
+    <!--通过手机号码查询会员信息-->
+    <select id="getMemberByPhone" parameterType="string" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from member
+        WHERE register_phone=#{phone}
+    </select>
+
+    <select id="queryMemberCount" parameterType="com.union.aimei.common.vo.member.MemberAndMemberCardVo" resultType="integer">
+        SELECT COUNT(id) FROM member WHERE
+
+        add_time <![CDATA[ >= ]]> #{startTime}
+        AND add_time <![CDATA[ <= ]]> #{endTime}
+    </select>
+</mapper>

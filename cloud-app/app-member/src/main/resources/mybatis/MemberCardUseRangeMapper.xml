@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberCardUseRangeMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberCardUseRange">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="card_id" property="cardId" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="disable" property="disable" jdbcType="INTEGER"/>
+        <result column="card_status" property="cardStatus" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    id, card_id, store_id, store_name, disable, card_status, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, card_id AS cardId, store_id AS storeId, store_name AS storeName,disable AS disable, card_status AS cardStatus
+    create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from member_card_use_range
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_use_range
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberCardUseRange"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into member_card_use_range
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cardId != null">
+                card_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="disable != null">
+                disable,
+            </if>
+            <if test="cardStatus != null">
+                card_status,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cardId != null">
+                #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="disable != null">
+                #{disable,jdbcType=INTEGER},
+            </if>
+            <if test="cardStatus != null">
+                #{cardStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberCardUseRange">
+        update member_card_use_range
+        <set>
+            <if test="cardId != null">
+                card_id = #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="disable != null">
+                disable = #{disable,jdbcType=INTEGER},
+            </if>
+            <if test="cardStatus != null">
+                card_status = #{cardStatus,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberCardUseRange"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from member_card_use_range
+        <where>
+            <if test="cardId != null">
+                AND card_id = #{cardId,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="cardStatus != null">
+                AND card_status = #{cardStatus,jdbcType=TINYINT}
+            </if>
+            <if test="disable != null">
+                AND disable = #{disable,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+
+    <!--批量添加-->
+    <insert id="insertMemberCardUseStoreBatch" useGeneratedKeys="true" parameterType="list">
+        insert into member_card_use_range (card_id,store_id)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.cardId},#{item.storeId})
+        </foreach>
+    </insert>
+
+    <!--查询门店使用范围ID集合-->
+    <select id="queryListByCardId" parameterType="integer" resultType="integer">
+    SELECT mcur.store_id FROM member_card_use_range mcur
+    WHERE card_id = #{cardId,jdbcType=INTEGER} and disable=0
+  </select>
+
+    <update id="updateCardStatusByStoreId" parameterType="java.util.Map">
+        UPDATE member_card_use_range
+        SET card_status = #{cardStatus,jdbcType=TINYINT}
+        WHERE store_id = #{storeId,jdbcType=INTEGER}
+    </update>
+
+</mapper>

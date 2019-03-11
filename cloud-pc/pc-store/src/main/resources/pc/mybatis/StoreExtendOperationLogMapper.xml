@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.store.mapper.StoreExtendOperationLogMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreExtendOperationLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="old_value" property="oldValue" jdbcType="LONGVARCHAR" />
+    <result column="new_value" property="newValue" jdbcType="LONGVARCHAR" />
+    <result column="operation_user_id" property="operationUserId" jdbcType="INTEGER" />
+    <result column="operation_login_name" property="operationLoginName" jdbcType="VARCHAR" />
+    <result column="operation_time" property="operationTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, store_id, content, old_value, new_value, operation_user_id, operation_login_name, 
+    operation_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, store_id AS storeId, content, old_value AS oldValue, new_value AS newValue, operation_user_id AS operationUserId, 
+    operation_login_name AS operationLoginName, operation_time AS operationTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_extend_operation_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store_extend_operation_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreExtendOperationLog" useGeneratedKeys="true" keyProperty="id" >
+    insert into store_extend_operation_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="oldValue != null" >
+        old_value,
+      </if>
+      <if test="newValue != null" >
+        new_value,
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id,
+      </if>
+      <if test="operationLoginName != null" >
+        operation_login_name,
+      </if>
+      <if test="operationTime != null" >
+        operation_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="oldValue != null" >
+        #{oldValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newValue != null" >
+        #{newValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="operationUserId != null" >
+        #{operationUserId,jdbcType=INTEGER},
+      </if>
+      <if test="operationLoginName != null" >
+        #{operationLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreExtendOperationLog" >
+    update store_extend_operation_log
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="oldValue != null" >
+        old_value = #{oldValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="newValue != null" >
+        new_value = #{newValue,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="operationUserId != null" >
+        operation_user_id = #{operationUserId,jdbcType=INTEGER},
+      </if>
+      <if test="operationLoginName != null" >
+        operation_login_name = #{operationLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreExtendOperationLog" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from store_extend_operation_log
+    <where >
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="content != null" >
+        AND content = #{content,jdbcType=VARCHAR}
+      </if>
+      <if test="oldValue != null" >
+        AND old_value = #{oldValue,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="newValue != null" >
+        AND new_value = #{newValue,jdbcType=LONGVARCHAR}
+      </if>
+      <if test="operationUserId != null" >
+        AND operation_user_id = #{operationUserId,jdbcType=INTEGER}
+      </if>
+      <if test="operationLoginName != null" >
+        AND operation_login_name = #{operationLoginName,jdbcType=VARCHAR}
+      </if>
+      <if test="operationTime != null" >
+        AND operation_time = #{operationTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+</mapper>

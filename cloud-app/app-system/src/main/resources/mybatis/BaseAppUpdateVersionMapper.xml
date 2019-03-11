@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.system.mapper.BaseAppUpdateVersionMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseAppUpdateVersion">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="version_code" jdbcType="INTEGER" property="versionCode"/>
+        <result column="version_name" jdbcType="VARCHAR" property="versionName"/>
+        <result column="update_content" jdbcType="VARCHAR" property="updateContent"/>
+        <result column="update_url" jdbcType="VARCHAR" property="updateUrl"/>
+        <result column="app_system_type" jdbcType="INTEGER" property="appSystemType"/>
+        <result column="app_client_type" jdbcType="INTEGER" property="appClientType"/>
+        <result column="forced" jdbcType="INTEGER" property="forced"/>
+        <result column="ignore_update" jdbcType="INTEGER" property="ignoreUpdate"/>
+        <result column="md5" jdbcType="VARCHAR" property="md5"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, version_code, version_name, update_content, update_url, app_system_type, app_client_type,
+        forced, ignore_update, md5, create_time, update_time, remarks
+    </sql>
+    <select id="selectByExample" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersionExample"
+            resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from base_app_update_version
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_app_update_version
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from base_app_update_version
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersionExample">
+        delete from base_app_update_version
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersion">
+        insert into base_app_update_version (id, version_code, version_name,
+        update_content, update_url, app_system_type,
+        app_client_type, forced, ignore_update,
+        md5, create_time, update_time,
+        remarks)
+        values (#{id,jdbcType=INTEGER}, #{versionCode,jdbcType=INTEGER}, #{versionName,jdbcType=VARCHAR},
+        #{updateContent,jdbcType=VARCHAR}, #{updateUrl,jdbcType=VARCHAR}, #{appSystemType,jdbcType=INTEGER},
+        #{appClientType,jdbcType=INTEGER}, #{forced,jdbcType=INTEGER}, #{ignoreUpdate,jdbcType=INTEGER},
+        #{md5,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+        #{remarks,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersion">
+        insert into base_app_update_version
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="versionCode != null">
+                version_code,
+            </if>
+            <if test="versionName != null">
+                version_name,
+            </if>
+            <if test="updateContent != null">
+                update_content,
+            </if>
+            <if test="updateUrl != null">
+                update_url,
+            </if>
+            <if test="appSystemType != null">
+                app_system_type,
+            </if>
+            <if test="appClientType != null">
+                app_client_type,
+            </if>
+            <if test="forced != null">
+                forced,
+            </if>
+            <if test="ignoreUpdate != null">
+                ignore_update,
+            </if>
+            <if test="md5 != null">
+                md5,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="versionCode != null">
+                #{versionCode,jdbcType=INTEGER},
+            </if>
+            <if test="versionName != null">
+                #{versionName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateContent != null">
+                #{updateContent,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUrl != null">
+                #{updateUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="appSystemType != null">
+                #{appSystemType,jdbcType=INTEGER},
+            </if>
+            <if test="appClientType != null">
+                #{appClientType,jdbcType=INTEGER},
+            </if>
+            <if test="forced != null">
+                #{forced,jdbcType=INTEGER},
+            </if>
+            <if test="ignoreUpdate != null">
+                #{ignoreUpdate,jdbcType=INTEGER},
+            </if>
+            <if test="md5 != null">
+                #{md5,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersionExample"
+            resultType="java.lang.Long">
+        select count(*) from base_app_update_version
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_app_update_version
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.versionCode != null">
+                version_code = #{record.versionCode,jdbcType=INTEGER},
+            </if>
+            <if test="record.versionName != null">
+                version_name = #{record.versionName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateContent != null">
+                update_content = #{record.updateContent,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateUrl != null">
+                update_url = #{record.updateUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.appSystemType != null">
+                app_system_type = #{record.appSystemType,jdbcType=INTEGER},
+            </if>
+            <if test="record.appClientType != null">
+                app_client_type = #{record.appClientType,jdbcType=INTEGER},
+            </if>
+            <if test="record.forced != null">
+                forced = #{record.forced,jdbcType=INTEGER},
+            </if>
+            <if test="record.ignoreUpdate != null">
+                ignore_update = #{record.ignoreUpdate,jdbcType=INTEGER},
+            </if>
+            <if test="record.md5 != null">
+                md5 = #{record.md5,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.remarks != null">
+                remarks = #{record.remarks,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_app_update_version
+        set id = #{record.id,jdbcType=INTEGER},
+        version_code = #{record.versionCode,jdbcType=INTEGER},
+        version_name = #{record.versionName,jdbcType=VARCHAR},
+        update_content = #{record.updateContent,jdbcType=VARCHAR},
+        update_url = #{record.updateUrl,jdbcType=VARCHAR},
+        app_system_type = #{record.appSystemType,jdbcType=INTEGER},
+        app_client_type = #{record.appClientType,jdbcType=INTEGER},
+        forced = #{record.forced,jdbcType=INTEGER},
+        ignore_update = #{record.ignoreUpdate,jdbcType=INTEGER},
+        md5 = #{record.md5,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        remarks = #{record.remarks,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersion">
+        update base_app_update_version
+        <set>
+            <if test="versionCode != null">
+                version_code = #{versionCode,jdbcType=INTEGER},
+            </if>
+            <if test="versionName != null">
+                version_name = #{versionName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateContent != null">
+                update_content = #{updateContent,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUrl != null">
+                update_url = #{updateUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="appSystemType != null">
+                app_system_type = #{appSystemType,jdbcType=INTEGER},
+            </if>
+            <if test="appClientType != null">
+                app_client_type = #{appClientType,jdbcType=INTEGER},
+            </if>
+            <if test="forced != null">
+                forced = #{forced,jdbcType=INTEGER},
+            </if>
+            <if test="ignoreUpdate != null">
+                ignore_update = #{ignoreUpdate,jdbcType=INTEGER},
+            </if>
+            <if test="md5 != null">
+                md5 = #{md5,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersion">
+        update base_app_update_version
+        set version_code = #{versionCode,jdbcType=INTEGER},
+        version_name = #{versionName,jdbcType=VARCHAR},
+        update_content = #{updateContent,jdbcType=VARCHAR},
+        update_url = #{updateUrl,jdbcType=VARCHAR},
+        app_system_type = #{appSystemType,jdbcType=INTEGER},
+        app_client_type = #{appClientType,jdbcType=INTEGER},
+        forced = #{forced,jdbcType=INTEGER},
+        ignore_update = #{ignoreUpdate,jdbcType=INTEGER},
+        md5 = #{md5,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        remarks = #{remarks,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPage" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM base_app_update_version LIMIT #{offset},#{limit}
+    </select>
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.system.BaseAppUpdateVersion"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_app_update_version
+        <where>
+            <if test="versionCode != null">
+                and version_code = #{versionCode,jdbcType=INTEGER}
+            </if>
+            <if test="versionName != null">
+                and version_name = #{versionName,jdbcType=VARCHAR}
+            </if>
+            <if test="updateContent != null">
+                and update_content = #{updateContent,jdbcType=VARCHAR}
+            </if>
+            <if test="updateUrl != null">
+                and update_url = #{updateUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="appSystemType != null">
+                and app_system_type = #{appSystemType,jdbcType=INTEGER}
+            </if>
+            <if test="appClientType != null">
+                and app_client_type = #{appClientType,jdbcType=INTEGER}
+            </if>
+            <if test="forced != null">
+                and forced = #{forced,jdbcType=INTEGER}
+            </if>
+            <if test="ignoreUpdate != null">
+                and ignore_update = #{ignoreUpdate,jdbcType=INTEGER}
+            </if>
+            <if test="md5 != null">
+                and md5 = #{md5,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="remarks != null">
+                and remarks = #{remarks,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

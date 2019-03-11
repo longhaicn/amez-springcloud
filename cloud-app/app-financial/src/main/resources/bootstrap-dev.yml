@@ -1,0 +1,63 @@
+server:
+  port: 8024
+mybatis:
+   mapper-locations: classpath:mybatis/*.xml
+   type-aliases-package: com.union.aimei.common.model.financial
+swagger:
+    enabled: true
+    title: 美容邦结算模块-App微服务
+    description: 更多结算模块微服务在线API文档稍后发布
+    version: 1.0
+    license: Apache License, Version 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+    base-package: com.union.aimei.financial
+    base-path: /**
+    exclude-path: /error
+spring:
+  cloud:
+    config:
+          #强制拉取更新
+          force-pull: true
+          #对应前配置文件中的{profile}部分
+          profile: ${config.profile:dev}
+          #对应前配置文件的 git 分支
+          label: master
+           # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+          name: financial-service
+          #安全认证,输入git账号密码
+          password: gaowei123
+          username: gaowei
+          failFast: true
+          #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+          discovery:
+             enabled: true
+             service-id: microservice-config-server-eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+         defaultZone: http://localhost:8000/eureka/
+management:
+  security:
+    enabled: false
+logging:
+  level:
+    root: INFO
+    com:
+        union:
+             aimei:
+                  financial: debug
+    org.springframework.cloud.sleuth: ERROR
+#声明Feign的 hystrix支持,如果设置为true，则断路器备用方法将不起作用，默认为false
+feign:
+     hystrix:
+         enabled: true
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    strategy: SEMAPHORE
+                    thread:
+                        timeoutInMilliseconds: 60000

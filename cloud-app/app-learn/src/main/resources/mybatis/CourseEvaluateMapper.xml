@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.learn.mapper.CourseEvaluateMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.learn.CourseEvaluate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="questions_title" property="questionsTitle" jdbcType="VARCHAR" />
+    <result column="questions_one" property="questionsOne" jdbcType="VARCHAR" />
+    <result column="questions_two" property="questionsTwo" jdbcType="VARCHAR" />
+    <result column="questions_three" property="questionsThree" jdbcType="VARCHAR" />
+    <result column="questions_four" property="questionsFour" jdbcType="VARCHAR" />
+    <result column="answer" property="answer" jdbcType="TINYINT" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, course_id, questions_title, questions_one, questions_two, questions_three, questions_four, 
+    answer, sort, is_enabled, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, course_id AS courseId, questions_title AS questionsTitle, questions_one AS questionsOne, 
+    questions_two AS questionsTwo, questions_three AS questionsThree, questions_four AS questionsFour, 
+    answer, sort, is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_evaluate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_evaluate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <delete id="deleteByPrimaryKeyList" parameterType="java.util.List">
+        delete from course_evaluate
+        where id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.learn.CourseEvaluate" useGeneratedKeys="true" keyProperty="id" >
+    insert into course_evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        course_id,
+      </if>
+      <if test="questionsTitle != null" >
+        questions_title,
+      </if>
+      <if test="questionsOne != null" >
+        questions_one,
+      </if>
+      <if test="questionsTwo != null" >
+        questions_two,
+      </if>
+      <if test="questionsThree != null" >
+        questions_three,
+      </if>
+      <if test="questionsFour != null" >
+        questions_four,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="questionsTitle != null" >
+        #{questionsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsOne != null" >
+        #{questionsOne,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsTwo != null" >
+        #{questionsTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsThree != null" >
+        #{questionsThree,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsFour != null" >
+        #{questionsFour,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.learn.CourseEvaluate" >
+    update course_evaluate
+    <set >
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="questionsTitle != null" >
+        questions_title = #{questionsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsOne != null" >
+        questions_one = #{questionsOne,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsTwo != null" >
+        questions_two = #{questionsTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsThree != null" >
+        questions_three = #{questionsThree,jdbcType=VARCHAR},
+      </if>
+      <if test="questionsFour != null" >
+        questions_four = #{questionsFour,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=TINYINT},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.learn.CourseEvaluate" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from course_evaluate
+    <where >
+      <if test="courseId != null" >
+        AND course_id = #{courseId,jdbcType=INTEGER}
+      </if>
+      <if test="questionsTitle != null" >
+        AND questions_title = #{questionsTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsOne != null" >
+        AND questions_one = #{questionsOne,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsTwo != null" >
+        AND questions_two = #{questionsTwo,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsThree != null" >
+        AND questions_three = #{questionsThree,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsFour != null" >
+        AND questions_four = #{questionsFour,jdbcType=VARCHAR}
+      </if>
+      <if test="answer != null" >
+        AND answer = #{answer,jdbcType=TINYINT}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <choose >
+      <when test="sort != null" >
+        ORDER BY sort
+      </when>
+      <otherwise >
+        ORDER BY create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <select id="selectListByConditionsVo" parameterType="com.union.aimei.common.model.learn.CourseEvaluate" resultType="com.union.aimei.common.vo.learn.app.CourseEvaluateResultVo" >
+    select <include refid="BaseAliasColumn"/> from course_evaluate
+    <where >
+      <if test="courseId != null" >
+        AND course_id = #{courseId,jdbcType=INTEGER}
+      </if>
+      <if test="questionsTitle != null" >
+        AND questions_title = #{questionsTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsOne != null" >
+        AND questions_one = #{questionsOne,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsTwo != null" >
+        AND questions_two = #{questionsTwo,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsThree != null" >
+        AND questions_three = #{questionsThree,jdbcType=VARCHAR}
+      </if>
+      <if test="questionsFour != null" >
+        AND questions_four = #{questionsFour,jdbcType=VARCHAR}
+      </if>
+      <if test="answer != null" >
+        AND answer = #{answer,jdbcType=TINYINT}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <choose >
+      <when test="sort != null" >
+        ORDER BY sort
+      </when>
+      <otherwise >
+        ORDER BY create_time DESC
+      </otherwise>
+    </choose>
+  </select>
+
+  <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+    insert into course_evaluate (course_id,questions_title,questions_one,questions_two,questions_three,questions_four,answer,sort)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.courseId}, #{item.questionsTitle}, #{item.questionsOne} , #{item.questionsTwo} ,#{item.questionsThree}
+      ,#{item.questionsFour},#{item.answer},#{item.sort})
+    </foreach>
+  </insert>
+
+
+
+</mapper>

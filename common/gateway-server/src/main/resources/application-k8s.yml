@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: api-gateway
+  http:
+      multipart:
+        max-file-size: 500Mb
+        max-request-size: 500Mb
+server:
+  port: 8005
+  connection-timeout: 30000
+  tomcat:
+      max-connections: 10000
+      min-spare-threads: 100
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+#       defaultZone: http://39.108.59.54:30010/eureka/
+        defaultZone: http://39.108.59.54:30010/eureka/
+zuul:
+  ignored-services: microservice-provider-user                        # 需要忽视的服务(配置后将不会被路由)
+  routes:
+    app:                                                            # 可以随便写，在zuul上面唯一即可；当这里的值 = api-id时，api-id可以不写。
+      path: /app/**                                                 # 想要映射到的路径
+      service-id: APP-API     # Eureka中的serviceId
+    pc:
+      path: /pc/**
+      service-id: PC-API
+  max:
+    host:
+      connections: 60000
+#开启网关熔断机制，最高阈值为30秒
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+  ribbon-isolation-strategy: semaphore
+  semaphore:
+    max-semaphores: 10000
+#开启断路器超时熔断，最高阈值为20秒
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+          semaphore:
+            maxConcurrentRequests: 10000
+#开启ribbon饥饿加载以及超时熔断（最高阈值为10秒），解决重新部署后第一次调用没有服务实例可用导致没有任何回应的BUG
+ribbon:
+  eager-load:
+    enabled: true
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1
+  eureka:
+      enabled: true
+management:
+  security:
+    enabled: false
+info:
+  version: @project.version@
+  groupId: @project.groupId@
+  artifactId: @project.artifactId@
+logging:
+  level:
+    root: DEBUG

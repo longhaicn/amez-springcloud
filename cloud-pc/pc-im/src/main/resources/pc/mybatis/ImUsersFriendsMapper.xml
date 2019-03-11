@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.im.mapper.ImUsersFriendsMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.im.ImUsersFriends">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="friend_name" property="friendName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, user_name, friend_name
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, user_name AS userName, friend_name AS friendName
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from im_users_friends
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from im_users_friends
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.im.ImUsersFriends" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into im_users_friends
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="friendName != null">
+                friend_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="friendName != null">
+                #{friendName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.im.ImUsersFriends">
+        update im_users_friends
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="friendName != null">
+                friend_name = #{friendName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.im.ImUsersFriends"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from im_users_friends
+        <where>
+            <if test="userName != null">
+                AND user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="friendName != null">
+                AND friend_name = #{friendName,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+</mapper>

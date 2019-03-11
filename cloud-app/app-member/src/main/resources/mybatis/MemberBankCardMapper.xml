@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberBankCardMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberBankCard" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="abbreviation" property="abbreviation" jdbcType="VARCHAR" />
+    <result column="bankimage" property="bankimage" jdbcType="VARCHAR" />
+    <result column="bankname" property="bankname" jdbcType="VARCHAR" />
+    <result column="bankname_branch" property="banknameBranch" jdbcType="VARCHAR" />
+    <result column="bankurl" property="bankurl" jdbcType="VARCHAR" />
+    <result column="cardname" property="cardname" jdbcType="VARCHAR" />
+    <result column="cardtype" property="cardtype" jdbcType="VARCHAR" />
+    <result column="enbankname" property="enbankname" jdbcType="VARCHAR" />
+    <result column="is_luhn" property="isLuhn" jdbcType="BIT" />
+    <result column="iscreditcard" property="iscreditcard" jdbcType="INTEGER" />
+    <result column="servicephone" property="servicephone" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="BIT" />
+    <result column="third_auth_status" property="thirdAuthStatus" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, member_id, bankcard, real_name, card_no, mobile, abbreviation, bankimage, bankname,bankname_branch,
+    bankurl, cardname, cardtype, enbankname, is_luhn, iscreditcard, servicephone, type,
+    third_auth_status, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, member_id AS memberId, bankcard, real_name AS realName, card_no AS cardNo, mobile,
+    abbreviation, bankimage, bankname,bankname_branch AS banknameBranch, bankurl, cardname, cardtype,
+    enbankname, is_luhn AS isLuhn,
+    iscreditcard, servicephone, type, third_auth_status AS thirdAuthStatus, create_time AS createTime,
+    update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from member_bank_card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_bank_card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberBankCard" useGeneratedKeys="true" keyProperty="id" >
+    insert into member_bank_card
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="bankcard != null" >
+        bankcard,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="cardNo != null" >
+        card_no,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="abbreviation != null" >
+        abbreviation,
+      </if>
+      <if test="bankimage != null" >
+        bankimage,
+      </if>
+      <if test="bankname != null" >
+        bankname,
+      </if>
+      <if test="banknameBranch != null" >
+        bankname_branch,
+      </if>
+      <if test="bankurl != null" >
+        bankurl,
+      </if>
+      <if test="cardname != null" >
+        cardname,
+      </if>
+      <if test="cardtype != null" >
+        cardtype,
+      </if>
+      <if test="enbankname != null" >
+        enbankname,
+      </if>
+      <if test="isLuhn != null" >
+        is_luhn,
+      </if>
+      <if test="iscreditcard != null" >
+        iscreditcard,
+      </if>
+      <if test="servicephone != null" >
+        servicephone,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="thirdAuthStatus != null" >
+        third_auth_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="bankcard != null" >
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null" >
+        #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="bankimage != null" >
+        #{bankimage,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="banknameBranch != null" >
+        #{banknameBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="bankurl != null" >
+        #{bankurl,jdbcType=VARCHAR},
+      </if>
+      <if test="cardname != null" >
+        #{cardname,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null" >
+        #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="enbankname != null" >
+        #{enbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="isLuhn != null" >
+        #{isLuhn,jdbcType=BIT},
+      </if>
+      <if test="iscreditcard != null" >
+        #{iscreditcard,jdbcType=INTEGER},
+      </if>
+      <if test="servicephone != null" >
+        #{servicephone,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=BIT},
+      </if>
+      <if test="thirdAuthStatus != null" >
+        #{thirdAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberBankCard" >
+    update member_bank_card
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null" >
+        card_no = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="abbreviation != null" >
+        abbreviation = #{abbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="bankimage != null" >
+        bankimage = #{bankimage,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null" >
+        bankname = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="banknameBranch != null" >
+        bankname_branch = #{banknameBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="bankurl != null" >
+        bankurl = #{bankurl,jdbcType=VARCHAR},
+      </if>
+      <if test="cardname != null" >
+        cardname = #{cardname,jdbcType=VARCHAR},
+      </if>
+      <if test="cardtype != null" >
+        cardtype = #{cardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="enbankname != null" >
+        enbankname = #{enbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="isLuhn != null" >
+        is_luhn = #{isLuhn,jdbcType=BIT},
+      </if>
+      <if test="iscreditcard != null" >
+        iscreditcard = #{iscreditcard,jdbcType=INTEGER},
+      </if>
+      <if test="servicephone != null" >
+        servicephone = #{servicephone,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=BIT},
+      </if>
+      <if test="thirdAuthStatus != null" >
+        third_auth_status = #{thirdAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberBankCard" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from member_bank_card
+    <where >
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="bankcard != null" >
+        AND bankcard = #{bankcard,jdbcType=VARCHAR}
+      </if>
+      <if test="realName != null" >
+        AND real_name = #{realName,jdbcType=VARCHAR}
+      </if>
+      <if test="cardNo != null" >
+        AND card_no = #{cardNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null" >
+        AND mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="abbreviation != null" >
+        AND abbreviation = #{abbreviation,jdbcType=VARCHAR}
+      </if>
+      <if test="bankimage != null" >
+        AND bankimage = #{bankimage,jdbcType=VARCHAR}
+      </if>
+      <if test="bankname != null" >
+        AND bankname = #{bankname,jdbcType=VARCHAR}
+      </if>
+      <if test="banknameBranch != null" >
+        AND bankname_branch = #{banknameBranch,jdbcType=VARCHAR}
+      </if>
+      <if test="bankurl != null" >
+        AND bankurl = #{bankurl,jdbcType=VARCHAR}
+      </if>
+      <if test="cardname != null" >
+        AND cardname = #{cardname,jdbcType=VARCHAR}
+      </if>
+      <if test="cardtype != null" >
+        AND cardtype = #{cardtype,jdbcType=VARCHAR}
+      </if>
+      <if test="enbankname != null" >
+        AND enbankname = #{enbankname,jdbcType=VARCHAR}
+      </if>
+      <if test="isLuhn != null" >
+        AND is_luhn = #{isLuhn,jdbcType=BIT}
+      </if>
+      <if test="iscreditcard != null" >
+        AND iscreditcard = #{iscreditcard,jdbcType=INTEGER}
+      </if>
+      <if test="servicephone != null" >
+        AND servicephone = #{servicephone,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null" >
+        AND type = #{type,jdbcType=BIT}
+      </if>
+      <if test="thirdAuthStatus != null" >
+        AND third_auth_status = #{thirdAuthStatus,jdbcType=TINYINT}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+</mapper>

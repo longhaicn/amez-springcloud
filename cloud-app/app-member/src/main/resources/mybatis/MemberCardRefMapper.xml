@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberCardRefMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberCardRef">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="member_id" property="memberId" jdbcType="INTEGER"/>
+        <result column="card_id" property="cardId" jdbcType="INTEGER"/>
+        <result column="member_name" property="memberName" jdbcType="VARCHAR"/>
+        <result column="member_mobile" property="memberMobile" jdbcType="VARCHAR"/>
+        <result column="total_balance" property="totalBalance" jdbcType="INTEGER"/>
+        <result column="useable_balance" property="useableBalance" jdbcType="INTEGER"/>
+        <result column="frozen_balance" property="frozenBalance" jdbcType="INTEGER"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, member_id, card_id, member_name, member_mobile, total_balance, useable_balance, 
+    frozen_balance, is_enabled, create_time, update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, member_id AS memberId, card_id AS cardId, member_name AS memberName, member_mobile AS memberMobile, 
+    total_balance AS totalBalance, useable_balance AS useableBalance, frozen_balance AS frozenBalance, 
+    is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from member_card_ref
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from member_card_ref
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberCardRef" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into member_card_ref
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">
+                member_id,
+            </if>
+            <if test="cardId != null">
+                card_id,
+            </if>
+            <if test="memberName != null">
+                member_name,
+            </if>
+            <if test="memberMobile != null">
+                member_mobile,
+            </if>
+            <if test="totalBalance != null">
+                total_balance,
+            </if>
+            <if test="useableBalance != null">
+                useable_balance,
+            </if>
+            <if test="frozenBalance != null">
+                frozen_balance,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="memberId != null">
+                #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="cardId != null">
+                #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="memberName != null">
+                #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberMobile != null">
+                #{memberMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="totalBalance != null">
+                #{totalBalance,jdbcType=INTEGER},
+            </if>
+            <if test="useableBalance != null">
+                #{useableBalance,jdbcType=INTEGER},
+            </if>
+            <if test="frozenBalance != null">
+                #{frozenBalance,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberCardRef">
+        update member_card_ref
+        <set>
+            <if test="memberId != null">
+                member_id = #{memberId,jdbcType=INTEGER},
+            </if>
+            <if test="cardId != null">
+                card_id = #{cardId,jdbcType=INTEGER},
+            </if>
+            <if test="memberName != null">
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberMobile != null">
+                member_mobile = #{memberMobile,jdbcType=VARCHAR},
+            </if>
+            <if test="totalBalance != null">
+                total_balance = #{totalBalance,jdbcType=INTEGER},
+            </if>
+            <if test="useableBalance != null">
+                useable_balance = #{useableBalance,jdbcType=INTEGER},
+            </if>
+            <if test="frozenBalance != null">
+                frozen_balance = #{frozenBalance,jdbcType=INTEGER},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=TINYINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberCardRef"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from member_card_ref
+        <where>
+            <if test="memberId != null">
+                AND member_id = #{memberId,jdbcType=INTEGER}
+            </if>
+            <if test="cardId != null">
+                AND card_id = #{cardId,jdbcType=INTEGER}
+            </if>
+            <if test="memberName != null">
+                AND member_name = #{memberName,jdbcType=VARCHAR}
+            </if>
+            <if test="memberMobile != null">
+                AND member_mobile = #{memberMobile,jdbcType=VARCHAR}
+            </if>
+            <if test="totalBalance != null">
+                AND total_balance = #{totalBalance,jdbcType=INTEGER}
+            </if>
+            <if test="useableBalance != null">
+                AND useable_balance = #{useableBalance,jdbcType=INTEGER}
+            </if>
+            <if test="frozenBalance != null">
+                AND frozen_balance = #{frozenBalance,jdbcType=INTEGER}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=TINYINT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+
+    <!--充值用户会员卡-->
+    <update id="rechargeMemberCard" parameterType="map">
+         UPDATE member_card_ref
+         SET total_balance = total_balance+#{amount},
+         useable_balance = useable_balance+#{amount}
+         WHERE id=#{id}
+      </update>
+
+    <!--用户会员卡消费-->
+    <update id="updateMemberCardAmount" parameterType="map">
+         UPDATE member_card_ref
+         SET useable_balance=useable_balance-#{amount}
+         WHERE id=#{id}
+      </update>
+
+
+    <!--根据会员ID和会员卡ID查询-->
+    <select id="queryByIdAndCardId" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM member_card_ref
+        WHERE member_id = #{memberId,jdbcType=INTEGER}
+        AND card_id = #{memberCardId,jdbcType=INTEGER}
+
+    </select>
+
+    <!--根据会员ID查询我的会员卡信息-->
+    <select id="queryByMemberId" parameterType="map" resultType="map">
+	       SELECT
+             mcr.id,
+             mc.style_pattern AS stylePattern,
+             mc.issue_type AS issueType,
+             mc.brand_id AS brandId,
+             mc.brand_name AS brandName,
+             mc.card_name AS cardName,
+             mc.sell_status AS sellStatus,
+             mc.support_recharge AS supportRecharge,
+             mc.use_range AS useRange,
+             mc.card_no AS cardNo,
+             mc.store_id AS storeId,
+             mc.store_name AS storeName,
+             mc.issue_num AS issueNum,
+             mc.balance,
+             mc.discount,
+             mc.create_time AS createTime,
+             mc.update_time AS updateTime,
+             mc.expired_time AS expiredTime,
+             mc.remark,
+             mcr.card_id AS cardId,
+             mcr.member_id AS memberId,
+	         mcr.member_name AS memberName,
+	         mcr.member_mobile AS memberMobile,
+	         mcr.total_balance AS totalBalance,
+	         mcr.useable_balance AS useableBalance,
+	         mcr.frozen_balance AS frozenBalance,
+	         mcr.is_enabled AS isEnabled
+            FROM
+                member_card_ref mcr
+                left join member_card mc on mc.id = mcr.card_id
+                where
+                member_id = #{memberId} and is_enabled = #{isEnabled}
+      </select>
+
+    <!--根据会员ID查询我的会员卡信息-->
+    <select id="queryUserdByMemberId" parameterType="map" resultType="map">
+        SELECT
+        mcr.id,
+        mc.style_pattern AS stylePattern,
+        mc.issue_type AS issueType,
+        mc.brand_id AS brandId,
+        mc.brand_name AS brandName,
+        mc.card_name AS cardName,
+        mc.sell_status AS sellStatus,
+        mc.support_recharge AS supportRecharge,
+        mc.use_range AS useRange,
+        mc.card_no AS cardNo,
+        mc.store_id AS storeId,
+        mc.store_name AS storeName,
+        mc.issue_num AS issueNum,
+        mc.balance,
+        mc.discount,
+        mc.create_time AS createTime,
+        mc.update_time AS updateTime,
+        mc.expired_time AS expiredTime,
+        mc.remark,
+        mcr.card_id AS cardId,
+        mcr.member_id AS memberId,
+        mcr.member_name AS memberName,
+        mcr.member_mobile AS memberMobile,
+        mcr.total_balance AS totalBalance,
+        mcr.useable_balance AS useableBalance,
+        mcr.frozen_balance AS frozenBalance,
+        mcr.is_enabled AS isEnabled
+        FROM
+                (
+                SELECT
+                mc.*
+                FROM
+                member_card mc,
+                member_card_use_product mcup,
+                member_card_use_range mcur
+                WHERE
+                mc.id = mcup.card_id
+                AND mc.id = mcur.card_id AND mcur.card_status =1
+                AND mcup.product_id = #{productId}
+                ) mc,
+                member_card_ref mcr
+                WHERE
+                mc.id = mcr.card_id
+                AND mcr.member_id = #{memberId} and mcr.is_enabled = 0 AND mc.sell_status=0  GROUP by mcr.id
+    </select>
+
+    <!--查询我的会员卡数量-->
+    <select id="getMyCardCount" parameterType="integer" resultType="int">
+          SELECT
+	        COUNT(1)
+        FROM
+	        member_card_ref mcr
+        LEFT JOIN member_card mc ON mcr.card_id = mc.id
+        WHERE
+	        mcr.member_id = #{memberId}
+     </select>
+
+
+    <!--查询用户购买的单一品种的卡数量-->
+    <select id="countMemberBuyCard" parameterType="map" resultType="int">
+        SELECT count(1) FROM member_card_ref
+        WHERE member_id = #{memberId,jdbcType=INTEGER}
+        AND card_id = #{cardId,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryMyCardInfoByRefId" parameterType="integer" resultType="map">
+          SELECT
+	mc.style_pattern AS stylePattern,
+	mc.issue_type AS issueType,
+	mc.brand_id AS brandId,
+	mc.brand_name AS brandName,
+	mc.card_name AS cardName,
+	mc.sell_status AS sellStatus,
+	mc.support_recharge AS supportRecharge,
+	mc.use_range AS useRange,
+	mc.card_no AS cardNo,
+	mc.store_id AS storeId,
+	mc.store_name AS storeName,
+	mc.issue_num AS issueNum,
+	mc.balance,
+	mc.discount,
+	mc.create_time AS createTime,
+	mc.update_time AS updateTime,
+	mc.expired_time AS expiredTime,
+	mc.remark,
+    mcr.id,
+	mcr.card_id AS cardId,
+	mcr.member_id AS memberId,
+	mcr.member_name AS memberName,
+	mcr.member_mobile AS memberMobile,
+	mcr.total_balance AS totalBalance,
+	mcr.useable_balance AS useableBalance,
+	mcr.frozen_balance AS frozenBalance,
+	mcr.is_enabled AS isEnabled,
+	mcr.create_time AS createTimeBuy,
+	mcr.update_time AS updateTime
+FROM
+	member_card_ref mcr
+LEFT JOIN member_card mc ON mc.id = mcr.card_id
+WHERE
+	mcr.id = #{id}
+    </select>
+
+
+
+    <!--查询用户最新购买的会员卡 -->
+    <select id="queryMemberNewestCard" parameterType="integer" resultMap="BaseResultMap">
+                 SELECT
+        <include refid="Base_Column_List"/>
+        FROM
+            (
+                SELECT
+                    a.*
+                FROM
+                    member_card_ref a
+                WHERE
+                    NOT EXISTS (
+                        SELECT
+                            1
+                        FROM
+                            member_card_ref b
+                        WHERE
+                            b.member_id = a.member_id
+                        AND b.create_time > a.create_time
+                    )
+            ) mcr
+        WHERE
+            mcr.member_id = #{memberId}
+    </select>
+
+</mapper>

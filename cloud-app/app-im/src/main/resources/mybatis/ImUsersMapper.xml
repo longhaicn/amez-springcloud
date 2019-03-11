@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.im.mapper.ImUsersMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.im.ImUsers">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uuid" property="uuid" jdbcType="VARCHAR"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="VARCHAR"/>
+        <result column="online_status" property="onlineStatus" jdbcType="TINYINT"/>
+        <result column="activated" property="activated" jdbcType="BIT"/>
+        <result column="created" property="created" jdbcType="BIGINT"/>
+        <result column="modified" property="modified" jdbcType="BIGINT"/>
+        <result column="get_time" property="getTime" jdbcType="BIGINT"/>
+        <result column="result_cursor" property="resultCursor" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, uuid, username, password, type, online_status, activated, created, modified,
+        get_time, result_cursor
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, uuid, username, password, type, online_status AS onlineStatus, activated, created,
+        modified, get_time AS getTime, result_cursor AS resultCursor
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from im_users
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from im_users
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.im.ImUsers" useGeneratedKeys="true" keyProperty="id">
+        insert into im_users
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">
+                uuid,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="onlineStatus != null">
+                online_status,
+            </if>
+            <if test="activated != null">
+                activated,
+            </if>
+            <if test="created != null">
+                created,
+            </if>
+            <if test="modified != null">
+                modified,
+            </if>
+            <if test="getTime != null">
+                get_time,
+            </if>
+            <if test="resultCursor != null">
+                result_cursor,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uuid != null">
+                #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineStatus != null">
+                #{onlineStatus,jdbcType=TINYINT},
+            </if>
+            <if test="activated != null">
+                #{activated,jdbcType=BIT},
+            </if>
+            <if test="created != null">
+                #{created,jdbcType=BIGINT},
+            </if>
+            <if test="modified != null">
+                #{modified,jdbcType=BIGINT},
+            </if>
+            <if test="getTime != null">
+                #{getTime,jdbcType=BIGINT},
+            </if>
+            <if test="resultCursor != null">
+                #{resultCursor,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.im.ImUsers">
+        update im_users
+        <set>
+            <if test="uuid != null">
+                uuid = #{uuid,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineStatus != null">
+                online_status = #{onlineStatus,jdbcType=TINYINT},
+            </if>
+            <if test="activated != null">
+                activated = #{activated,jdbcType=BIT},
+            </if>
+            <if test="created != null">
+                created = #{created,jdbcType=BIGINT},
+            </if>
+            <if test="modified != null">
+                modified = #{modified,jdbcType=BIGINT},
+            </if>
+            <if test="getTime != null">
+                get_time = #{getTime,jdbcType=BIGINT},
+            </if>
+            <if test="resultCursor != null">
+                result_cursor = #{resultCursor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.im.ImUsers" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from im_users
+        <where>
+            <if test="uuid != null">
+                AND uuid = #{uuid,jdbcType=VARCHAR}
+            </if>
+            <if test="username != null">
+                AND username = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null">
+                AND password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null">
+                AND type = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="onlineStatus != null">
+                AND online_status = #{onlineStatus,jdbcType=TINYINT}
+            </if>
+            <if test="activated != null">
+                AND activated = #{activated,jdbcType=BIT}
+            </if>
+            <if test="created != null">
+                AND created = #{created,jdbcType=BIGINT}
+            </if>
+            <if test="modified != null">
+                AND modified = #{modified,jdbcType=BIGINT}
+            </if>
+            <if test="getTime != null">
+                AND get_time = #{getTime,jdbcType=BIGINT}
+            </if>
+            <if test="resultCursor != null">
+                AND result_cursor = #{resultCursor,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+</mapper>

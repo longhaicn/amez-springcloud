@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberCardMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberCard" >
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="style_pattern" property="stylePattern" jdbcType="VARCHAR" />
+      <result column="issue_type" property="issueType" jdbcType="BIT" />
+      <result column="brand_id" property="brandId" jdbcType="VARCHAR" />
+      <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+      <result column="card_name" property="cardName" jdbcType="VARCHAR" />
+      <result column="sell_status" property="sellStatus" jdbcType="TINYINT" />
+      <result column="support_recharge" property="supportRecharge" jdbcType="BIT" />
+      <result column="use_range" property="useRange" jdbcType="BIT" />
+      <result column="card_no" property="cardNo" jdbcType="VARCHAR" />
+      <result column="store_id" property="storeId" jdbcType="INTEGER" />
+      <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+      <result column="issue_num" property="issueNum" jdbcType="INTEGER" />
+      <result column="balance" property="balance" jdbcType="INTEGER" />
+      <result column="discount" property="discount" jdbcType="INTEGER" />
+      <result column="effective_type" property="effectiveType" jdbcType="TINYINT" />
+      <result column="effective_day" property="effectiveDay" jdbcType="INTEGER" />
+      <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+      <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+      <result column="use_start_time" property="useStartTime" jdbcType="TIMESTAMP" />
+      <result column="expired_time" property="expiredTime" jdbcType="TIMESTAMP" />
+      <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, style_pattern, issue_type, brand_id, brand_name, card_name, sell_status, support_recharge,
+        use_range, card_no, store_id, store_name, issue_num, balance, discount, effective_type,
+        effective_day, create_time, update_time, use_start_time, expired_time, remark
+    </sql>
+
+    <sql id="BaseAliasColumn" >
+        id, style_pattern AS stylePattern, issue_type AS issueType, brand_id AS brandId,
+        brand_name AS brandName, card_name AS cardName, sell_status AS sellStatus, support_recharge AS supportRecharge,
+        use_range AS useRange, card_no AS cardNo, store_id AS storeId, store_name AS storeName,
+        issue_num AS issueNum, balance, discount, effective_type AS effectiveType, effective_day AS effectiveDay,
+        create_time AS createTime, update_time AS updateTime, use_start_time AS useStartTime,
+        expired_time AS expiredTime, remark
+    </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_card
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_card
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberCard" useGeneratedKeys="true" keyProperty="id" >
+      insert into member_card
+      <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="stylePattern != null" >
+              style_pattern,
+          </if>
+          <if test="issueType != null" >
+              issue_type,
+          </if>
+          <if test="brandId != null" >
+              brand_id,
+          </if>
+          <if test="brandName != null" >
+              brand_name,
+          </if>
+          <if test="cardName != null" >
+              card_name,
+          </if>
+          <if test="sellStatus != null" >
+              sell_status,
+          </if>
+          <if test="supportRecharge != null" >
+              support_recharge,
+          </if>
+          <if test="useRange != null" >
+              use_range,
+          </if>
+          <if test="cardNo != null" >
+              card_no,
+          </if>
+          <if test="storeId != null" >
+              store_id,
+          </if>
+          <if test="storeName != null" >
+              store_name,
+          </if>
+          <if test="issueNum != null" >
+              issue_num,
+          </if>
+          <if test="balance != null" >
+              balance,
+          </if>
+          <if test="discount != null" >
+              discount,
+          </if>
+          <if test="effectiveType != null" >
+              effective_type,
+          </if>
+          <if test="effectiveDay != null" >
+              effective_day,
+          </if>
+          <if test="createTime != null" >
+              create_time,
+          </if>
+          <if test="updateTime != null" >
+              update_time,
+          </if>
+          <if test="useStartTime != null" >
+              use_start_time,
+          </if>
+          <if test="expiredTime != null" >
+              expired_time,
+          </if>
+          <if test="remark != null" >
+              remark,
+          </if>
+      </trim>
+      <trim prefix="values (" suffix=")" suffixOverrides="," >
+          <if test="stylePattern != null" >
+              #{stylePattern,jdbcType=VARCHAR},
+          </if>
+          <if test="issueType != null" >
+              #{issueType,jdbcType=BIT},
+          </if>
+          <if test="brandId != null" >
+              #{brandId,jdbcType=VARCHAR},
+          </if>
+          <if test="brandName != null" >
+              #{brandName,jdbcType=VARCHAR},
+          </if>
+          <if test="cardName != null" >
+              #{cardName,jdbcType=VARCHAR},
+          </if>
+          <if test="sellStatus != null" >
+              #{sellStatus,jdbcType=TINYINT},
+          </if>
+          <if test="supportRecharge != null" >
+              #{supportRecharge,jdbcType=BIT},
+          </if>
+          <if test="useRange != null" >
+              #{useRange,jdbcType=BIT},
+          </if>
+          <if test="cardNo != null" >
+              #{cardNo,jdbcType=VARCHAR},
+          </if>
+          <if test="storeId != null" >
+              #{storeId,jdbcType=INTEGER},
+          </if>
+          <if test="storeName != null" >
+              #{storeName,jdbcType=VARCHAR},
+          </if>
+          <if test="issueNum != null" >
+              #{issueNum,jdbcType=INTEGER},
+          </if>
+          <if test="balance != null" >
+              #{balance,jdbcType=INTEGER},
+          </if>
+          <if test="discount != null" >
+              #{discount,jdbcType=INTEGER},
+          </if>
+          <if test="effectiveType != null" >
+              #{effectiveType,jdbcType=TINYINT},
+          </if>
+          <if test="effectiveDay != null" >
+              #{effectiveDay,jdbcType=INTEGER},
+          </if>
+          <if test="createTime != null" >
+              #{createTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null" >
+              #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="useStartTime != null" >
+              #{useStartTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="expiredTime != null" >
+              #{expiredTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null" >
+              #{remark,jdbcType=VARCHAR},
+          </if>
+      </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberCard" >
+      update member_card
+      <set >
+          <if test="stylePattern != null" >
+              style_pattern = #{stylePattern,jdbcType=VARCHAR},
+          </if>
+          <if test="issueType != null" >
+              issue_type = #{issueType,jdbcType=BIT},
+          </if>
+          <if test="brandId != null" >
+              brand_id = #{brandId,jdbcType=VARCHAR},
+          </if>
+          <if test="brandName != null" >
+              brand_name = #{brandName,jdbcType=VARCHAR},
+          </if>
+          <if test="cardName != null" >
+              card_name = #{cardName,jdbcType=VARCHAR},
+          </if>
+          <if test="sellStatus != null" >
+              sell_status = #{sellStatus,jdbcType=TINYINT},
+          </if>
+          <if test="supportRecharge != null" >
+              support_recharge = #{supportRecharge,jdbcType=BIT},
+          </if>
+          <if test="useRange != null" >
+              use_range = #{useRange,jdbcType=BIT},
+          </if>
+          <if test="cardNo != null" >
+              card_no = #{cardNo,jdbcType=VARCHAR},
+          </if>
+          <if test="storeId != null" >
+              store_id = #{storeId,jdbcType=INTEGER},
+          </if>
+          <if test="storeName != null" >
+              store_name = #{storeName,jdbcType=VARCHAR},
+          </if>
+          <if test="issueNum != null" >
+              issue_num = #{issueNum,jdbcType=INTEGER},
+          </if>
+          <if test="balance != null" >
+              balance = #{balance,jdbcType=INTEGER},
+          </if>
+          <if test="discount != null" >
+              discount = #{discount,jdbcType=INTEGER},
+          </if>
+          <if test="effectiveType != null" >
+              effective_type = #{effectiveType,jdbcType=TINYINT},
+          </if>
+          <if test="effectiveDay != null" >
+              effective_day = #{effectiveDay,jdbcType=INTEGER},
+          </if>
+          <if test="createTime != null" >
+              create_time = #{createTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="updateTime != null" >
+              update_time = #{updateTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="useStartTime != null" >
+              use_start_time = #{useStartTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="expiredTime != null" >
+              expired_time = #{expiredTime,jdbcType=TIMESTAMP},
+          </if>
+          <if test="remark != null" >
+              remark = #{remark,jdbcType=VARCHAR},
+          </if>
+      </set>
+      where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberCard" resultMap="BaseResultMap" >
+      <choose>
+          <when test="storeId != null and brandId != null">
+              SELECT a.* FROM (SELECT c1.* FROM member_card c1
+              WHERE c1.issue_type = 1 AND c1.store_id = #{storeId,jdbcType=INTEGER}
+              UNION ALL
+              SELECT c.* FROM member_card c,
+              member_card_use_range r
+              WHERE
+              c.brand_id = #{brandId,jdbcType=VARCHAR}
+              AND c.issue_type = 0
+              AND c.sell_status = 0
+              AND r.card_id = c.id
+              AND r.store_id = #{storeId,jdbcType=INTEGER}
+              ) a order by create_time desc
+          </when>
+          <otherwise>
+              select <include refid="Base_Column_List"/> from member_card
+              <where >
+                  <if test="stylePattern != null" >
+                      AND style_pattern = #{stylePattern,jdbcType=VARCHAR}
+                  </if>
+                  <if test="issueType != null" >
+                      AND issue_type = #{issueType,jdbcType=BIT}
+                  </if>
+                  <if test="brandId != null" >
+                      AND brand_id = #{brandId,jdbcType=VARCHAR}
+                  </if>
+                  <if test="brandName != null" >
+                      AND brand_name = #{brandName,jdbcType=VARCHAR}
+                  </if>
+                  <if test="cardName != null" >
+                      AND card_name like concat(concat('%',#{cardName}),'%')
+                  </if>
+                  <if test="sellStatus != null" >
+                      AND sell_status = #{sellStatus,jdbcType=TINYINT}
+                  </if>
+                  <if test="supportRecharge != null" >
+                      AND support_recharge = #{supportRecharge,jdbcType=BIT}
+                  </if>
+                  <if test="useRange != null" >
+                      AND use_range = #{useRange,jdbcType=BIT}
+                  </if>
+                  <if test="cardNo != null" >
+                      AND card_no = #{cardNo,jdbcType=VARCHAR}
+                  </if>
+                  <if test="storeId != null" >
+                      AND store_id = #{storeId,jdbcType=INTEGER}
+                  </if>
+                  <if test="storeName != null" >
+                      and store_name like concat(concat('%',#{storeName}),'%')
+                  </if>
+                  <if test="issueNum != null" >
+                      AND issue_num = #{issueNum,jdbcType=INTEGER}
+                  </if>
+                  <if test="balance != null" >
+                      AND balance = #{balance,jdbcType=INTEGER}
+                  </if>
+                  <if test="discount != null" >
+                      AND discount = #{discount,jdbcType=INTEGER}
+                  </if>
+                  <if test="effectiveType != null" >
+                      AND effective_type = #{effectiveType,jdbcType=TINYINT}
+                  </if>
+                  <if test="effectiveDay != null" >
+                      AND effective_day = #{effectiveDay,jdbcType=INTEGER}
+                  </if>
+                  <if test="createTime != null" >
+                      AND create_time = #{createTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="updateTime != null" >
+                      AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="useStartTime != null" >
+                      AND use_start_time = #{useStartTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="expiredTime != null" >
+                      AND expired_time = #{expiredTime,jdbcType=TIMESTAMP}
+                  </if>
+                  <if test="remark != null" >
+                      AND remark = #{remark,jdbcType=VARCHAR}
+                  </if>
+                  <if test="makeCardStartTime != null and makeCardEndTime !=null" >
+                      <![CDATA[   and DATE_FORMAT(create_time, '%Y-%m-%d')>=  DATE_FORMAT(#{makeCardStartTime}, '%Y-%m-%d')   ]]>
+                      <![CDATA[   and DATE_FORMAT(create_time, '%Y-%m-%d') <= DATE_FORMAT(#{makeCardEndTime}, '%Y-%m-%d')    ]]>
+                  </if>
+
+              </where>
+              order by create_time desc
+          </otherwise>
+      </choose>
+  </select>
+  <!--查询最新添加的会员卡ID-->
+  <select id="queryNewestSaveId" parameterType="com.union.aimei.common.model.member.MemberCard" resultType="integer">
+    SELECT
+    t.id
+    FROM
+    (
+    SELECT
+    a.id,a.brand_name
+    FROM
+    member_card a
+    WHERE
+    NOT EXISTS (
+    SELECT
+    1
+    FROM
+    member_card b
+    WHERE
+    b.brand_name = a.brand_name
+    AND b.create_time > a.create_time
+    )
+    ) t
+    WHERE
+    t.brand_name = #{brandName}
+  </select>
+
+    <select id="queryMemberCardCount" parameterType="com.union.aimei.common.vo.member.MemberAndMemberCardVo" resultType="integer">
+        SELECT COUNT(id) FROM member_card WHERE
+        create_time <![CDATA[ >= ]]> #{startTime}
+        AND create_time <![CDATA[ <= ]]> #{endTime}
+        <if test="type == 1">
+            AND store_id = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="type == 0">
+            AND issue_type = 0
+        </if>
+    </select>
+
+    <!--批量查询品牌可使用的会员卡-->
+    <select id="queryByStoreId" resultType="java.lang.Integer">
+        select mc.id
+        from member_card_use_range mcur, member_card mc
+        WHERE mcur.card_id = mc.id AND
+        mcur.store_id in
+        <foreach collection="storeIdList" item="item" open="(" close=")" separator=",">
+          #{item}
+        </foreach>
+        AND mc.issue_type=0 and mc.brand_id=#{brandId}
+    </select>
+
+</mapper>

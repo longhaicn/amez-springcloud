@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.store.mapper.StoreCouponsMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.StoreCoupons">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="store_id" property="storeId" jdbcType="INTEGER"/>
+        <result column="store_name" property="storeName" jdbcType="VARCHAR"/>
+        <result column="coupon_name" property="couponName" jdbcType="VARCHAR"/>
+        <result column="issued_total" property="issuedTotal" jdbcType="INTEGER"/>
+        <result column="received_total" property="receivedTotal" jdbcType="INTEGER"/>
+        <result column="used_total" property="usedTotal" jdbcType="INTEGER"/>
+        <result column="meet_amount" property="meetAmount" jdbcType="INTEGER"/>
+        <result column="discount_amount" property="discountAmount" jdbcType="INTEGER"/>
+        <result column="support_service_type" property="supportServiceType" jdbcType="TINYINT"/>
+        <result column="begin_time" property="beginTime" jdbcType="VARCHAR"/>
+        <result column="end_time" property="endTime" jdbcType="VARCHAR"/>
+        <result column="per_person_limit" property="perPersonLimit" jdbcType="INTEGER"/>
+        <result column="expired_remind_switch" property="expiredRemindSwitch" jdbcType="BIT"/>
+        <result column="instructions" property="instructions" jdbcType="VARCHAR"/>
+        <result column="is_received" property="isReceived" jdbcType="BIT"/>
+        <result column="coupon_status" property="couponStatus" jdbcType="TINYINT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, store_id, store_name, coupon_name, issued_total, received_total, used_total,
+        meet_amount, discount_amount, support_service_type, begin_time, end_time, per_person_limit,
+        expired_remind_switch, instructions, is_received, coupon_status, is_enabled, create_time,
+        update_time
+    </sql>
+
+    <sql id="BaseAliasColumn">
+        id, store_id AS storeId, store_name AS storeName, coupon_name AS couponName, issued_total AS issuedTotal,
+        received_total AS receivedTotal, used_total AS usedTotal, meet_amount AS meetAmount,
+        discount_amount AS discountAmount, support_service_type AS supportServiceType, begin_time AS beginTime,
+        end_time AS endTime, per_person_limit AS perPersonLimit, expired_remind_switch AS expiredRemindSwitch,
+        instructions, is_received AS isReceived, coupon_status AS couponStatus, is_enabled AS isEnabled,
+        create_time AS createTime, update_time AS updateTime
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from store_coupons
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.StoreCoupons" useGeneratedKeys="true" keyProperty="id">
+        insert into store_coupons
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="storeName != null">
+                store_name,
+            </if>
+            <if test="couponName != null">
+                coupon_name,
+            </if>
+            <if test="issuedTotal != null">
+                issued_total,
+            </if>
+            <if test="receivedTotal != null">
+                received_total,
+            </if>
+            <if test="usedTotal != null">
+                used_total,
+            </if>
+            <if test="meetAmount != null">
+                meet_amount,
+            </if>
+            <if test="discountAmount != null">
+                discount_amount,
+            </if>
+            <if test="supportServiceType != null">
+                support_service_type,
+            </if>
+            <if test="beginTime != null">
+                begin_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="perPersonLimit != null">
+                per_person_limit,
+            </if>
+            <if test="expiredRemindSwitch != null">
+                expired_remind_switch,
+            </if>
+            <if test="instructions != null">
+                instructions,
+            </if>
+            <if test="isReceived != null">
+                is_received,
+            </if>
+            <if test="couponStatus != null">
+                coupon_status,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="storeId != null">
+                #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="couponName != null">
+                #{couponName,jdbcType=VARCHAR},
+            </if>
+            <if test="issuedTotal != null">
+                #{issuedTotal,jdbcType=INTEGER},
+            </if>
+            <if test="receivedTotal != null">
+                #{receivedTotal,jdbcType=INTEGER},
+            </if>
+            <if test="usedTotal != null">
+                #{usedTotal,jdbcType=INTEGER},
+            </if>
+            <if test="meetAmount != null">
+                #{meetAmount,jdbcType=INTEGER},
+            </if>
+            <if test="discountAmount != null">
+                #{discountAmount,jdbcType=INTEGER},
+            </if>
+            <if test="supportServiceType != null">
+                #{supportServiceType,jdbcType=TINYINT},
+            </if>
+            <if test="beginTime != null">
+                #{beginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=VARCHAR},
+            </if>
+            <if test="perPersonLimit != null">
+                #{perPersonLimit,jdbcType=INTEGER},
+            </if>
+            <if test="expiredRemindSwitch != null">
+                #{expiredRemindSwitch,jdbcType=BIT},
+            </if>
+            <if test="instructions != null">
+                #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="isReceived != null">
+                #{isReceived,jdbcType=BIT},
+            </if>
+            <if test="couponStatus != null">
+                #{couponStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.StoreCoupons">
+        update store_coupons
+        <set>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=INTEGER},
+            </if>
+            <if test="storeName != null">
+                store_name = #{storeName,jdbcType=VARCHAR},
+            </if>
+            <if test="couponName != null">
+                coupon_name = #{couponName,jdbcType=VARCHAR},
+            </if>
+            <if test="issuedTotal != null">
+                issued_total = #{issuedTotal,jdbcType=INTEGER},
+            </if>
+            <if test="receivedTotal != null">
+                received_total = #{receivedTotal,jdbcType=INTEGER},
+            </if>
+            <if test="usedTotal != null">
+                used_total = #{usedTotal,jdbcType=INTEGER},
+            </if>
+            <if test="meetAmount != null">
+                meet_amount = #{meetAmount,jdbcType=INTEGER},
+            </if>
+            <if test="discountAmount != null">
+                discount_amount = #{discountAmount,jdbcType=INTEGER},
+            </if>
+            <if test="supportServiceType != null">
+                support_service_type = #{supportServiceType,jdbcType=TINYINT},
+            </if>
+            <if test="beginTime != null">
+                begin_time = #{beginTime,jdbcType=VARCHAR},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=VARCHAR},
+            </if>
+            <if test="perPersonLimit != null">
+                per_person_limit = #{perPersonLimit,jdbcType=INTEGER},
+            </if>
+            <if test="expiredRemindSwitch != null">
+                expired_remind_switch = #{expiredRemindSwitch,jdbcType=BIT},
+            </if>
+            <if test="instructions != null">
+                instructions = #{instructions,jdbcType=VARCHAR},
+            </if>
+            <if test="isReceived != null">
+                is_received = #{isReceived,jdbcType=BIT},
+            </if>
+            <if test="couponStatus != null">
+                coupon_status = #{couponStatus,jdbcType=TINYINT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.StoreCoupons" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons
+        <where>
+            <if test="storeId != null">
+                AND store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="storeName != null">
+                AND store_name = #{storeName,jdbcType=VARCHAR}
+            </if>
+            <if test="couponName != null">
+                AND coupon_name = #{couponName,jdbcType=VARCHAR}
+            </if>
+            <if test="issuedTotal != null">
+                AND issued_total = #{issuedTotal,jdbcType=INTEGER}
+            </if>
+            <if test="receivedTotal != null">
+                AND received_total = #{receivedTotal,jdbcType=INTEGER}
+            </if>
+            <if test="usedTotal != null">
+                AND used_total = #{usedTotal,jdbcType=INTEGER}
+            </if>
+            <if test="meetAmount != null">
+                AND meet_amount = #{meetAmount,jdbcType=INTEGER}
+            </if>
+            <if test="discountAmount != null">
+                AND discount_amount = #{discountAmount,jdbcType=INTEGER}
+            </if>
+            <if test="supportServiceType != null">
+                AND support_service_type = #{supportServiceType,jdbcType=TINYINT}
+            </if>
+            <if test="beginTime != null">
+                AND begin_time = #{beginTime,jdbcType=VARCHAR}
+            </if>
+            <if test="endTime != null">
+                AND end_time = #{endTime,jdbcType=VARCHAR}
+            </if>
+            <if test="perPersonLimit != null">
+                AND per_person_limit = #{perPersonLimit,jdbcType=INTEGER}
+            </if>
+            <if test="expiredRemindSwitch != null">
+                AND expired_remind_switch = #{expiredRemindSwitch,jdbcType=BIT}
+            </if>
+            <if test="instructions != null">
+                AND instructions = #{instructions,jdbcType=VARCHAR}
+            </if>
+            <if test="isReceived != null">
+                AND is_received = #{isReceived,jdbcType=BIT}
+            </if>
+            <if test="couponStatus != null">
+                AND coupon_status = #{couponStatus,jdbcType=TINYINT}
+            </if>
+            <if test="isEnabled != null">
+                AND is_enabled = #{isEnabled,jdbcType=BIT}
+            </if>
+            <if test="createTime != null">
+                AND create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectListByConditionsAndCountProduct" parameterType="com.union.aimei.common.vo.store.pc.StoreCouponsProductCountVo"
+            resultType="com.union.aimei.common.vo.store.pc.StoreCouponsProductCountResultVo">
+        SELECT
+        coupons.id,
+        coupons.store_id as storeId,
+        coupons.coupon_name as couponName,
+        coupons.discount_amount as discountAmount,
+        coupons.meet_amount as meetAmount,
+        coupons.store_name as storeName,
+        ( SELECT count( * ) FROM store_coupons_product cou_product WHERE is_enabled = true and cou_product.store_coupons_id = coupons.id ) as productCount ,
+        coupons.coupon_status as couponStatus,
+        coupons.create_time as createTime
+        FROM
+        store_coupons coupons
+        <where>
+            <if test="isEnabled != null">
+                AND coupons.is_enabled = #{isEnabled,jdbcType=INTEGER}
+            </if>
+            <if test="couponStatus != null">
+                AND coupons.coupon_status = #{couponStatus,jdbcType=INTEGER}
+            </if>
+            <if test="storeId != null">
+                AND coupons.store_id = #{storeId,jdbcType=INTEGER}
+            </if>
+            <if test="beginTime != null and endTime != null">
+                AND coupons.create_time between #{beginTime,jdbcType=VARCHAR} and #{endTime,jdbcType=VARCHAR}
+            </if>
+            <choose>
+                <when test="searchType == 1">
+                    <if test="searchName != null">
+                        AND coupons.coupon_name like concat('%', #{searchName,jdbcType=VARCHAR}, '%')
+                    </if>
+                </when>
+                <when test="searchType == 2">
+                    <if test="searchName != null">
+                        AND coupons.store_name like concat('%', #{searchName,jdbcType=VARCHAR}, '%')
+                    </if>
+                </when>
+                <otherwise>
+                    <if test="searchName != null">
+                        AND (coupons.coupon_name like concat('%', #{searchName,jdbcType=VARCHAR}, '%') OR coupons.store_name like concat('%', #{searchName,jdbcType=VARCHAR}, '%') )
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+        ORDER BY coupons.create_time desc
+    </select>
+
+    <update id="updateByStartForScheduleTask">
+        update store_coupons
+        set coupon_status = 1
+        where coupon_status = 0
+        <![CDATA[and CONCAT( begin_time ,' 00:00:00') <= CURRENT_TIMESTAMP ]]>
+    </update>
+
+    <update id="updateByEndForScheduleTask">
+        update store_coupons
+        set coupon_status = 2
+        where coupon_status = 1
+        <![CDATA[and CONCAT( end_time ,' 23:59:59') <= CURRENT_TIMESTAMP ]]>
+    </update>
+
+    <select id="listAllServiceByStoreIdBatch" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from store_coupons
+        where is_enabled = true
+        and support_service_type = #{supportServiceType}
+        and store_id in
+        <foreach collection="storeIdList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

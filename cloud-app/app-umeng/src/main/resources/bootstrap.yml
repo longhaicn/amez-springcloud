@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: app-umeng-service
+  profiles:
+    active: @profileActive@
+
+
+
+

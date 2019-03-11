@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: pc-product-service
+  profiles:
+      active: @profileActive@

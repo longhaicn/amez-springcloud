@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.store.mapper.BeauticianBusinessHourMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.store.BeauticianBusinessHour">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="beautician_id" property="beauticianId" jdbcType="INTEGER"/>
+        <result column="weekday" property="weekday" jdbcType="VARCHAR"/>
+        <result column="time_point" property="timePoint" jdbcType="VARCHAR"/>
+        <result column="is_select" property="isSelect" jdbcType="BIT"/>
+        <result column="is_enabled" property="isEnabled" jdbcType="BIT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, beautician_id, weekday, time_point, is_select, is_enabled, create_time,
+    update_time
+  </sql>
+
+    <sql id="BaseAliasColumn">
+    id, beautician_id AS beauticianId, weekday, time_point AS timePoint,
+    is_select AS isSelect, is_enabled AS isEnabled, create_time AS createTime, update_time AS updateTime
+  </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from beautician_business_hour
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from beautician_business_hour
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.store.BeauticianBusinessHour" useGeneratedKeys="true" keyProperty="id">
+        insert into beautician_business_hour
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="beauticianId != null">
+                beautician_id,
+            </if>
+            <if test="weekday != null">
+                weekday,
+            </if>
+            <if test="timePoint != null">
+                time_point,
+            </if>
+            <if test="isSelect != null">
+                is_select,
+            </if>
+            <if test="isEnabled != null">
+                is_enabled,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="beauticianId != null">
+                #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="weekday != null">
+                #{weekday,jdbcType=VARCHAR},
+            </if>
+            <if test="timePoint != null">
+                #{timePoint,jdbcType=VARCHAR},
+            </if>
+            <if test="isSelect != null">
+                #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.store.BeauticianBusinessHour">
+        update beautician_business_hour
+        <set>
+            <if test="beauticianId != null">
+                beautician_id = #{beauticianId,jdbcType=INTEGER},
+            </if>
+            <if test="weekday != null">
+                weekday = #{weekday,jdbcType=VARCHAR},
+            </if>
+            <if test="timePoint != null">
+                time_point = #{timePoint,jdbcType=VARCHAR},
+            </if>
+            <if test="isSelect != null">
+                is_select = #{isSelect,jdbcType=BIT},
+            </if>
+            <if test="isEnabled != null">
+                is_enabled = #{isEnabled,jdbcType=BIT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.store.BeauticianBusinessHour" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from beautician_business_hour
+        where is_enabled = true
+        <if test="beauticianId != null">
+            AND beautician_id = #{beauticianId,jdbcType=INTEGER}
+        </if>
+        <if test="weekday != null">
+            AND weekday = #{weekday,jdbcType=VARCHAR}
+        </if>
+        <if test="timePoint != null">
+            AND time_point = #{timePoint,jdbcType=VARCHAR}
+        </if>
+        <if test="isSelect != null">
+            AND is_select = #{isSelect,jdbcType=BIT}
+        </if>
+        <if test="createTime != null">
+            AND create_time = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+    </select>
+
+    <insert id="addBatch" parameterType="java.util.List" useGeneratedKeys="true">
+        insert into beautician_business_hour (beautician_id, weekday, time_point, is_select)
+        values
+        <foreach collection="beauticianBusinessHourList" item="item" index="index" separator=",">
+            (#{item.beauticianId}, #{item.weekday}, #{item.timePoint} ,#{item.isSelect})
+        </foreach>
+    </insert>
+
+    <update id="deleteByBeauticianId" parameterType="java.lang.Integer">
+        update beautician_business_hour
+        set is_enabled = false
+        where is_enabled = true
+        and beautician_id = #{beauticianId}
+    </update>
+
+</mapper>

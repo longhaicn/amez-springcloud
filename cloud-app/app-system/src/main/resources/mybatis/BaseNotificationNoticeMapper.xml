@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.union.aimei.system.mapper.BaseNotificationNoticeMapper">
+    <resultMap id="BaseResultMap" type="com.union.aimei.common.model.system.BaseNotificationNotice">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="activity_type" jdbcType="TINYINT" property="activityType" />
+        <result column="activity_page" jdbcType="TINYINT" property="activityPage" />
+        <result column="activity_title" jdbcType="VARCHAR" property="activityTitle" />
+        <result column="activity_images_url" jdbcType="VARCHAR" property="activityImagesUrl" />
+        <result column="push_status" jdbcType="TINYINT" property="pushStatus" />
+        <result column="activity_detail" jdbcType="VARCHAR" property="activityDetail" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        id, activity_type, activity_page, activity_title, activity_images_url, push_status,
+        activity_detail, create_time, update_time
+    </sql>
+    <select id="selectByExample" parameterType="com.union.aimei.common.model.system.BaseNotificationNoticeExample" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from base_notification_notice
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from base_notification_notice
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from base_notification_notice
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.union.aimei.common.model.system.BaseNotificationNoticeExample">
+        delete from base_notification_notice
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.union.aimei.common.model.system.BaseNotificationNotice">
+        insert into base_notification_notice (id, activity_type, activity_page,
+        activity_title, activity_images_url, push_status,
+        activity_detail, create_time, update_time
+        )
+        values (#{id,jdbcType=INTEGER}, #{activityType,jdbcType=TINYINT}, #{activityPage,jdbcType=TINYINT},
+        #{activityTitle,jdbcType=VARCHAR}, #{activityImagesUrl,jdbcType=VARCHAR}, #{pushStatus,jdbcType=TINYINT},
+        #{activityDetail,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.union.aimei.common.model.system.BaseNotificationNotice">
+        insert into base_notification_notice
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="activityType != null">
+                activity_type,
+            </if>
+            <if test="activityPage != null">
+                activity_page,
+            </if>
+            <if test="activityTitle != null">
+                activity_title,
+            </if>
+            <if test="activityImagesUrl != null">
+                activity_images_url,
+            </if>
+            <if test="pushStatus != null">
+                push_status,
+            </if>
+            <if test="activityDetail != null">
+                activity_detail,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="activityType != null">
+                #{activityType,jdbcType=TINYINT},
+            </if>
+            <if test="activityPage != null">
+                #{activityPage,jdbcType=TINYINT},
+            </if>
+            <if test="activityTitle != null">
+                #{activityTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="activityImagesUrl != null">
+                #{activityImagesUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pushStatus != null">
+                #{pushStatus,jdbcType=TINYINT},
+            </if>
+            <if test="activityDetail != null">
+                #{activityDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.union.aimei.common.model.system.BaseNotificationNoticeExample" resultType="java.lang.Long">
+        select count(*) from base_notification_notice
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update base_notification_notice
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.activityType != null">
+                activity_type = #{record.activityType,jdbcType=TINYINT},
+            </if>
+            <if test="record.activityPage != null">
+                activity_page = #{record.activityPage,jdbcType=TINYINT},
+            </if>
+            <if test="record.activityTitle != null">
+                activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.activityImagesUrl != null">
+                activity_images_url = #{record.activityImagesUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pushStatus != null">
+                push_status = #{record.pushStatus,jdbcType=TINYINT},
+            </if>
+            <if test="record.activityDetail != null">
+                activity_detail = #{record.activityDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update base_notification_notice
+        set id = #{record.id,jdbcType=INTEGER},
+        activity_type = #{record.activityType,jdbcType=TINYINT},
+        activity_page = #{record.activityPage,jdbcType=TINYINT},
+        activity_title = #{record.activityTitle,jdbcType=VARCHAR},
+        activity_images_url = #{record.activityImagesUrl,jdbcType=VARCHAR},
+        push_status = #{record.pushStatus,jdbcType=TINYINT},
+        activity_detail = #{record.activityDetail,jdbcType=VARCHAR},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.system.BaseNotificationNotice">
+        update base_notification_notice
+        <set>
+            <if test="activityType != null">
+                activity_type = #{activityType,jdbcType=TINYINT},
+            </if>
+            <if test="activityPage != null">
+                activity_page = #{activityPage,jdbcType=TINYINT},
+            </if>
+            <if test="activityTitle != null">
+                activity_title = #{activityTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="activityImagesUrl != null">
+                activity_images_url = #{activityImagesUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="pushStatus != null">
+                push_status = #{pushStatus,jdbcType=TINYINT},
+            </if>
+            <if test="activityDetail != null">
+                activity_detail = #{activityDetail,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.union.aimei.common.model.system.BaseNotificationNotice">
+        update base_notification_notice
+        set activity_type = #{activityType,jdbcType=TINYINT},
+        activity_page = #{activityPage,jdbcType=TINYINT},
+        activity_title = #{activityTitle,jdbcType=VARCHAR},
+        activity_images_url = #{activityImagesUrl,jdbcType=VARCHAR},
+        push_status = #{pushStatus,jdbcType=TINYINT},
+        activity_detail = #{activityDetail,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <select id="selectByPage" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List" /> FROM base_notification_notice LIMIT #{offset},#{limit}
+    </select>
+    <select id="selectListByConditions" parameterType="com.union.aimei.common.model.system.BaseNotificationNotice" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from base_notification_notice
+        <where>
+            <if test="activityType != null">
+                and activity_type = #{activityType,jdbcType=TINYINT}
+            </if>
+            <if test="activityPage != null">
+                and activity_page = #{activityPage,jdbcType=TINYINT}
+            </if>
+            <if test="activityTitle != null">
+                and activity_title = #{activityTitle,jdbcType=VARCHAR}
+            </if>
+            <if test="activityImagesUrl != null">
+                and activity_images_url = #{activityImagesUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="pushStatus != null">
+                and push_status = #{pushStatus,jdbcType=TINYINT}
+            </if>
+            <if test="activityDetail != null">
+                and activity_detail = #{activityDetail,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

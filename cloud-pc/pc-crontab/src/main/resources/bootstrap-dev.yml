@@ -1,0 +1,157 @@
+spring:
+  cloud:
+    config:
+        #强制拉取更新
+        force-pull: true
+        #对应前配置文件中的{profile}部分
+        profile: ${config.profile:dev}
+        #对应前配置文件的 git 分支
+        label: master
+         # 要读取的配置文件 application 属性（对应前配置文件中的{application}部分）
+        name: crontab-service
+        #安全认证,输入git账号密码
+        password: gaowei123
+        username: gaowei
+        failFast: true
+        #discovery 参数设置为 true，开启通过服务来访问 Config Server 的功能
+        discovery:
+           enabled: true
+           service-id: microservice-config-server-eureka
+  http:
+    multipart:
+      max-file-size: 500Mb
+      max-request-size: 500Mb
+  sleuth:
+      sampler:
+        percentage: 1.0
+  rabbitmq:
+      host: 192.168.1.25
+      port: 5672
+      username: guest
+      password: guest
+logging:
+  level:
+    root: INFO
+    com.union: debug
+    org.springframework.cloud.sleuth: DEBUG
+eureka:
+  client:
+    serviceUrl:
+       defaultZone: http://localhost:8000/eureka/    # 指定注册中心的地址
+  instance:
+    prefer-ip-address: true
+
+mybatis:
+    mapper-locations: classpath:pc/mybatis/*.xml
+    configuration:
+        mapUnderscoreToCamelCase: true
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+management:
+  security:
+    enabled: false
+server:
+  port: 8027
+swagger:
+    enabled: true
+    title: 美容邦系统管理模块-App微服务
+    description: 更多系统管理模块微服务在线API文档稍后发布
+    version: 1.0
+    license: Apache License, Version 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+    base-package: com.union.aimei.pc.crontab
+    base-path: /**
+    exclude-path: /error
+#定时任务配置
+com:
+  union:
+    crontab:
+      job:
+        #是否暂停(默认暂停，通过后台开启任务)
+        is-pause: true
+        #任务列表
+        job-task-list:
+            # 支付模块
+            - jobGroup: pay
+              jobName: com.union.aimei.pc.crontab.job.pay.AfterPayJob
+              jobDescription: 支付失败补偿定时任务
+              cronExpression: 0/60 * * * * ?
+            #订单模块
+            - jobGroup: order
+              jobName: com.union.aimei.pc.crontab.job.order.AutoGoodCommentJob
+              jobDescription: 待评价订单七天自动好评
+              cronExpression: 0/30 * * * * ?
+            - jobGroup: order
+              jobName: com.union.aimei.pc.crontab.job.order.AutoReceiveOrderGoodsJob
+              jobDescription: 实物产品订单收货确认定时器
+              cronExpression: 0/30 * * * * ?
+            - jobGroup: order
+              jobName: com.union.aimei.pc.crontab.job.order.CancelOrderGoodsJob
+              jobDescription: 实物订单12小时未付款，取消订单释放库存
+              cronExpression: 0/30 * * * * ?
+            - jobGroup: order
+              jobName: com.union.aimei.pc.crontab.job.order.CompleteUpdateJob
+              jobDescription: 订单验证完成后,更改状态为待评价,更改交易流水状态为已完成
+              cronExpression: 0/30 * * * * ?
+            - jobGroup: order
+              jobName: com.union.aimei.pc.crontab.job.order.PreHalfHourNotifyJob
+              jobDescription: 订单开始前半小时提醒用户及美容师
+              cronExpression: 0/30 * * * * ?
+            - jobGroup: order
+              jobName: com.union.aimei.pc.crontab.job.order.RefundOrderJob
+              jobDescription: 退款订单处理定时器
+              cronExpression: 0/30 * * * * ?
+            #财务模块
+            - jobGroup: financial
+              jobName: com.union.aimei.pc.crontab.job.financial.StoreTradeStatisticsButtonJobs
+              jobDescription: 店铺流水统计允许对账确认调度
+              cronExpression: 0 0 0 18 * ?
+            - jobGroup: financial
+              jobName: com.union.aimei.pc.crontab.job.financial.StoreTradeStatisticsJobs
+              jobDescription: 统计每个店铺的流水账单
+              cronExpression: 0 0 0 6 * ?
+            #im模块
+            - jobGroup: im
+              jobName: com.union.aimei.pc.crontab.job.im.EasemobImMessagesJob
+              jobDescription: 环信IM消息任务 根据时间条件下载历史消息文件
+              cronExpression: 0/30 * * * * ?
+            #培训模块
+            - jobGroup: learn
+              jobName: com.union.aimei.pc.crontab.job.learn.ActivityStartJobs
+              jobDescription: 活动开始前一天的短信通知调度，以及推送信息通知
+              cronExpression: 0 0 21 * * ?
+            - jobGroup: learn
+              jobName: com.union.aimei.pc.crontab.job.learn.ActivityJobs
+              jobDescription: 活动结束的时间调度
+              cronExpression: 0 0/30 * * * ?
+            - jobGroup: learn
+              jobName: com.union.aimei.pc.crontab.job.learn.CourseJobs
+              jobDescription: 课程开始、课程结束的时间调度
+              cronExpression: 0 0/30 * * * ?
+            - jobGroup: learn
+              jobName: com.union.aimei.pc.crontab.job.learn.CourseStartJobs
+              jobDescription: 课程开始前一天的信息通知
+              cronExpression: 0 0 21 * * ?
+            #店铺模块
+            - jobGroup: store
+              jobName: com.union.aimei.pc.crontab.job.store.CouponsEndJob
+              jobDescription: 优惠券结束任务
+              cronExpression: 0/30 * * * * ?
+            - jobGroup: store
+              jobName: com.union.aimei.pc.crontab.job.store.CouponStartJob
+              jobDescription: 优惠券开始任务
+              cronExpression: 0/30 * * * * ?
+
+
+
+
+
+
+
+
+
+
+

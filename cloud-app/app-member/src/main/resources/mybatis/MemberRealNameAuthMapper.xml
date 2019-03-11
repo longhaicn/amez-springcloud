@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.member.mapper.MemberRealNameAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.member.MemberRealNameAuth" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_card_faced_photo" property="idCardFacedPhoto" jdbcType="VARCHAR" />
+    <result column="id_card_observe_phone" property="idCardObservePhone" jdbcType="VARCHAR" />
+    <result column="id_card_handheld_phone" property="idCardHandheldPhone" jdbcType="VARCHAR" />
+    <result column="other_related_certificates" property="otherRelatedCertificates" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="TINYINT" />
+    <result column="third_auth_status" property="thirdAuthStatus" jdbcType="TINYINT" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="audit_remark" property="auditRemark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, member_id, real_name, id_card,phone, id_card_faced_photo, id_card_observe_phone, id_card_handheld_phone, other_related_certificates,
+    audit_status, third_auth_status, audit_time, audit_remark, create_time, update_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, member_id AS memberId, real_name AS realName, id_card AS idCard,phone AS phone, id_card_faced_photo AS idCardFacedPhoto,
+    id_card_observe_phone AS idCardObservePhone, id_card_handheld_phone AS idCardHandheldPhone,other_related_certificates AS otherRelatedCertificates,
+    audit_status AS auditStatus,third_auth_status AS thirdAuthStatus, audit_time AS auditTime, audit_remark AS auditRemark,
+    create_time AS createTime, update_time AS updateTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from member_real_name_auth
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from member_real_name_auth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.member.MemberRealNameAuth" useGeneratedKeys="true" keyProperty="id" >
+    insert into member_real_name_auth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="idCardFacedPhoto != null" >
+        id_card_faced_photo,
+      </if>
+      <if test="idCardObservePhone != null" >
+        id_card_observe_phone,
+      </if>
+      <if test="idCardHandheldPhone != null" >
+        id_card_handheld_phone,
+      </if>
+      <if test="otherRelatedCertificates != null" >
+        other_related_certificates,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="thirdAuthStatus != null" >
+        third_auth_status,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardFacedPhoto != null" >
+        #{idCardFacedPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardObservePhone != null" >
+        #{idCardObservePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardHandheldPhone != null" >
+        #{idCardHandheldPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRelatedCertificates != null" >
+        #{otherRelatedCertificates,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="thirdAuthStatus != null" >
+        #{thirdAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditRemark != null" >
+        #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.member.MemberRealNameAuth" >
+    update member_real_name_auth
+    <set >
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardFacedPhoto != null" >
+        id_card_faced_photo = #{idCardFacedPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardObservePhone != null" >
+        id_card_observe_phone = #{idCardObservePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardHandheldPhone != null" >
+        id_card_handheld_phone = #{idCardHandheldPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRelatedCertificates != null" >
+        other_related_certificates = #{otherRelatedCertificates,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="thirdAuthStatus != null" >
+        third_auth_status = #{thirdAuthStatus,jdbcType=TINYINT},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditRemark != null" >
+        audit_remark = #{auditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.member.MemberRealNameAuth" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from member_real_name_auth
+    <where >
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="realName != null" >
+        AND real_name = #{realName,jdbcType=VARCHAR}
+      </if>
+      <if test="idCard != null" >
+        AND id_card = #{idCard,jdbcType=VARCHAR}
+      </if>
+      <if test="phone != null" >
+        AND phone = #{phone,jdbcType=VARCHAR}
+      </if>
+      <if test="idCardFacedPhoto != null" >
+        AND id_card_faced_photo = #{idCardFacedPhoto,jdbcType=VARCHAR}
+      </if>
+      <if test="idCardObservePhone != null" >
+        AND id_card_observe_phone = #{idCardObservePhone,jdbcType=VARCHAR}
+      </if>
+      <if test="idCardHandheldPhone != null" >
+        AND id_card_handheld_phone = #{idCardHandheldPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="otherRelatedCertificates != null" >
+        AND other_related_certificates = #{otherRelatedCertificates,jdbcType=VARCHAR}
+      </if>
+      <if test="auditStatus != null" >
+        AND audit_status = #{auditStatus,jdbcType=TINYINT}
+      </if>
+      <if test="thirdAuthStatus != null" >
+        AND third_auth_status = #{thirdAuthStatus,jdbcType=TINYINT}
+      </if>
+      <if test="auditTime != null" >
+        AND audit_time = #{auditTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="auditRemark != null" >
+        AND audit_remark = #{auditRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="createTime != null" >
+        AND create_time = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null" >
+        AND update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    order by create_time desc
+  </select>
+
+
+</mapper>

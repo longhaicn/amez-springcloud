@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: config-server
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: config-server
+    spec:
+      containers:
+      - name: config-server
+        image: registry.cn-hangzhou.aliyuncs.com/beautybond/config-server:v1.1.3
+        ports: 
+        - containerPort: 8006
+      imagePullSecrets:
+      - name: k8slogindocker
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: config-server-svc
+spec:
+  selector:
+    run: config-server
+  type: NodePort
+  ports:
+    - nodePort: 30013
+      port: 8006
+      targetPort: 8006

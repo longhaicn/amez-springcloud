@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.app.api.order.mapper.OrderProductConsumeGoodsRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderProductConsumeGoodsRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_physical_id" property="productPhysicalId" jdbcType="INTEGER" />
+    <result column="product_physical_name" property="productPhysicalName" jdbcType="VARCHAR" />
+    <result column="sale_price" property="salePrice" jdbcType="INTEGER" />
+    <result column="physical_code" property="physicalCode" jdbcType="VARCHAR" />
+    <result column="cover_img" property="coverImg" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="consume_num" property="consumeNum" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, order_id, product_id, product_physical_id, product_physical_name, sale_price, 
+    physical_code, cover_img, unit, consume_num, add_time
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, order_id AS orderId, product_id AS productId, product_physical_id AS productPhysicalId, 
+    product_physical_name AS productPhysicalName, sale_price AS salePrice, physical_code AS physicalCode, 
+    cover_img AS coverImg, unit, consume_num AS consumeNum, add_time AS addTime
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_product_consume_goods_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_product_consume_goods_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderProductConsumeGoodsRecord" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_product_consume_goods_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productPhysicalId != null" >
+        product_physical_id,
+      </if>
+      <if test="productPhysicalName != null" >
+        product_physical_name,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="physicalCode != null" >
+        physical_code,
+      </if>
+      <if test="coverImg != null" >
+        cover_img,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="consumeNum != null" >
+        consume_num,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productPhysicalId != null" >
+        #{productPhysicalId,jdbcType=INTEGER},
+      </if>
+      <if test="productPhysicalName != null" >
+        #{productPhysicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="physicalCode != null" >
+        #{physicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null" >
+        #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeNum != null" >
+        #{consumeNum,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderProductConsumeGoodsRecord" >
+    update order_product_consume_goods_record
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productPhysicalId != null" >
+        product_physical_id = #{productPhysicalId,jdbcType=INTEGER},
+      </if>
+      <if test="productPhysicalName != null" >
+        product_physical_name = #{productPhysicalName,jdbcType=VARCHAR},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=INTEGER},
+      </if>
+      <if test="physicalCode != null" >
+        physical_code = #{physicalCode,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImg != null" >
+        cover_img = #{coverImg,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="consumeNum != null" >
+        consume_num = #{consumeNum,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderProductConsumeGoodsRecord" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from order_product_consume_goods_record
+    <where >
+      <if test="orderId != null" >
+        AND order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="productId != null" >
+        AND product_id = #{productId,jdbcType=INTEGER}
+      </if>
+      <if test="productPhysicalId != null" >
+        AND product_physical_id = #{productPhysicalId,jdbcType=INTEGER}
+      </if>
+      <if test="productPhysicalName != null" >
+        AND product_physical_name = #{productPhysicalName,jdbcType=VARCHAR}
+      </if>
+      <if test="salePrice != null" >
+        AND sale_price = #{salePrice,jdbcType=INTEGER}
+      </if>
+      <if test="physicalCode != null" >
+        AND physical_code = #{physicalCode,jdbcType=VARCHAR}
+      </if>
+      <if test="coverImg != null" >
+        AND cover_img = #{coverImg,jdbcType=VARCHAR}
+      </if>
+      <if test="unit != null" >
+        AND unit = #{unit,jdbcType=VARCHAR}
+      </if>
+      <if test="consumeNum != null" >
+        AND consume_num = #{consumeNum,jdbcType=INTEGER}
+      </if>
+      <if test="addTime != null" >
+        AND add_time = #{addTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+
+      <insert id="batchInsertRecord" parameterType="list" useGeneratedKeys="true">
+          insert into order_product_consume_goods_record(
+          order_id,
+          product_id,
+          product_physical_id,
+          product_physical_name,
+          sale_price,
+          physical_code,
+          cover_img,
+          unit,
+          consume_num
+          )
+          values
+          <foreach collection="list" item="item" index="index" separator=",">
+              (#{item.orderId},
+              #{item.productId},
+              #{item.productPhysicalId},
+              #{item.productPhysicalName},
+              #{item.salePrice},
+              #{item.physicalCode},
+              #{item.coverImg},
+              #{item.unit},
+              #{item.consumeNum}
+              )
+          </foreach>
+      </insert>
+
+      <select id="queryStoreConsumer" parameterType="map" resultType="hashmap">
+        SELECT
+        o.id,
+        o.order_no AS orderNo,
+        o.`status`,
+        op.product_id as productId,
+        op.product_name as productName,
+        op.product_img as productImg,
+        o.amount_total as amountTotal,
+        opcg.consume_num as consumeNUm,
+        opcg.unit,
+        ob.beautician_id as beauticianId,
+        ob.beautician_name as beauticianName,
+        ob.type
+        FROM
+        `order_product_consume_goods_record` opcg
+        LEFT JOIN order_base o ON opcg.order_id = o.id
+        LEFT JOIN order_beautician ob ON opcg.order_id = ob.order_id
+        LEFT JOIN order_product op ON opcg.order_id = op.order_id
+        where o.store_id=#{storeId}
+        AND op.product_id=#{productId}
+        and ob.type=2
+        and o.status &gt;= 2
+        and o.return_status=0
+      </select>
+
+    <select id="queryBeauticianConsumer" parameterType="map" resultType="hashmap">
+        SELECT
+        o.id,
+        o.order_no AS orderNo,
+        o.`status`,
+        op.product_id as productId,
+        op.product_name as productName,
+        op.product_img as productImg,
+        o.amount_total as amountTotal,
+        opcg.consume_num as consumeNUm,
+        opcg.unit,
+        ob.type
+        FROM
+        `order_product_consume_goods_record` opcg
+        LEFT JOIN order_base o ON opcg.order_id = o.id
+        LEFT JOIN order_beautician ob ON opcg.order_id = ob.order_id
+        LEFT JOIN order_product op ON opcg.order_id = op.order_id
+        where ob.beautician_id=#{beauticianId}
+        AND op.product_id=#{productId}
+        and ob.type=3
+        and o.status &gt;= 2
+        and o.return_status=0
+    </select>
+
+</mapper>

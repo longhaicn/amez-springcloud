@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.union.aimei.pc.order.mapper.OrderReturnMapper" >
+  <resultMap id="BaseResultMap" type="com.union.aimei.common.model.order.OrderReturn" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="refund_order_no" property="refundOrderNo" jdbcType="VARCHAR" />
+    <result column="member_id" property="memberId" jdbcType="INTEGER" />
+    <result column="member_name" property="memberName" jdbcType="VARCHAR" />
+    <result column="return_type" property="returnType" jdbcType="TINYINT" />
+    <result column="return_status" property="returnStatus" jdbcType="TINYINT" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="fee" property="fee" jdbcType="INTEGER" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="delivery_name" property="deliveryName" jdbcType="VARCHAR" />
+    <result column="delivery_code" property="deliveryCode" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="is_enabled" property="isEnabled" jdbcType="BIT" />
+    <result column="update_count" property="updateCount" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    id, store_id, order_id, order_no, refund_order_no, member_id, member_name, return_type,
+    return_status, reason, fee, apply_time, audit_time, delivery_name, delivery_code,
+    remark, is_enabled, update_count
+  </sql>
+
+  <sql id="BaseAliasColumn" >
+    id, store_id AS storeId, order_id AS orderId, order_no AS orderNo, refund_order_no AS refundOrderNo,
+    member_id AS memberId, member_name AS memberName, return_type AS returnType, return_status AS returnStatus,
+    reason, fee, apply_time AS applyTime, audit_time AS auditTime, delivery_name AS deliveryName,
+    delivery_code AS deliveryCode, remark, is_enabled AS isEnabled, update_count AS updateCount
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from order_return
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_return
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.union.aimei.common.model.order.OrderReturn" useGeneratedKeys="true" keyProperty="id" >
+    insert into order_return
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        store_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="refundOrderNo != null" >
+        refund_order_no,
+      </if>
+      <if test="memberId != null" >
+        member_id,
+      </if>
+      <if test="memberName != null" >
+        member_name,
+      </if>
+      <if test="returnType != null" >
+        return_type,
+      </if>
+      <if test="returnStatus != null" >
+        return_status,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="fee != null" >
+        fee,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="deliveryName != null" >
+        delivery_name,
+      </if>
+      <if test="deliveryCode != null" >
+        delivery_code,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled,
+      </if>
+      <if test="updateCount != null" >
+        update_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storeId != null" >
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundOrderNo != null" >
+        #{refundOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnType != null" >
+        #{returnType,jdbcType=TINYINT},
+      </if>
+      <if test="returnStatus != null" >
+        #{returnStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryName != null" >
+        #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCode != null" >
+        #{deliveryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="updateCount != null" >
+        #{updateCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.union.aimei.common.model.order.OrderReturn" >
+    update order_return
+    <set >
+      <if test="storeId != null" >
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundOrderNo != null" >
+        refund_order_no = #{refundOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null" >
+        member_id = #{memberId,jdbcType=INTEGER},
+      </if>
+      <if test="memberName != null" >
+        member_name = #{memberName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnType != null" >
+        return_type = #{returnType,jdbcType=TINYINT},
+      </if>
+      <if test="returnStatus != null" >
+        return_status = #{returnStatus,jdbcType=TINYINT},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        fee = #{fee,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryName != null" >
+        delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryCode != null" >
+        delivery_code = #{deliveryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnabled != null" >
+        is_enabled = #{isEnabled,jdbcType=BIT},
+      </if>
+      <if test="updateCount != null" >
+        update_count = #{updateCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectListByConditions" parameterType="com.union.aimei.common.model.order.OrderReturn" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List"/> from order_return
+    <where >
+      <if test="storeId != null" >
+        AND store_id = #{storeId,jdbcType=INTEGER}
+      </if>
+      <if test="orderId != null" >
+        AND order_id = #{orderId,jdbcType=INTEGER}
+      </if>
+      <if test="orderNo != null" >
+        AND order_no = #{orderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="refundOrderNo != null" >
+        AND refund_order_no = #{refundOrderNo,jdbcType=VARCHAR}
+      </if>
+      <if test="memberId != null" >
+        AND member_id = #{memberId,jdbcType=INTEGER}
+      </if>
+      <if test="memberName != null" >
+        AND member_name = #{memberName,jdbcType=VARCHAR}
+      </if>
+      <if test="returnType != null" >
+        AND return_type = #{returnType,jdbcType=TINYINT}
+      </if>
+      <if test="returnStatus != null" >
+        AND return_status = #{returnStatus,jdbcType=TINYINT}
+      </if>
+      <if test="reason != null" >
+        AND reason = #{reason,jdbcType=VARCHAR}
+      </if>
+      <if test="fee != null" >
+        AND fee = #{fee,jdbcType=INTEGER}
+      </if>
+      <if test="applyTime != null" >
+        AND apply_time = #{applyTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="auditTime != null" >
+        AND audit_time = #{auditTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="deliveryName != null" >
+        AND delivery_name = #{deliveryName,jdbcType=VARCHAR}
+      </if>
+      <if test="deliveryCode != null" >
+        AND delivery_code = #{deliveryCode,jdbcType=VARCHAR}
+      </if>
+      <if test="remark != null" >
+        AND remark = #{remark,jdbcType=VARCHAR}
+      </if>
+      <if test="isEnabled != null" >
+        AND is_enabled = #{isEnabled,jdbcType=BIT}
+      </if>
+      <if test="updateCount != null" >
+        AND update_count = #{updateCount,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+
+
+    <select id="queryAutoRefundRecord" resultType="com.union.aimei.common.model.order.OrderReturn">
+        SELECT
+        o.id,
+        o.store_id AS storeId,
+        o.order_id AS orderId,
+        o.order_no AS orderNo,
+        o.member_id AS memberId,
+        o.member_name AS memberName,
+        o.return_type AS returnType,
+        o.return_status AS returnStatus,
+        o.reason,
+        o.fee,
+        o.apply_time AS applyTime,
+        o.audit_time AS auditTime,
+        o.delivery_name AS deliveryName,
+        o.delivery_code AS deliveryCode,
+        o.remark,
+        o.is_enabled AS isEnabled,
+        o.update_count AS updateCount
+        FROM
+        order_return o
+        LEFT JOIN order_refunds_consult_record orcr ON o.id = orcr.order_return_id
+        WHERE
+        o.return_type = 2
+        AND o.return_status = 1
+        AND now() &gt; DATE_ADD(o.apply_time, INTERVAL 2 DAY)
+        AND o.id NOT IN (
+        SELECT
+        order_return_id
+        FROM
+        order_refunds_consult_record oc
+        WHERE
+        oc.order_return_id IS NOT NULL
+        )
+    </select>
+
+
+    <update id="batchUpdateStatus">
+            update order_return
+            SET return_status = 2
+            where DATE_ADD(apply_time,INTERVAL 2 DAY) > now()
+    </update>
+
+
+    <select id="queryByOrderId" parameterType="integer" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/> from order_return
+      WHERE order_id=#{orderId} and is_enabled=1
+    </select>
+
+
+    <select id="queryByConditions" parameterType="com.union.aimei.common.vo.order.OrderRefundQueryVo" resultType="com.union.aimei.common.vo.order.OrderRefundListVo">
+             SELECT
+        ob.id as orderId,
+        orn.id as orderReturnId,
+      ob.order_no as orderNo,
+      ob.type as orderType,
+      op.product_name as productName,
+      ob.need_pay as needPay,
+      orn.apply_time as applyTime,
+      orn.fee as refund,
+      orn.return_status as returnStatus
+    FROM
+        order_return orn
+      INNER JOIN order_base ob on orn.order_id=ob.id
+      INNER JOIN order_product op on ob.id=op.order_id
+      <where>
+          <if test="id!=null">
+              and orn.id=#{id}
+          </if>
+          <if test="orderNo!=null">
+              and ob.order_no=#{orderNo}
+          </if>
+          <if test="applyStartTime!=null">
+              and orn.apply_time&gt;=#{applyStartTime}
+          </if>
+          <if test="applyEndTime!=null">
+              and orn.apply_time&lt;=#{applyEndTime}
+          </if>
+          <if test="orderType!=null">
+              and ob.type=#{orderType}
+          </if>
+          <if test="returnStatus!=null">
+              and orn.return_status=#{returnStatus}
+          </if>
+      </where>
+      order by orn.apply_time DESC
+    </select>
+</mapper>
